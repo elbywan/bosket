@@ -1,0 +1,8 @@
+{
+    "presets": [
+        ["env",{
+            "modules": "umd"
+        }],
+        "react"],
+    "plugins": ["transform-class-properties", "transform-object-rest-spread"]
+}

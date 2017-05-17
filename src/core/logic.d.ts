@@ -1,0 +1,66 @@
+export declare class Core {
+    constructor(inputs: {get: Function, set: Function}, outputs: Object, state: Object, refresh: () => void)
+}
+
+export declare class Node<Item extends Object> extends Core {
+
+    pending: Array<Item>
+
+    /* Checks */
+
+    isSelected:  (Item) => boolean
+    isFolded:    (Item) => boolean
+    hasChildren: (Item) => boolean
+    isAsync:     (Item) => boolean
+    isDisabled:  (Item) => boolean
+
+    /* Styles */
+
+    ulCss: () => string
+    liCss: (Item) => string
+
+    /* Logic */
+
+    /* Promises */
+    unwrapPromise: (Item) => Promise<any>
+
+    /* Events */
+    onClick:        (Item) => (MouseEvent) => string
+    onOpener:       (Item) => (MouseEvent) => string
+    onDragStart:    (Item) => (DragEvent) => string
+    onDragOver:     (Item) => (DragEvent) => string
+    onDragEnter:    (Item) => (DragEvent) => string
+    onDragLeave:    (DragEvent) => string
+    onDrop:         (Item) => (DragEvent) => string
+
+    dragGuard:      (Item) => boolean
+
+    defaultDragEvents: (Item) => {
+        draggable:      boolean,
+        onDragStart:    (DragEvent) => string,
+        onDragOver:     (DragEvent) => string,
+        onDragEnter:    (DragEvent) => string,
+        onDragLeave:    (DragEvent) => string,
+        onDrop:         (DragEvent) => string,
+    }
+}
+
+export declare class RootNode<Item extends Object> extends Core {
+
+     defaultStrategies: {
+        selectionStrategy,
+        clickStrategy,
+        foldStrategy
+    }
+    defaultAsync: (Function) => Promise<any>
+    modifiers: Object
+
+    filterTree: (input: string) => (Array<Item> | null)
+
+    /* Events */
+    onKey: (KeyboardEvent) => void
+    onSelect: (item: Item, ancestors: Array<Item>, neighbours: Array<Item>) => Array<Item>
+    onDragStart: (target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void
+    onDrop: (target: Item, event: DragEvent) => void
+
+}

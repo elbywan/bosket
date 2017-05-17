@@ -1,0 +1,137 @@
+extends:
+  - eslint:recommended
+  - react-app
+rules:
+  no-console:
+    - warn
+  no-extra-parens:
+    - error
+    - all
+  no-mixed-operators:
+    - off
+  array-bracket-spacing:
+    - warn
+    - always
+    - singleValue:      false
+      objectsInArrays:  false
+      arraysInArrays:   false
+  block-spacing:
+    - warn
+    - always
+  brace-style:
+    - warn
+    - 1tbs
+    - allowSingleLine: true
+  camelcase:
+    - error
+    - properties: always
+  comma-dangle:
+    - error
+    - never
+  comma-spacing:
+    - error
+  comma-style:
+    - error
+  computed-property-spacing:
+    - error
+  consistent-this:
+    - error
+  no-trailing-spaces:
+    - error
+  no-multiple-empty-lines:
+    - error
+  func-call-spacing:
+    - error
+  indent:
+    - error
+  jsx-quotes:
+    - error
+    - prefer-double
+  key-spacing:
+    - error
+    - mode: minimum
+  keyword-spacing:
+    - error
+    - overrides:
+        if:
+          after: false
+        for:
+          after: false
+        while:
+          after: false
+  linebreak-style:
+    - error
+  new-cap:
+    - warn
+  new-parens:
+    - error
+  newline-per-chained-call:
+    - error
+    - ignoreChainWithDepth: 3
+  no-lonely-if:
+    - error
+  no-mixed-spaces-and-tabs:
+    - warn
+    - smart-tabs
+  no-unneeded-ternary:
+    - error
+  no-whitespace-before-property:
+    - error
+  object-curly-spacing:
+    - warn
+    - always
+  object-property-newline:
+    - error
+    - allowMultiplePropertiesPerLine: true
+  operator-linebreak:
+    - warn
+    - after
+  padded-blocks:
+    - warn
+    - never
+  quote-props:
+    - error
+    - as-needed
+    - keywords: true
+  quotes:
+    - error
+    - double
+  no-unexpected-multiline:
+    - warn
+  semi:
+    - error
+    - never
+  space-before-blocks:
+    - error
+  space-before-function-paren:
+    - error
+    - never
+  space-in-parens:
+    - error
+  space-infix-ops:
+    - error
+    - int32Hint: false
+  spaced-comment:
+    - error
+    - always
+  space-unary-ops:
+    - error
+    - words: true
+      nonwords: false
+  unicode-bom:
+    - error
+    - never
+  arrow-body-style:
+    - error
+    - as-needed
+  arrow-parens:
+    - error
+    - as-needed
+  arrow-spacing:
+    - error
+  prefer-const:
+    - error
+  prefer-rest-params:
+    - warn
+  react/no-direct-mutation-state:
+    - off
