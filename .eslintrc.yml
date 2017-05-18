@@ -80,6 +80,8 @@ rules:
   object-curly-spacing:
     - warn
     - always
+    - objectsInObjects: false
+      arraysInObjects: false
   object-property-newline:
     - error
     - allowMultiplePropertiesPerLine: true

@@ -4,7 +4,7 @@ module.exports = {
     entry: {
         react: "./docs/react/index.js",
         angular: "./docs/angular/index.ts",
-        common: "./docs/common/polyfills.js"
+        common: "./docs/common/index.js"
     },
     output: {
         filename: "[name]/[name].js",
@@ -22,7 +22,11 @@ module.exports = {
                 loader: "babel-loader"
             }, {
                 test: /\.css$/,
-                use: [ "style-loader", "css-loader" ]
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader", options: { importLoaders: 1 }},
+                    "postcss-loader"
+                ]
             },
             {
                 test: /\.tsx?$/,
