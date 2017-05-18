@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img alt="bosket-logo" src="./assets/bosket-logo.svg" width="100px"/><br>
+	<img alt="bosket-logo" src="./assets/bosket-logo.png" width="100px"/><br>
     Bosket
 </h1>
 <h4 align="center">
@@ -8,5 +8,7 @@
 
 <div align="center">
     <h4>Work in progress !</h4>
-    <img alt="bosket-itemtree-gif" src="./assets/bosket-itemtree.gif" width="300px"/><br>
+    <a href="https://elbywan.github.io/bosket/">
+        <img alt="bosket-itemtree-gif" src="./assets/bosket-itemtree.gif" width="300px"/>
+    </a>
 </div>
