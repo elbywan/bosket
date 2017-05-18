@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+    <title>Bosket</title>
+
+    <script src="./common/common.js"></script>
+    <script>
+        window.bosketDemo = {
+            load: function(framework) {
+                var styleTags = document.getElementsByTagName('style')
+                for(var i = 0; i < styleTags.length; i++){ styleTags[i].remove() }
+                var scriptTag = document.getElementById("framework-script")
+                if(scriptTag) scriptTag.remove()
+                scriptTag = document.createElement("script")
+                scriptTag.setAttribute("id", "framework-script")
+                document.head.appendChild(scriptTag)
+                scriptTag.src = "./" + framework + "/" + framework + ".js"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+       <span>Bosket</span>
+       <span class="frameworks">
+           <img src="./assets/react.svg" alt="react-logo" onclick="window.bosketDemo.load('react');"/>
+           <img src="./assets/angular.svg" alt="angular-logo" onclick="window.bosketDemo.load('angular');"/>
+       </span>
+    </header>
+    <section id="content">
+        <p>A collection of Tree Views.</p>
+        <div id="framework-root">
+            Pick a framework !
+        </div>
+    </section>
+</body>
+
+</html>

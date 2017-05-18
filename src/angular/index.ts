@@ -1,1 +1,1 @@
-export * from "./boscage.module"
+export * from "./bosket.module"

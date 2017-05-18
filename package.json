@@ -1,14 +1,14 @@
 {
-  "name": "boscage",
+  "name": "bosket",
   "version": "0.0.1",
   "description": "A collection of tree views.",
   "main": "index.js",
   "author": "Julien Elbaz",
   "license": "MIT",
   "scripts": {
-    "start": "npm run build && npm run build-demo",
+    "start": "npm run build && npm run build-docs",
     "build": "eslint src && babel src -d build -s && ngc -p src/angular/tsconfig.json",
-    "build-demo": "webpack --config demo/webpack.config.js"
+    "build-docs": "webpack --config docs/webpack.config.js -p"
   },
   "files": [
     "build",
