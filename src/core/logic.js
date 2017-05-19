@@ -2,6 +2,7 @@ import { css, array, tree } from "../tools"
 import { selectionStrategies, foldStrategies, clickStrategies } from "./strategies"
 import { defaults } from "./defaults"
 
+/* Boilerplate  for framework class adapters */
 class Core {
 
     constructor(inputs, outputs, state, refresh) {
@@ -13,11 +14,10 @@ class Core {
 
 }
 
+/* A tree node */
 export class Node extends Core {
 
-    pending = []
-
-    /* Checks */
+    /* Various checks */
 
     isSelected = item => array(this.inputs.get().selection).contains(item)
     isFolded = item =>
@@ -28,8 +28,21 @@ export class Node extends Core {
     hasChildren = item => item[this.inputs.get().category] && item[this.inputs.get().category] instanceof Array
     isAsync = item => item[this.inputs.get().category] && typeof item[this.inputs.get().category] === "function"
     isDisabled = item => this.inputs.get().disabled && this.inputs.get().disabled(item)
+    isDraggable = item =>
+            item &&
+            this.inputs.get().dragndrop.draggable && (
+            typeof this.inputs.get().dragndrop.draggable === "function" ?
+                this.inputs.get().dragndrop.draggable(item) :
+                true
+            )
+    isDroppable = item =>
+            this.inputs.get().dragndrop.droppable && (
+            typeof this.inputs.get().dragndrop.droppable === "function" ?
+                this.inputs.get().dragndrop.droppable(item) :
+                true
+            )
 
-    /* Styles */
+    /* Styles calculation */
 
     ulCss = () =>
         css.classes({
@@ -49,9 +62,12 @@ export class Node extends Core {
         })
     }
 
-    /* Logic */
-
     /* Promises */
+
+    // Pending promises
+    pending = []
+
+    // Unwrap a promise and mutate the model to add the results
     unwrapPromise = item => {
         this.pending.push(item)
         return this.inputs.get().async(item[this.inputs.get().category])
@@ -89,10 +105,11 @@ export class Node extends Core {
         event.stopPropagation()
     }
 
-    // On drag'n'drop
+    // Drag'n'drop //
+
     onDragStart = item => event => {
         event.stopPropagation()
-        this.inputs.get().dragStart(item, event, this.inputs.get().ancestors, this.inputs.get().model)
+        this.inputs.get().dragndrop.dragStart(item, event, this.inputs.get().ancestors, this.inputs.get().model)
     }
     onDragOver = item => event => {
         event.preventDefault()
@@ -132,10 +149,13 @@ export class Node extends Core {
                 item :
                 array(this.inputs.get().ancestors).last() :
             null
-        this.inputs.get().drop(target, event)
+        this.inputs.get().dragndrop.onDrop(target, event)
     }
 
+    // Guard against bad drop
     dragGuard = item => {
+        // Prevent drop when not droppable
+        if(!this.isDroppable(item)) return false
         // Prevent drop on self
         const selfDrop = item && array(this.inputs.get().selection).contains(item)
         // Prevent drop on child
@@ -146,23 +166,32 @@ export class Node extends Core {
         return selfDrop || childDrop
     }
 
-    defaultDragEvents = item => ({
-        draggable:      this.inputs.get().draggable ? typeof this.inputs.get().draggable === "function" ? this.inputs.get().draggable(item) : true : false,
-        onDragStart:    this.onDragStart(item).bind(this),
-        onDragOver:     this.onDragOver(item).bind(this),
-        onDragEnter:    this.onDragEnter(item).bind(this),
-        onDragLeave:    this.onDragLeave.bind(this),
-        onDrop:         this.onDrop(item).bind(this)
-    })
+    getDragEvents = (item, condition = true) => {
+        if(!condition) return {}
+        const result = {
+            draggable:      this.isDraggable(item),
+            onDragStart:    this.isDraggable(item) && this.onDragStart(item).bind(this),
+            onDragOver:     this.onDragOver(item).bind(this),
+            onDragEnter:    this.onDragEnter(item).bind(this),
+            onDragLeave:    this.onDragLeave.bind(this),
+            onDrop:         this.isDroppable(item) && this.onDrop(item).bind(this)
+        }
+        for(const key in result)
+            if(!result[key])
+                delete result[key]
+        return result
+    }
 
 }
 
+/* Root node of the tree */
 export class RootNode extends Core {
 
-    modifiers = {}
 
     /* Events */
 
+    // Keyboard modifiers list
+    modifiers = {}
     onKey = function(event) {
         this.modifiers = {
             control: event.getModifierState("Control"),
@@ -171,6 +200,7 @@ export class RootNode extends Core {
         }
     }.bind(this)
 
+    // When new element(s) are selected
     onSelect = function(item, ancestors, neighbours) {
         const selectionStrategy = this.inputs.get().strategies.selection || []
         const newSelection = selectionStrategy
@@ -179,6 +209,7 @@ export class RootNode extends Core {
         return this.outputs.onSelect(newSelection)
     }.bind(this)
 
+    // Drag start
     onDragStart = function(target, event, ancestors, neighbours) {
         event.dataTransfer.setData("application/json", JSON.stringify(target))
         event.dataTransfer.dropEffect = "move"
@@ -186,8 +217,10 @@ export class RootNode extends Core {
         if(!array(this.inputs.get().selection).contains(target)) {
             this.onSelect(target, ancestors, neighbours)
         }
+        this.outputs.onStart(target, event, ancestors, neighbours)
     }.bind(this)
 
+    // Drop event
     onDrop = function(target, event) {
         const jsonData = event.dataTransfer.getData("application/json")
         if(!jsonData)
@@ -197,6 +230,14 @@ export class RootNode extends Core {
         this.outputs.onDrop(target, data)
     }.bind(this)
 
+    // Framework input wrapper
+    wrapDragNDrop = () => ({
+        ...this.inputs.get().dragndrop,
+        dragStart: this.onDragStart,
+        onDrop: this.onDrop
+    })
+
+    // Filters the tree on a search
     filterTree = input =>
         !input.trim() ? null :
             tree(this.inputs.get().model, this.inputs.get().category)

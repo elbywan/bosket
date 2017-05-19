@@ -5,6 +5,8 @@ import * as strategies from "../../core/strategies"
 
 const object = require("../../tools").object
 
+/* Injects a custom component to enhance item display if needed */
+
 export interface ItemComponent<Item> {
     item: Item
 }
@@ -16,25 +18,27 @@ export class ItemInjector {
     public componentRef : ItemComponent<any>
 }
 
+/* Tree node */
+
 @Component({
     selector: 'ItemTreeNode',
     template: `
         <ul *ngIf="!folded && !loading"
             [ngClass]="node.ulCss()"
-            (dragover)="droppable ? node.onDragOver(null)($event) : null"
-            (dragenter)="droppable ? node.onDragEnter(null)($event) : null"
-            (dragleave)="droppable ? node.onDragLeave($event) : null"
-            (drop)="droppable ? node.onDrop(null)($event) : null">
+            (dragover)="invokeEvent('onDragOver', null, $event, rootdrop)"
+            (dragenter)="invokeEvent('onDragEnter', null, $event, rootdrop)"
+            (dragleave)="invokeEvent('onDragLeave', null, $event, rootdrop)"
+            (drop)="invokeEvent('onDrop', null, $event, rootdrop)">
 
             <li *ngFor="let item of getModel(); let i = index; trackBy: key"
                 [class]="node.liCss(item)"
                 (click)="node.onClick(item)($event)"
-                [draggable]="node.defaultDragEvents(item).draggable"
-                (dragstart)="draggable ? node.defaultDragEvents(item).onDragStart($event) : null"
-                (dragover)="draggable ? node.defaultDragEvents(item).onDragOver($event) : null"
-                (dragenter)="draggable ? node.defaultDragEvents(item).onDragEnter($event) : null"
-                (dragleave)="draggable ? node.defaultDragEvents(item).onDragLeave($event) : null"
-                (drop)="draggable ? node.defaultDragEvents(item).onDrop($event) : null">
+                [draggable]="node.getDragEvents(item).draggable"
+                (dragstart)="invokeEvent('onDragStart', item, $event)"
+                (dragover)="invokeEvent('onDragOver', item, $event)"
+                (dragenter)="invokeEvent('onDragEnter', item, $event)"
+                (dragleave)="invokeEvent('onDragLeave', item, $event)"
+                (drop)="invokeEvent('onDrop', item, $event)">
                 <span class="ItemTree-item">
                     <a *ngIf="!itemComponent">{{ display(item) }}</a>
                     <ng-template *ngIf="itemComponent" [itemInjector]="item"></ng-template>
@@ -56,12 +60,10 @@ export class ItemInjector {
                     [onSelect]="onSelect"
                     [strategies]="strategies"
                     [labels]="labels"
-                    [draggable]="draggable"
                     [display]="display"
                     [css]="css"
                     [async]="async"
-                    [dragStart]="dragStart"
-                    [drop]="drop"
+                    [dragndrop]="dragndrop"
                     [sort]="sort"
                     [disabled]="disabled"
                     [searched]="searched"
@@ -76,11 +78,13 @@ export class ItemInjector {
 })
 export class ItemTreeNode<Item extends Object> implements AfterViewInit{
 
+    /* Adapter boilerplate */
+
     _props = {
         get: () => {
-            const keys = [ "model", "category", "selection", "display", "key", "strategies",
-                "labels", "draggable", "sort", "disabled", "noOpener", "async", "css", "folded",
-                "loading", "depth", "ancestors", "searched", "drop", "dragStart", "onSelect" ]
+            const keys = [ "model", "category", "selection", "display", "key", "strategies", "dragndrop",
+                "labels", "sort", "disabled", "noOpener", "async", "css", "folded",
+                "loading", "depth", "ancestors", "searched", "onSelect" ]
             const props = {}
             keys.forEach(key => {
                 props[key] = this[key]
@@ -105,6 +109,8 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
         }
     }
 
+    /* Lifecycle */
+
     constructor(private _cdRef: ChangeDetectorRef, private _componentFactoryResolver: ComponentFactoryResolver) {
         this.node = new Node<Item>(
             this._props,
@@ -123,6 +129,8 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
         this.injectItems()
     }
 
+    /* Inputs / outputs declaration */
+
     // Bare minimum
     @Input() model: Array<Item>
     @Input() category: string
@@ -139,32 +147,35 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
     @Input() labels: {[key: string]: string}
 
     // Optional
-    @Input() draggable: boolean
     @Input() sort: (a: Item, b: Item) => boolean
     @Input() disabled: (_: Item) => boolean
     @Input() noOpener: boolean = false
     // Opener template ?!
     @Input() async: (_: Function) => Promise<any>
     @Input() itemComponent
+    @Input() dragndrop : {
+        draggable: boolean,
+        droppable: boolean,
+        dragStart<Item extends Object>(target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>): void,
+        onDrop<Item extends Object>(target: Item, event: DragEvent): void
+    }
 
     // Internal
     @Input() filteredModel: Array<Item>
     @Input() css: {[key:string]: string}
-    @Input() dragEvents: {}
     @Input() folded: boolean
     @Input() loading: boolean
     @Input() depth: number = 0
     @Input() ancestors: Array<Item>
     @Input() searched: string
-    @Input() drop: (target: Item, event: DragEvent) => void
-    @Input() dragStart: (target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void
     @Input() onSelect: (item: Item, ancestors: Array<Item>, neighbours: Array<Item>) => Array<Item>
 
     @ViewChildren(ItemInjector) itemInjectors : ItemInjector[]
 
-    // Internal logic
+    /* Internal logic */
+
     node: Node<Item>
-    get droppable() { return this.draggable && !this.depth }
+    get rootdrop(){ return this.dragndrop.draggable && !this.depth }
 
     getModel = () =>
         this.searched ?
@@ -214,8 +225,14 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
         this._cdRef.markForCheck()
         this._cdRef.detectChanges()
     }
+
+    invokeEvent = (name, item, event, condition = true) => {
+        const fun = this.node.getDragEvents(item, condition)[name]
+        fun ? fun(event) : null
+    }
 }
 
+/* Root tree node */
 
 @Component({
     selector: 'ItemTree',
@@ -237,10 +254,8 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
                     [strategies]="strategies"
                     [display]="display"
                     [css]="css"
-                    [draggable]="draggable"
+                    [dragndrop]="dragndrop"
                     [async]="async"
-                    [dragStart]="rootNode.onDragStart"
-                    [drop]="rootNode.onDrop"
                     [ancestors]="[]"
                     [sort]="sort"
                     [disabled]="disabled"
@@ -257,10 +272,12 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
 })
 export class ItemTree<Item extends Object> {
 
+    /* Adapter boilerplate */
+
     _props = {
         get: () => {
             const keys = [ "model", "category", "selection", "display", "key", "search",
-                "strategies", "labels", "css", "draggable", "sort", "disabled", "noOpener", "async" ]
+                "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async" ]
             const props = {}
             keys.forEach(key => {
                 props[key] = this[key]
@@ -275,7 +292,8 @@ export class ItemTree<Item extends Object> {
     }
     _outputs = {
         onSelect: items => this.selectionChange.emit(items),
-        onDrop: (target, item) => this.onDrop.emit([target, item])
+        onDrop: (target, item) => this.onDrop.emit([target, item]),
+        onStart: (target, event, ancestors, neighbours) => this.onStart.emit({target, event, ancestors, neighbours})
     }
     _state = {
         search: "",
@@ -290,6 +308,8 @@ export class ItemTree<Item extends Object> {
         }
     }
 
+    /* Lifecycle */
+
     constructor(private cdRef: ChangeDetectorRef) {
         this.rootNode = new RootNode<Item>(
             this._props,
@@ -298,6 +318,8 @@ export class ItemTree<Item extends Object> {
             this.cdRef.detectChanges
         )
     }
+
+    /* Input / output declarations */
 
     // Bare minimum
     @Input() model: Array<Item>
@@ -317,22 +339,33 @@ export class ItemTree<Item extends Object> {
 
     // Optional
     @Input() css = defaults.css
-    @Input() draggable = defaults.draggable
     @Input() sort: (a: Item, b: Item) => number
     @Input() disabled: (_: Item) => boolean
     @Input() noOpener: boolean = defaults.noOpener
     // Opener template ?!
     @Input() async: (_: Function) => Promise<any> = defaults.async
     @Input() itemComponent
+    @Input()
+    set dragndrop(d) { this._dragndrop = d; this._dragndrop = this.rootNode.wrapDragNDrop() }
+    get dragndrop(){ return this._dragndrop }
+    _dragndrop: {
+        draggable: boolean,
+        droppable: boolean
+    } = defaults.dragndrop
 
     // Outputs
     @Output() selectionChange = new EventEmitter<Array<Item>>()
     @Output() onDrop = new EventEmitter<[Item, Item]>()
+    @Output() onStart = new EventEmitter<{
+        target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>
+    }>()
 
-    // Internal logic
+    /* Internal logic */
+
     rootNode : RootNode<Item>
-
-     /* Events */
+    getChildModel = () => {
+        return this.sort ? this.model.sort(this.sort) : this.model
+    }
 
     onSearch = (input: string) => {
         this._state.set({
@@ -340,11 +373,4 @@ export class ItemTree<Item extends Object> {
             filtered: this.rootNode.filterTree(input)
         })
     }
-
-    /* Internal logic */
-
-    getChildModel = () => {
-        return this.sort ? this.model.sort(this.sort) : this.model
-    }
-
 }

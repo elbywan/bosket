@@ -13,6 +13,8 @@ export declare class Node<Item extends Object> extends Core {
     hasChildren: (Item) => boolean
     isAsync:     (Item) => boolean
     isDisabled:  (Item) => boolean
+    isDraggable: (Item) => boolean
+    isDroppable: (Item) => boolean
 
     /* Styles */
 
@@ -25,23 +27,23 @@ export declare class Node<Item extends Object> extends Core {
     unwrapPromise: (Item) => Promise<any>
 
     /* Events */
-    onClick:        (Item) => (MouseEvent) => string
-    onOpener:       (Item) => (MouseEvent) => string
-    onDragStart:    (Item) => (DragEvent) => string
-    onDragOver:     (Item) => (DragEvent) => string
-    onDragEnter:    (Item) => (DragEvent) => string
-    onDragLeave:    (DragEvent) => string
-    onDrop:         (Item) => (DragEvent) => string
+    onClick:        ((Item) => (MouseEvent) => string) | null
+    onOpener:       ((Item) => (MouseEvent) => string) | null
+    onDragStart:    ((Item) => (DragEvent) => string) | null
+    onDragOver:     ((Item) => (DragEvent) => string) | null
+    onDragEnter:    ((Item) => (DragEvent) => string) | null
+    onDragLeave:    ((DragEvent) => string) | null
+    onDrop:         ((Item) => (DragEvent) => string) | null
 
     dragGuard:      (Item) => boolean
 
-    defaultDragEvents: (Item) => {
+    getDragEvents: (Item, boolean?) => {
         draggable:      boolean,
-        onDragStart:    (DragEvent) => string,
-        onDragOver:     (DragEvent) => string,
-        onDragEnter:    (DragEvent) => string,
-        onDragLeave:    (DragEvent) => string,
-        onDrop:         (DragEvent) => string,
+        onDragStart?:    (DragEvent) => string,
+        onDragOver?:     (DragEvent) => string,
+        onDragEnter?:    (DragEvent) => string,
+        onDragLeave?:    (DragEvent) => string,
+        onDrop?:         (DragEvent) => string,
     }
 }
 
@@ -62,5 +64,14 @@ export declare class RootNode<Item extends Object> extends Core {
     onSelect: (item: Item, ancestors: Array<Item>, neighbours: Array<Item>) => Array<Item>
     onDragStart: (target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void
     onDrop: (target: Item, event: DragEvent) => void
+
+    wrapDragNDrop: () => {
+        draggable: boolean,
+        droppable: boolean,
+        start?
+        drop?,
+        dragStart?,
+        onDrop?
+    }
 
 }

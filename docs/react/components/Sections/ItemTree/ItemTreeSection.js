@@ -93,15 +93,18 @@ export class ItemTreeSection extends React.PureComponent {
         foldStrategy: [ "no-child-selection", "not-selected" ],
         */
         noOpener: false,
-        draggable: true,
-        onDrop: (target, item) => {
-            let updatedModel = tree(this.state.model, this.state.category).filter(e => this.state.selection.indexOf(e) < 0)
-            if(target)
-                target[this.state.category] = [ ...target[this.state.category], ...this.state.selection ]
-            else
-                updatedModel = [ ...updatedModel, ...this.state.selection ]
+        dragndrop: {
+            draggable: true,
+            droppable: true,
+            drop: (target, item) => {
+                let updatedModel = tree(this.state.model, this.state.category).filter(e => this.state.selection.indexOf(e) < 0)
+                if(target)
+                    target[this.state.category] = [ ...target[this.state.category], ...this.state.selection ]
+                else
+                    updatedModel = [ ...updatedModel, ...this.state.selection ]
 
-            this.setState({ model: updatedModel })
+                this.setState({ model: updatedModel })
+            }
         }
     }
 

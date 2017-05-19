@@ -11,5 +11,11 @@ export declare const defaults : {
     display: (Object) => string,
     async: (Function) => Promise<any>,
     noOpener: boolean,
-    draggable: boolean
+    draggable: boolean,
+    dragndrop: {
+        draggable: boolean,
+        droppable: boolean,
+        start<Item extends Object>(target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>): void,
+        drop<Item extends Object>(target: Item, event: DragEvent): void
+    }
 }

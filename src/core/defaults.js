@@ -3,6 +3,7 @@ export const defaults = {
         "search.placeholder": "Search box"
     },
     css: {
+        /* moar css */
         depth:      "depth",
         selected:   "selected",
         category:   "category",
@@ -19,5 +20,8 @@ export const defaults = {
     display: _ => _.toString(),
     async: _ => _(),
     noOpener: false,
-    draggable: true
+    dragndrop: {
+        draggable: false,
+        droppable: false
+    }
 }

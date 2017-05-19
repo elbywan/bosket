@@ -29,7 +29,7 @@ export class ItemDisplay implements ItemComponent<{ label }> {
                 [search]="search"
                 [strategies]="strategies"
                 [noOpener]="noOpener"
-                [draggable]="draggable"
+                [dragndrop]="dragndrop"
                 [itemComponent]="itemComponent"
                 (onDrop)="onDrop($event[0], $event[1])">
             </ItemTree>
@@ -135,7 +135,10 @@ export class ItemTreeSection {
         fold: ["opener-control"]
     }
     noOpener = false
-    draggable = true
+    dragndrop = {
+        draggable: true,
+        droppable: true
+    }
     onDrop = (target, item) => {
         let updatedModel = tree(this.model, this.category).filter(e => this.selection.indexOf(e) < 0)
         if(target)

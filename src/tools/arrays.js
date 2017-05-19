@@ -8,7 +8,7 @@ export const array = self => {
             arr.indexOf(elt) >= 0 && otherCondition(elt)),
         notIn:  (arr, otherCondition = elt => true) => self.filter(elt =>
             arr.indexOf(elt) < 0 && otherCondition(elt)),
-        is:     ({ isIn = [], notIn = [] }, otherCondition = elt => true) => self.filter(elt =>
+        is:     ({ isIn = [], notIn = []}, otherCondition = elt => true) => self.filter(elt =>
             isIn.reduce((acc, curr) => curr.indexOf(elt) >= 0 && acc, true) &&
             notIn.reduce((acc, curr) => curr.indexOf(elt) < 0 && acc, true) &&
             otherCondition(elt)),

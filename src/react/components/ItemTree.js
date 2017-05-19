@@ -86,27 +86,24 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
         const list = model
                 .filter(m => !this.props.searched || this.props.filteredModel.find(f => object(m).shallowCompare(f, [this.props.category])))
                 .map((item, idx) =>
-            <li key={ key && key(item) || idx }
-                className={ this.node.liCss(item) }
-                onClick={ this.node.onClick(item) }
-                { ...(!this.props.draggable ? {} : this.node.defaultDragEvents(item)) }>
-                <span className="ItemTree-item">
-                    { display(item) }
-                    { this.renderOpener(item, OpenerComponent) }
-                </span>
-                { this.renderSubtree(item) }
-            </li>
-        )
+                    <li key={ key && key(item) || idx }
+                        className={ this.node.liCss(item) }
+                        onClick={ this.node.onClick(item) }
+                        { ...this.node.getDragEvents(item) }>
+                        <span className="ItemTree-item">
+                            { display(item) }
+                            { this.renderOpener(item, OpenerComponent) }
+                        </span>
+                        { this.renderSubtree(item) }
+                    </li>
+                )
 
-        const rootDrop = !this.props.draggable || this.props.depth ?
-        {} :
-        {
-            onDragOver:     this.node.onDragOver(null).bind(this),
-            onDragEnter:    this.node.onDragEnter(null).bind(this),
-            onDragLeave:    this.node.onDragLeave.bind(this),
-            onDrop:         this.node.onDrop(null).bind(this)
-        }
-        return <ul className={ this.node.ulCss() } { ...rootDrop }>{ list }</ul>
+        return (
+            <ul className={ this.node.ulCss() }
+                    { ...this.node.getDragEvents(null, this.props.dragndrop.draggable && !this.props.depth) }>
+                { list }
+            </ul>
+        )
     }
 }
 const ItemTreeNode = withTransition({ key: props => props.folded || props.loading })(ItemTreeNodeBaseClass)
@@ -134,8 +131,9 @@ class ItemTreeBaseClass extends React.PureComponent {
         this.rootNode = new RootNode(
             this._props,
             {
-                onSelect: this.props.onSelect,
-                onDrop: this.props.onDrop
+                onSelect:   this.props.onSelect,
+                onStart:    this.props.dragndrop.start || (() => {}),
+                onDrop:     this.props.dragndrop.drop
             },
             this._state,
             () => { if(!this._unmounted) this.forceUpdate() }
@@ -179,8 +177,7 @@ class ItemTreeBaseClass extends React.PureComponent {
                     strategies={ strategies }
                     css={ css }
                     async={ async }
-                    dragStart={ this.rootNode.onDragStart }
-                    drop={ this.rootNode.onDrop }
+                    dragndrop={ this.rootNode.wrapDragNDrop() }
                     ancestors={ [] }
                     sort={ sort }
                     searched={ this.state.search.trim() }>
