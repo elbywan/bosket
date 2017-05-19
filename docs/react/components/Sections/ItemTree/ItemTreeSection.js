@@ -10,6 +10,12 @@ const timeoutPromise = (value, duration) => new Promise(resolve => setTimeout(()
 
 export class ItemTreeSection extends React.PureComponent {
 
+    constructor(props) {
+        super(props)
+        this.dragImage = new Image()
+        this.dragImage.src = "./assets/drag-image.svg"
+    }
+
     state = {
         model: [
             {
@@ -84,7 +90,7 @@ export class ItemTreeSection extends React.PureComponent {
         },
         strategies: {
             selection: ["modifiers"],
-            click: ["unfold-on-selection"],
+            click: [],
             fold: ["opener-control"]
         },
         /*
@@ -96,6 +102,9 @@ export class ItemTreeSection extends React.PureComponent {
         dragndrop: {
             draggable: true,
             droppable: true,
+            drag: (target, event, ancestors, neighbours) => {
+                event.dataTransfer.setDragImage(this.dragImage, 0, 0)
+            },
             drop: (target, item) => {
                 let updatedModel = tree(this.state.model, this.state.category).filter(e => this.state.selection.indexOf(e) < 0)
                 if(target)

@@ -6,6 +6,7 @@ import "./ItemTreeSection.css"
 const timeoutPromise = (value, duration) => new Promise(resolve => setTimeout(() => resolve(value), duration))
 const tree = require("../../../../../src/tools/trees").tree
 
+
 @Component({
     template:`<a>{{ item.label }}</a>`
 })
@@ -31,7 +32,8 @@ export class ItemDisplay implements ItemComponent<{ label }> {
                 [noOpener]="noOpener"
                 [dragndrop]="dragndrop"
                 [itemComponent]="itemComponent"
-                (onDrop)="onDrop($event[0], $event[1])">
+                (onDrop)="onDrop($event[0], $event[1])"
+                (onDrag)="onDrag($event)">
             </ItemTree>
         </div>
 
@@ -54,6 +56,12 @@ export class ItemDisplay implements ItemComponent<{ label }> {
     `]
 })
 export class ItemTreeSection {
+
+    constructor(){
+        this.dragImage = new Image()
+        this.dragImage.src = "./assets/drag-image.svg"
+    }
+
     model = [
         {
             label: "Vegetables",
@@ -131,7 +139,7 @@ export class ItemTreeSection {
     */
     strategies = {
         selection: ["modifiers"],
-        click: ["unfold-on-selection"],
+        click: [],
         fold: ["opener-control"]
     }
     noOpener = false
@@ -139,6 +147,7 @@ export class ItemTreeSection {
         draggable: true,
         droppable: true
     }
+    dragImage: HTMLImageElement
     onDrop = (target, item) => {
         let updatedModel = tree(this.model, this.category).filter(e => this.selection.indexOf(e) < 0)
         if(target)
@@ -147,6 +156,9 @@ export class ItemTreeSection {
             updatedModel = [ ...updatedModel, ...this.selection ]
 
         this.model = updatedModel
+    }
+    onDrag = ({target, event, ancestors, neighbours}) => {
+        event.dataTransfer.setDragImage(this.dragImage, 0, 0)
     }
     itemComponent = ItemDisplay
 }

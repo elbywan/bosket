@@ -217,7 +217,7 @@ export class RootNode extends Core {
         if(!array(this.inputs.get().selection).contains(target)) {
             this.onSelect(target, ancestors, neighbours)
         }
-        this.outputs.onStart(target, event, ancestors, neighbours)
+        this.outputs.onDrag(target, event, ancestors, neighbours)
     }.bind(this)
 
     // Drop event

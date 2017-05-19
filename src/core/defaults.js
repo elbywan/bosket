@@ -20,7 +20,7 @@ export const defaults = {
     },
     strategies: {
         selection: ["modifiers"],
-        click: ["unfold-on-selection"],
+        click: [],
         fold: ["opener-control"]
     },
     display: _ => _.toString(),

@@ -27,7 +27,7 @@ class ItemTreeBaseClass extends React.PureComponent {
             this._props,
             {
                 onSelect:   this.props.onSelect,
-                onStart:    this.props.dragndrop.start || (() => {}),
+                onDrag:     this.props.dragndrop.drag || (() => {}),
                 onDrop:     this.props.dragndrop.drop
             },
             this._state,
@@ -53,7 +53,7 @@ class ItemTreeBaseClass extends React.PureComponent {
     /* Rendering */
 
     render() {
-        const { sort, css, async, strategies, ...rest } = this._props.get()
+        const { sort, ...rest } = this._props.get()
 
         const searchBar = !this.props.search ? null :
                 <input type="search" className={ this.rootNode.mixCss("search") }
@@ -69,9 +69,6 @@ class ItemTreeBaseClass extends React.PureComponent {
                     model={ sort ? this.props.model.sort(sort) : this.props.model }
                     filteredModel={ this.state.filtered }
                     onSelect={ this.rootNode.onSelect }
-                    strategies={ strategies }
-                    css={ css }
-                    async={ async }
                     dragndrop={ this.rootNode.wrapDragNDrop() }
                     ancestors={ [] }
                     sort={ sort }
