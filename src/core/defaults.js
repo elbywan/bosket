@@ -4,13 +4,19 @@ export const defaults = {
     },
     css: {
         /* moar css */
-        depth:      "depth",
-        selected:   "selected",
-        category:   "category",
-        folded:     "folded",
-        disabled:   "disabled",
-        async:      "async",
-        loading:    "loading"
+        ItemTree:           "ItemTree",
+        opener:             "opener",
+        depth:              "depth",
+        selected:           "selected",
+        category:           "category",
+        folded:             "folded",
+        disabled:           "disabled",
+        async:              "async",
+        loading:            "loading",
+        nodrop:             "nodrop",
+        dragover:           "dragover",
+        search:             "search",
+        item:               "item"
     },
     strategies: {
         selection: ["modifiers"],

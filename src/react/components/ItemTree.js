@@ -68,7 +68,7 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
 
     renderOpener = (item, OpenerComponent) =>
         (this.node.hasChildren(item) || this.node.isAsync(item)) && !this.props.noOpener ?
-            <OpenerComponent className="ItemTree-opener" onClick={ this.node.onOpener(item) }></OpenerComponent> :
+            <OpenerComponent className={ this.node.mixCss("opener") } onClick={ this.node.onOpener(item) }></OpenerComponent> :
             null
 
     render() {
@@ -79,7 +79,7 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
 
         /* If data has to be retrieved asynchronously */
         if(loading) {
-            return <span className="ItemTree-async-loading"></span>
+            return <span></span>
         }
 
         const OpenerComponent = this.props.opener || "span"
@@ -90,7 +90,7 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
                         className={ this.node.liCss(item) }
                         onClick={ this.node.onClick(item) }
                         { ...this.node.getDragEvents(item) }>
-                        <span className="ItemTree-item">
+                        <span className={ this.node.mixCss("item") }>
                             { display(item) }
                             { this.renderOpener(item, OpenerComponent) }
                         </span>
@@ -161,13 +161,13 @@ class ItemTreeBaseClass extends React.PureComponent {
         const { sort, css, async, strategies, ...rest } = this._props.get()
 
         const searchBar = !this.props.search ? null :
-                <input type="search" className="ItemTree-search"
+                <input type="search" className={ this.rootNode.mixCss("search") }
                     value={ this.state.search }
                     placeholder={ this.props.labels["search.placeholder"] }
                     onChange={ this.onSearch } />
 
         return (
-            <div className="ItemTree">
+            <div className={ this.rootNode.mixCss("ItemTree") }>
                 { searchBar }
                 <ItemTreeNode
                     { ...rest }

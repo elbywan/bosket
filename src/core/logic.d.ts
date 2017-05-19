@@ -18,6 +18,7 @@ export declare class Node<Item extends Object> extends Core {
 
     /* Styles */
 
+    mixCss: (prop: string) => string
     ulCss: () => string
     liCss: (Item) => string
 
@@ -57,6 +58,7 @@ export declare class RootNode<Item extends Object> extends Core {
     defaultAsync: (Function) => Promise<any>
     modifiers: Object
 
+    mixCss: (prop: string) => string
     filterTree: (input: string) => (Array<Item> | null)
 
     /* Events */

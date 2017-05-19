@@ -28,7 +28,7 @@
 .ItemTree ul li a {
     color: #222;
 }
-.ItemTree ul li > .ItemTree-item > a, .ItemTree ul li > .ItemTree-item > ng-component > a {
+.ItemTree ul li > .item > a, .ItemTree ul li > .item > ng-component > a {
     display: inline-block;
     vertical-align: middle;
     width: calc(100% - 55px);
@@ -37,7 +37,7 @@
     text-decoration: none;
     transition: all 0.25s;
 }
-.ItemTree ul li > .ItemTree-item > a, .ItemTree ul li > .ItemTree-item > ng-component > a {
+.ItemTree ul li > .item > a, .ItemTree ul li > .item > ng-component > a {
     display: inline-block;
     vertical-align: middle;
     width: calc(100% - 55px);
@@ -51,13 +51,13 @@
     cursor: pointer;
 }
 
-.ItemTree ul li.selected > .ItemTree-item > a, .ItemTree ul li.selected > .ItemTree-item > ng-component > a {
+.ItemTree ul li.selected > .item > a, .ItemTree ul li.selected > .item > ng-component > a {
     color: crimson;
 }
-.ItemTree ul li.selected> .ItemTree-item > a:hover, .ItemTree ul li.selected> .ItemTree-item > ng-component > a:hover {
+.ItemTree ul li.selected> .item > a:hover, .ItemTree ul li.selected> .item > ng-component > a:hover {
     color: #aaa;
 }
-.ItemTree ul li:not(.disabled)> .ItemTree-item > a:hover, .ItemTree ul li:not(.disabled)> .ItemTree-item > ng-component > a:hover {
+.ItemTree ul li:not(.disabled)> .item > a:hover, .ItemTree ul li:not(.disabled)> .item > ng-component > a:hover {
     color: #e26f6f;
 }
 
@@ -73,39 +73,39 @@
 
 /* Categories : Nodes with children */
 
-.ItemTree li.category > .ItemTree-item {
+.ItemTree li.category > .item {
     display: block;
     margin-bottom: 5px;
     transition: all 0.25s ease-in-out;
 }
-.ItemTree li.category:not(.folded) > .ItemTree-item {
+.ItemTree li.category:not(.folded) > .item {
     border-bottom: 1px solid crimson;
 }
 
 /* Category opener */
 
-.ItemTree-opener {
+.opener {
     display: inline-block;
     vertical-align: middle;
     font-size: 20px;
     cursor: pointer;
     transition: all 0.25s;
 }
-.ItemTree-opener::after {
+.opener::after {
     content: '+';
     font-family: monospace;
 }
-.ItemTree li.category.async > .ItemTree-item > .ItemTree-opener::after {
+.ItemTree li.category.async > .item > .opener::after {
     content: '!';
 }
-.ItemTree-opener:hover {
+.opener:hover {
     color: #e26f6f;
 }
-.ItemTree li.category:not(.folded) > .ItemTree-item > .ItemTree-opener {
+.ItemTree li.category:not(.folded) > .item > .opener {
     color: crimson;
     transform: rotate(45deg);
 }
-.ItemTree li.category.loading > .ItemTree-item > .ItemTree-opener {
+.ItemTree li.category.loading > .item > .opener {
     animation:spin 1s infinite;
 }
 
@@ -142,7 +142,7 @@
     background-color: rgba(100, 100, 100, 0.05);
     padding: 0px 10px;
 }
-.ItemTree li.dragover > span.ItemTree-item {
+.ItemTree li.dragover > span.item {
     border-color: transparent;
 }
 .ItemTree li.nodrop {

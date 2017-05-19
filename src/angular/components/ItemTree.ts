@@ -39,12 +39,12 @@ export class ItemInjector {
                 (dragenter)="invokeEvent('onDragEnter', item, $event)"
                 (dragleave)="invokeEvent('onDragLeave', item, $event)"
                 (drop)="invokeEvent('onDrop', item, $event)">
-                <span class="ItemTree-item">
+                <span [class]="node.mixCss('item')">
                     <a *ngIf="!itemComponent">{{ display(item) }}</a>
                     <ng-template *ngIf="itemComponent" [itemInjector]="item"></ng-template>
                     <span
                         *ngIf="node.hasChildren(item) || node.isAsync(item) && !noOpener"
-                        class="ItemTree-opener"
+                        [class]="node.mixCss('opener')"
                         (click)="node.onOpener(item)($event)"></span>
                 </span>
                 <ItemTreeNode
@@ -72,7 +72,7 @@ export class ItemInjector {
                 </ItemTreeNode>
             </li>
         </ul>
-        <span *ngIf="loading" class="ItemTree-async-loading"></span>
+        <span *ngIf="loading"></span>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -237,12 +237,12 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
 @Component({
     selector: 'ItemTree',
     template: `
-        <div class="ItemTree">
+        <div [class]="rootNode.mixCss('ItemTree')">
                 <input
                     *ngIf="search"
                     type="search"
                     #searchBox
-                    class="ItemTree-search"
+                    [class]="rootNode.mixCss('search')"
                     [placeholder]="labels['search.placeholder']"
                     (input)="onSearch(searchBox.value)" />
                 <ItemTreeNode

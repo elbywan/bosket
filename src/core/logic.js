@@ -44,23 +44,23 @@ export class Node extends Core {
 
     /* Styles calculation */
 
+    // Css mixin helper
+    mixCss = prop => this.inputs.get().css[prop] || defaults.css[prop]
+
     ulCss = () =>
         css.classes({
-            [`${this.inputs.get().css.depth || defaults.css.depth}-${this.inputs.get().depth || 0}`]: true
+            [`${this.mixCss("depth")}-${this.inputs.get().depth || 0}`]: true
         })
 
-    liCss = item => {
-        const get = prop => this.inputs.get().css[prop] || defaults.css[prop]
-
-        return css.classes({
-            [get("selected")]:  this.isSelected(item),
-            [get("category")]:  this.hasChildren(item) || this.isAsync(item),
-            [get("folded")]:    this.isFolded(item),
-            [get("disabled")]:  this.isDisabled(item),
-            [get("async")]:     this.isAsync(item) && this.isFolded(item),
-            [get("loading")]:   this.isAsync(item) && !this.isFolded(item)
+    liCss = item =>
+        css.classes({
+            [this.mixCss("selected")]:  this.isSelected(item),
+            [this.mixCss("category")]:  this.hasChildren(item) || this.isAsync(item),
+            [this.mixCss("folded")]:    this.isFolded(item),
+            [this.mixCss("disabled")]:  this.isDisabled(item),
+            [this.mixCss("async")]:     this.isAsync(item) && this.isFolded(item),
+            [this.mixCss("loading")]:   this.isAsync(item) && !this.isFolded(item)
         })
-    }
 
     /* Promises */
 
@@ -117,17 +117,17 @@ export class Node extends Core {
 
         if(this.dragGuard(item)) {
             event.dataTransfer.dropEffect = "none"
-            css.addClass(event.currentTarget, "nodrop")
+            css.addClass(event.currentTarget, this.mixCss("nodrop"))
             return
         }
 
-        css.addClass(event.currentTarget, "dragover")
+        css.addClass(event.currentTarget, this.mixCss("dragover"))
     }
     onDragEnter = item => event => {
         event.preventDefault()
         event.stopPropagation()
         // If dragging over an opener
-        if(item && !this.dragGuard(item) && (this.hasChildren(item) || this.isAsync(item)) && css.hasClass(event.target, "ItemTree-opener")) {
+        if(item && !this.dragGuard(item) && (this.hasChildren(item) || this.isAsync(item)) && css.hasClass(event.target, this.mixCss("opener"))) {
             const newVal = this.state.get().unfolded.filter(i => i !== item)
             newVal.push(item)
             this.state.set({ unfolded: newVal })
@@ -135,13 +135,13 @@ export class Node extends Core {
     }
     onDragLeave = event => {
         event.stopPropagation()
-        css.removeClass(event.currentTarget, "dragover")
-        css.removeClass(event.currentTarget, "nodrop")
+        css.removeClass(event.currentTarget, this.mixCss("dragover"))
+        css.removeClass(event.currentTarget, this.mixCss("nodrop"))
     }
     onDrop = item => event => {
         event.stopPropagation()
-        css.removeClass(event.currentTarget, "dragover")
-        css.removeClass(event.currentTarget, "nodrop")
+        css.removeClass(event.currentTarget, this.mixCss("dragover"))
+        css.removeClass(event.currentTarget, this.mixCss("nodrop"))
         if(this.dragGuard(item))
             return
         const target = item ?
@@ -236,6 +236,9 @@ export class RootNode extends Core {
         dragStart: this.onDragStart,
         onDrop: this.onDrop
     })
+
+    // Css mixin helper
+    mixCss = prop => this.inputs.get().css[prop] || defaults.css[prop]
 
     // Filters the tree on a search
     filterTree = input =>
