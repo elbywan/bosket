@@ -60,7 +60,7 @@ export class ExplorerDemo extends React.PureComponent {
 
                 // Allow real filesystem drop //
                 if(items && items.length > 0 && items[0].kind === "file") {
-                    const targetModel = target ? target[this.state.category] : this.state.model.slice()
+                    const targetModel = target ? target[this.state.category] : this.state.model
 
                     for(let i = 0; i < items.length; i++) {
                         const item = items[i].webkitGetAsEntry()
@@ -68,7 +68,7 @@ export class ExplorerDemo extends React.PureComponent {
                             helpers.scanFiles.bind(this)(item, targetModel)
                         }
                     }
-                    this.setState({ model: targetModel })
+                    this.setState({ model: this.state.model.slice() })
                 } else {
                     // "Standard"" drop //
                     let updatedModel = tree(this.state.model, this.state.category).filter(e => this.props.selection.indexOf(e) < 0)
