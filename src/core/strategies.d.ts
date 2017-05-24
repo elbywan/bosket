@@ -1,6 +1,6 @@
 export type selectionStrategy<Item extends Object> = (item: Item, selection: Array<Item>, neighbours: Array<Item>, ancestors: Array<Item>) => Array<Item>
-export type clickStrategy<Item extends Object> = (item: Item) => void
-export type foldStrategy<Item extends Object> = (item: Item) => boolean
+export type clickStrategy<Item extends Object> = (item: Item, event: MouseEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void
+export type foldStrategy<Item extends Object> = (item: Item, lastState: boolean) => boolean
 
 export declare const selectionStrategies : {
     single<Item extends Object>(item: Item, selection: Array<Item>, neighbours: Array<Item>, ancestors: Array<Item>) : Array<Item>,

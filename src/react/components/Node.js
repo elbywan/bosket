@@ -1,5 +1,5 @@
 import React from "react"
-import { array, object, withTransition } from "../../tools"
+import { array, withTransition } from "../../tools"
 import { Node } from "../../core"
 
 /* Node component */
@@ -49,7 +49,7 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
             childModel = this.props.sort ? childModel.sort(this.props.sort) : childModel
         }
         if(this.props.filteredModel) {
-            filteredModel = this.props.filteredModel.find(m => object(item).shallowCompare(m, [this.props.category]))[this.props.category]
+            filteredModel = this.props.filteredModel.get(item)
         }
 
         return  (
@@ -83,7 +83,7 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
 
         const OpenerComponent = this.props.opener || "span"
         const list = model
-                .filter(m => !this.props.searched || this.props.filteredModel.find(f => object(m).shallowCompare(f, [this.props.category])))
+                .filter(m => !this.props.searched || this.props.filteredModel.has(m))
                 .map((item, idx) =>
                     <li key={ key && key(item) || idx }
                         className={ this.node.liCss(item) }

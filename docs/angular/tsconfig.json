@@ -8,6 +8,7 @@
         "experimentalDecorators": true,
         "removeComments": true,
         "noImplicitAny": false,
+        "allowJs": true,
         "lib": [ "es2015", "dom" ]
     },
     "angularCompilerOptions": {

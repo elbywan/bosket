@@ -87,6 +87,9 @@ header .frameworks > img {
     height: 2em;
     cursor: pointer;
 }
+header .frameworks > img:hover {
+    box-shadow: 0px 0px 2px #FFF;
+}
 
 section#content {
     padding: 5px;
@@ -126,11 +129,11 @@ section#content {
 /* Components */
 
 div.components-container {
-    display: flex;
+    /*display: flex;
     flex-wrap: wrap;
-    border-bottom: 3px solid crimson;
+    border-bottom: 3px solid crimson;*/
 }
 
 div.components-container > * {
-    flex: 1 1 auto;
+    /*flex: 1 1 auto;*/
 }

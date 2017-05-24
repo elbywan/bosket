@@ -82,9 +82,6 @@ rules:
     - always
     - objectsInObjects: false
       arraysInObjects: false
-  object-property-newline:
-    - error
-    - allowMultiplePropertiesPerLine: true
   operator-linebreak:
     - warn
     - after

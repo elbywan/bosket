@@ -1,0 +1,105 @@
+.explorer-window {
+    position: relative;
+    min-width: 400px;
+    background: #EEE;
+    box-shadow: 0px 0px 5px #AAA;
+    border-radius: 10px;
+}
+
+.explorer-window .explorer-bar {
+    width: 100%;
+    position: relative;
+    height: 30px;
+}
+
+.explorer-window .explorer-bar .explorer-current-folder {
+    text-align: center;
+    padding: 10px;
+    color: #555;
+    font-weight: bold;
+}
+
+.explorer-window .explorer-bar .explorer-buttons {
+    position: absolute;
+    top: 8px;
+}
+.explorer-window .explorer-bar .explorer-button {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    margin-left: 10px;
+    padding: 0px;
+}
+.explorer-window .explorer-bar .explorer-button.explorer-button-close {
+    background: crimson;
+}
+.explorer-window .explorer-bar .explorer-button.explorer-button-min {
+    background: rgb(253, 216, 53);
+}
+.explorer-window .explorer-bar .explorer-button.explorer-button-max {
+    background: rgb(100, 221, 23);
+}
+
+/* Folder view */
+
+.explorer-window .folder-view {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 202px);
+    height: 500px;
+    margin-top: 35px;
+    background: #fafafa;
+    overflow: scroll;
+}
+
+.explorer-window .folder-view table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.explorer-window .folder-view table thead th {
+    background: #e3e3e3;
+    padding: 4px 10px;
+    text-align: left;
+    font-weight: 100;
+    font-size: 14px;
+    border: 1px solid #DADADA;
+}
+.explorer-window .folder-view table tbody {
+    font-weight: 100;
+    font-size: 13px;
+}
+.explorer-window .folder-view table tbody .icon {
+    margin-right: 5px;
+}
+.explorer-window .folder-view table tbody tr:nth-child(2n+1) {
+    background-color: #FAFAFA;
+}
+.explorer-window .folder-view table tbody tr:nth-child(2n) {
+    background-color: rgba(227,242,253 ,1);
+}
+.explorer-window .folder-view table tbody tr:hover {
+    background: rgba(255,224,178 ,0.5);
+}
+.explorer-window .folder-view table tbody tr.selected {
+    background: #bbdefb;
+}
+.explorer-window .folder-view table tbody tr {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.explorer-window .folder-view table tbody td{
+    padding: 3px 10px;
+}
+
+/* File tree view */
+
+.explorer-window .file-tree {
+    display: inline-block;
+    vertical-align: top;
+    overflow: scroll;
+    width: 200px;
+    height: 500px;
+    margin-top: 35px;
+    border-right: 2px solid #DDD;
+    color: #444;
+}

@@ -24,7 +24,7 @@ export class Node extends Core {
         (!this.inputs.get().searched || this.isAsync(item)) &&
         (this.inputs.get().strategies.fold || [])
                     .map(strat => (foldStrategies[strat] || strat).bind(this))
-                        .reduce((last, curr) => last && curr(item), true)
+                        .reduce((last, curr) => last && curr(item, last), true)
     hasChildren = item => item[this.inputs.get().category] && item[this.inputs.get().category] instanceof Array
     isAsync = item => item[this.inputs.get().category] && typeof item[this.inputs.get().category] === "function"
     isDisabled = item => this.inputs.get().disabled && this.inputs.get().disabled(item)
@@ -56,7 +56,7 @@ export class Node extends Core {
         css.classes({
             [this.mixCss("selected")]:  this.isSelected(item),
             [this.mixCss("category")]:  this.hasChildren(item) || this.isAsync(item),
-            [this.mixCss("folded")]:    this.isFolded(item),
+            [this.mixCss("folded")]:    this.hasChildren(item) || this.isAsync(item) ? this.isFolded(item) : null,
             [this.mixCss("disabled")]:  this.isDisabled(item),
             [this.mixCss("async")]:     this.isAsync(item) && this.isFolded(item),
             [this.mixCss("loading")]:   this.isAsync(item) && !this.isFolded(item)
@@ -91,7 +91,7 @@ export class Node extends Core {
             return
         (this.inputs.get().strategies.click || [])
                     .map(strat => (clickStrategies[strat] || strat).bind(this))
-                        .forEach(strat => strat(item))
+                        .forEach(strat => strat(item, event, this.inputs.get().ancestors, this.inputs.get().model))
         this.inputs.get().onSelect(item, this.inputs.get().ancestors, this.inputs.get().model)
         event.stopPropagation()
     }
@@ -115,7 +115,7 @@ export class Node extends Core {
         event.preventDefault()
         event.stopPropagation()
 
-        if(this.dragGuard(item)) {
+        if(this.dragGuard(item, event)) {
             event.dataTransfer.dropEffect = "none"
             css.addClass(event.currentTarget, this.mixCss("nodrop"))
             return
@@ -127,7 +127,7 @@ export class Node extends Core {
         event.preventDefault()
         event.stopPropagation()
         // If dragging over an opener
-        if(item && !this.dragGuard(item) && (this.hasChildren(item) || this.isAsync(item)) && css.hasClass(event.target, this.mixCss("opener"))) {
+        if(item && !this.dragGuard(item, event) && (this.hasChildren(item) || this.isAsync(item)) && css.hasClass(event.target, this.mixCss("opener"))) {
             const newVal = this.state.get().unfolded.filter(i => i !== item)
             newVal.push(item)
             this.state.set({ unfolded: newVal })
@@ -142,7 +142,7 @@ export class Node extends Core {
         event.stopPropagation()
         css.removeClass(event.currentTarget, this.mixCss("dragover"))
         css.removeClass(event.currentTarget, this.mixCss("nodrop"))
-        if(this.dragGuard(item))
+        if(this.dragGuard(item, event))
             return
         const target = item ?
             this.hasChildren(item) ?
@@ -153,9 +153,13 @@ export class Node extends Core {
     }
 
     // Guard against bad drop
-    dragGuard = item => {
+    dragGuard = (item, event) => {
         // Prevent drop when not droppable
         if(!this.isDroppable(item)) return false
+        // If we are dragging files authorize drop
+        const items = event.dataTransfer.items
+        if(items && items.length > 0 && items[0].kind === "file")
+            return false
         // Prevent drop on self
         const selfDrop = item && array(this.inputs.get().selection).contains(item)
         // Prevent drop on child
@@ -222,12 +226,10 @@ export class RootNode extends Core {
 
     // Drop event
     onDrop = function(target, event) {
+        event.preventDefault()
         const jsonData = event.dataTransfer.getData("application/json")
-        if(!jsonData)
-            return
-        const data = JSON.parse(jsonData)
 
-        this.outputs.onDrop(target, data)
+        this.outputs.onDrop(target, jsonData ? JSON.parse(jsonData) : null, event)
     }.bind(this)
 
     // Framework input wrapper

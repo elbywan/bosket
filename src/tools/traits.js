@@ -1,4 +1,4 @@
-import mixin from "./mixin"
+import { mixin } from "./mixin"
 import React from "react"
 import { printer } from "./printer"
 

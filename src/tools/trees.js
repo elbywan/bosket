@@ -36,17 +36,25 @@ export const tree = (tree, prop) => {
             return copy
         },
         treeFilter: filterFun => {
-            const copy = t.slice()
-            const recurse = list => {
-                let [ leaves, nodes ] = list.reduce((accu, val) => {
-                    val[prop] && val[prop] instanceof Array ? accu[1].push(val) :  accu[0].push(val)
-                    return accu
-                }, [[], []])
-                leaves = leaves.filter(filterFun)
-                nodes = nodes.map(node => ({ ...node, [prop]: recurse(node[prop]) })).filter(node => filterFun(node) || node[prop].length > 0)
-                return [ ...leaves, ...nodes ]
+            const finalMap = new Map()
+
+            const recurse = (list, map) => {
+                list.forEach(item => {
+                    if(item[prop] && item[prop] instanceof Array) {
+                        const childMap = new Map()
+                        recurse(item[prop], childMap)
+                        if(childMap.size > 0) {
+                            map.set(item, childMap)
+                        } else if(filterFun(item)) {
+                            map.set(item, new Map())
+                        }
+                    } else if(filterFun(item)) {
+                        map.set(item, null)
+                    }
+                })
             }
-            return recurse(copy)
+            recurse(t, finalMap)
+            return finalMap
         },
         add: (parent, elt) => {
             let fifo = [t]

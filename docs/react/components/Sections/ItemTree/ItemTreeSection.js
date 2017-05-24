@@ -5,8 +5,7 @@ import { ComponentSection } from "../../ComponentSection/ComponentSection"
 
 import { ItemTree } from "../../../../../src/react"
 import { string, tree } from "../../../../../src/tools"
-
-const timeoutPromise = (value, duration) => new Promise(resolve => setTimeout(() => resolve(value), duration))
+import model from "../../../../common/models/ItemTreeModel"
 
 export class ItemTreeSection extends React.PureComponent {
 
@@ -17,70 +16,12 @@ export class ItemTreeSection extends React.PureComponent {
     }
 
     state = {
-        model: [
-            {
-                label: "Vegetables",
-                items: [
-                    { label: "Potato" },
-                    { label: "Carrot" },
-                    { label: "Tomato" }
-                ]
-            },
-            {
-                label: "Fruits",
-                items: [
-                    { label: "Orange" },
-                    { label: "Watermelon" },
-                    { label: "Banana" },
-                    { label: "Kumquat" },
-                    { label: "Strawberry" },
-                    { label: "Raspberry" },
-                    { label: "Cherry" }
-                ]
-            },
-            {
-                label: "Animals",
-                items: [
-                    {
-                        label: "Mammals",
-                        items: [
-                            { label: "Tiger" },
-                            { label: "Platypus" },
-                            { label: "Bear" }
-                        ]
-                    },
-                    {
-                        label: "Reptiles",
-                        items: [
-                            { label: "Turtle" },
-                            { label: "Crocodile" }
-                        ]
-                    },
-                    {
-                        label: "Insects",
-                        items: [
-                            { label: "Bee" },
-                            { label: "Fly" },
-                            { label: "Ant" }
-                        ]
-                    }
-                ]
-            },
-            {
-                label: "Durations",
-                items: () => timeoutPromise([
-                    { label: "0.5 second",  items: () => timeoutPromise([{ label: "Brief" }], 500) },
-                    { label: "2 seconds",   items: () => timeoutPromise([{ label: "Enduring" }], 2000) },
-                    { label: "4 seconds",   items: () => timeoutPromise([{ label: "Everlasting" }], 4000) }
-                ], 1000)
-            }
-        ],
+        model: model,
         category: "items",
         display: item => <a>{ item.label }</a>,
         sort: (a, b) => a.label.localeCompare(b.label),
         key: item => item.label,
         search: input => i => string(i.label).contains(input),
-        // disabled: item => item.items,
         selection: [],
         onSelect: function(items) { this.setState({ selection: items }) }.bind(this),
         transition: {
@@ -93,11 +34,6 @@ export class ItemTreeSection extends React.PureComponent {
             click: [],
             fold: ["opener-control"]
         },
-        /*
-        selectionStrategy: ["single"],
-        clickStrategy: ["unfold-on-selection"],
-        foldStrategy: [ "no-child-selection", "not-selected" ],
-        */
         noOpener: false,
         dragndrop: {
             draggable: true,
@@ -120,7 +56,11 @@ export class ItemTreeSection extends React.PureComponent {
     render = () =>
         <ComponentSection
                 componentName="ItemTree"
-                description="Powerful tree of nested objects.">
+                description="Powerful tree of nested objects."
+                files={[
+                    "./react/components/Sections/ItemTree/ItemTreeSection.js",
+                    "./react/components/Sections/ItemTree/ItemTreeSection.css"
+                ]}>
 
             <div className="inline-row">
                 <ItemTree { ...this.state }></ItemTree>

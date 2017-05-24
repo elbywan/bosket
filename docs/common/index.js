@@ -1,4 +1,5 @@
 import "./index.css"
+import "./libs/prismjs/themes/prism-tomorrow.css"
 import "./polyfills"
 
 window.onload = () => {

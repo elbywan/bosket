@@ -62,7 +62,7 @@ export class ItemTree<Item extends Object> {
     }
     _outputs = {
         onSelect: items => this.selectionChange.emit(items),
-        onDrop: (target, item) => this.onDrop.emit([target, item]),
+        onDrop: (target, item, event) => this.onDrop.emit([target, item, event]),
         onDrag: (target, event, ancestors, neighbours) => this.onDrag.emit({target, event, ancestors, neighbours})
     }
     _state = {
@@ -125,7 +125,7 @@ export class ItemTree<Item extends Object> {
 
     // Outputs
     @Output() selectionChange = new EventEmitter<Array<Item>>()
-    @Output() onDrop = new EventEmitter<[Item, Item]>()
+    @Output() onDrop = new EventEmitter<[Item, Item, DragEvent]>()
     @Output() onDrag = new EventEmitter<{
         target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>
     }>()

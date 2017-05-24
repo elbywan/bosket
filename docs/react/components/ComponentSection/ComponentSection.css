@@ -9,8 +9,57 @@
     font-size: 1.5em;
 }
 
-.ComponentSection > div.highlight {
+.ComponentSection.flexContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ComponentSection.flexContainer > * {
+    flex: 1;
+    min-width: 600px;
+}
+
+div.ComponentSection.highlight {
     background-image: repeating-linear-gradient(145deg, #fff, #fff 30px, #f5f5f5 30px, #f5f5f5 60px);
     border: 2px solid #EEE;
     padding: 20px;
+}
+
+div.ComponentSection.code {
+    overflow: hidden;
+    /*border: 2px solid #EEE;
+    max-height: 605px;*/
+}
+
+div.ComponentSection.code .tabs {
+    border-bottom: 2px solid crimson;
+    font-size: 12px;
+    overflow-x: scroll;
+}
+div.ComponentSection.code .tabs > * {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    transition: all 0.25s ease-in-out;
+}
+div.ComponentSection.code .tabs > *:hover {
+    background-color: #DDD;
+    border-top-right-radius: 0px;
+}
+div.ComponentSection.code .tabs > *.selected {
+    background-color: crimson;
+    color: white;
+}
+
+div.ComponentSection.code > pre {
+    position: relative;
+    height: calc(100% - 50px);
+    min-height: 500px;
+    margin: 0;
+    font-size: 13px;
+}
+div.ComponentSection.code > pre > code {
+    position: absolute;
 }

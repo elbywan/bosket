@@ -84,21 +84,21 @@
 
 /* Category opener */
 
-.opener {
+.ItemTree .opener {
     display: inline-block;
     vertical-align: middle;
     font-size: 20px;
     cursor: pointer;
     transition: all 0.25s;
 }
-.opener::after {
+.ItemTree .opener::after {
     content: '+';
     font-family: monospace;
 }
 .ItemTree li.category.async > .item > .opener::after {
     content: '!';
 }
-.opener:hover {
+.ItemTree .opener:hover {
     color: #e26f6f;
 }
 .ItemTree li.category:not(.folded) > .item > .opener {

@@ -149,7 +149,7 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
     }
 
     // Internal
-    @Input() filteredModel: Array<Item>
+    @Input() filteredModel: Map<Item, Map<Item, any>>
     @Input() css: {[key:string]: string}
     @Input() folded: boolean
     @Input() loading: boolean
@@ -167,7 +167,7 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
 
     getModel = () =>
         this.searched ?
-            this.model.filter(m => this.filteredModel.find(f => object(m).shallowCompare(f, [this.category]))) :
+            this.model.filter(m => this.filteredModel.has(m)) :
             this.model
 
     getChildModel = (item: Item) => {
@@ -185,7 +185,7 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
     }
     getChildFiltered = (item: Item) =>
         this.searched ?
-            this.filteredModel.find(m => object(item).shallowCompare(m, [this.category]))[this.category] :
+            this.filteredModel.get(item) :
             null
 
     ancestorsMap = new Map<Item, Array<Item>>()
