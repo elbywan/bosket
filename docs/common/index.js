@@ -23,5 +23,7 @@ window.bosketDemo = {
         scriptTag.setAttribute("id", "framework-script")
         document.head.appendChild(scriptTag)
         scriptTag.src = `./${framework}/${framework}.js`
+        document.querySelectorAll("header .frameworks > img").forEach(elt => elt.classList.remove("selected"))
+        document.querySelectorAll("header .frameworks > img." + framework)[0].classList.add("selected")
     }
 }

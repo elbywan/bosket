@@ -56,7 +56,7 @@ export class ItemTreeSection extends React.PureComponent {
     render = () =>
         <ComponentSection
                 componentName="ItemTree"
-                description="Powerful tree of nested objects."
+                description={ <p>Powerful tree of nested objects.</p> }
                 files={[
                     "./react/components/Sections/ItemTree/ItemTreeSection.js",
                     "./react/components/Sections/ItemTree/ItemTreeSection.css"

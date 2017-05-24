@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
 html{
     height: 100%;
 }
@@ -5,7 +7,7 @@ html{
 body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Open Sans', sans-serif;
     height: 100%;
 }
 
@@ -31,6 +33,21 @@ button.control-button {
 
 button:hover:not([disabled]) {
     background: #e26f6f;
+    color: white;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: inherit;
+    color: inherit;
+    transition: color 0.25s ease-in-out;
+}
+
+a:hover {
+    color: crimson;
+}
+
+header a:hover {
     color: white;
 }
 
@@ -71,13 +88,27 @@ header {
     background-color: #222;
     color: crimson;
     font-size: 2em;
-    font-family: monospace;
     padding: 5px;
     height: 2em;
 }
-header span {
+header > span {
     padding-left: 20px;
     line-height: 2em;
+}
+header .title {
+    background-color: crimson;
+    padding: 0px 20px 0px 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+    color: #222;
+}
+header span.title > img {
+    height: 2em;
+    padding-bottom: 7px;
+}
+header span.title > * {
+    display: inline-block;
+    vertical-align: top;
 }
 header .frameworks {
     float: right;
@@ -85,14 +116,20 @@ header .frameworks {
 }
 header .frameworks > img {
     height: 2em;
+    width: 2em;
     cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    border-bottom: 5px solid #666;
 }
 header .frameworks > img:hover {
-    box-shadow: 0px 0px 2px #FFF;
+    border-color: #EEE;
+}
+header .frameworks > img.selected {
+    border-color: crimson;
 }
 
 section#content {
-    padding: 5px;
+    padding: 5px 15px;
 }
 
 [disabled] {
@@ -136,4 +173,27 @@ div.components-container {
 
 div.components-container > * {
     /*flex: 1 1 auto;*/
+}
+
+div.framework-choice {
+    margin-top: 30px;
+}
+div.framework-choice > div {
+    background: #222;
+    color: #eee;
+    padding-bottom: 20px;
+    border-bottom: 2px solid crimson;
+    border-left: 5px solid #222;
+    transition: border .25s ease-in-out, padding .25s ease-in-out;
+}
+div.framework-choice > div:hover {
+    border-left: 10px solid crimson;
+    padding-left: 10px;
+}
+div.framework-choice > div > img {
+    width: 100px;
+    height: 70px;
+}
+div.framework-choice > div > * {
+    display: inline-block;
 }

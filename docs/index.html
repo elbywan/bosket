@@ -11,16 +11,39 @@
 
 <body>
     <header>
-       <span>Bosket</span>
-       <span class="frameworks">
-           <img src="./assets/react.svg" alt="react-logo" onclick="window.bosketDemo.load('react');"/>
-           <img src="./assets/angular.svg" alt="angular-logo" onclick="window.bosketDemo.load('angular');"/>
-       </span>
+        <span class="title">
+            <img src="./assets/bosket-logo.svg"></img>
+            <a href="https://github.com/elbywan/bosket">B o s k e t</a>
+        </span>
+        <span class="frameworks">
+           <img src="./assets/react.svg" alt="react-logo" class="react" onclick="window.bosketDemo.load('react')"/>
+           <img src="./assets/angular.svg" alt="angular-logo" class="angular" onclick="window.bosketDemo.load('angular')"/>
+        </span>
     </header>
     <section id="content">
-        <p>A collection of Tree Views.</p>
+        <p>
+            Bosket is a collection of tree view components.<br>
+            The logic is agnostic, the implementation is framework specific.
+        </p>
         <div id="framework-root">
-            Pick a framework !
+            <h4>Pick a framework !</h4>
+
+            <div class="framework-choice">
+                <div>
+                    <img src="./assets/react.svg" alt="react-logo" class="react"/>
+                    <div>
+                        <h2><a onclick="window.bosketDemo.load('react')">React</a></h2>
+                        Components for the <a href="https://facebook.github.io/react/" target="_blank">React</a> framework.
+                    </div>
+                </div>
+                <div>
+                    <img src="./assets/angular.svg" alt="angular-logo" />
+                    <div>
+                        <h2><a onclick="window.bosketDemo.load('angular')">Angular</a></h2>
+                        Components for the <a href="https://angular.io/" target="_blank">Angular (2+)</a> framework.
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </body>

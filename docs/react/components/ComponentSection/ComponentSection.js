@@ -41,7 +41,7 @@ export class ComponentSection extends React.PureComponent {
     render = () =>
         <div className="ComponentSection section">
             <h3>{ this.props.componentName }</h3>
-            <p> { this.props.description } </p>
+            <div> { this.props.description } </div>
             <div className="ComponentSection flexContainer">
                 <div className="ComponentSection highlight">{ this.props.children }</div>
                 <div className="ComponentSection code">
