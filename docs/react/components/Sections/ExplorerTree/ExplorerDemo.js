@@ -3,7 +3,7 @@ import "./ExplorerDemo.css"
 import React from "react"
 
 import { ExplorerTree } from "../../../../../src/react"
-import { tree } from "../../../../../src/tools"
+import { tree } from "../../../../../src/tools/trees"
 import model from "../../../../common/models/ExplorerTreeModel"
 
 import helpers from "./helpers"

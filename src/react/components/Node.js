@@ -1,5 +1,6 @@
 import React from "react"
-import { array, withTransition } from "../../tools"
+import { array } from "../../tools"
+import { withTransition } from "../traits"
 import { Node } from "../../core"
 
 /* Node component */

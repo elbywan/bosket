@@ -4,7 +4,7 @@ import { ItemInjector, ItemComponent } from "./ItemInjector.directive"
 import { Node } from "../../../core"
 import * as strategies from "../../../core/strategies"
 
-const object = require("../../../tools").object
+const object = require("../../../tools/objects").object
 
 /* Tree node */
 

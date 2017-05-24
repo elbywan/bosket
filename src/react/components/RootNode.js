@@ -1,5 +1,6 @@
 import React from "react"
-import { tree, withListener, withLabels } from "../../tools"
+import { withListener, withLabels } from "../traits"
+import { tree } from "../../tools/trees"
 import { RootNode, defaults } from "../../core"
 import { ItemTreeNode } from "./Node"
 

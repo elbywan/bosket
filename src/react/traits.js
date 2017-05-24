@@ -1,6 +1,5 @@
-import { mixin } from "./mixin"
+import { mixin, printer } from "../tools/mixin"
 import React from "react"
-import { printer } from "./printer"
 
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup"
 
