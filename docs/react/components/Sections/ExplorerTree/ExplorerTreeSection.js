@@ -46,7 +46,7 @@ export class ExplorerTreeSection extends React.PureComponent {
                         <button className="explorer-button explorer-button-max"></button>
                     </div>
                     <div className="explorer-current-folder">
-                        { this.props.path }
+                        { this.state.path }
                     </div>
                 </div>
                 <div className="file-tree">
