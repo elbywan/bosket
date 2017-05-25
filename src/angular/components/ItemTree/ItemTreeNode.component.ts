@@ -1,7 +1,7 @@
 import { Component, Input, ViewChildren, ChangeDetectionStrategy, ChangeDetectorRef,
     ComponentFactoryResolver, AfterViewInit } from "@angular/core"
 import { ItemInjector, ItemComponent } from "./ItemInjector.directive"
-import { Node } from "../../../core"
+import { TreeNode } from "../../../core"
 import * as strategies from "../../../core/strategies"
 
 const object = require("../../../tools/objects").object
@@ -100,7 +100,7 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
     /* Lifecycle */
 
     constructor(private _cdRef: ChangeDetectorRef, private _componentFactoryResolver: ComponentFactoryResolver) {
-        this.node = new Node<Item>(
+        this.node = new TreeNode<Item>(
             this._props,
             null,
             this._state,
@@ -128,9 +128,9 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
     @Input() display: (Item) => string
     @Input() key : (_: Item) => string
     @Input() strategies: {
-        selection:  Array<string | strategies.selectionStrategy<Item>>
-        click:      Array<string | strategies.clickStrategy<Item>>,
-        fold:       Array<string | strategies.foldStrategy<Item>>
+        selection:  Array<string | ((item: Item, selection: Array<Item>, neighbours: Array<Item>, ancestors: Array<Item>) => Array<Item>)>
+        click:      Array<string | ((item: Item, event: MouseEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void)>,
+        fold:       Array<string | ((item: Item, lastState: boolean) => boolean)>
     }
     @Input() labels: {[key: string]: string}
 
@@ -162,7 +162,7 @@ export class ItemTreeNode<Item extends Object> implements AfterViewInit{
 
     /* Internal logic */
 
-    node: Node<Item>
+    node: TreeNode<Item>
     get rootdrop(){ return this.dragndrop.draggable && !this.depth }
 
     getModel = () =>

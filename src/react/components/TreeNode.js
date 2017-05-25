@@ -1,7 +1,7 @@
 import React from "react"
 import { array } from "../../tools"
 import { withTransition } from "../traits"
-import { Node } from "../../core"
+import { TreeNode } from "../../core"
 
 /* Node component */
 class ItemTreeNodeBaseClass extends React.PureComponent {
@@ -21,7 +21,7 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
 
     constructor(props) {
         super(props)
-        this.node = new Node(
+        this.node = new TreeNode(
             this._props,
             null,
             this._state,

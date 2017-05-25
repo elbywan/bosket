@@ -15,7 +15,7 @@ class Core {
 }
 
 /* A tree node */
-export class Node extends Core {
+export class TreeNode extends Core {
 
     /* Various checks */
 

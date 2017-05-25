@@ -101,9 +101,9 @@ export class ItemTree<Item extends Object> {
     @Input() key: (index: number, _: Item) => string = (idx, _) => "" + idx
     @Input() search: (input: string) => (_: Item) => boolean
     @Input() strategies: {
-        selection:  Array<string | strategies.selectionStrategy<Item>>
-        click:      Array<string | strategies.clickStrategy<Item>>,
-        fold:       Array<string | strategies.foldStrategy<Item>>
+        selection:  Array<string | ((item: Item, selection: Array<Item>, neighbours: Array<Item>, ancestors: Array<Item>) => Array<Item>)>
+        click:      Array<string | ((item: Item, event: MouseEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void)>,
+        fold:       Array<string | ((item: Item, lastState: boolean) => boolean)>
     } = defaults.strategies
     @Input() labels = defaults.labels
 

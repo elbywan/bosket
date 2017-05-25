@@ -10,8 +10,8 @@ if(document.getElementById("framework-root").childNodes.length > 0 && window["de
 }
 
 window["demoCleanup"] = function() {
-    if(!platformBrowserDynamic().destroyed) {
-        platformBrowserDynamic().destroy()
+    if(!platform.destroyed) {
+        platform.destroy()
         if(document.getElementById("framework-root"))
             document.getElementById("framework-root").remove()
         var root = document.createElement("div")

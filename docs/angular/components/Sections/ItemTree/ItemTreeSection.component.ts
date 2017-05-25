@@ -1,11 +1,11 @@
 import { Component, Input } from "@angular/core"
-import { ItemComponent } from "../../../../../src/angular"
+import { ItemComponent } from "bosket/angular"
 
 import "./ItemTreeSection.css"
 import initialModel from "../../../../common/models/ItemTreeModel"
+import { tree } from "bosket/tools"
 
 const timeoutPromise = (value, duration) => new Promise(resolve => setTimeout(() => resolve(value), duration))
-const tree = require("../../../../../src/tools/trees").tree
 
 
 @Component({

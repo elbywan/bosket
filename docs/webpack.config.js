@@ -1,9 +1,10 @@
 const path = require("path")
+const ngtools = require("@ngtools/webpack")
 
 module.exports = {
     entry: {
         react: "./docs/react/index.js",
-        angular: "./docs/angular/index.ts",
+        angular: "./docs/angular/index.aot.ts",
         common: "./docs/common/index.js"
     },
     output: {
@@ -28,6 +29,7 @@ module.exports = {
                     "postcss-loader"
                 ]
             },
+            /*
             {
                 test: /\.tsx?$/,
                 loader: "ts-loader",
@@ -35,6 +37,17 @@ module.exports = {
                     configFileName: path.resolve(__dirname, "angular/tsconfig.json")
                 }
             }
+            */
+            {
+                test: /\.tsx?$/,
+                loader: "@ngtools/webpack"
+            }
         ]
-    }
+    },
+    plugins: [
+        new ngtools.AotPlugin({
+            tsConfigPath:   __dirname + "/angular/tsconfig.aot.json",
+            entryModule:    __dirname + "/angular/demo.module#DemoModule"
+        })
+    ]
 }

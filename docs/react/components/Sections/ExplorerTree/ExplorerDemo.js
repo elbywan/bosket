@@ -2,8 +2,8 @@ import "./ExplorerDemo.css"
 
 import React from "react"
 
-import { ExplorerTree } from "../../../../../src/react"
-import { tree } from "../../../../../src/tools/trees"
+import { ExplorerTree } from "bosket/react"
+import { tree } from "bosket/tools"
 import model from "../../../../common/models/ExplorerTreeModel"
 
 import helpers from "./helpers"

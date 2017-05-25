@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core"
 import { BrowserModule } from '@angular/platform-browser'
-import { BosketModule } from "../../src/angular"
+import { BosketModule } from "bosket/angular"
 
 import { AppComponent, ComponentSection, ItemTreeSection, ItemDisplay } from "./components"
 

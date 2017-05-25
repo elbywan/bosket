@@ -3,8 +3,8 @@ import "./ItemTreeSection.css"
 import React from "react"
 import { ComponentSection } from "../../ComponentSection/ComponentSection"
 
-import { ItemTree } from "../../../../../src/react"
-import { string, tree } from "../../../../../src/tools"
+import { ItemTree } from "bosket/react"
+import { string, tree } from "bosket/tools"
 import model from "../../../../common/models/ItemTreeModel"
 
 export class ItemTreeSection extends React.PureComponent {

@@ -1,0 +1,9 @@
+{
+  "name": "bosket",
+  "version": "0.0.1",
+  "description": "A collection of tree views.",
+  "main": "index.js",
+  "author": "Julien Elbaz",
+  "license": "MIT",
+  "repository": "https://github.com/elbywan/bosket"
+}

@@ -2,7 +2,7 @@ import React from "react"
 import { withListener, withLabels } from "../traits"
 import { tree } from "../../tools/trees"
 import { RootNode, defaults } from "../../core"
-import { ItemTreeNode } from "./Node"
+import { ItemTreeNode } from "./TreeNode"
 
 /* Root component */
 

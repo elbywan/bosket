@@ -16,7 +16,10 @@ module.exports = {
         publicPath: "/"
     },
     resolve: {
-        extensions: [ ".js", ".ts" ]
+        extensions: [ ".js", ".ts" ],
+        alias: {
+            bosket: resolve(__dirname, "../src")
+        }
     },
 
     devtool: "inline-source-map",
@@ -50,7 +53,6 @@ module.exports = {
             }
         ]
     },
-
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin()
