@@ -27,6 +27,8 @@ div.ComponentSection.highlight {
 
 div.ComponentSection.code {
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
     /*border: 2px solid #EEE;
     max-height: 605px;*/
 }
@@ -34,7 +36,6 @@ div.ComponentSection.code {
 div.ComponentSection.code .tabs {
     border-bottom: 2px solid crimson;
     font-size: 12px;
-    overflow-x: scroll;
 }
 div.ComponentSection.code .tabs > * {
     display: inline-block;
@@ -62,4 +63,5 @@ div.ComponentSection.code > pre {
 }
 div.ComponentSection.code > pre > code {
     position: absolute;
+    padding-bottom: 10px;
 }

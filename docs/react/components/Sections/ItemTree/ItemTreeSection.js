@@ -59,7 +59,8 @@ export class ItemTreeSection extends React.PureComponent {
                 description={ <p>Powerful tree of nested objects.</p> }
                 files={[
                     "./react/components/Sections/ItemTree/ItemTreeSection.js",
-                    "./react/components/Sections/ItemTree/ItemTreeSection.css"
+                    "./react/components/Sections/ItemTree/ItemTreeSection.css",
+                    "./common/models/ItemTreeModel.js"
                 ]}>
 
             <div className="inline-row">

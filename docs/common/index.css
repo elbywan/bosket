@@ -96,15 +96,15 @@ header > span {
     line-height: 2em;
 }
 header .title {
-    background-color: crimson;
-    padding: 0px 20px 0px 10px;
+    background-color: rgb(220, 20, 60);
+    padding: 0 20px 0 10px;
     border-radius: 20px;
     margin-left: 10px;
     color: #222;
+    letter-spacing: 10px;
 }
 header span.title > img {
     height: 2em;
-    padding-bottom: 7px;
 }
 header span.title > * {
     display: inline-block;

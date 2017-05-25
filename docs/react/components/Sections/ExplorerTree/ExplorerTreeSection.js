@@ -34,7 +34,8 @@ export class ExplorerTreeSection extends React.PureComponent {
                     "./react/components/Sections/ExplorerTree/ExplorerDemo.css",
                     "./react/components/Sections/ExplorerTree/ExplorerTreeSection.js",
                     "./react/components/Sections/ExplorerTree/ExplorerTreeSection.css",
-                    "./react/components/Sections/ExplorerTree/helpers.js"
+                    "./react/components/Sections/ExplorerTree/helpers.js",
+                    "./common/models/ExplorerTreeModel.js"
                 ]}>
 
             <div className="explorer-window">
