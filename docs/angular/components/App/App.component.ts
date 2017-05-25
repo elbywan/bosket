@@ -1,5 +1,4 @@
 import { Component } from "@angular/core"
-//import * as sections from "../Sections"
 
 @Component({
     selector: "div#framework-root",

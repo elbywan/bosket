@@ -10,7 +10,7 @@
     "start": "npm run clean && npm run build && npm run build-docs",
     "build": "eslint src && babel src -d build -s && ngc -p src/angular/tsconfig.json && cd src && copy ./**/*.d.ts ../build",
     "postbuild": "npm install build",
-    "build-docs": "webpack --config docs/webpack.config.js -p",
+    "build-docs": "webpack --progress --colors --config docs/webpack.config.js -p",
     "dev-server": "webpack-dev-server --config docs/webpack.config.dev.js",
     "clean": "rimraf build/**/*.{js,map,ts,metadata.json}"
   },
