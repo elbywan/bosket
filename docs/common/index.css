@@ -43,10 +43,6 @@ a {
     transition: color 0.25s ease-in-out;
 }
 
-a:hover {
-    color: crimson;
-}
-
 header a:hover {
     color: white;
 }
@@ -163,20 +159,11 @@ section#content {
     font-size: 1.1em;
 }
 
-/* Components */
-
-div.components-container {
-    /*display: flex;
-    flex-wrap: wrap;
-    border-bottom: 3px solid crimson;*/
-}
-
-div.components-container > * {
-    /*flex: 1 1 auto;*/
-}
-
 div.framework-choice {
     margin-top: 30px;
+}
+div.framework-choice a:hover {
+    color: crimson;
 }
 div.framework-choice > div {
     background: #222;

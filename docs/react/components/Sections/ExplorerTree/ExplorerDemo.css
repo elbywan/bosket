@@ -76,7 +76,7 @@
 
 /* Drag'n'drop */
 
-.ExplorerTree li.dragover, .ItemTree ul.dragover {
+.ExplorerTree li.dragover, .ExplorerTree ul.dragover {
     box-shadow: 0px 0px 2px #AAA;
 }
 .ExplorerTree ul.dragover {
