@@ -23,6 +23,7 @@ div.ComponentSection.highlight {
     background-image: repeating-linear-gradient(145deg, #fff, #fff 30px, #f5f5f5 30px, #f5f5f5 60px);
     border: 2px solid #EEE;
     padding: 20px;
+    min-height: 500px;
 }
 
 div.ComponentSection.code {

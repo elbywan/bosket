@@ -81,6 +81,9 @@ export var selectionStrategies = {
             delete this.lastPivot;
             return singleSelect(item, selection.length > 1 ? [] : selection, neighbours, ancestors);
         }
+    },
+    ancestors: function ancestors(item, selection, neighbours, _ancestors) {
+        return selection.length === 0 ? [item] : array(selection).contains(item) ? [].concat(_toConsumableArray(_ancestors)) : [].concat(_toConsumableArray(_ancestors), [item]);
     }
 };
 

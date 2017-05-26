@@ -1,16 +1,4 @@
-.ExplorerTree input[type="search"].search{
-    position: absolute;
-    width: 100%;
-    top: 35px;
-    left: 0;
-    background: #e3e3e3;
-    color: #444;
-    border: none;
-    border-bottom: 2px solid #ddd;
-    border-top: 2px solid #ddd;
-    font-size: 12px;
-    font-family: Monaco, monospace;
-}
+/* Lists */
 
 .ExplorerTree ul {
     list-style: none;
@@ -27,6 +15,24 @@
     font-size: 14px;
     min-height: 495px;
 }
+
+/* Search bar */
+
+.ExplorerTree input[type="search"].search{
+    position: absolute;
+    width: 100%;
+    top: 35px;
+    left: 0;
+    background: #e3e3e3;
+    color: #444;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    border-top: 2px solid #ddd;
+    font-size: 12px;
+    font-family: Monaco, monospace;
+}
+
+/* Item */
 
 .ExplorerTree .item {
     display: inline-flex;
@@ -57,6 +63,9 @@
     order: 2;
     flex: 1;
 }
+
+
+/* Opener */
 
 .ExplorerTree .opener {
     order: 1;

@@ -70,6 +70,13 @@ export const selectionStrategies = {
             delete this.lastPivot
             return singleSelect(item, selection.length > 1 ? [] : selection, neighbours, ancestors)
         }
+    },
+    ancestors: function(item, selection, neighbours, ancestors) {
+        return selection.length === 0 ?
+                [item] :
+            array(selection).contains(item) ?
+                [...ancestors] :
+            [ ...ancestors, item ]
     }
 }
 

@@ -4,7 +4,8 @@ import React from "react"
 import { ComponentSection } from "../../ComponentSection/ComponentSection"
 
 import { ItemTree } from "bosket/react"
-import { string, tree } from "bosket/tools"
+import { string } from "bosket/tools"
+import { dragndrop } from "bosket/core/dragndrop"
 import model from "../../../../common/models/ItemTreeModel"
 
 export class ItemTreeSection extends React.PureComponent {
@@ -41,14 +42,14 @@ export class ItemTreeSection extends React.PureComponent {
             drag: (target, event, ancestors, neighbours) => {
                 event.dataTransfer.setDragImage(this.dragImage, 0, 0)
             },
-            drop: (target, item) => {
-                let updatedModel = tree(this.state.model, this.state.category).filter(e => this.state.selection.indexOf(e) < 0)
-                if(target)
-                    target[this.state.category] = [ ...target[this.state.category], ...this.state.selection ]
-                else
-                    updatedModel = [ ...updatedModel, ...this.state.selection ]
-
-                this.setState({ model: updatedModel })
+            drop: (target, item, event) => {
+                this.setState({
+                    model: dragndrop.drops.selection(
+                        target,
+                        this.state.model,
+                        this.state.category,
+                        this.state.selection)
+                })
             }
         }
     }

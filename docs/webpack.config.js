@@ -29,15 +29,6 @@ module.exports = {
                     "postcss-loader"
                 ]
             },
-            /*
-            {
-                test: /\.tsx?$/,
-                loader: "ts-loader",
-                options: {
-                    configFileName: path.resolve(__dirname, "angular/tsconfig.json")
-                }
-            }
-            */
             {
                 test: /\.tsx?$/,
                 loader: "@ngtools/webpack"

@@ -34,18 +34,18 @@ export var ExplorerTree = function (_React$PureComponent) {
                 return React.createElement(
                     "a",
                     null,
-                    _this.props.nameProperty(item)
+                    _this.props.name(item)
                 );
             },
             sort: function sort(a, b) {
-                return !a[_this.props.category] === !b[_this.props.category] ? a[_this.props.nameProperty].localeCompare(b[_this.props.nameProperty]) : a[_this.props.category] ? -1 : 1;
+                return !a[_this.props.category] === !b[_this.props.category] ? a[_this.props.name].localeCompare(b[_this.props.name]) : a[_this.props.category] ? -1 : 1;
             },
             key: function key(item) {
-                return item[_this.props.nameProperty];
+                return item[_this.props.name];
             },
             search: function search(input) {
                 return function (i) {
-                    return string(i[_this.props.nameProperty]).contains(input);
+                    return string(i[_this.props.name]).contains(input);
                 };
             },
             strategies: {

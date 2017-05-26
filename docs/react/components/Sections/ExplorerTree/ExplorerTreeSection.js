@@ -17,26 +17,26 @@ export class ExplorerTreeSection extends React.PureComponent {
     // Render the whole explorer window //
     render = () =>
         <ComponentSection
-                componentName="ExplorerTree"
-                description={
-                    <span>
-                        A simple file explorer, featuring :
-                        <ul>
-                            <li>Keyboard modifiers and multi-selection (ctrl / shift)</li>
-                            <li>Drag and drop (including your filesystem folders & files)</li>
-                            <li>Item search</li>
-                            <li>Custom item display</li>
-                        </ul>
-                    </span>
-                }
-                files={[
-                    "./react/components/Sections/ExplorerTree/ExplorerDemo.js",
-                    "./react/components/Sections/ExplorerTree/ExplorerDemo.css",
-                    "./react/components/Sections/ExplorerTree/ExplorerTreeSection.js",
-                    "./react/components/Sections/ExplorerTree/ExplorerTreeSection.css",
-                    "./react/components/Sections/ExplorerTree/helpers.js",
-                    "./common/models/ExplorerTreeModel.js"
-                ]}>
+            componentName="ExplorerTree"
+            description={
+                <span>
+                    A simple file explorer, featuring :
+                    <ul>
+                        <li>Keyboard modifiers and multi-selection (ctrl / shift)</li>
+                        <li>Drag and drop (including your filesystem folders & files)</li>
+                        <li>Item search</li>
+                        <li>Custom item display</li>
+                    </ul>
+                </span>
+            }
+            files={[
+                "./react/components/Sections/ExplorerTree/ExplorerDemo.js",
+                "./react/components/Sections/ExplorerTree/ExplorerDemo.css",
+                "./react/components/Sections/ExplorerTree/ExplorerTreeSection.js",
+                "./react/components/Sections/ExplorerTree/ExplorerTreeSection.css",
+                "./react/components/Sections/ExplorerTree/helpers.js",
+                "./common/models/ExplorerTreeModel.js"
+            ]}>
 
             <div className="explorer-window">
                 <div className="explorer-bar">

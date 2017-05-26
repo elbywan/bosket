@@ -3,7 +3,7 @@ import { ItemComponent } from "bosket/angular"
 
 import "./ItemTreeSection.css"
 import initialModel from "../../../../common/models/ItemTreeModel"
-import { tree } from "bosket/tools"
+import { dragndrop } from "bosket/core/dragndrop"
 
 const timeoutPromise = (value, duration) => new Promise(resolve => setTimeout(() => resolve(value), duration))
 
@@ -70,7 +70,6 @@ export class ItemTreeSection {
     sort = (a, b) => a.label.localeCompare(b.label)
     key = (index, item) => item.label
     search = input => i => i.label.match(new RegExp(`.*${ input }.*`, "gi"))
-    // disabled = item => item.items
     selection = []
     deselect = item => this.selection = this.selection.filter(i => i !== item)
     onSelect = items => this.selection = items
@@ -86,13 +85,7 @@ export class ItemTreeSection {
     }
     dragImage: HTMLImageElement
     onDrop = (target, item) => {
-        let updatedModel = tree(this.model, this.category).filter(e => this.selection.indexOf(e) < 0)
-        if(target)
-            target[this.category] = [ ...target[this.category], ...this.selection ]
-        else
-            updatedModel = [ ...updatedModel, ...this.selection ]
-
-        this.model = updatedModel
+        this.model = dragndrop.drops.selection(target, this.model, this.category, this.selection)
     }
     onDrag = ({target, event, ancestors, neighbours}) => {
         event.dataTransfer.setDragImage(this.dragImage, 0, 0)

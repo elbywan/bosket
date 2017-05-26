@@ -10,12 +10,12 @@ export class ExplorerTree extends React.PureComponent {
             ItemTree: "ExplorerTree"
         },
         labels: { "search.placeholder": "Search ..." },
-        display: item => <a>{ this.props.nameProperty(item) }</a>,
+        display: item => <a>{ this.props.name(item) }</a>,
         sort: (a, b) =>
-            !a[this.props.category] === !b[this.props.category] ? a[this.props.nameProperty].localeCompare(b[this.props.nameProperty]) :
+            !a[this.props.category] === !b[this.props.category] ? a[this.props.name].localeCompare(b[this.props.name]) :
             a[this.props.category] ? -1 : 1,
-        key: item => item[this.props.nameProperty],
-        search: input => i => string(i[this.props.nameProperty]).contains(input),
+        key: item => item[this.props.name],
+        search: input => i => string(i[this.props.name]).contains(input),
         strategies: {
             selection: ["modifiers"],
             click: ["unfold-on-selection"],
