@@ -61,7 +61,7 @@ export class ItemTree<Item extends Object> {
         }
     }
     _outputs = {
-        onSelect: items => this.selectionChange.emit(items),
+        onSelect: (selection, item, ancestors, neighbours) => this.selectionChange.emit(selection),
         onDrop: (target, item, event) => this.onDrop.emit([target, item, event]),
         onDrag: (target, event, ancestors, neighbours) => this.onDrag.emit({target, event, ancestors, neighbours})
     }

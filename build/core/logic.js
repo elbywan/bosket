@@ -237,7 +237,7 @@ export var RootNode = function (_Core2) {
             }).reduce(function (last, curr) {
                 return curr(item, last, neighbours, ancestors);
             }, this.inputs.get().selection);
-            return this.outputs.onSelect(newSelection);
+            return this.outputs.onSelect(newSelection, item, ancestors, neighbours);
         }.bind(_this2), _this2.onDragStart = function (target, event, ancestors, neighbours) {
             event.dataTransfer.setData("application/json", JSON.stringify(target));
             event.dataTransfer.dropEffect = "move";

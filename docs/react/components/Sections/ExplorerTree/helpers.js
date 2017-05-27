@@ -55,7 +55,7 @@ const helpers = {
             }
         }
     },
-    scanFiles: function(item, model = []) {
+    scanFiles: function(item, model = [], depth = 0) {
         const fileItem = {
             filename: item.name,
             size: 0,
@@ -66,11 +66,29 @@ const helpers = {
             const directoryReader = item.createReader()
             directoryReader.readEntries(entries => {
                 entries.forEach(entry => {
-                    helpers.scanFiles(entry, fileItem.files)
+                    helpers.scanFiles(entry, fileItem.files, depth + 1)
                 })
             })
         }
+        if(depth < 2) {
+            fileItem.fsEntry.getMetadata &&
+                    fileItem.fsEntry.getMetadata(metadata =>
+                        fileItem.size = metadata.size)
+            delete fileItem.fsEntry
+        }
+
         model.push(fileItem)
+        return fileItem
+    },
+    getFilesSize: function(item) {
+        item.files.forEach(item => {
+            if(item.fsEntry) {
+                item.fsEntry.getMetadata &&
+                    item.fsEntry.getMetadata(metadata =>
+                        item.size = metadata.size)
+                delete item.fsEntry
+            }
+        })
     }
 }
 

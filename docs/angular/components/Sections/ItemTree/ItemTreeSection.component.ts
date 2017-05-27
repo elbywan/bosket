@@ -72,7 +72,6 @@ export class ItemTreeSection {
     search = input => i => i.label.match(new RegExp(`.*${ input }.*`, "gi"))
     selection = []
     deselect = item => this.selection = this.selection.filter(i => i !== item)
-    onSelect = items => this.selection = items
     strategies = {
         selection: ["modifiers"],
         click: [],

@@ -210,7 +210,7 @@ export class RootNode extends Core {
         const newSelection = selectionStrategy
                                 .map(strat => (selectionStrategies[strat] || strat).bind(this))
                                     .reduce((last, curr) => curr(item, last, neighbours, ancestors), this.inputs.get().selection)
-        return this.outputs.onSelect(newSelection)
+        return this.outputs.onSelect(newSelection, item, ancestors, neighbours)
     }.bind(this)
 
     // Drag start

@@ -7,7 +7,7 @@ export declare class ItemTree<Item extends Object> {
         set: (s: {}) => void;
     };
     _outputs: {
-        onSelect: (items: any) => void;
+        onSelect: (selection: any, item: any, ancestors: any, neighbours: any) => void;
         onDrop: (target: any, item: any, event: any) => void;
         onDrag: (target: any, event: any, ancestors: any, neighbours: any) => void;
     };

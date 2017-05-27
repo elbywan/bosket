@@ -22,7 +22,7 @@ var ItemTree = (function () {
             }
         };
         this._outputs = {
-            onSelect: function (items) { return _this.selectionChange.emit(items); },
+            onSelect: function (selection, item, ancestors, neighbours) { return _this.selectionChange.emit(selection); },
             onDrop: function (target, item, event) { return _this.onDrop.emit([target, item, event]); },
             onDrag: function (target, event, ancestors, neighbours) { return _this.onDrag.emit({ target: target, event: event, ancestors: ancestors, neighbours: neighbours }); }
         };

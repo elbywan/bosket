@@ -46,7 +46,7 @@ export class MenuTreeSection extends React.PureComponent {
                             "fa-times": this.state.opened
                         })}></i>
                     </div>
-                    <div className="MenuTreeSection title">Menu demo</div>
+                    <div className="MenuTreeSection title">Menu Tree</div>
                 </div>
                 <div className={ "MenuTreeSection content " + css.classes({ opened: this.state.opened })}>
                     { this.renderContent(this.state.selection[this.state.selection.length - 1]) }

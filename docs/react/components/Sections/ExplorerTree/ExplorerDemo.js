@@ -32,11 +32,29 @@ export class ExplorerDemo extends React.PureComponent {
         // Name property  of a file or directory
         name: "filename",
 
-        // On select event, update the selection array
-        // For the sake of the demo, the array is declared
-        // in the parent component.
-        onSelect: function(items) {
-            this.props.update({ selection: items })
+        // On select event:
+        // - update the selection array
+        // - update the current directory label
+        // - if dropped fron the user fs, get files size
+        //
+        // For the sake of the demo, the selection array is
+        // declared in the parent component.
+        onSelect: function(selection, item, ancestors, neighbours) {
+            if(item.files) {
+                this.props.update({
+                    lastFolder: item,
+                    path: "/" + [ ...ancestors, item ]
+                        .map(a => a.filename).join("/")
+                })
+                item.files.filter(f => f.files).forEach(helpers.getFilesSize)
+            } else {
+                this.props.update({
+                    lastFolder: ancestors[ancestors.length - 1],
+                    path: "/" + ancestors
+                        .map(a => a.filename).join("/")
+                })
+            }
+            this.props.update({ selection: selection })
         }.bind(this),
 
         // On model update, set state
@@ -51,47 +69,8 @@ export class ExplorerDemo extends React.PureComponent {
                 { item.filename }
             </a>,
 
-        // Hooks
-        strategies: {
-
-            // On click - update the current directory label
-            click: [(item, event, ancestors, neighbours) => {
-                if(item.files) {
-                    this.props.update({ lastFolder: item })
-                    this.props.update({
-                        path: "/" + [ ...ancestors, item ]
-                            .map(a => a.filename).join("/")
-                    })
-                } else {
-                    this.props.update({
-                        lastFolder: ancestors[ancestors.length - 1]
-                    })
-                    this.props.update({
-                        path: "/" + ancestors
-                            .map(a => a.filename).join("/")
-                    })
-                }
-            }],
-
-            // On unfolding - update real file size asynchronously
-            // for better performance, since it retrieves the data from
-            // the user filesystem.
-            fold: [(item, lastState) => {
-                item.files.forEach(item => {
-                    if(item.fsEntry) {
-                        item.fsEntry.getMetadata &&
-                            item.fsEntry.getMetadata(metadata =>
-                                item.size = metadata.size)
-                        delete item.fsEntry
-                    }
-                })
-                return lastState
-            }]
-        },
-
-        // Drag and drop conf.
+        // Drag and drop config.
         dragndrop: {
-
             // On drop, two possibilites, real files & folders or inner selection.
             drop: (target, item, event) => {
                 const fsEntries = dragndrop.drops.filesystem(event)
@@ -100,8 +79,10 @@ export class ExplorerDemo extends React.PureComponent {
                     const targetModel = target ?
                         target[this.state.category] :
                         this.state.model
-                    fsEntries.forEach(entry =>
-                        helpers.scanFiles.bind(this)(entry, targetModel))
+                    fsEntries.forEach(entry => {
+                        helpers.scanFiles.bind(this)(entry, targetModel)
+                    })
+
                     this.setState({ model: this.state.model.slice() })
                 } else {
                     // "Standard"" drop //
