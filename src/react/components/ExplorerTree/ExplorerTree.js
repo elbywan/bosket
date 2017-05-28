@@ -9,7 +9,6 @@ export class ExplorerTree extends React.PureComponent {
         css: {
             ItemTree: "ExplorerTree"
         },
-        labels: { "search.placeholder": "Search ..." },
         display: item => <a>{ this.props.name(item) }</a>,
         sort: (a, b) =>
             !a[this.props.category] === !b[this.props.category] ? a[this.props.name].localeCompare(b[this.props.name]) :

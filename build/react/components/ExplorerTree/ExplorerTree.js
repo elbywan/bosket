@@ -29,7 +29,6 @@ export var ExplorerTree = function (_React$PureComponent) {
             css: {
                 ItemTree: "ExplorerTree"
             },
-            labels: { "search.placeholder": "Search ..." },
             display: function display(item) {
                 return React.createElement(
                     "a",

@@ -39,6 +39,11 @@ export var array = function array(self) {
         },
         contains: function contains(element) {
             return self.indexOf(element) >= 0;
+        },
+        allIn: function allIn(arr) {
+            return self.every(function (elt) {
+                return arr.indexOf(elt) >= 0;
+            });
         }
     };
 };

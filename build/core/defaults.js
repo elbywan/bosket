@@ -1,6 +1,6 @@
 export var defaults = {
     labels: {
-        "search.placeholder": "Search box"
+        "search.placeholder": "Search ..."
     },
     css: {
         /* moar css */

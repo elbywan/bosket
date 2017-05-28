@@ -12,6 +12,7 @@ export const array = self => {
             isIn.reduce((acc, curr) => curr.indexOf(elt) >= 0 && acc, true) &&
             notIn.reduce((acc, curr) => curr.indexOf(elt) < 0 && acc, true) &&
             otherCondition(elt)),
-        contains: element => self.indexOf(element) >= 0
+        contains: element => self.indexOf(element) >= 0,
+        allIn: arr => self.every(elt => arr.indexOf(elt) >= 0)
     }
 }

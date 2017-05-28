@@ -78,7 +78,8 @@
     transform: rotate(90deg);
 }
 .ExplorerTree .opener::before {
-    content: '▶';
+    content: "\f054";
+    font-family: FontAwesome;
     cursor: pointer;
 }
 

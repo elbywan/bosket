@@ -1,0 +1,191 @@
+/* Flat Tree section */
+
+.FlatTreeSection {
+    width: 100%;
+    height: 100%;
+    background: rgba(2,119,189 ,0.4);
+    border-radius: 10px;
+    box-shadow: 0 0 10px #AAA;
+    letter-spacing: 1.5px;
+}
+.FlatTreeSection p {
+    padding: 20px;
+    margin: 0px;
+}
+.FlatTreeSection em {
+    font-style: normal;
+    font-weight: bold;
+    color: #f44336;
+}
+.FlatTreeSection > h3 {
+    text-align: center;
+    padding: 10px 20px;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-weight: normal;
+    margin-bottom: 20px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom: 2px solid #f44336;
+}
+.FlatTreeSection .comboBox {
+    position: relative;
+    display: inline;
+}
+.FlatTreeSection .comboBox > button {
+    padding: 5px 20px;
+    height: 27px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    font-family: inherit;
+    min-width: 250px;
+}
+.FlatTreeSection .comboBox > button:hover {
+    color: #f44336;
+    border-color: #f44336;
+    box-shadow: 0px 0px 3px #aaa;
+}
+.FlatTreeSection .comboBoxOpener {
+    float: right;
+    pointer-events: none;
+}
+.FlatTreeSection .comboBoxOpener > i.fa {
+    transition: transform 0.25s ease-in-out;
+}
+.FlatTreeSection .comboBox.opened .comboBoxOpener > i.fa {
+    transform: rotate(90deg);
+}
+.FlatTreeSection .comboBox .container {
+    position: absolute;
+    z-index: 5;
+    opacity: 0;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    left: 0px;
+    top: 26px;
+    width: 100%;
+    height: 0px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all 0.25s ease-in-out;
+}
+.FlatTreeSection .comboBox.opened .container {
+    height: 300px;
+    opacity: 1;
+}
+.FlatTreeSection .comboBox.opened .container,
+.FlatTreeSection .comboBox.opened > button {
+    box-shadow: 0px 0px 3px #aaa;
+}
+
+.FlatTreeSection div.form-like {
+    display: table;
+    width: calc(100% - 40px);
+    padding: 20px;
+    border-spacing: 20px;
+}
+.FlatTreeSection div.form-line {
+    display: table-row;
+}
+.FlatTreeSection div.form-line > * {
+    display: table-cell;
+}
+.FlatTreeSection div.form-line > input {
+    background: rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid black;
+    font-family: inherit;
+}
+.FlatTreeSection div.form-line input,
+.FlatTreeSection div.form-line button {
+    width: 100%;
+    box-sizing: border-box;
+}
+.FlatTreeSection .form-line > input:hover {
+    box-shadow: 0px 0px 3px #aaa !important;
+}
+.FlatTreeSection div.form-line label {
+    font-weight: bold;
+}
+
+.FlatTreeSection input {
+    transition: all 0.25s ease-in-out;
+}
+.FlatTreeSection input:focus {
+    border-color: #f44336 !important;
+}
+
+/* Flat Tree component */
+
+.FlatTree {
+    font-size: 14px;
+}
+
+.FlatTree input[type="search"].search {
+    width: 100%;
+    color: white;
+    font-family: inherit;
+    font-size: 0.9em;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    transition: border .25s ease-in-out;
+}
+.FlatTree input[type="search"].search::placeholder {
+    color: #CCC;
+}
+
+.FlatTree ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    user-select: none;
+}
+
+.FlatTree li:not(.disabled) {
+    cursor: pointer;
+}
+
+.FlatTree li .item {
+    display: block;
+    transition: all 0.25s ease-in-out;
+}
+
+.FlatTree li:not(.category) > .item {
+    padding: 5px 0px;
+}
+
+.FlatTree li.category > .item {
+    background: white;
+    color: black;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+.FlatTree li.selected > .item {
+    color: white;
+    background-color: #f44336;
+}
+.FlatTree li:not(.category):not(.selected).disabled > .item {
+    background: #CCC;
+    color: #888;
+}
+
+.FlatTree li:not(.disabled):not(.selected) > .item:hover {
+    color: #f44336;
+}
+.FlatTree li.selected > .item:hover {
+    color: rgb(224, 224, 224);
+}
+
+.FlatTree li.category > .item span.icons {
+    position: absolute;
+    right: 15px;
+}
+
+.FlatTree li.category > .item {
+    cursor: pointer;
+}
+.FlatTree li.category > .item:hover  {
+    color: #f44336;
+}
