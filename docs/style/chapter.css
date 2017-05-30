@@ -1,0 +1,50 @@
+div.chapter {
+    padding: 10px 10%;
+    padding-bottom: 40px;
+    background-color: #444;
+    color: white;
+}
+div.chapter h1, div.chapter h2, div.chapter h3, div.chapter h4, div.chapter h5 {
+    /* text-shadow: 1px 1px #000;*/
+    font-family: Cormorant Garamond,serif;
+    margin: 0;
+}
+div.chapter h1 {
+    text-align: center;
+    font-size: 2.5em;
+    padding: 10px 0px;
+    color: crimson;
+}
+div.chapter h2 {
+    padding: 20px 0px 10px;
+    font-size: 1.7em;
+}
+div.chapter p {
+    padding: 10px 0px;
+    margin: 0;
+}
+
+div.framework-choice {
+    margin-top: 20px;
+}
+div.framework-choice a:hover {
+    color: crimson;
+}
+div.framework-choice > div {
+    background: #444;
+    color: #eee;
+    padding-bottom: 20px;
+    border-bottom: 2px solid crimson;
+    border-left: 5px solid #444;
+    transition: padding .25s ease-in-out;
+}
+div.framework-choice > div:hover {
+    padding-left: 2%;
+}
+div.framework-choice > div > a > img {
+    width: 100px;
+    height: 70px;
+}
+div.framework-choice > div > * {
+    display: inline-block;
+}

@@ -29,9 +29,9 @@ export class MenuTreeSection extends React.PureComponent {
             componentName="MenuTree"
             description={ <p>A nested menu featuring ancestors selection, custom display and transitions.</p> }
             files={[
-                "./react/components/Sections/MenuTree/MenuTreeSection.js",
-                "./react/components/Sections/MenuTree/MenuTreeSection.css",
-                "./common/models/MenuTreeModel.js"
+                "./components/Sections/MenuTree/MenuTreeSection.js",
+                "./components/Sections/MenuTree/MenuTreeSection.css",
+                "../common/models/MenuTreeModel.js"
             ]}>
 
             <div className="MenuTreeSection window">

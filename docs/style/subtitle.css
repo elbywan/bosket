@@ -1,0 +1,62 @@
+div.subtitle {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 5%;
+    background: rgba(220, 20, 60, 1);
+    color: #FFF;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4em;
+    line-height: 2em;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+div.subtitle > * {
+    flex: 0 1 auto;
+}
+
+div.subtitle .tree-capture {
+    text-align: center;
+    line-height: 0;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.25), crimson 70%);
+    padding: 25px;
+}
+div.subtitle .tree-capture > img {
+    height: 150px;
+    box-shadow: 0px 0px 10px #444;
+}
+div.subtitle .tree-capture > svg {
+    height: 175px;
+}
+div.subtitle .tree-capture > svg rect {
+    fill: #666;
+    stroke: #444;
+    stroke-width: 9px;
+}
+div.subtitle .tree-capture > svg #root .parent {
+    fill: #4caf50;
+    stroke: #4caf50;
+}
+div.subtitle .tree-capture > svg #child1 rect,
+div.subtitle .tree-capture > svg #child2 rect {
+    stroke: transparent;
+}
+div.subtitle .tree-capture > svg #child1 .parent {
+    fill: rgb(41, 182, 246);
+}
+div.subtitle .tree-capture > svg #child2 .parent {
+    fill: rgb(255, 235, 59);
+}
+div.subtitle .tree-capture > svg #links > * {
+    stroke: rgb(224, 224, 224);
+}
+
+div.subtitle .tree-capture > svg #subchild1 rect,
+div.subtitle .tree-capture > svg #subchild2 rect {
+    stroke: rgb(41, 182, 246);
+}
+div.subtitle .tree-capture > svg #subchild3 rect {
+    stroke: rgb(255, 235, 59);
+}

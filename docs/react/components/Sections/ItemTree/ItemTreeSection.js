@@ -13,7 +13,7 @@ export class ItemTreeSection extends React.PureComponent {
     constructor(props) {
         super(props)
         this.dragImage = new Image()
-        this.dragImage.src = "./assets/drag-image.svg"
+        this.dragImage.src = "../assets/drag-image.svg"
     }
 
     state = {
@@ -59,9 +59,9 @@ export class ItemTreeSection extends React.PureComponent {
                 componentName="ItemTree"
                 description={ <p>Powerful tree of nested objects.</p> }
                 files={[
-                    "./react/components/Sections/ItemTree/ItemTreeSection.js",
-                    "./react/components/Sections/ItemTree/ItemTreeSection.css",
-                    "./common/models/ItemTreeModel.js"
+                    "./components/Sections/ItemTree/ItemTreeSection.js",
+                    "./components/Sections/ItemTree/ItemTreeSection.css",
+                    "../common/models/ItemTreeModel.js"
                 ]}>
 
             <div className="inline-row">

@@ -60,7 +60,7 @@ export class ItemTreeSection {
 
     constructor(){
         this.dragImage = new Image()
-        this.dragImage.src = "./assets/drag-image.svg"
+        this.dragImage.src = "../assets/drag-image.svg"
     }
 
     model = initialModel

@@ -81,9 +81,9 @@ export class FlatTreeSection extends React.PureComponent {
             componentName="FlatTree"
             description={ <p>Flattened tree demo in the form of a combo box.</p> }
             files={[
-                "./react/components/Sections/FlatTree/FlatTreeSection.js",
-                "./react/components/Sections/FlatTree/FlatTreeSection.css",
-                "./common/models/FlatTreeModel.js"
+                "./components/Sections/FlatTree/FlatTreeSection.js",
+                "./components/Sections/FlatTree/FlatTreeSection.css",
+                "../common/models/FlatTreeModel.js"
             ]}>
             <div className="FlatTreeSection">
                 <h3>Some kind of online <em>form</em>.</h3>

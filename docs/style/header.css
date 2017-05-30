@@ -1,0 +1,68 @@
+header {
+    position: relative;
+    background-color: #444;
+    color: crimson;
+    font-size: 1.7em;
+    padding: 0px 10%;
+    height: 1.7em;
+}
+header a:hover {
+    color: white;
+}
+header .title {
+    display: inline-block;
+    vertical-align: middle;
+    background-color: rgb(220, 20, 60);
+    padding: 0 20px 0 10px;
+    color: #FFF;
+    text-shadow: 1px 1px black;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1em;
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+header .title:hover a {
+    color: #444;
+}
+header .title img {
+    height: 1.7em;
+}
+header .title * {
+    display: inline-block;
+    vertical-align: middle;
+}
+header > .github-link {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+    width: 50px;
+}
+header > .github-link > svg {
+    height: calc(100% - 10px);
+    width: 100%;
+    padding: 6px 0px;
+    fill: crimson;
+    transition: fill 0.25s ease-in-out;
+}
+header > .github-link > svg:hover {
+    fill: white;
+}
+header .frameworks {
+    float: right;
+    height: 100%;
+}
+header .frameworks img {
+    height: 100%;
+    width: 2em;
+    padding: 0px 10px;
+    cursor: pointer;
+    transition: all .25s ease-in-out;
+    border-bottom: 4px solid #444;
+}
+header .frameworks img:hover {
+    border-color: #EEE;
+}
+header .frameworks img.selected {
+    border-color: crimson;
+}

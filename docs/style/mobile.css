@@ -1,0 +1,10 @@
+@media (max-width: 600px) {
+    header .title a > span { display: none; }
+    header .title { padding: 0px 10px; }
+    header .frameworks img { border-bottom: none }
+    code.terminal { font-size: 0.8em; margin: 0px 10px; }
+    div.chapter { padding: 20px 10% 0px }
+    div.framework-choice { margin-top: 0px; }
+    div.framework-choice > div { text-align: center; margin-bottom: 20px; }
+    div.framework-choice > div h2 { padding-top: 0; }
+}

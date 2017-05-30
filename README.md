@@ -7,7 +7,7 @@
 </h4>
 
 <div align="center">
-    <h4>Work in progress !</h4>
+    <h4>Work in progress...</h4>
     <a href="https://elbywan.github.io/bosket/">
         <img alt="bosket-itemtree-gif" src="./assets/bosket-itemtree.gif" width="300px"/>
     </a>
