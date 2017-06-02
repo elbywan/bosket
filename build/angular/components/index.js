@@ -1,2 +1,2 @@
-export * from "./ItemTree";
+export * from "./TreeView";
 //# sourceMappingURL=index.js.map

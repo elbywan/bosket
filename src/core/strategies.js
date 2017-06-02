@@ -114,5 +114,10 @@ export const foldStrategies = {
             node[this.inputs.get().category] instanceof Array &&
             node[this.inputs.get().category].some(recurseCheck)
         return !recurseCheck(item)
+    },
+    "max-depth": function() {
+        return this.inputs.get().maxDepth && !isNaN(parseInt(this.inputs.get().maxDepth, 10)) ?
+            this.inputs.get().depth >= parseInt(this.inputs.get().maxDepth, 10) :
+            false
     }
 }

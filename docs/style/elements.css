@@ -1,12 +1,17 @@
 html{
-    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    height: 100%;
+    font-size: 0.9em;
+    letter-spacing: 0.3px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 button {
@@ -32,6 +37,10 @@ button.control-button {
 button:hover:not([disabled]) {
     background: #e26f6f;
     color: white;
+}
+
+ul {
+    list-style: none;
 }
 
 a {
@@ -81,6 +90,30 @@ select:hover {
     background: lightgray !important;
 }
 
+code.terminal {
+    display: block;
+    background: #222;
+    color: #EEE;
+    padding: 5px 8px;
+    margin: 20px 10px;
+    border-radius: 3px;
+    line-height: 2em;
+    font-family: Monaco, unicode;
+}
+
+code.terminal em {
+    color: #888;
+}
+
+code a {
+    text-decoration: underline;
+    color: rgba(255,241,118 ,1);
+    transition: color 0.25s ease-in-out;
+}
+code a:hover {
+    color: crimson;
+}
+
 .inline-row {
     padding: 20px;
 }
@@ -103,18 +136,4 @@ select:hover {
 
 .big-text {
     font-size: 1.1em;
-}
-
-code.terminal {
-    display: block;
-    background: #222;
-    color: #EEE;
-    padding: 5px 8px;
-    margin: 10px;
-    border-radius: 3px;
-    font-family: Monaco, unicode;
-}
-
-code.terminal em {
-    color: #888;
 }

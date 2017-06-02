@@ -1,1 +1,1 @@
-export * from "./build/core"
+export * from "./build"

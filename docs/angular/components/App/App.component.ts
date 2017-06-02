@@ -6,7 +6,7 @@ import { Component } from "@angular/core"
         <div class="App">
             <p>This page is rendered using angular 4.1.2</p>
             <div class="components-container">
-                <itemtree-section></itemtree-section>
+                <treeview-section></treeview-section>
             </div>
         </div>
     `,

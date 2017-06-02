@@ -3,8 +3,7 @@ export const defaults = {
         "search.placeholder": "Search ..."
     },
     css: {
-        /* moar css */
-        ItemTree:           "ItemTree",
+        TreeView:           "TreeView",
         opener:             "opener",
         depth:              "depth",
         selected:           "selected",
@@ -19,9 +18,9 @@ export const defaults = {
         item:               "item"
     },
     strategies: {
-        selection: ["modifiers"],
+        selection: ["single"],
         click: [],
-        fold: ["opener-control"]
+        fold: [ "not-selected", "no-child-selection" ]
     },
     display: _ => _.toString(),
     async: _ => _(),

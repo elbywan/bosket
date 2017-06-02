@@ -12,8 +12,8 @@
 <body>
     <header>
         <div class="title">
-            <a href="/">
-                <img src="./assets/bosket-logo.svg"></img>
+            <a href="./">
+                <img src="./assets/bosket-logo.svg" alt="bosket"/>
                 <span>Bosket</span>
             </a>
         </div>
@@ -22,10 +22,10 @@
         </a>
         <span class="frameworks">
             <a href="./react/index.html">
-                <img src="./assets/react.svg" alt="react-logo" class="react"/>
+                <img src="./assets/react.svg" alt="react" class="react"/>
             </a>
             <a href="./angular/index.html">
-                <img src="./assets/angular.svg" alt="angular-logo" class="angular"/></img>
+                <img src="./assets/angular.svg" alt="angular" class="angular"/>
             </a>
         </span>
     </header>
@@ -136,17 +136,49 @@
         </div>
         <div>
             <div class="chapter">
-                <h1>Setup</h1>
+                <h1 id="Introduction">Introduction</h1>
+                <h2 class="highlight">Purpose</h2>
+                <h3>
+                    Bosket is a library containing multiple tree view components, which are a way to display nested arrays of objects gracefully.<br>
+                    These views are commonly used on websites as menus, file explorers or even combo-boxes.<br>
+                </h3>
+                <h4>
+                    At its core is a logic written in javascript, without any dependencies.<br>
+                    Framework implementations all rest on this very same logic, which makes new implementations easy to write and having the same service contract.
+                </h4>
+                <h2 class="highlight">Features</h2>
+                <h3>
+                    The library supports advanced features out of the box, such as :
+                </h3>
+                <h4>
+                    - Drag and drop<br>
+                    - Multiple selection<br>
+                    - Asynchronous loading<br>
+                    - Item search<br>
+                    - Keyboard modifiers<br>
+                    - Animations<br>
+                </h4>
+                <h4>
+                    And more.
+                </h4>
+                <h2 class="highlight">Flexibility</h2>
+                <h3>Each component is fully customizable with css for the appearance and with javascript code to to enable, tune or disable any functionality.</h3>
+                <h4>The library was designed to give developers the power to model the view according to their needs.</h4>
+            </div>
+            <div class="chapter">
+                <h1 id="Setup">Setup</h1>
 
-                <h2>As a dependency</h2>
+                <h2 class="highlight">As a dependency</h2>
 
-                <p><em>Installing as a dependency is the easiest and recommended way.</em></p>
+                <h4>Installing as a dependency is the easiest and recommended way.</h4>
 
                 <code class="terminal">
-                    npm install --dev elbywan/bosket || yarn add elbywan/bosket
+                    npm install --dev bosket || yarn add -D bosket
                 </code>
 
-                <h2>By cloning the repository</h2>
+                <h2 class="highlight">By cloning the repository</h2>
+
+                <h4>Best if you would like to hack a bit and contribute.</h4>
 
                 <code class="terminal">
                     git clone https://github.com/elbywan/bosket<br>
@@ -158,6 +190,8 @@
                     <em># Development build with hot-reload served on localhost:8080</em><br>
                     npm run dev-server || yarn dev-server
                 </code>
+
+                <h4>After a build, you will find the generated files inside the build folder.</h4>
             </div>
 
             <div class="chapter">
@@ -169,14 +203,14 @@
                     <div>
                         <a href="./react/index.html"><img src="./assets/react.svg" alt="react-logo" class="react"/></a>
                         <div>
-                            <h2><a href="./react/index.html">React</a></h2>
+                            <h3><a href="./react/index.html">React</a></h3>
                             Components for the <a href="https://facebook.github.io/react/" target="_blank">React</a> framework.
                         </div>
                     </div>
                     <div>
                         <a href="./react/index.html"><img src="./assets/angular.svg" alt="angular-logo" /></a>
                         <div>
-                            <h2><a href="./angular/index.html">Angular</a></h2>
+                            <h3><a href="./angular/index.html">Angular</a></h3>
                             Components for the <a href="https://angular.io/" target="_blank">Angular (2+)</a> framework.
                         </div>
                     </div>

@@ -121,9 +121,9 @@ export var TreeNode = function (_Core) {
         }, _this.onDragEnter = function (item) {
             return function (event) {
                 event.preventDefault();
-                event.stopPropagation();
+                event.stopPropagation
                 // If dragging over an opener
-                if (item && !_this.dragGuard(item, event) && (_this.hasChildren(item) || _this.isAsync(item)) && css.hasClass(event.target, _this.mixCss("opener"))) {
+                ();if (item && !_this.dragGuard(item, event) && (_this.hasChildren(item) || _this.isAsync(item)) && css.hasClass(event.target, _this.mixCss("opener"))) {
                     var newVal = _this.state.get().unfolded.filter(function (i) {
                         return i !== item;
                     });
@@ -151,9 +151,9 @@ export var TreeNode = function (_Core) {
             var items = event.dataTransfer.items;
             if (items && items.length > 0 && items[0].kind === "file") return false;
             // Prevent drop on self
-            var selfDrop = item && array(_this.inputs.get().selection).contains(item);
+            var selfDrop = item && array(_this.inputs.get().selection).contains(item
             // Prevent drop on child
-            var childDrop = _this.inputs.get().ancestors && _this.inputs.get().ancestors.reduce(function (prev, curr) {
+            );var childDrop = _this.inputs.get().ancestors && _this.inputs.get().ancestors.reduce(function (prev, curr) {
                 return prev || array(_this.inputs.get().selection).contains(curr);
             }, false);
 
@@ -214,7 +214,19 @@ export var RootNode = function (_Core2) {
     function RootNode() {
         var _ref2;
 
-        var _temp2, _this2, _ret2;
+        var _temp2, _this2
+
+        // When new element(s) are selected
+
+
+        // Drag start
+
+
+        // Drop event
+
+
+        // Framework input wrapper
+        , _ret2;
 
         _classCallCheck(this, RootNode);
 
@@ -266,18 +278,6 @@ export var RootNode = function (_Core2) {
     /* Events */
 
     // Keyboard modifiers list
-
-
-    // When new element(s) are selected
-
-
-    // Drag start
-
-
-    // Drop event
-
-
-    // Framework input wrapper
 
 
     // Css mixin helper

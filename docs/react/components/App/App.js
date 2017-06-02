@@ -2,6 +2,8 @@ import "./App.css"
 import React from "react"
 
 import * as sectionsImport from "../Sections"
+import plan from "../../plan"
+import { Planner } from "../Planner/Planner"
 
 const sections = (() => {
     const res = []
@@ -11,10 +13,20 @@ const sections = (() => {
     return res
 })()
 
-export const App = prop =>
-     <div className="App">
-        <p>This page is rendered using react 15.5.4</p>
-        <div className="components-container">
-            { sections.map((Section, i) => <Section key={i}></Section>) }
+export class App extends React.PureComponent {
+
+    componentDidMount = () => {
+        if(window.location.hash) {
+            document.getElementById(window.location.hash.substring(1)).scrollIntoView()
+        }
+    }
+
+    render = () =>
+        <div className="App">
+            { <Planner plan={ plan } maxDepth="2"></Planner> }
+            <div className="components-container">
+                { sections.map((Section, i) => <Section key={i}></Section>) }
+            </div>
         </div>
-    </div>
+}
+

@@ -2,7 +2,7 @@ header {
     position: relative;
     background-color: #444;
     color: crimson;
-    font-size: 1.7em;
+    font-size: 1.7rem;
     padding: 0px 10%;
     height: 1.7em;
 }
@@ -35,7 +35,7 @@ header > .github-link {
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    height: 100%;
+    height: 1.7em;
     width: 50px;
 }
 header > .github-link > svg {
@@ -54,6 +54,7 @@ header .frameworks {
 }
 header .frameworks img {
     height: 100%;
+    vertical-align: middle;
     width: 2em;
     padding: 0px 10px;
     cursor: pointer;
@@ -64,5 +65,5 @@ header .frameworks img:hover {
     border-color: #EEE;
 }
 header .frameworks img.selected {
-    border-color: crimson;
+    border-color: white;
 }

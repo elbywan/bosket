@@ -36,12 +36,12 @@ export var combine = function combine() {
     return function (Component) {
         return traits.reduce(function (accu, trait) {
             return trait(accu);
-        }, Component);
-    };
-};
+        }, Component
 
-/* Adds i18n support through customisable labels. */
-var withLabels = function withLabels(defaultLabels) {
+        /* Adds i18n support through customisable labels. */
+        );
+    };
+};var withLabels = function withLabels(defaultLabels) {
     return setupHoc(function (Component) {
         return function (_ref) {
             var _ref$labels = _ref.labels,
@@ -50,17 +50,17 @@ var withLabels = function withLabels(defaultLabels) {
 
             return React.createElement(Component, _extends({ labels: mixin(defaultLabels, labels) }, rest));
         };
-    }, "withLabels");
-};
+    }, "withLabels"
 
-/* Adds a configurable global listener. */
-export { withLabels };
+    /* Adds a configurable global listener. */
+    );
+};export { withLabels };
 export var withListener = function withListener() {
     var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         _ref2$eventType = _ref2.eventType,
         eventType = _ref2$eventType === undefined ? "click" : _ref2$eventType,
         _ref2$propName = _ref2.propName,
-        propName = _ref2$propName === undefined ? "globalListener" : _ref2$propName,
+        propName = _ref2$propName === undefined ? "listener" : _ref2$propName,
         _ref2$mountOn = _ref2.mountOn,
         mountOn = _ref2$mountOn === undefined ? null : _ref2$mountOn,
         _ref2$autoMount = _ref2.autoMount,
@@ -75,7 +75,11 @@ export var withListener = function withListener() {
             function _class2(props) {
                 _classCallCheck(this, _class2);
 
-                var _this = _possibleConstructorReturn(this, (_class2.__proto__ || Object.getPrototypeOf(_class2)).call(this, props));
+                var _this
+
+                /* Events */
+
+                = _possibleConstructorReturn(this, (_class2.__proto__ || Object.getPrototypeOf(_class2)).call(this, props));
 
                 _this.callback = null;
 
@@ -118,8 +122,6 @@ export var withListener = function withListener() {
 
                 /* Subscriptions */
 
-                /* Events */
-
             }, {
                 key: "render",
 
@@ -138,11 +140,11 @@ export var withListener = function withListener() {
 
             return _class2;
         }(React.Component);
-    }, "withListener");
-};
+    }, "withListener"
 
-/* Adds transitions on component mount / unmount. */
-export var withTransition = function withTransition(_ref3) {
+    /* Adds transitions on component mount / unmount. */
+    );
+};export var withTransition = function withTransition(_ref3) {
     var key = _ref3.key;
     return setupHoc(function (Component) {
         return function (props) {
@@ -152,11 +154,11 @@ export var withTransition = function withTransition(_ref3) {
                 React.createElement(Component, _extends({}, props, { key: key(props) }))
             ) : React.createElement(Component, props);
         };
-    }, "withTransition");
-};
+    }, "withTransition"
 
-/* Add debug info for component updates */
-export var withDebugUpdates = function withDebugUpdates() {
+    /* Add debug info for component updates */
+    );
+};export var withDebugUpdates = function withDebugUpdates() {
     var print = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (a) {
         return a;
     };
@@ -188,9 +190,9 @@ export var withDebugUpdates = function withDebugUpdates() {
                             if (nextState[_key3] !== ref.state[_key3]) stateDiff.push(_key3);
                         }
                         /* eslint-disable */
-                        printer.debug("shouldComponentUpdate [" + print(ref) + "]", "State diff : " + stateDiff + "\nProps diff : " + propsDiff);
+                        printer.debug("shouldComponentUpdate [" + print(ref) + "]", "State diff : " + stateDiff + "\nProps diff : " + propsDiff
                         /* eslint-enable */
-                        return originalFunction.bind(ref)(nextProps, nextState);
+                        );return originalFunction.bind(ref)(nextProps, nextState);
                     };
                     ref.shouldComponentUpdate = shouldComponentUpdate;
                 }, _this2.render = function () {

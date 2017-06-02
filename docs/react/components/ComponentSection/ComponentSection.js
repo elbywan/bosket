@@ -1,7 +1,9 @@
 import "./ComponentSection.css"
+import "./ComponentSectionMobile.css"
+
 import React from "react"
 
-import Prism from "prismjs"
+import Prism from "../../../common/libs/prismjs/prism"
 
 const memoize = new Map()
 
@@ -43,7 +45,7 @@ export class ComponentSection extends React.PureComponent {
             <h3>{ this.props.componentName }</h3>
             <div> { this.props.description } </div>
             <div className="ComponentSection flexContainer">
-                <div className="ComponentSection highlight">{ this.props.children }</div>
+                <div className="ComponentSection demo-area">{ this.props.children }</div>
                 <div className="ComponentSection code">
                     { this.renderTabs(this.files) }
                     { this.files.filter(f => f === this.tab).map(this.renderFile) }

@@ -24,7 +24,7 @@ export const withLabels = defaultLabels => setupHoc(Component => ({ labels = {},
 /* Adds a configurable global listener. */
 export const withListener = ({
         eventType = "click",
-        propName = "globalListener",
+        propName = "listener",
         mountOn = null,
         autoMount = false } = {}) => setupHoc(Component =>
     class extends React.Component {

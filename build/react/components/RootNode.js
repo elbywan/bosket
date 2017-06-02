@@ -14,17 +14,17 @@ import React from "react";
 import { withListener, withLabels } from "../traits";
 import { tree } from "../../tools/trees";
 import { RootNode, defaults } from "../../core";
-import { ItemTreeNode } from "./TreeNode";
+import { TreeViewNode } from "./TreeNode";
 
 /* Root component */
 
-var ItemTreeBaseClass = function (_React$PureComponent) {
-    _inherits(ItemTreeBaseClass, _React$PureComponent);
+var TreeViewBaseClass = function (_React$PureComponent) {
+    _inherits(TreeViewBaseClass, _React$PureComponent);
 
-    function ItemTreeBaseClass(props) {
-        _classCallCheck(this, ItemTreeBaseClass);
+    function TreeViewBaseClass(props) {
+        _classCallCheck(this, TreeViewBaseClass);
 
-        var _this = _possibleConstructorReturn(this, (ItemTreeBaseClass.__proto__ || Object.getPrototypeOf(ItemTreeBaseClass)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (TreeViewBaseClass.__proto__ || Object.getPrototypeOf(TreeViewBaseClass)).call(this, props));
 
         _this.state = {
             search: "",
@@ -54,8 +54,8 @@ var ItemTreeBaseClass = function (_React$PureComponent) {
 
         _this.rootNode = new RootNode(_this._props, {
             onSelect: _this.props.onSelect,
-            onDrag: _this.props.dragndrop.drag || function () {},
-            onDrop: _this.props.dragndrop.drop
+            onDrag: _this.props.dragndrop && _this.props.dragndrop.drag || function () {},
+            onDrop: _this.props.dragndrop && _this.props.dragndrop.drop
         }, _this._state, function () {
             if (!_this._unmounted) _this.forceUpdate();
         });
@@ -68,7 +68,7 @@ var ItemTreeBaseClass = function (_React$PureComponent) {
 
     /* Data & lifecycle */
 
-    _createClass(ItemTreeBaseClass, [{
+    _createClass(TreeViewBaseClass, [{
         key: "render",
 
 
@@ -86,9 +86,9 @@ var ItemTreeBaseClass = function (_React$PureComponent) {
 
             return React.createElement(
                 "div",
-                { className: this.rootNode.mixCss("ItemTree") },
+                { className: this.rootNode.mixCss("TreeView") },
                 searchBar,
-                React.createElement(ItemTreeNode, _extends({}, rest, {
+                React.createElement(TreeViewNode, _extends({}, rest, {
                     model: sort ? this.props.model.sort(sort) : this.props.model,
                     filteredModel: this.state.filtered,
                     onSelect: this.rootNode.onSelect,
@@ -100,12 +100,12 @@ var ItemTreeBaseClass = function (_React$PureComponent) {
         }
     }]);
 
-    return ItemTreeBaseClass;
+    return TreeViewBaseClass;
 }(React.PureComponent);
 
-export var ItemTree = [withLabels(defaults.labels), withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true }), withListener({ eventType: "keyup", propName: "keyUpListener", autoMount: true })].reduce(function (accu, trait) {
+export var TreeView = [withLabels(defaults.labels), withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true }), withListener({ eventType: "keyup", propName: "keyUpListener", autoMount: true })].reduce(function (accu, trait) {
     return trait(accu);
-}, ItemTreeBaseClass);
+}, TreeViewBaseClass);
 ;
 
 var _temp = function () {
@@ -113,9 +113,9 @@ var _temp = function () {
         return;
     }
 
-    __REACT_HOT_LOADER__.register(ItemTreeBaseClass, "ItemTreeBaseClass", "src/react/components/RootNode.js");
+    __REACT_HOT_LOADER__.register(TreeViewBaseClass, "TreeViewBaseClass", "src/react/components/RootNode.js");
 
-    __REACT_HOT_LOADER__.register(ItemTree, "ItemTree", "src/react/components/RootNode.js");
+    __REACT_HOT_LOADER__.register(TreeView, "TreeView", "src/react/components/RootNode.js");
 }();
 
 ;

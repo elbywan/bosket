@@ -4,7 +4,7 @@ import { withTransition } from "../traits"
 import { TreeNode } from "../../core"
 
 /* Node component */
-class ItemTreeNodeBaseClass extends React.PureComponent {
+class TreeViewNodeBaseClass extends React.PureComponent {
 
     /* Lifecycle & data */
 
@@ -54,7 +54,7 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
         }
 
         return  (
-            <ItemTreeNode
+            <TreeViewNode
                 { ...this.props }
                 model={ childModel }
                 filteredModel={ filteredModel }
@@ -62,7 +62,7 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
                 depth={ (this.props.depth || 0) + 1 }
                 folded={ this.node.isFolded(item) }
                 loading={ this.node.isAsync(item) && !this.node.isFolded(item) }>
-            </ItemTreeNode>
+            </TreeViewNode>
         )
     }
 
@@ -91,7 +91,7 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
                         onClick={ this.node.onClick(item) }
                         { ...this.node.getDragEvents(item) }>
                         <span className={ this.node.mixCss("item") }>
-                            { display(item) }
+                            { display(item, this.props.ancestors) }
                             { this.renderOpener(item, OpenerComponent) }
                         </span>
                         { this.renderSubtree(item) }
@@ -106,4 +106,4 @@ class ItemTreeNodeBaseClass extends React.PureComponent {
         )
     }
 }
-export const ItemTreeNode = withTransition({ key: props => props.folded || props.loading })(ItemTreeNodeBaseClass)
+export const TreeViewNode = withTransition({ key: props => props.folded || props.loading })(TreeViewNodeBaseClass)

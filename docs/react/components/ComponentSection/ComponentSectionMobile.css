@@ -1,0 +1,17 @@
+@media (max-width: 600px) {
+    div.ComponentSection.highlight {
+        min-height: auto;
+    }
+    .ComponentSection.flexContainer > * {
+        min-width: calc(100% - 40px);
+    }
+    div.ComponentSection.code .tabs {
+        background-color: #444;
+        color: #DDD;
+        text-align: center;
+    }
+    div.ComponentSection.code .tabs > *:hover {
+        color: white;
+        background: crimson;
+    }
+}

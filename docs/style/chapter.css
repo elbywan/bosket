@@ -4,8 +4,7 @@ div.chapter {
     background-color: #444;
     color: white;
 }
-div.chapter h1, div.chapter h2, div.chapter h3, div.chapter h4, div.chapter h5 {
-    /* text-shadow: 1px 1px #000;*/
+div.chapter h1, div.chapter h2, div.chapter h3, div.chapter h4, div.chapter h5, div.chapter h6 {
     font-family: Cormorant Garamond,serif;
     margin: 0;
 }
@@ -16,16 +15,69 @@ div.chapter h1 {
     color: crimson;
 }
 div.chapter h2 {
-    padding: 20px 0px 10px;
-    font-size: 1.7em;
+    padding: 20px 0px;
+    font-size: 1.8em;
+}
+div.chapter h3 {
+    padding: 20px 0px;
+    font-size: 1.6em;
+    font-weight: normal;
+}
+div.chapter h3 em {
+    font-weight: bold;
+    font-style: normal;
+}
+div.chapter h4 {
+    padding: 20px 0px;
+    font-size: 1.4em;
+    font-weight: normal;
+}
+div.chapter h5 {
+    padding: 15px 0px;
+    font-size: 1.3em;
+    font-weight: normal;
+}
+div.chapter h6 {
+    padding: 15px 0px;
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: normal;
 }
 div.chapter p {
-    padding: 10px 0px;
+    padding: 20px 0;
     margin: 0;
+    /* font-size: 1.1em; */
 }
-
-div.framework-choice {
-    margin-top: 20px;
+div.chapter p em,
+div.chapter div.emphasis em {
+    font-weight: bold;
+    font-style: normal;
+}
+div.chapter p em > a,
+div.chapter div.emphasis em > a {
+    transition: color 0.25s ease-in-out;
+}
+div.chapter p em > a:hover,
+div.chapter div.emphasis em > a:hover {
+    color: crimson;
+}
+div.chapter .highlight {
+    color: crimson;
+}
+div.chapter .marged {
+    margin: 0px 40px;
+    font-size: 0.9em;
+}
+div.chapter div.emphasis {
+    background: rgba(255, 241, 118, 0.7);
+    padding: 10px;
+    color: #222;
+}
+div.chapter div.emphasis > pre {
+    margin-bottom: 0px !important;
+}
+div.chapter pre[class*=language-] {
+    margin: 20px 0px;
 }
 div.framework-choice a:hover {
     color: crimson;

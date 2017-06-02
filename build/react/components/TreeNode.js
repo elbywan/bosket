@@ -17,13 +17,13 @@ import { TreeNode } from "../../core";
 
 /* Node component */
 
-var ItemTreeNodeBaseClass = function (_React$PureComponent) {
-    _inherits(ItemTreeNodeBaseClass, _React$PureComponent);
+var TreeViewNodeBaseClass = function (_React$PureComponent) {
+    _inherits(TreeViewNodeBaseClass, _React$PureComponent);
 
-    function ItemTreeNodeBaseClass(props) {
-        _classCallCheck(this, ItemTreeNodeBaseClass);
+    function TreeViewNodeBaseClass(props) {
+        _classCallCheck(this, TreeViewNodeBaseClass);
 
-        var _this = _possibleConstructorReturn(this, (ItemTreeNodeBaseClass.__proto__ || Object.getPrototypeOf(ItemTreeNodeBaseClass)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (TreeViewNodeBaseClass.__proto__ || Object.getPrototypeOf(TreeViewNodeBaseClass)).call(this, props));
 
         _this.state = {
             unfolded: []
@@ -59,7 +59,7 @@ var ItemTreeNodeBaseClass = function (_React$PureComponent) {
                 filteredModel = _this.props.filteredModel.get(item);
             }
 
-            return React.createElement(ItemTreeNode, _extends({}, _this.props, {
+            return React.createElement(TreeViewNode, _extends({}, _this.props, {
                 model: childModel,
                 filteredModel: filteredModel,
                 ancestors: [].concat(_toConsumableArray(_this.props.ancestors), [item]),
@@ -80,7 +80,7 @@ var ItemTreeNodeBaseClass = function (_React$PureComponent) {
 
     /* Lifecycle & data */
 
-    _createClass(ItemTreeNodeBaseClass, [{
+    _createClass(TreeViewNodeBaseClass, [{
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
             this._unmounted = true;
@@ -121,7 +121,7 @@ var ItemTreeNodeBaseClass = function (_React$PureComponent) {
                     React.createElement(
                         "span",
                         { className: _this2.node.mixCss("item") },
-                        display(item),
+                        display(item, _this2.props.ancestors),
                         _this2.renderOpener(item, OpenerComponent)
                     ),
                     _this2.renderSubtree(item)
@@ -137,12 +137,12 @@ var ItemTreeNodeBaseClass = function (_React$PureComponent) {
         }
     }]);
 
-    return ItemTreeNodeBaseClass;
+    return TreeViewNodeBaseClass;
 }(React.PureComponent);
 
-export var ItemTreeNode = withTransition({ key: function key(props) {
+export var TreeViewNode = withTransition({ key: function key(props) {
         return props.folded || props.loading;
-    } })(ItemTreeNodeBaseClass);
+    } })(TreeViewNodeBaseClass);
 ;
 
 var _temp = function () {
@@ -150,9 +150,9 @@ var _temp = function () {
         return;
     }
 
-    __REACT_HOT_LOADER__.register(ItemTreeNodeBaseClass, "ItemTreeNodeBaseClass", "src/react/components/TreeNode.js");
+    __REACT_HOT_LOADER__.register(TreeViewNodeBaseClass, "TreeViewNodeBaseClass", "src/react/components/TreeNode.js");
 
-    __REACT_HOT_LOADER__.register(ItemTreeNode, "ItemTreeNode", "src/react/components/TreeNode.js");
+    __REACT_HOT_LOADER__.register(TreeViewNode, "TreeViewNode", "src/react/components/TreeNode.js");
 }();
 
 ;

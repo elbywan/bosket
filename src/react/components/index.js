@@ -1,4 +1,4 @@
-export { ItemTree } from "./RootNode"
-export { ExplorerTree } from "./ExplorerTree/ExplorerTree"
-export { MenuTree } from "./MenuTree/MenuTree"
-export { FlatTree } from "./FlatTree/FlatTree"
+export { TreeView } from "./RootNode"
+export { ExplorerView } from "./ExplorerView/ExplorerView"
+export { MenuView } from "./MenuView/MenuView"
+export { FlatView } from "./FlatView/FlatView"

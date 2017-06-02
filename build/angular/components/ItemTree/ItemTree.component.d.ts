@@ -24,7 +24,7 @@ export declare class ItemTree<Item extends Object> {
     model: Array<Item>;
     category: string;
     selection: Array<Item>;
-    display: (Item) => string;
+    display: (item: Item, ancestors: Item[]) => string;
     key: (index: number, _: Item) => string;
     search: (input: string) => (_: Item) => boolean;
     strategies: {

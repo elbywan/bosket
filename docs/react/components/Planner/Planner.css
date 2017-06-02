@@ -1,0 +1,111 @@
+.Planner.opener {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    background: rgba(68, 68, 68, 0.33);
+    color: #EEE;
+    padding: 0px 15px;
+    height: 2.9rem;
+    font-size: 27px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+.Planner.opener > i {
+    display: block;
+    line-height: 1.7em;
+}
+.Planner.opener:hover {
+    color: crimson;
+    box-shadow: none;
+}
+.Planner.side-panel {
+    position: fixed;
+    z-index: 1;
+    overflow-y: scroll;
+    top: 0px;
+    width: 300px;
+    height: 100%;
+    background: #444;
+    color: #EEE;
+    font-family: Cormorant Garamond,serif;
+    transform: translateX(-300px);
+}
+.Planner.side-panel.opened {
+    transform: translateX(0px);
+    box-shadow: 0px 0px 10px #444;
+}
+.Planner.side-panel, .Planner.content {
+    transition: transform 0.3s ease-in-out;
+}
+.Planner.side-panel.opened + .Planner.content {
+    transform: translateX(300px);
+}
+.Planner.side-panel h1 {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0px;
+    padding-top: 0px;
+    border-bottom: 2px solid crimson;
+    height: 2.9rem;
+    line-height: 2em;
+}
+
+.Planner div.planner-section {
+    margin-bottom: 25px;
+}
+.Planner.heading > * {
+    display: inline-block;
+    vertical-align: baseline;
+}
+.Planner.heading > a {
+    margin-left: 10px;
+    opacity: 0;
+    font-size: 0.6em;
+    transition: opacity 0.25s ease-in-out;
+}
+.Planner.heading:hover > a {
+    opacity: 1;
+}
+
+.PlannerTree {
+    line-height: 1.5em;
+    font-size: 1.3em;
+    padding: 0px 15px;
+    overflow-y: scroll;
+    height: calc(100% - 55px);
+}
+
+.PlannerTree ul {
+    list-style: none;
+    font-size: 0.95em;
+}
+.PlannerTree ul.depth-0 {
+    padding-left: 0px;
+}
+.PlannerTree li {
+    white-space: nowrap;
+    margin: 0.5em 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: all 0.25s ease-in-out;
+}
+.PlannerTree li:last-of-type {
+    margin-bottom: 0;
+}
+.PlannerTree ul li.category > .item {
+    display:block;
+    border-bottom: 1px solid white;
+    transition: border 0.25s ease-in-out;
+}
+.PlannerTree ul li.selected {
+    padding: 5px 5%;
+    margin-left: -5%;
+}
+.PlannerTree ul li > .item:hover,
+.PlannerTree ul li.selected > .item {
+    color: rgb(255, 100, 100);
+    border-color: rgb(255, 100, 100);
+}
+
+

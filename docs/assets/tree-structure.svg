@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="587px" height="353px" viewBox="168.684 86.0963 372.833 224" preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="168.684 86.0963 372.833 224" preserveAspectRatio="xMidYMid meet">
     <rect id="background" x="214" y="96" width="360" height="205" style="stroke: none; fill: none;" transform="matrix(1 0 0 1 -43.0425 0)" />
-
-     <g id="links">
+    <g id="links">
         <path d="M296.28002873493654,118.65121838999201q32.13047656526646,20.612003834321882,47.28636173756206,50.92377417891288"
             stroke="black" id="e6_arc2" style="fill: none; stroke-width: 2px;" />
         <path d="M295.0675579211529,113.80133513485745q46.073890923778436,0,47.892597144453816,-4.243647848242745" stroke="black"
@@ -62,14 +61,14 @@
             transform="matrix(0.692026 0 0 0.692026 188.356 70.0561)" rx="0" />
     </g>
     <g id="child2">
-        <rect class="parent" x="222" y="104.425" stroke="black" id="e22_rectangle" width="117" height="19" fill="black" ry="0"
+        <rect x="222" y="104.425" stroke="black" id="e22_rectangle" width="117" height="19" fill="black" ry="0"
             transform="matrix(0.692026 0 0 0.692026 188.963 117.591)" rx="0" />
         <rect class="parent" x="222" y="131.669" stroke="black" id="e23_rectangle" width="117" height="19" fill="black" ry="0"
             transform="matrix(0.692026 0 0 0.692026 188.963 117.591)" rx="0" />
-        <rect class="parent" x="222" y="104.425" stroke="black" id="e24_rectangle" width="117" height="19" fill="black" ry="0"
+        <rect x="222" y="104.425" stroke="black" id="e24_rectangle" width="117" height="19" fill="black" ry="0"
             transform="matrix(0.692026 0 0 0.692026 188.963 154.929)" rx="0" />
     </g>
-    <g id="subchild1">
+        <g id="subchild1">
         <rect x="222" y="104.425" stroke="black" id="e25_rectangle" width="117" height="19" fill="black" ry="0"
             rx="0" transform="matrix(0.503266 0 0 0.503266 353.491 52.5944)" />
         <rect x="222" y="131.669" stroke="black" id="e26_rectangle" width="117" height="19" fill="black" ry="0"

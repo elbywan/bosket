@@ -1,3 +1,18 @@
+body {
+    background: #444;
+}
+
 .App-intro {
     font-size: large;
+}
+
+.App .chapter {
+    background-color: #EEE;
+    color: #444;
+    margin-bottom: 10px;
+    /* margin-top: 10px; */
+}
+
+.App .chapter h1 {
+    padding: 30px 0px;
 }

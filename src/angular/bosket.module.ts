@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core"
 import { CommonModule } from "@angular/common"
-import { ItemTree, ItemTreeNode, ItemInjector } from "./components"
+import { TreeView, TreeViewNode, ItemInjector } from "./components"
 
 export { ItemComponent } from "./components"
 
 @NgModule({
     imports: [ CommonModule ],
-    declarations: [ ItemTree, ItemTreeNode, ItemInjector ],
+    declarations: [ TreeView, TreeViewNode, ItemInjector ],
     providers: [],
-    exports: [ ItemTree ]
+    exports: [ TreeView ]
 })
 export class BosketModule {}

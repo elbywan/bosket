@@ -2,11 +2,11 @@ import React from "react"
 import { withListener, withLabels } from "../traits"
 import { tree } from "../../tools/trees"
 import { RootNode, defaults } from "../../core"
-import { ItemTreeNode } from "./TreeNode"
+import { TreeViewNode } from "./TreeNode"
 
 /* Root component */
 
-class ItemTreeBaseClass extends React.PureComponent {
+class TreeViewBaseClass extends React.PureComponent {
 
     /* Data & lifecycle */
 
@@ -28,8 +28,8 @@ class ItemTreeBaseClass extends React.PureComponent {
             this._props,
             {
                 onSelect:   this.props.onSelect,
-                onDrag:     this.props.dragndrop.drag || (() => {}),
-                onDrop:     this.props.dragndrop.drop
+                onDrag:     this.props.dragndrop && this.props.dragndrop.drag || (() => {}),
+                onDrop:     this.props.dragndrop && this.props.dragndrop.drop
             },
             this._state,
             () => { if(!this._unmounted) this.forceUpdate() }
@@ -63,9 +63,9 @@ class ItemTreeBaseClass extends React.PureComponent {
                     onChange={ this.onSearch } />
 
         return (
-            <div className={ this.rootNode.mixCss("ItemTree") }>
+            <div className={ this.rootNode.mixCss("TreeView") }>
                 { searchBar }
-                <ItemTreeNode
+                <TreeViewNode
                     { ...rest }
                     model={ sort ? this.props.model.sort(sort) : this.props.model }
                     filteredModel={ this.state.filtered }
@@ -74,14 +74,14 @@ class ItemTreeBaseClass extends React.PureComponent {
                     ancestors={ [] }
                     sort={ sort }
                     searched={ this.state.search.trim() }>
-                </ItemTreeNode>
+                </TreeViewNode>
             </div>
         )
     }
 }
-export const ItemTree = [
+export const TreeView = [
     withLabels(defaults.labels),
     withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true }),
     withListener({ eventType: "keyup", propName: "keyUpListener", autoMount: true })
-].reduce((accu, trait) => trait(accu), ItemTreeBaseClass)
+].reduce((accu, trait) => trait(accu), TreeViewBaseClass)
 

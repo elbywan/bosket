@@ -1,0 +1,200 @@
+/* Flat Tree section */
+
+.FlatViewSection {
+    width: 100%;
+    height: 100%;
+    background: rgba(2,119,189 ,0.4);
+    border-radius: 10px;
+    box-shadow: 0 0 10px #AAA;
+    letter-spacing: 1.5px;
+}
+.FlatViewSection p {
+    padding: 20px;
+    margin: 0px;
+}
+.FlatViewSection em {
+    font-style: normal;
+    font-weight: bold;
+    color: #f44336;
+}
+.FlatViewSection > h3 {
+    text-align: center;
+    padding: 10px 20px;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    font-weight: normal;
+    margin-bottom: 20px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom: 2px solid #f44336;
+}
+.FlatViewSection .comboBox {
+    position: relative;
+    display: inline;
+}
+.FlatViewSection .comboBox > button {
+    padding: 5px 20px;
+    height: 27px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-bottom: 1px solid black;
+    font-weight: bold;
+    font-family: inherit;
+    min-width: 250px;
+}
+.FlatViewSection .comboBox > button:hover {
+    /* color: #f44336; */
+    border-color: #f44336;
+    box-shadow: 0px 0px 3px #aaa;
+}
+.FlatViewSection .comboBoxOpener {
+    float: right;
+    pointer-events: none;
+}
+.FlatViewSection .comboBoxOpener > i.fa {
+    transition: transform 0.25s ease-in-out;
+}
+.FlatViewSection .comboBox.opened .comboBoxOpener > i.fa {
+    transform: rotate(90deg);
+}
+.FlatViewSection .comboBox .container {
+    position: absolute;
+    z-index: 5;
+    opacity: 0;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    left: 0px;
+    top: 26px;
+    width: 100%;
+    height: 0px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all 0.25s ease-in-out;
+}
+.FlatViewSection .comboBox.opened .container {
+    height: 300px;
+    opacity: 1;
+}
+.FlatViewSection .comboBox.opened .container,
+.FlatViewSection .comboBox.opened > button {
+    box-shadow: 0px 0px 3px #aaa;
+}
+
+.FlatViewSection div.form-like {
+    display: table;
+    table-layout: fixed;
+    width: calc(100% - 40px);
+    padding: 20px;
+    border-spacing: 20px;
+}
+.FlatViewSection div.form-line {
+    display: table-row;
+}
+.FlatViewSection div.form-line > * {
+    display: table-cell;
+}
+.FlatViewSection div.form-line > input {
+    background: rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid black;
+    font-family: inherit;
+}
+.FlatViewSection div.form-line input,
+.FlatViewSection div.form-line button {
+    width: 100%;
+    box-sizing: border-box;
+}
+.FlatViewSection .form-line > input:hover {
+    box-shadow: 0px 0px 3px #aaa !important;
+}
+.FlatViewSection div.form-line label {
+    font-weight: bold;
+}
+
+.FlatViewSection input {
+    transition: all 0.25s ease-in-out;
+}
+.FlatViewSection input:focus {
+    border-color: #f44336 !important;
+}
+
+/* Flat Tree component */
+
+.FlatView {
+    font-size: 14px;
+}
+
+.FlatView input[type="search"].search {
+    width: 100%;
+    color: white;
+    font-family: inherit;
+    font-size: 0.9em;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    transition: border .25s ease-in-out;
+}
+.FlatView input[type="search"].search::placeholder {
+    color: #CCC;
+}
+
+.FlatView ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    user-select: none;
+}
+
+.FlatView li:not(.disabled) {
+    cursor: pointer;
+}
+
+.FlatView li .item {
+    display: block;
+    transition: all 0.25s ease-in-out;
+}
+
+.FlatView li:not(.category) > .item {
+    padding: 5px 0px;
+}
+
+.FlatView li.category > .item {
+    background: white;
+    color: black;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+.FlatView li.selected > .item {
+    color: white;
+    background-color: #f44336;
+}
+.FlatView li:not(.category):not(.selected).disabled > .item {
+    background: #CCC;
+    color: #888;
+}
+
+.FlatView li:not(.disabled):not(.selected) > .item:hover {
+    color: #f44336;
+}
+.FlatView li.selected > .item:hover {
+    color: rgb(224, 224, 224);
+}
+
+.FlatView li.category > .item span.icons {
+    position: absolute;
+    right: 15px;
+}
+
+.FlatView li.category > .item {
+    cursor: pointer;
+}
+.FlatView li.category > .item:hover  {
+    color: #f44336;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .FlatViewSection > h3 { margin-bottom: 0px; }
+    .FlatViewSection div.form-like { padding: 0; border-spacing: 10px; width: 100%; }
+    .FlatViewSection div.form-line label { font-size: 0.7em; }
+    .FlatViewSection .comboBox > button { min-width: auto; padding: 0px; }
+}

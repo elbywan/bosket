@@ -1,4 +1,5 @@
-const path = require("path")
+const { resolve } = require("path")
+const webpack = require("webpack")
 const ngtools = require("@ngtools/webpack")
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
     },
     output: {
         filename: "[name]/[name].js",
-        path: path.resolve(__dirname, "")
+        path: resolve(__dirname, "")
     },
     resolve: {
         extensions: [ ".js", ".ts" ]
@@ -39,6 +40,9 @@ module.exports = {
         new ngtools.AotPlugin({
             tsConfigPath:   __dirname + "/angular/tsconfig.aot.json",
             entryModule:    __dirname + "/angular/demo.module#DemoModule"
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "common"
         })
     ]
 }

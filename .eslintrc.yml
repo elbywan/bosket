@@ -44,6 +44,8 @@ rules:
     - error
   indent:
     - error
+    - 4
+    - SwitchCase: 1
   jsx-quotes:
     - error
     - prefer-double
@@ -95,6 +97,7 @@ rules:
   quotes:
     - error
     - double
+    - avoidEscape: true
   no-unexpected-multiline:
     - warn
   semi:

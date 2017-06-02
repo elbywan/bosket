@@ -15,9 +15,9 @@ var multiSelect = function multiSelect(item, selection, neighbours, ancestors) {
         if (!alreadySelected) alreadySelected = i === item;
         // Deselect all ancestors
         return i !== item && ancestors.indexOf(i) < 0;
-    });
+    }
     // Categories : deselect all children
-    if (!alreadySelected && item[this.inputs.get().category] && item[this.inputs.get().category] instanceof Array) {
+    );if (!alreadySelected && item[this.inputs.get().category] && item[this.inputs.get().category] instanceof Array) {
         tree(item[this.inputs.get().category], this.inputs.get().category).visit(function (children) {
             newSelection = array(newSelection).notIn(children);
         });
@@ -85,10 +85,9 @@ export var selectionStrategies = {
     ancestors: function ancestors(item, selection, neighbours, _ancestors) {
         return selection.length === 0 ? [item] : array(selection).contains(item) ? [].concat(_toConsumableArray(_ancestors)) : [].concat(_toConsumableArray(_ancestors), [item]);
     }
-};
 
-// Click strategies are triggered on item click
-export var clickStrategies = {
+    // Click strategies are triggered on item click
+};export var clickStrategies = {
     "unfold-on-selection": function unfoldOnSelection(item) {
         if (!this.isSelected(item)) {
             var newUnfolded = this.state.get().unfolded.filter(function (i) {
@@ -107,10 +106,9 @@ export var clickStrategies = {
         }
         this.state.set({ unfolded: newUnfolded });
     }
-};
 
-// Fold strategies are triggered during render to fold / unfold children
-export var foldStrategies = {
+    // Fold strategies are triggered during render to fold / unfold children
+};export var foldStrategies = {
     "opener-control": function openerControl(item) {
         return !array(this.state.get().unfolded).contains(item);
     },
@@ -125,6 +123,9 @@ export var foldStrategies = {
             return _this2.isSelected(node) || node[_this2.inputs.get().category] && node[_this2.inputs.get().category] instanceof Array && node[_this2.inputs.get().category].some(recurseCheck);
         };
         return !recurseCheck(item);
+    },
+    "max-depth": function maxDepth() {
+        return this.inputs.get().maxDepth && !isNaN(parseInt(this.inputs.get().maxDepth, 10)) ? this.inputs.get().depth >= parseInt(this.inputs.get().maxDepth, 10) : false;
     }
 };
 ;
