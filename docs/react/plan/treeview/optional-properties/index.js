@@ -1,6 +1,6 @@
 import React from "react"
 
-import { jscode, tscode } from "../../../../tools/tools"
+import { jscode, tscode } from "../../../tools/tools"
 
 export default {
     title: "Optional props",
@@ -74,7 +74,7 @@ export default {
                         <li>
                             <h5>Selection strategies</h5>
                             <p>
-                                Selection strategies create the <em><a href="#Components#TreeView#Required props#selection">selection</a></em> based on the previous value and the newly selected item.
+                                Selection strategies create the <em><a href="#TreeView#Required props#selection">selection</a></em> based on the previous value and the newly selected item.
                             </p>
 
                             { tscode`

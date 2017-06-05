@@ -1,5 +1,5 @@
 export const indent = (str, ...params) => {
-    let fullStr = str[0]
+    let fullStr = str instanceof Array ? str[0] : str
     for(let i = 0; i < params.length; i++) {
         fullStr += params[i]
         if(i + 1 < str.length)

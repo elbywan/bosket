@@ -46,10 +46,13 @@ export class ComponentSection extends React.PureComponent {
             <div> { this.props.description } </div>
             <div className="ComponentSection flexContainer">
                 <div className="ComponentSection demo-area">{ this.props.children }</div>
-                <div className="ComponentSection code">
+                <div className={ "ComponentSection code" + (this.state.showAll ? " showAll" : "") }>
                     { this.renderTabs(this.files) }
                     { this.files.filter(f => f === this.tab).map(this.renderFile) }
                 </div>
+            </div>
+            <div className="click-block" onClick={ _ => this.setState({ showAll: !this.state.showAll }) }>
+                { this.state.showAll ? "Show less." : "Show more." }
             </div>
         </div>
 

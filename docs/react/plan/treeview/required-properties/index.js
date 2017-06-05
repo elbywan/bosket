@@ -1,6 +1,6 @@
 import React from "react"
 
-import { jscode } from "../../../../tools/tools"
+import { jscode } from "../../../tools/tools"
 
 export default {
     title: "Required props",
@@ -56,7 +56,7 @@ export default {
                 <div className="marged">
                     <p>
                         A callback which is fired when the selection has been updated (usually when the user clicks on an item).<br/>
-                        This method should update the <em><a href="#Components#TreeView#Required props#selection">selection array</a></em>.
+                        This method should update the <em><a href="#TreeView#Required props#selection">selection array</a></em>.
                     </p>
                     { jscode`
                     // Partial example of a component rendering an TreeView.

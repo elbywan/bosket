@@ -49,6 +49,7 @@
 }
 
 .MenuViewSection.content {
+    min-height: 300px;
     transition: all 0.25s ease-in-out;
     transform: translateX(0px);
 }

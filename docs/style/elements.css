@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
-    font-size: 0.9em;
+    /* font-size: 0.9em; */
     letter-spacing: 0.3px;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -27,6 +27,11 @@ button.basic-button {
     background: crimson;
     color: white;
     border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 2px #999;
+}
+button.basic-button > i {
+    margin-right: 10px;
 }
 
 button.control-button {
@@ -35,8 +40,11 @@ button.control-button {
 }
 
 button:hover:not([disabled]) {
-    background: #e26f6f;
+    background: #ff6464;
     color: white;
+}
+button.basic-button:hover:not([disabled]) {
+    box-shadow: none;
 }
 
 ul {

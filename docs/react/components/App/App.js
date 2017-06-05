@@ -23,7 +23,7 @@ export class App extends React.PureComponent {
 
     render = () =>
         <div className="App">
-            { <Planner plan={ plan } maxDepth="2"></Planner> }
+            { <Planner plan={ plan } maxDepth="1"></Planner> }
             <div className="components-container">
                 { sections.map((Section, i) => <Section key={i}></Section>) }
             </div>

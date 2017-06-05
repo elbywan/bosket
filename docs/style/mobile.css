@@ -25,5 +25,4 @@
     div.framework-choice > div:hover { padding-left: 0px }
     div.framework-choice > div h2 { padding-top: 0; }
     div.framework-choice > div > * { display: block; }
-    div.ComponentSection.demo-area { min-height: auto; }
 }

@@ -15,6 +15,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 30px;
+    box-shadow: 0px 0px 1px #444;
 }
 
 .ComponentSection.flexContainer > * {
@@ -25,15 +26,13 @@
 div.ComponentSection.demo-area {
     background-image: repeating-linear-gradient(145deg, #fff, #fff 30px, #f5f5f5 30px, #f5f5f5 60px);
     padding: 20px;
-    min-height: 500px;
+    align-self: flex-start;
 }
 
 div.ComponentSection.code {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    /*border: 2px solid #EEE;
-    max-height: 605px;*/
 }
 
 div.ComponentSection.code .tabs {
@@ -60,11 +59,14 @@ div.ComponentSection.code .tabs > *.selected {
 div.ComponentSection.code > pre[class*=language-] {
     position: relative;
     height: calc(100% - 50px);
-    min-height: 500px;
+    min-height: 250px;
     margin: 0;
     font-size: 0.9em;
 }
 div.ComponentSection.code > pre > code {
     position: absolute;
     padding-bottom: 10px;
+}
+div.ComponentSection.code.showAll > pre > code {
+    position: relative;
 }

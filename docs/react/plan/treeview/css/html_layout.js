@@ -1,0 +1,64 @@
+export default `
+<!-- Presets override this class with the preset component name. -->
+<div class="TreeView">
+
+    <!-- If [search](#TreeView#Optional props#search) is defined, hidden otherwise.-->
+    <input type="search" class="search" value="" placeholder="Search ..." />
+
+    <!-- 'depth-0'' is the root list, each nested list has the depth incremented by 1 -->
+    <!-- If [transition](#TreeView#Optional props#transition) is set, react-transition-group classes will be set on this element. -->
+    <ul class="depth-0">
+        <li>
+            <span class="item">
+                <!-- Return of the [display](#TreeView#Optional props#display) function.-->
+            </span>
+        </li>
+
+        <!-- If the item is selected. -->
+        <li class="selected">
+            <span class="item"></span>
+        </li>
+
+        <!-- A category is a node having children. This node is folded, its children are hidden. -->
+        <li class="folded category">
+            <span class="item">
+                <!-- If [noOpener](#TreeView#Optional props#noOpener) is false, hidden otherwise. -->
+                <span class="opener"></span>
+            </span>
+        </li>
+
+        <!-- This category is not folded. -->
+        <li class="category">
+            <span class="item"><span class="opener"></span></span>
+
+            <!-- Children. -->
+            <ul class="depth-1">
+
+                <!-- Asynchronous, folded node. See [async](#TreeView#Optional props#async). -->
+                <li class="category folded async">
+                    <span class="item"><span class="opener"></span></span>
+                </li>
+
+                <!-- This async is currently fetching its children, waiting for the Promise to resolve. See [async](#TreeView#Optional props#async). -->
+                <li class="category loading">
+                    <span class="item"><span class="opener"></span></span>
+                </li>
+
+                <!-- Disabled item, cannot be selected. See [disabled](#TreeView#Optional props#disabled). -->
+                <li class="disabled">
+                    <span class="item"><span class="opener"></span></span>
+                </li>
+
+                <!-- An item is being dragged over. See [dragndrop](#TreeView#Optional props#dragndrop). -->
+                <li class="dragover">
+                    <span class="item"><span class="opener"></span></span>
+                </li>
+
+                <!-- An invalid drop target. See [dragndrop](#TreeView#Optional props#dragndrop). -->
+                <li class="nodrop">
+                    <span class="item"><span class="opener"></span></span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>`
