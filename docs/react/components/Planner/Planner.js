@@ -123,7 +123,7 @@ export const Planner = withListener({ autoMount: true })(class extends React.Pur
             selection: ["ancestors"],
             fold: [ "max-depth", "not-selected", "no-child-selection" ]
         },
-        noOpener: "yes"
+        noOpener: true
     }
 
     render = () => !this.props.plan ? null :
@@ -136,7 +136,7 @@ export const Planner = withListener({ autoMount: true })(class extends React.Pur
             </div>
             <div ref={ ref => this.sidePanel = ref } className={ "Planner side-panel " + css.classes({ opened: this.state.opened }) }>
                 <div><h1>Table of contents</h1></div>
-                <TreeView model={ this.props.plan } maxDepth={ this.props.maxDepth } { ...this.state }></TreeView>
+                <TreeView model={ this.props.plan } maxDepth={ this.props.maxDepth } { ...this.state } noOpener={ false } ></TreeView>
             </div>
             <div className="Planner content">{ processContent(this.props.plan) }</div>
         </div>

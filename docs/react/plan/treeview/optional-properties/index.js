@@ -311,7 +311,7 @@ export default {
                 <div className="marged">
                     <p>Hides the opener.</p>
                     { jscode`
-                        <TreeView /* ... */ noOpener="true"></TreeView>` }
+                        <TreeView /* ... */ noOpener={ true }></TreeView>` }
                 </div>
         },
         {

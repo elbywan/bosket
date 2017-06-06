@@ -1,4 +1,6 @@
 import React from "react"
+import PropTypes from "prop-types"
+
 import { withListener, withLabels } from "../traits"
 import { tree } from "../../tools/trees"
 import { RootNode, defaults } from "../../core"
@@ -79,6 +81,31 @@ class TreeViewBaseClass extends React.PureComponent {
         )
     }
 }
+
+TreeViewBaseClass.propTypes = {
+    // Required //
+
+    model:          PropTypes.arrayOf(PropTypes.object).isRequired,
+    category:       PropTypes.string.isRequired,
+    selection:      PropTypes.arrayOf(PropTypes.object).isRequired,
+    onSelect:       PropTypes.func.isRequired,
+
+    // Optional //
+
+    display:        PropTypes.func,
+    key:            PropTypes.func,
+    strategies:     PropTypes.object,
+    sort:           PropTypes.func,
+    disabled:       PropTypes.func,
+    search:         PropTypes.func,
+    async:          PropTypes.func,
+    dragndrop:      PropTypes.object,
+    noOpener:       PropTypes.bool,
+    labels:         PropTypes.objectOf(PropTypes.string),
+    css:            PropTypes.object,
+    transition:     PropTypes.object
+}
+
 export const TreeView = [
     withLabels(defaults.labels),
     withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true }),

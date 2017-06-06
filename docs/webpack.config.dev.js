@@ -48,6 +48,7 @@ module.exports = {
                 test: /\.tsx?$/,
                 loader: "ts-loader",
                 options: {
+                    transpileOnly: true,
                     configFileName: resolve(__dirname, "angular/tsconfig.json")
                 }
             }

@@ -12,5 +12,5 @@ export default {
                 Some presets also provide additional functionalities.<br/>
             </p>
         </div>,
-    subs: [ howto ]
+    subs: [howto]
 }
