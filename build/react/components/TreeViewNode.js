@@ -16,7 +16,6 @@ import { withTransition } from "../traits";
 import { TreeNode } from "../../core";
 
 /* Node component */
-
 var TreeViewNodeBaseClass = function (_React$PureComponent) {
     _inherits(TreeViewNodeBaseClass, _React$PureComponent);
 
@@ -72,13 +71,14 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
             return (_this.node.hasChildren(item) || _this.node.isAsync(item)) && !_this.props.noOpener ? React.createElement(OpenerComponent, { className: _this.node.mixCss("opener"), onClick: _this.node.onOpener(item) }) : null;
         };
 
-        _this.node = new TreeNode(_this._props, null, _this._state, function () {
+        _this.node = new TreeNode(_this._props, {}, _this._state, function () {
             if (!_this._unmounted) _this.forceUpdate();
         });
         return _this;
     }
 
     /* Lifecycle & data */
+
 
     _createClass(TreeViewNodeBaseClass, [{
         key: "componentWillUnmount",
@@ -110,7 +110,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
 
             var OpenerComponent = this.props.opener || "span";
             var list = model.filter(function (m) {
-                return !_this2.props.searched || _this2.props.filteredModel.has(m);
+                return !_this2.props.searched || _this2.props.filteredModel && _this2.props.filteredModel.has(m);
             }).map(function (item, idx) {
                 return React.createElement(
                     "li",
@@ -121,7 +121,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
                     React.createElement(
                         "span",
                         { className: _this2.node.mixCss("item") },
-                        display(item, _this2.props.ancestors),
+                        display && display(item, _this2.props.ancestors),
                         _this2.renderOpener(item, OpenerComponent)
                     ),
                     _this2.renderSubtree(item)
@@ -131,7 +131,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
             return React.createElement(
                 "ul",
                 _extends({ className: this.node.ulCss()
-                }, this.node.getDragEvents(null, this.props.dragndrop.draggable && !this.props.depth)),
+                }, this.node.getDragEvents(null, this.props.dragndrop && this.props.dragndrop.draggable && !this.props.depth)),
                 list
             );
         }
@@ -150,10 +150,10 @@ var _temp = function () {
         return;
     }
 
-    __REACT_HOT_LOADER__.register(TreeViewNodeBaseClass, "TreeViewNodeBaseClass", "src/react/components/TreeNode.js");
+    __REACT_HOT_LOADER__.register(TreeViewNodeBaseClass, "TreeViewNodeBaseClass", "src/react/components/TreeViewNode.js");
 
-    __REACT_HOT_LOADER__.register(TreeViewNode, "TreeViewNode", "src/react/components/TreeNode.js");
+    __REACT_HOT_LOADER__.register(TreeViewNode, "TreeViewNode", "src/react/components/TreeViewNode.js");
 }();
 
 ;
-//# sourceMappingURL=TreeNode.js.map
+//# sourceMappingURL=TreeViewNode.js.map

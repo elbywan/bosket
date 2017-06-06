@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react"
 import ReactDOM from "react-dom"
 import { App } from "./components/App/App"
@@ -15,7 +17,7 @@ const render = Component =>
 render(App)
 
 // Hot Module Replacement API
-if(module.hot) {
+if(module.hot && typeof module.hot.accept === "function") {
     module.hot.accept("./components/App/App", () => {
         render(App)
     })

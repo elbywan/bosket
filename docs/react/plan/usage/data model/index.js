@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react"
 
 import { jscode } from "../../../tools/tools"
@@ -25,7 +27,7 @@ const SampleTree = class extends React.PureComponent {
             category="children"
             selection={ this.state.selection }
             onSelect={ _ => this.setState({ selection: _ }) }
-            display= { i => i.label } >
+            display= { i => i.label }>
         </TreeView>
 }
 

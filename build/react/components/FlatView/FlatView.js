@@ -6,7 +6,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import React from "react";
 
-import { TreeView } from "../RootNode";
+import { TreeView } from "../TreeView";
 import { array, deepMix } from "../../../tools";
 
 export var FlatView = function (_React$PureComponent) {

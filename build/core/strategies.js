@@ -79,12 +79,22 @@ export var selectionStrategies = {
             this.lastSelection = item;
             delete this.lastIndex;
             delete this.lastPivot;
-            return singleSelect(item, selection.length > 1 ? [] : selection, neighbours, ancestors);
+            return singleSelect.bind(this)(item, selection.length > 1 ? [] : selection, neighbours, ancestors);
         }
     },
-    ancestors: function ancestors(item, selection, neighbours, _ancestors) {
-        return selection.length === 0 ? [item] : array(selection).contains(item) ? [].concat(_toConsumableArray(_ancestors)) : [].concat(_toConsumableArray(_ancestors), [item]);
-    }
+    ancestors: function (_ancestors) {
+        function ancestors(_x, _x2, _x3, _x4) {
+            return _ancestors.apply(this, arguments);
+        }
+
+        ancestors.toString = function () {
+            return _ancestors.toString();
+        };
+
+        return ancestors;
+    }(function (item, selection, neighbours, ancestors) {
+        return selection.length === 0 ? [item] : array(selection).contains(item) ? [].concat(_toConsumableArray(ancestors)) : [].concat(_toConsumableArray(ancestors), [item]);
+    })
 
     // Click strategies are triggered on item click
 };export var clickStrategies = {

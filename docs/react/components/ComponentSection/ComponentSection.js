@@ -1,3 +1,5 @@
+// @flow
+
 import "./ComponentSection.css"
 import "./ComponentSectionMobile.css"
 
@@ -13,7 +15,7 @@ const loadFile = (filePath, cb) => {
     const req = new XMLHttpRequest()
 
     req.onreadystatechange = function(event) {
-        if(this.readyState === XMLHttpRequest.DONE) {
+        if(this.readyState === 4) {
             if(this.status === 200) {
                 memoize.set(filePath, this.responseText)
                 cb(this.responseText)
@@ -35,10 +37,16 @@ const getPrismExtension = file => {
 
 export class ComponentSection extends React.PureComponent {
 
-    state = { tab: null }
+    state = { tab: "", showAll: false }
+    props: {
+        componentName: string,
+        description: string | React.Element<any>,
+        files: string[],
+        children?: React$Element<any>
+    }
 
-    get files() { return this.props.files || [] }
-    get tab() { return this.state.tab || (this.files.length > 0 ? this.files[0] : null) }
+    get files() : string[] { return this.props.files || [] }
+    get tab() : string | null { return this.state.tab || (this.files.length > 0 ? this.files[0] : null) }
 
     render = () =>
         <div className="ComponentSection section">
@@ -56,14 +64,14 @@ export class ComponentSection extends React.PureComponent {
             </div>
         </div>
 
-    renderFile = file =>
-        <pre key={file} className={"language-" + getPrismExtension(file)}>
+    renderFile = (file: string) =>
+        <pre key={ file } className={"language-" + getPrismExtension(file)}>
             <code ref={ ref => ref && loadFile(file, code => {
                 ref.innerHTML = Prism.highlight(code, Prism.languages[getPrismExtension(file)])
             })} className={"language-" + getPrismExtension(file)}></code>
         </pre>
 
-    renderTabs = files =>
+    renderTabs = (files: string[]) =>
         <div className="tabs">
             { files.map(f =>
                 <div key={f}

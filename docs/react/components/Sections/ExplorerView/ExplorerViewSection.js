@@ -1,3 +1,5 @@
+// @flow
+
 import "./ExplorerViewSection.css"
 
 import React from "react"

@@ -1,0 +1,16 @@
+[ignore]
+<PROJECT_ROOT>/\.vscode/.*
+<PROJECT_ROOT>/assets/.*
+<PROJECT_ROOT>/build/.*
+<PROJECT_ROOT>/docs/angular/angular\.js
+<PROJECT_ROOT>/docs/react/react\.js
+<PROJECT_ROOT>/docs/common/common\.js
+<PROJECT_ROOT>/docs/webpack\..*
+
+[include]
+
+[libs]
+
+[options]
+module.name_mapper='^bosket\(.*\)' -> '<PROJECT_ROOT>/src\1'
+unsafe.enable_getters_and_setters=true

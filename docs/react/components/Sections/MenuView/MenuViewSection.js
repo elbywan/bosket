@@ -1,3 +1,5 @@
+// @flow
+
 import "./MenuViewSection.css"
 
 import React from "react"
@@ -13,15 +15,16 @@ export class MenuViewSection extends React.PureComponent {
         model: model,
         category: "menu",
         name: "name",
-        display: item =>
+        display: (item: Object) =>
             <span><i className={ "fa " + item.icon }></i><span>{ item.name }</span></span>,
         selection: [],
-        onSelect: _ => { this.setState({ selection: _ }) },
+        onSelect: (_: Object[]) => { this.setState({ selection: _ }) },
         transition: {
             transitionName: "MenuViewTransition",
             transitionEnterTimeout: 300,
             transitionLeaveTimeout: 300
-        }
+        },
+        opened: false
     }
 
     render = () =>
@@ -54,8 +57,7 @@ export class MenuViewSection extends React.PureComponent {
             </div>
          </ComponentSection>
 
-    renderContent = item => !item ?
-        <article><h4>Pick an item.</h4></article> :
+    renderContent = (item: Object) => !item ? <article><h4>Pick an item.</h4></article> :
         <div>
             <h3><i className={ "fa " + item.icon }></i>{ item.name }</h3>
             <article>

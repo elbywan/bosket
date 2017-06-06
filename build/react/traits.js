@@ -1,6 +1,6 @@
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -10,103 +10,113 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-import { mixin } from "../tools/mixin";
-import { printer } from "../tools/printer";
 import React from "react";
-
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
+import { printer } from "../tools/printer";
+// _ is a workaround to keep bypass generic type destruction
+/* eslint-disable */
 
-/* Setup higher order component with a readable name. */
-var setupHoc = function setupHoc(hocFactory, name) {
-    return function (Component) {
-        var hoc = hocFactory(Component);
-        hoc.displayName = name + "(" + (Component.displayName || Component.name || "Component") + ")";
-        return hoc;
-    };
-};
+/* eslint-enable */
 
 /* HOC reducer helper */
 export var combine = function combine() {
-    for (var _len = arguments.length, traits = Array(_len), _key = 0; _key < _len; _key++) {
-        traits[_key] = arguments[_key];
+    for (var _len = arguments.length, factories = Array(_len), _key = 0; _key < _len; _key++) {
+        factories[_key] = arguments[_key];
     }
 
     return function (Component) {
-        return traits.reduce(function (accu, trait) {
-            return trait(accu);
-        }, Component
-
-        /* Adds i18n support through customisable labels. */
-        );
+        return factories.reduce(function (accu, factory) {
+            return factory(accu);
+        }, Component);
     };
-};var withLabels = function withLabels(defaultLabels) {
-    return setupHoc(function (Component) {
-        return function (_ref) {
-            var _ref$labels = _ref.labels,
-                labels = _ref$labels === undefined ? {} : _ref$labels,
-                rest = _objectWithoutProperties(_ref, ["labels"]);
+};
 
-            return React.createElement(Component, _extends({ labels: mixin(defaultLabels, labels) }, rest));
-        };
-    }, "withLabels"
+var displayName = function displayName(name, WrappedComponent) {
+    return name + "(" + (WrappedComponent.displayName || WrappedComponent.name || "Component") + ")";
+};
 
-    /* Adds a configurable global listener. */
-    );
-};export { withLabels };
+/* Adds i18n support through customisable labels. */
+export var withLabels = function withLabels(defaultLabels) {
+    return function (Component) {
+        var _class, _temp;
+
+        return _temp = _class = function (_React$Component) {
+            _inherits(_class, _React$Component);
+
+            function _class() {
+                _classCallCheck(this, _class);
+
+                return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+            }
+
+            _createClass(_class, [{
+                key: "render",
+                value: function render() {
+                    return React.createElement(Component, _extends({}, this.props, { labels: _extends({}, defaultLabels, this.props.labels) }));
+                }
+            }]);
+
+            return _class;
+        }(React.Component), _class.displayName = displayName("withLabels", Component), _temp;
+    };
+};
+
+/* Adds a configurable global listener. */
 export var withListener = function withListener() {
-    var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        _ref2$eventType = _ref2.eventType,
-        eventType = _ref2$eventType === undefined ? "click" : _ref2$eventType,
-        _ref2$propName = _ref2.propName,
-        propName = _ref2$propName === undefined ? "listener" : _ref2$propName,
-        _ref2$mountOn = _ref2.mountOn,
-        mountOn = _ref2$mountOn === undefined ? null : _ref2$mountOn,
-        _ref2$autoMount = _ref2.autoMount,
-        autoMount = _ref2$autoMount === undefined ? false : _ref2$autoMount;
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        _ref$eventType = _ref.eventType,
+        eventType = _ref$eventType === undefined ? "click" : _ref$eventType,
+        _ref$propName = _ref.propName,
+        propName = _ref$propName === undefined ? "listener" : _ref$propName,
+        _ref$mountOn = _ref.mountOn,
+        mountOn = _ref$mountOn === undefined ? null : _ref$mountOn,
+        _ref$autoMount = _ref.autoMount,
+        autoMount = _ref$autoMount === undefined ? false : _ref$autoMount;
 
-    return setupHoc(function (Component) {
-        return function (_React$Component) {
-            _inherits(_class2, _React$Component);
+    return function (Component) {
+        var _class2, _temp2;
+
+        return _temp2 = _class2 = function (_React$Component2) {
+            _inherits(_class2, _React$Component2);
 
             /* Lifecycle */
 
             function _class2(props) {
                 _classCallCheck(this, _class2);
 
-                var _this
+                var _this2
 
                 /* Events */
 
                 = _possibleConstructorReturn(this, (_class2.__proto__ || Object.getPrototypeOf(_class2)).call(this, props));
 
-                _this.callback = null;
+                _this2.listening = false;
+                _this2.callback = null;
 
-                _this.subscribe = function (cb) {
-                    _this.callback = cb;
+                _this2.subscribe = function (cb) {
+                    _this2.callback = cb;
                 };
 
-                _this.onEvent = function (event) {
+                _this2.onEvent = function (event) {
                     if (this.callback) this.callback(event);
-                }.bind(_this);
+                }.bind(_this2);
 
-                _this.mount = function () {
-                    if (!_this.listening) {
-                        document.addEventListener(eventType, _this.onEvent);
-                        _this.listening = true;
+                _this2.mount = function () {
+                    if (!_this2.listening) {
+                        document.addEventListener(eventType, _this2.onEvent);
+                        _this2.listening = true;
                     }
                 };
 
-                _this.unmount = function () {
-                    if (_this.listening) {
-                        document.removeEventListener(eventType, _this.onEvent);
-                        _this.listening = false;
+                _this2.unmount = function () {
+                    if (_this2.listening) {
+                        document.removeEventListener(eventType, _this2.onEvent);
+                        _this2.listening = false;
                     }
                 };
 
-                if (autoMount) _this.mount();
-                return _this;
+                if (autoMount) _this2.mount();
+                return _this2;
             }
 
             _createClass(_class2, [{
@@ -139,84 +149,106 @@ export var withListener = function withListener() {
             }]);
 
             return _class2;
-        }(React.Component);
-    }, "withListener"
-
-    /* Adds transitions on component mount / unmount. */
-    );
-};export var withTransition = function withTransition(_ref3) {
-    var key = _ref3.key;
-    return setupHoc(function (Component) {
-        return function (props) {
-            return props.transition ? React.createElement(
-                CSSTransitionGroup,
-                props.transition,
-                React.createElement(Component, _extends({}, props, { key: key(props) }))
-            ) : React.createElement(Component, props);
-        };
-    }, "withTransition"
-
-    /* Add debug info for component updates */
-    );
-};export var withDebugUpdates = function withDebugUpdates() {
-    var print = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (a) {
-        return a;
+        }(React.Component), _class2.displayName = displayName("withListener", Component), _temp2;
     };
-    return setupHoc(function (Component) {
-        return function (_React$Component2) {
-            _inherits(_class4, _React$Component2);
+};
 
-            function _class4() {
-                var _ref4;
+/* Adds transitions on component mount / unmount. */
+export var withTransition = function withTransition(_ref2) {
+    var key = _ref2.key;
+    return function (Component) {
+        var _class3, _temp4;
 
-                var _temp, _this2, _ret;
+        return _temp4 = _class3 = function (_React$PureComponent) {
+            _inherits(_class3, _React$PureComponent);
 
-                _classCallCheck(this, _class4);
+            function _class3() {
+                var _ref3;
+
+                var _temp3, _this3, _ret;
+
+                _classCallCheck(this, _class3);
 
                 for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
                     args[_key2] = arguments[_key2];
                 }
 
-                return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref4 = _class4.__proto__ || Object.getPrototypeOf(_class4)).call.apply(_ref4, [this].concat(args))), _this2), _this2.monkeyPatch = function (ref) {
+                return _ret = (_temp3 = (_this3 = _possibleConstructorReturn(this, (_ref3 = _class3.__proto__ || Object.getPrototypeOf(_class3)).call.apply(_ref3, [this].concat(args))), _this3), _this3.render = function () {
+                    return _this3.props.transition ? React.createElement(
+                        CSSTransitionGroup,
+                        _this3.props.transition,
+                        React.createElement(Component, _extends({}, _this3.props, { key: key(_this3.props) }))
+                    ) : React.createElement(Component, _this3.props);
+                }, _temp3), _possibleConstructorReturn(_this3, _ret);
+            }
+
+            return _class3;
+        }(React.PureComponent), _class3.displayName = displayName("withTransition", Component), _temp4;
+    };
+};
+
+/* Add debug info for component updates */
+export var withDebugUpdates = function withDebugUpdates(_ref4) {
+    var _ref4$print = _ref4.print,
+        print = _ref4$print === undefined ? function (_) {
+        return _;
+    } : _ref4$print;
+    return function (Component) {
+        var _class4, _temp6;
+
+        return _temp6 = _class4 = function (_React$Component3) {
+            _inherits(_class4, _React$Component3);
+
+            function _class4() {
+                var _ref5;
+
+                var _temp5, _this4, _ret2;
+
+                _classCallCheck(this, _class4);
+
+                for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+                    args[_key3] = arguments[_key3];
+                }
+
+                return _ret2 = (_temp5 = (_this4 = _possibleConstructorReturn(this, (_ref5 = _class4.__proto__ || Object.getPrototypeOf(_class4)).call.apply(_ref5, [this].concat(args))), _this4), _this4.monkeyPatch = function (ref) {
                     if (!ref) return;
                     var originalFunction = ref.shouldComponentUpdate;
-                    var shouldComponentUpdate = function shouldComponentUpdate(nextProps, nextState) {
+                    ref.shouldComponentUpdate = function (nextProps, nextState, nextContext) {
                         var propsDiff = [];
                         var stateDiff = [];
                         for (var key in nextProps) {
                             if (nextProps[key] !== ref.props[key]) propsDiff.push(key);
                         }
-                        for (var _key3 in nextState) {
-                            if (nextState[_key3] !== ref.state[_key3]) stateDiff.push(_key3);
+                        for (var _key4 in nextState) {
+                            if (nextState[_key4] !== ref.state[_key4]) stateDiff.push(_key4);
                         }
                         /* eslint-disable */
-                        printer.debug("shouldComponentUpdate [" + print(ref) + "]", "State diff : " + stateDiff + "\nProps diff : " + propsDiff
+                        printer.debug("shouldComponentUpdate [" + print(ref.toString()) + "]", "State diff : " + stateDiff.join(" ") + "\nProps diff : " + propsDiff.join(" ")
                         /* eslint-enable */
                         );return originalFunction.bind(ref)(nextProps, nextState);
                     };
-                    ref.shouldComponentUpdate = shouldComponentUpdate;
-                }, _this2.render = function () {
-                    return React.createElement(Component, _extends({}, _this2.props, {
-                        ref: function ref(_ref5) {
-                            return _this2.monkeyPatch(_ref5);
+                }, _this4.render = function () {
+                    return React.createElement(Component, _extends({}, _this4.props, {
+                        ref: function ref(_ref6) {
+                            return _this4.monkeyPatch(_ref6);
                         } }));
-                }, _temp), _possibleConstructorReturn(_this2, _ret);
+                }, _temp5), _possibleConstructorReturn(_this4, _ret2);
             }
 
             return _class4;
-        }(React.Component);
-    }, "withDebugUpdates");
+        }(React.Component), _class4.displayName = displayName("withDebugUpdates", Component), _temp6;
+    };
 };
 ;
 
-var _temp2 = function () {
+var _temp7 = function () {
     if (typeof __REACT_HOT_LOADER__ === 'undefined') {
         return;
     }
 
-    __REACT_HOT_LOADER__.register(setupHoc, "setupHoc", "src/react/traits.js");
-
     __REACT_HOT_LOADER__.register(combine, "combine", "src/react/traits.js");
+
+    __REACT_HOT_LOADER__.register(displayName, "displayName", "src/react/traits.js");
 
     __REACT_HOT_LOADER__.register(withLabels, "withLabels", "src/react/traits.js");
 

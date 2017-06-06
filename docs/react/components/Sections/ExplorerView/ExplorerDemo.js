@@ -1,3 +1,5 @@
+// @flow
+
 import "./ExplorerDemo.css"
 
 import React from "react"
@@ -58,12 +60,12 @@ export class ExplorerDemo extends React.PureComponent {
         }.bind(this),
 
         // On model update, set state
-        updateModel: function(model) {
+        updateModel: function(model: Object[]) {
             this.setState({ model: model })
         },
 
         // Custom icon for displayed files & folders
-        display: item =>
+        display: (item: Object) =>
             <a>
                 <i className={"icon fa " + helpers.getIcon(item)}></i>
                 { item.filename }
@@ -72,7 +74,7 @@ export class ExplorerDemo extends React.PureComponent {
         // Drag and drop config.
         dragndrop: {
             // On drop, two possibilites, real files & folders or inner selection.
-            drop: (target, item, event) => {
+            drop: (target: Object, item: Object, event: DragEvent) => {
                 const fsEntries = dragndrop.drops.filesystem(event)
                 if(fsEntries) {
                     // Allow real filesystem drop //

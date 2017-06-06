@@ -61,7 +61,6 @@ div.ComponentSection.code > pre[class*=language-] {
     height: calc(100% - 50px);
     min-height: 250px;
     margin: 0;
-    font-size: 0.9em;
 }
 div.ComponentSection.code > pre > code {
     position: absolute;

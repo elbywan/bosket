@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react"
 import howto from "./howto"
 
@@ -12,5 +14,5 @@ export default {
                 Some presets also provide additional functionalities.<br/>
             </p>
         </div>,
-    subs: [ howto ]
+    subs: [howto]
 }

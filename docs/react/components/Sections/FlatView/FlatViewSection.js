@@ -1,3 +1,5 @@
+// @flow
+
 import "./FlatViewSection.css"
 
 import React from "react"
@@ -16,18 +18,25 @@ export class FlatViewSection extends React.PureComponent {
         name: "label",
         selection: [],
         limit: 0,
-        onSelect: _ => { this.setState({ selection: _ }) },
-        search: input => i => !i.items && string(i.label).contains(input),
-        display: item =>
+        onSelect: (_: Object[]) => { this.setState({ selection: _ }) },
+        search: (input: string) => (i: Object) => !i.items && string(i.label).contains(input),
+        display: (item: Object) =>
             !item.items ? item.label :
             <div onClick={ ev => this.toggleCategory(item) }>{ item.label }</div>,
-        formData: { firstName: "", lastName: "" }
+        formData: { firstName: "", lastName: "" },
+        opened: false
     }
 
-    get openedCss() { return css.classes({ opened: this.state.opened }) }
-    selectAll(item) {
-        const input = this.state.search &&
-            document.querySelector(".FlatView input[type='search']").value
+    getInput = () => {
+        const domElt = document.querySelector(".FlatView input[type='search']")
+        return this.state.search &&
+            domElt instanceof HTMLInputElement &&
+                domElt.value
+    }
+
+    get openedCss() : string { return css.classes({ opened: this.state.opened }) }
+    selectAll(item: Object) {
+        const input = this.getInput()
 
         const items = !input ?
             item.items :
@@ -39,9 +48,8 @@ export class FlatViewSection extends React.PureComponent {
                 ...items ]
         })
     }
-    deselectAll(item) {
-        const input = this.state.search &&
-            document.querySelector(".FlatView input[type='search']").value
+    deselectAll(item: Object) {
+        const input = this.getInput()
 
         const items = !input ?
             item.items :
@@ -51,9 +59,8 @@ export class FlatViewSection extends React.PureComponent {
             selection: array(this.state.selection).notIn(items)
         })
     }
-    toggleCategory(item) {
-        const input = this.state.search &&
-            document.querySelector(".FlatView input[type='search']").value
+    toggleCategory(item: Object) {
+        const input = this.getInput()
 
         const items = !input ?
             item.items :

@@ -5,7 +5,7 @@ div.chapter {
     color: white;
 }
 div.chapter h1, div.chapter h2, div.chapter h3, div.chapter h4, div.chapter h5, div.chapter h6 {
-    font-family: Cormorant Garamond,serif;
+    font-family: 'Cormorant Garamond',serif;
     margin: 0;
 }
 div.chapter h1 {
@@ -69,7 +69,7 @@ div.chapter .highlight {
     color: crimson;
 }
 div.chapter .click-block {
-    font-family: Cormorant Garamond,serif;
+    font-family: 'Cormorant Garamond',serif;
     text-align: center;
     font-size: 1.1em;
     background-color: #DDD;
@@ -105,6 +105,7 @@ div.chapter div.separate a:hover {
 }
 div.chapter pre[class*=language-] {
     margin: 20px 0px;
+    font-size: 14px;
 }
 div.framework-choice a:hover {
     color: crimson;

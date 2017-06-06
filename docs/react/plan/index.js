@@ -1,3 +1,5 @@
+// @flow
+
 import introduction from "./introduction"
 import usage from "./usage"
 import components from "./components"

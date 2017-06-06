@@ -1,5 +1,5 @@
 export var printer = {
-    debug: function debug(title, msg) /* eslint-enable */{
+    debug: function debug(title, msg /* eslint-enable */) {
         var logger = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : console.log;
 
         var headerStyle = "background-color: red; color: white; font-size: 1.1em; font-weight: bold; padding: 3px 10px; border-radius: 5px";

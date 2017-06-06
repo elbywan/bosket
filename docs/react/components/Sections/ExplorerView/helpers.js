@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react"
 
 const helpers = {
@@ -31,7 +33,7 @@ const helpers = {
             </table>
         )
     },
-    getIcon: function(item) {
+    getIcon: function(item: Object) {
         if(item.files) return "fa-folder-o"
         const split = item.filename.split(".")
         if(split.length === 1)
@@ -55,8 +57,9 @@ const helpers = {
             }
         }
     },
-    scanFiles: function(item, model = [], depth = 0) {
+    scanFiles: function(item: Object, model : Object[] = [], depth: number = 0) {
         const fileItem = {
+            files: [],
             filename: item.name,
             size: 0,
             fsEntry: item
@@ -80,7 +83,7 @@ const helpers = {
         model.push(fileItem)
         return fileItem
     },
-    getFilesSize: function(item) {
+    getFilesSize: function(item: Object) {
         item.files.forEach(item => {
             if(item.fsEntry) {
                 item.fsEntry.getMetadata &&

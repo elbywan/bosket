@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react"
 
 import { jscode, tscode } from "../../../tools/tools"
@@ -311,7 +313,7 @@ export default {
                 <div className="marged">
                     <p>Hides the opener.</p>
                     { jscode`
-                        <TreeView /* ... */ noOpener="true"></TreeView>` }
+                        <TreeView /* ... */ noOpener={ true }></TreeView>` }
                 </div>
         },
         {

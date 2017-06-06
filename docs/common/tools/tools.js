@@ -1,4 +1,6 @@
-export const indent = (str, ...params) => {
+// @flow
+
+export const indent = (str: string | string[], ...params: any[]) => {
     let fullStr = str instanceof Array ? str[0] : str
     for(let i = 0; i < params.length; i++) {
         fullStr += params[i]

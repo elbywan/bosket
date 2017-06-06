@@ -1,5 +1,7 @@
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -12,7 +14,8 @@ import { css, array, tree } from "../tools";
 import { selectionStrategies, foldStrategies, clickStrategies } from "./strategies";
 import { defaults } from "./defaults";
 
-/* Boilerplate  for framework class adapters */
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+//  Boilerplate  for framework class adapters
 
 var Core = function Core(inputs, outputs, state, refresh) {
     _classCallCheck(this, Core);
@@ -23,8 +26,8 @@ var Core = function Core(inputs, outputs, state, refresh) {
     this.refresh = refresh;
 };
 
-/* A tree node */
-
+/* -------------------------------------------------------------------------- */
+/* TREE NODE */
 
 export var TreeNode = function (_Core) {
     _inherits(TreeNode, _Core);
@@ -43,7 +46,8 @@ export var TreeNode = function (_Core) {
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TreeNode.__proto__ || Object.getPrototypeOf(TreeNode)).call.apply(_ref, [this].concat(args))), _this), _this.isSelected = function (item) {
             return array(_this.inputs.get().selection).contains(item);
         }, _this.isFolded = function (item) {
-            return (!_this.inputs.get().searched || _this.isAsync(item)) && (_this.inputs.get().strategies.fold || []).map(function (strat) {
+            var strats = _this.inputs.get().strategies;
+            return (!_this.inputs.get().searched || _this.isAsync(item)) && (strats && strats.fold || []).map(function (strat) {
                 return (foldStrategies[strat] || strat).bind(_this);
             }).reduce(function (last, curr) {
                 return last && curr(item, last);
@@ -51,9 +55,10 @@ export var TreeNode = function (_Core) {
         }, _this.hasChildren = function (item) {
             return item[_this.inputs.get().category] && item[_this.inputs.get().category] instanceof Array;
         }, _this.isAsync = function (item) {
-            return item[_this.inputs.get().category] && typeof item[_this.inputs.get().category] === "function";
+            return !!item && [_this.inputs.get().category] && typeof item[_this.inputs.get().category] === "function";
         }, _this.isDisabled = function (item) {
-            return _this.inputs.get().disabled && _this.inputs.get().disabled(item);
+            var disabledFun = _this.inputs.get().disabled;
+            return disabledFun ? disabledFun(item) : false;
         }, _this.isDraggable = function (item) {
             return item && _this.inputs.get().dragndrop.draggable && (typeof _this.inputs.get().dragndrop.draggable === "function" ? _this.inputs.get().dragndrop.draggable(item) : true);
         }, _this.isDroppable = function (item) {
@@ -68,7 +73,8 @@ export var TreeNode = function (_Core) {
             return css.classes((_css$classes2 = {}, _defineProperty(_css$classes2, _this.mixCss("selected"), _this.isSelected(item)), _defineProperty(_css$classes2, _this.mixCss("category"), _this.hasChildren(item) || _this.isAsync(item)), _defineProperty(_css$classes2, _this.mixCss("folded"), _this.hasChildren(item) || _this.isAsync(item) ? _this.isFolded(item) : null), _defineProperty(_css$classes2, _this.mixCss("disabled"), _this.isDisabled(item)), _defineProperty(_css$classes2, _this.mixCss("async"), _this.isAsync(item) && _this.isFolded(item)), _defineProperty(_css$classes2, _this.mixCss("loading"), _this.isAsync(item) && !_this.isFolded(item)), _css$classes2));
         }, _this.pending = [], _this.unwrapPromise = function (item) {
             _this.pending.push(item);
-            return _this.inputs.get().async(item[_this.inputs.get().category]).then(function (res) {
+            var asyncFun = _this.inputs.get().async;
+            if (!asyncFun) return Promise.reject(new Error("No asyn prop."));else return asyncFun(item[_this.inputs.get().category]).then(function (res) {
                 item[_this.inputs.get().category] = res;
                 _this.refresh();
             }).catch(function (err) {
@@ -83,21 +89,13 @@ export var TreeNode = function (_Core) {
         }, _this.onClick = function (item) {
             return function (event) {
                 if (_this.isDisabled(item)) return;
-                (_this.inputs.get().strategies.click || []).map(function (strat) {
+                var strats = _this.inputs.get().strategies;
+                (strats && strats.click || []).map(function (strat) {
                     return (clickStrategies[strat] || strat).bind(_this);
                 }).forEach(function (strat) {
                     return strat(item, event, _this.inputs.get().ancestors, _this.inputs.get().model);
                 });
                 _this.inputs.get().onSelect(item, _this.inputs.get().ancestors, _this.inputs.get().model);
-                event.stopPropagation();
-            };
-        }, _this.onOpener = function (item) {
-            return function (event) {
-                var newVal = _this.state.get().unfolded.filter(function (i) {
-                    return i !== item;
-                });
-                if (newVal.length === _this.state.get().unfolded.length) newVal.push(item);
-                _this.state.set({ unfolded: newVal });
                 event.stopPropagation();
             };
         }, _this.onDragStart = function (item) {
@@ -111,7 +109,7 @@ export var TreeNode = function (_Core) {
                 event.stopPropagation();
 
                 if (_this.dragGuard(item, event)) {
-                    event.dataTransfer.dropEffect = "none";
+                    event.dataTransfer && (event.dataTransfer.dropEffect = "none");
                     css.addClass(event.currentTarget, _this.mixCss("nodrop"));
                     return;
                 }
@@ -148,7 +146,7 @@ export var TreeNode = function (_Core) {
             // Prevent drop when not droppable
             if (!_this.isDroppable(item)) return false;
             // If we are dragging files authorize drop
-            var items = event.dataTransfer.items;
+            var items = event.dataTransfer ? event.dataTransfer.items : null;
             if (items && items.length > 0 && items[0].kind === "file") return false;
             // Prevent drop on self
             var selfDrop = item && array(_this.inputs.get().selection).contains(item
@@ -170,8 +168,8 @@ export var TreeNode = function (_Core) {
                 onDragLeave: _this.onDragLeave.bind(_this),
                 onDrop: _this.isDroppable(item) && _this.onDrop(item).bind(_this)
             };
-            for (var key in result) {
-                if (!result[key]) delete result[key];
+            for (var _key2 in result) {
+                if (!result[_key2]) delete result[_key2];
             }return result;
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
@@ -196,88 +194,105 @@ export var TreeNode = function (_Core) {
     // On item click
 
 
-    // On opener click
+    _createClass(TreeNode, [{
+        key: "onOpener",
 
 
-    // Drag'n'drop //
+        // On opener click
+        value: function onOpener(item) {
+            var _this2 = this;
 
-    // Guard against bad drop
+            return function (event) {
+                var newVal = _this2.state.get().unfolded.filter(function (i) {
+                    return i !== item;
+                });
+                if (newVal.length === _this2.state.get().unfolded.length) newVal.push(item);
+                _this2.state.set({ unfolded: newVal });
+                event.stopPropagation();
+            };
+        }
 
+        // Drag'n'drop //
+
+        // Guard against bad drop
+
+    }]);
 
     return TreeNode;
 }(Core);
 
+/* -------------------------------------------------------------------------- */
 /* Root node of the tree */
+
 export var RootNode = function (_Core2) {
     _inherits(RootNode, _Core2);
 
     function RootNode() {
         var _ref2;
 
-        var _temp2, _this2
+        var _temp2, _this3
 
         // When new element(s) are selected
-
-
-        // Drag start
-
-
-        // Drop event
-
-
-        // Framework input wrapper
         , _ret2;
 
         _classCallCheck(this, RootNode);
 
-        for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-            args[_key2] = arguments[_key2];
+        for (var _len2 = arguments.length, args = Array(_len2), _key3 = 0; _key3 < _len2; _key3++) {
+            args[_key3] = arguments[_key3];
         }
 
-        return _ret2 = (_temp2 = (_this2 = _possibleConstructorReturn(this, (_ref2 = RootNode.__proto__ || Object.getPrototypeOf(RootNode)).call.apply(_ref2, [this].concat(args))), _this2), _this2.modifiers = {}, _this2.onKey = function (event) {
+        return _ret2 = (_temp2 = (_this3 = _possibleConstructorReturn(this, (_ref2 = RootNode.__proto__ || Object.getPrototypeOf(RootNode)).call.apply(_ref2, [this].concat(args))), _this3), _this3.modifiers = {}, _this3.onKey = function (event) {
             this.modifiers = {
                 control: event.getModifierState("Control"),
                 meta: event.getModifierState("Meta"),
                 shift: event.getModifierState("Shift")
             };
-        }.bind(_this2), _this2.onSelect = function (item, ancestors, neighbours) {
-            var _this3 = this;
-
-            var selectionStrategy = this.inputs.get().strategies.selection || [];
+        }.bind(_this3), _this3.onSelect = function (item, ancestors, neighbours) {
+            var selectionStrategy = _this3.inputs.get().strategies.selection || [];
             var newSelection = selectionStrategy.map(function (strat) {
                 return (selectionStrategies[strat] || strat).bind(_this3);
             }).reduce(function (last, curr) {
                 return curr(item, last, neighbours, ancestors);
-            }, this.inputs.get().selection);
-            return this.outputs.onSelect(newSelection, item, ancestors, neighbours);
-        }.bind(_this2), _this2.onDragStart = function (target, event, ancestors, neighbours) {
-            event.dataTransfer.setData("application/json", JSON.stringify(target));
-            event.dataTransfer.dropEffect = "move";
+            }, _this3.inputs.get().selection);
+            return _this3.outputs.onSelect(newSelection, item, ancestors, neighbours);
+        }, _this3.onDragStart = function (target, event, ancestors, neighbours) {
+            event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(target));
+            event.dataTransfer && (event.dataTransfer.dropEffect = "move");
 
-            if (!array(this.inputs.get().selection).contains(target)) {
-                this.onSelect(target, ancestors, neighbours);
+            if (!array(_this3.inputs.get().selection).contains(target)) {
+                _this3.onSelect(target, ancestors, neighbours);
             }
-            this.outputs.onDrag(target, event, ancestors, neighbours);
-        }.bind(_this2), _this2.onDrop = function (target, event) {
+            _this3.outputs.onDrag(target, event, ancestors, neighbours);
+        }, _this3.onDrop = function (target, event) {
             event.preventDefault();
-            var jsonData = event.dataTransfer.getData("application/json");
+            var jsonData = event.dataTransfer ? event.dataTransfer.getData("application/json") : "{}";
 
-            this.outputs.onDrop(target, jsonData ? JSON.parse(jsonData) : null, event);
-        }.bind(_this2), _this2.wrapDragNDrop = function () {
-            return _extends({}, _this2.inputs.get().dragndrop, {
-                dragStart: _this2.onDragStart,
-                onDrop: _this2.onDrop
+            _this3.outputs.onDrop(target, jsonData ? JSON.parse(jsonData) : null, event);
+        }, _this3.wrapDragNDrop = function () {
+            return _extends({}, _this3.inputs.get().dragndrop, {
+                dragStart: _this3.onDragStart,
+                onDrop: _this3.onDrop
             });
-        }, _this2.mixCss = function (prop) {
-            return _this2.inputs.get().css[prop] || defaults.css[prop];
-        }, _this2.filterTree = function (input) {
-            return !input.trim() ? null : tree(_this2.inputs.get().model, _this2.inputs.get().category).treeFilter(_this2.inputs.get().search(input.trim()));
-        }, _temp2), _possibleConstructorReturn(_this2, _ret2);
+        }, _this3.mixCss = function (prop) {
+            return _this3.inputs.get().css[prop] || defaults.css[prop];
+        }, _this3.filterTree = function (input) {
+            var search = _this3.inputs.get().search;
+            return !search ? null : !input.trim() ? null : tree(_this3.inputs.get().model, _this3.inputs.get().category).treeFilter(search(input.trim()));
+        }, _temp2), _possibleConstructorReturn(_this3, _ret2);
     }
 
     /* Events */
 
     // Keyboard modifiers list
+
+
+    // Drag start
+
+
+    // Drop event
+
+
+    // Framework input wrapper
 
 
     // Css mixin helper

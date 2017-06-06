@@ -1,25 +1,25 @@
 var css = {
     classes: function classes(_classes) {
         var css = [];
-        for (var key in _classes) {
-            if (_classes[key]) {
-                css.push(key);
+        for (var _key in _classes) {
+            if (_classes[_key]) {
+                css.push(_key);
             }
         }
         return css.join(" ");
     },
     addClass: function addClass(elt, cname) {
-        return elt.className = elt.className.split(" ").filter(function (c) {
+        if (elt instanceof HTMLElement) elt.className = elt.className.split(" ").filter(function (c) {
             return c !== cname;
         }).join(" ") + " " + cname;
     },
     removeClass: function removeClass(elt, cname) {
-        return elt.className = elt.className.split(" ").filter(function (c) {
+        if (elt instanceof HTMLElement) elt.className = elt.className.split(" ").filter(function (c) {
             return c !== cname;
         }).join(" ");
     },
     hasClass: function hasClass(elt, cname) {
-        return elt.className.indexOf(cname) >= 0;
+        return elt instanceof HTMLElement ? elt.className.indexOf(cname) >= 0 : false;
     }
 };
 export { css };

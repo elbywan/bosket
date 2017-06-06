@@ -1,3 +1,5 @@
+// @flow
+
 import "./TreeViewSection.css"
 
 import React from "react"
@@ -13,21 +15,22 @@ import model from "../../../../common/models/TreeViewModel"
 
 export class TreeViewSection extends React.PureComponent {
 
-    constructor(props) {
+    constructor(props: Object) {
         super(props)
         // Load the drag image once on component creation.
         this.dragImage = new Image()
         this.dragImage.src = "../assets/drag-image.svg"
     }
+    dragImage: Image
 
     // The state is passed down to the TreeView
     state = {
         model: model,
         category: "items",
-        display: item => <a>{ item.label }</a>,
-        sort: (a, b) => a.label.localeCompare(b.label),
-        key: item => item.label,
-        search: input => i => string(i.label).contains(input),
+        display: (item: Object) => <a>{ item.label }</a>,
+        sort: (a: Object, b: Object) => a.label.localeCompare(b.label),
+        key: (item: Object) => item.label,
+        search: (input: string) => (i: Object) => string(i.label).contains(input),
         selection: [],
         onSelect: function(items) { this.setState({ selection: items }) }.bind(this),
         transition: {
@@ -45,10 +48,10 @@ export class TreeViewSection extends React.PureComponent {
         dragndrop: {
             draggable: true,
             droppable: true,
-            drag: (target, event, ancestors, neighbours) => {
-                event.dataTransfer.setDragImage(this.dragImage, 0, 0)
+            drag: (target: Object, event: DragEvent, ancestors: Object[], neighbours: Object[]) => {
+                event.dataTransfer && event.dataTransfer.setDragImage(this.dragImage, 0, 0)
             },
-            drop: (target, item, event) => {
+            drop: (target: Object, item: Object, event: DragEvent) => {
                 this.setState({
                     model: dragndrop.drops.selection(
                         target,

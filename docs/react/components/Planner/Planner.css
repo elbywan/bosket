@@ -28,7 +28,7 @@
     height: 100%;
     background: #444;
     color: #EEE;
-    font-family: Cormorant Garamond,serif;
+    font-family: 'Cormorant Garamond',serif;
     transform: translateX(-300px);
 }
 .Planner.side-panel.opened {

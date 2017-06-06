@@ -8,14 +8,14 @@
   "repository": "https://github.com/elbywan/bosket",
   "scripts": {
     "start": "npm run clean && npm run build && npm run build-docs",
-    "prebuild": "eslint ./",
+    "prebuild": "eslint ./ && flow && flow stop",
     "build": "npm run build-react && npm run build-angular",
-    "build-react": "babel src -d build -s",
+    "build-react": "babel src -d build -s && flow-copy-source -v src build",
     "build-angular": "ngc -p src/angular/tsconfig.json && cd src && copy ./**/*.d.ts ../build",
     "postbuild": "npm install build --no-save",
     "build-docs": "webpack --progress --colors --config docs/webpack.config.js -p",
     "dev-server": "webpack-dev-server --config docs/webpack.config.dev.js",
-    "clean": "rimraf build/{angular,core,react,tools}/**/*.{js,map,ts,metadata.json}"
+    "clean": "rimraf build/{angular,core,react,tools}/**/*.{js,js.flow,map,ts,d.ts,metadata.json}"
   },
   "files": [
     "build",
@@ -30,15 +30,15 @@
     "@angular/platform-browser": "^4.1.2",
     "@angular/platform-browser-dynamic": "^4.1.2",
     "@angular/router": "^4.1.2",
-    "@ngtools/webpack": "^1.4.0",
-    "@types/node": "^7.0.23",
+    "@ngtools/webpack": "^1.4.1",
+    "@types/node": "^7.0.29",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-env": "^1.4.0",
+    "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.24.1",
     "copy": "^0.3.0",
     "core-js": "^2.4.1",
@@ -50,6 +50,8 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
+    "flow-bin": "^0.47.0",
+    "flow-copy-source": "^1.1.0",
     "postcss-loader": "^2.0.5",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
@@ -57,11 +59,11 @@
     "react-transition-group": "^1.1.3",
     "rimraf": "^2.6.1",
     "rxjs": "^5.4.0",
-    "style-loader": "^0.18.1",
+    "style-loader": "^0.18.2",
     "ts-loader": "^2.0.3",
     "typescript": "^2.3.4",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5",
-    "zone.js": "^0.8.10"
+    "zone.js": "^0.8.12"
   }
 }

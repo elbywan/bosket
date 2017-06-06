@@ -6,7 +6,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import React from "react";
 
-import { TreeView } from "../RootNode";
+import { TreeView } from "../TreeView";
 import { deepMix } from "../../../tools";
 
 export var MenuView = function (_React$PureComponent) {

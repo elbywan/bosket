@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react"
 import "./Planner.css"
 
@@ -64,10 +66,41 @@ const processContent = (plan, parentPrefix = "", depth = 1) => {
     )
 }
 
+type Plan = {
+    title: string,
+    content?: React.Element<>,
+    subs?: Plan[]
+}
+
 export const Planner = withListener({ autoMount: true })(class extends React.PureComponent {
 
+    props : {
+        plan: Plan[],
+        listener?: Object,
+        maxDepth?: number
+    }
+
+    state = {
+        css: { TreeView: "PlannerTree" },
+        category: "subs",
+        selection: [],
+        display: (item, ancestors) => <a href={ `${ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
+        onSelect: _ => { if(_.length > 0) { this.setState({ selection: _ }) } },
+        strategies: {
+            selection: ["ancestors"],
+            fold: [ "max-depth", "not-selected", "no-child-selection" ]
+        },
+        noOpener: true,
+        opened: false
+    }
+    opener: ?HTMLElement = null
+    sidePanel: ?HTMLElement = null
+    ticking = false
+    scrollListener: ?EventListener = null
+
     componentDidMount = () => {
-        this.props.listener.subscribe(ev => {
+        this.props.listener && this.props.listener.subscribe((ev: Event) => {
+            if(!(ev.target instanceof HTMLElement)) return
             if(this.opener && this.opener.contains(ev.target)) {
                 this.setState({ opened: !this.state.opened })
             } else if(this.state.opened && this.sidePanel && !this.sidePanel.contains(ev.target))
@@ -82,8 +115,10 @@ export const Planner = withListener({ autoMount: true })(class extends React.Pur
                     const loop = (arr, acc = []) => {
                         for(let i = 0; i < arr.length; i++) {
                             const elt = arr[i]
-                            const domElt = document.getElementById(acc.length > 0 ? acc.join("#") + "#" + elt.title : elt.title).parentNode
-                            if(domElt.getBoundingClientRect().top <= 50 && domElt.getBoundingClientRect().bottom > 10) {
+                            const domElt = document.getElementById(acc.length > 0 ? acc.join("#") + "#" + elt.title : elt.title)
+                            if(domElt && domElt.parentElement &&
+                                    domElt.parentElement.getBoundingClientRect().top <= 50 &&
+                                    domElt.parentElement.getBoundingClientRect().bottom > 10) {
                                 result.push(elt)
                                 if(elt.subs)
                                     loop(elt.subs, [ ...acc, elt.title ])
@@ -111,19 +146,6 @@ export const Planner = withListener({ autoMount: true })(class extends React.Pur
     componentWillUnmount = () => {
         if(this.scrollListener)
             window.removeEventListener("scroll", this.scrollListener)
-    }
-
-    state = {
-        css: { TreeView: "PlannerTree" },
-        category: "subs",
-        selection: [],
-        display: (item, ancestors) => <a href={ `${ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
-        onSelect: _ => { if(_.length > 0) { this.setState({ selection: _ }) } },
-        strategies: {
-            selection: ["ancestors"],
-            fold: [ "max-depth", "not-selected", "no-child-selection" ]
-        },
-        noOpener: "yes"
     }
 
     render = () => !this.props.plan ? null :

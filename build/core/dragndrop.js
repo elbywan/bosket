@@ -14,12 +14,14 @@ var dragndrop = {
         },
         // Returns a list of local files/folders dropped
         filesystem: function filesystem(event) {
-            var items = event.dataTransfer.items;
+            var items = event.dataTransfer ? event.dataTransfer.items : null;
             if (items && items.length > 0 && items[0].kind === "file") {
                 var files = [];
                 for (var i = 0; i < items.length; i++) {
-                    var item = items[i].webkitGetAsEntry() || items[i].getAsFile();
-                    if (item) {
+                    /* eslint-disable */
+                    var item = items[i].webkitGetAsEntry() || items[i].getAsFile
+                    /* eslint-enable */
+                    ();if (item) {
                         files.push(item);
                     }
                 }

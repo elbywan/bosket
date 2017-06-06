@@ -11,16 +11,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 import React from "react";
-import { withListener, withLabels } from "../traits";
+import { withLabels, combine, withListener } from "../traits";
 import { tree } from "../../tools/trees";
 import { RootNode, defaults } from "../../core";
-import { TreeViewNode } from "./TreeNode";
-
-/* Root component */
+import { TreeViewNode } from "./TreeViewNode";
 
 var TreeViewBaseClass = function (_React$PureComponent) {
     _inherits(TreeViewBaseClass, _React$PureComponent);
 
+    /* Data & lifecycle */
     function TreeViewBaseClass(props) {
         _classCallCheck(this, TreeViewBaseClass);
 
@@ -40,16 +39,19 @@ var TreeViewBaseClass = function (_React$PureComponent) {
         };
         _this._props = {
             get: function get() {
-                return Object.assign({}, _extends({}, defaults), _this.props);
+                return _extends({}, defaults, _this.props);
             }
         };
 
         _this.onSearch = function (evt) {
-            var input = evt.target.value;
+            var input = evt.currentTarget.value;
             _this.setState({
                 search: input,
-                filtered: !input.trim() ? null : tree(_this.props.model, _this.props.category).treeFilter(_this.props.search(input.trim()))
-            });
+                filtered: !input.trim() ? null : tree(_this.props.model, _this.props.category
+                /* eslint-disable */
+                ).treeFilter(_this.props.search(input.trim())
+                /* eslint-enable */
+                ) });
         };
 
         _this.rootNode = new RootNode(_this._props, {
@@ -66,8 +68,6 @@ var TreeViewBaseClass = function (_React$PureComponent) {
 
     /* Events */
 
-    /* Data & lifecycle */
-
     _createClass(TreeViewBaseClass, [{
         key: "render",
 
@@ -75,27 +75,32 @@ var TreeViewBaseClass = function (_React$PureComponent) {
         /* Rendering */
 
         value: function render() {
-            var _props$get = this._props.get(),
-                sort = _props$get.sort,
-                rest = _objectWithoutProperties(_props$get, ["sort"]);
+            var sort = this.props.sort;
+
+            var _props = this.props,
+                onSelect = _props.onSelect,
+                rest = _objectWithoutProperties(_props, ["onSelect"]);
+
+            var props = _extends({}, defaults, rest);
 
             var searchBar = !this.props.search ? null : React.createElement("input", { type: "search", className: this.rootNode.mixCss("search"),
                 value: this.state.search,
-                placeholder: this.props.labels["search.placeholder"],
+                placeholder: this.props.labels && this.props.labels["search.placeholder"],
                 onChange: this.onSearch });
 
             return React.createElement(
                 "div",
                 { className: this.rootNode.mixCss("TreeView") },
                 searchBar,
-                React.createElement(TreeViewNode, _extends({}, rest, {
+                React.createElement(TreeViewNode, _extends({}, props, {
                     model: sort ? this.props.model.sort(sort) : this.props.model,
                     filteredModel: this.state.filtered,
                     onSelect: this.rootNode.onSelect,
                     dragndrop: this.rootNode.wrapDragNDrop(),
                     ancestors: [],
                     sort: sort,
-                    searched: this.state.search.trim() }))
+                    folded: false,
+                    searched: !!this.state.search.trim() }))
             );
         }
     }]);
@@ -103,9 +108,7 @@ var TreeViewBaseClass = function (_React$PureComponent) {
     return TreeViewBaseClass;
 }(React.PureComponent);
 
-export var TreeView = [withLabels(defaults.labels), withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true }), withListener({ eventType: "keyup", propName: "keyUpListener", autoMount: true })].reduce(function (accu, trait) {
-    return trait(accu);
-}, TreeViewBaseClass);
+export var TreeView = combine(withLabels(defaults.labels), withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true }), withListener({ eventType: "keyup", propName: "keyUpListener", autoMount: true }))(TreeViewBaseClass);
 ;
 
 var _temp = function () {
@@ -113,10 +116,10 @@ var _temp = function () {
         return;
     }
 
-    __REACT_HOT_LOADER__.register(TreeViewBaseClass, "TreeViewBaseClass", "src/react/components/RootNode.js");
+    __REACT_HOT_LOADER__.register(TreeViewBaseClass, "TreeViewBaseClass", "src/react/components/TreeView.js");
 
-    __REACT_HOT_LOADER__.register(TreeView, "TreeView", "src/react/components/RootNode.js");
+    __REACT_HOT_LOADER__.register(TreeView, "TreeView", "src/react/components/TreeView.js");
 }();
 
 ;
-//# sourceMappingURL=RootNode.js.map
+//# sourceMappingURL=TreeView.js.map

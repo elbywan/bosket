@@ -8,7 +8,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import React from "react";
 
-import { TreeView } from "../RootNode";
+import { TreeView } from "../TreeView";
 import { string, tree, deepMix } from "../../../tools";
 
 export var ExplorerView = function (_React$PureComponent) {
@@ -33,7 +33,7 @@ export var ExplorerView = function (_React$PureComponent) {
                 return React.createElement(
                     "a",
                     null,
-                    _this.props.name(item)
+                    item[_this.props.name]
                 );
             },
             sort: function sort(a, b) {

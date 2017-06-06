@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react"
 
 import { csscode, htmlcode } from "../../../tools/tools"

@@ -5,7 +5,7 @@ rules:
   no-console:
     - warn
   no-extra-parens:
-    - error
+    - warn
     - all
   no-mixed-operators:
     - off

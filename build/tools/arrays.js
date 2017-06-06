@@ -1,40 +1,31 @@
-export var array = function array(self) {
-    if (!self || !(self instanceof Array)) throw new Error("Bad array format");
 
+
+export var array = function array(self) {
     return {
         last: function last() {
             return self.length > 0 ? self[self.length - 1] : null;
         },
-        "in": function _in(arr) {
-            var otherCondition = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (elt) {
-                return true;
-            };
+        "in": function _in(arr, otherCondition) {
             return self.filter(function (elt) {
-                return arr.indexOf(elt) >= 0 && otherCondition(elt);
+                return arr.indexOf(elt) >= 0 && otherCondition && otherCondition(elt);
             });
         },
-        notIn: function notIn(arr) {
-            var otherCondition = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (elt) {
-                return true;
-            };
+        notIn: function notIn(arr, otherCondition) {
             return self.filter(function (elt) {
-                return arr.indexOf(elt) < 0 && otherCondition(elt);
+                return arr.indexOf(elt) < 0 && otherCondition && otherCondition(elt);
             });
         },
-        is: function is(_ref) {
+        is: function is(_ref, otherCondition) {
             var _ref$isIn = _ref.isIn,
                 isIn = _ref$isIn === undefined ? [] : _ref$isIn,
                 _ref$notIn = _ref.notIn,
                 notIn = _ref$notIn === undefined ? [] : _ref$notIn;
-            var otherCondition = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function (elt) {
-                return true;
-            };
             return self.filter(function (elt) {
                 return isIn.reduce(function (acc, curr) {
                     return curr.indexOf(elt) >= 0 && acc;
                 }, true) && notIn.reduce(function (acc, curr) {
                     return curr.indexOf(elt) < 0 && acc;
-                }, true) && otherCondition(elt);
+                }, true) && otherCondition && otherCondition(elt);
             });
         },
         contains: function contains(element) {
@@ -47,6 +38,7 @@ export var array = function array(self) {
         }
     };
 };
+
 ;
 
 var _temp = function () {
