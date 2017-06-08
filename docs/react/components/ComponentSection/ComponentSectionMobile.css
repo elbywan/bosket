@@ -1,10 +1,7 @@
 @media (max-width: 600px) {
-    div.ComponentSection.highlight {
-        min-height: auto;
-    }
-    .ComponentSection.flexContainer > * {
-        min-width: calc(100% - 40px);
-    }
+    div.ComponentSection.highlight { min-height: auto; }
+    div.ComponentSection.flexContainer > * { min-width: calc(100% - 40px); }
+    div.ComponentSection.code { border-top: 2px solid crimson; }
     div.ComponentSection.code .tabs {
         background-color: #444;
         color: #DDD;

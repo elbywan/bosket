@@ -5,71 +5,21 @@ import "./TreeViewSection.css"
 import React from "react"
 import { ComponentSection } from "../../ComponentSection/ComponentSection"
 
-/* Bosket imports */
-import { TreeView } from "bosket/react"
-import { string } from "bosket/tools"
-import { dragndrop } from "bosket/core/dragndrop"
-
-/* Model */
-import model from "../../../../common/models/TreeViewModel"
+import { TreeViewDemo } from "./TreeViewDemo"
 
 export class TreeViewSection extends React.PureComponent {
 
-    constructor(props: Object) {
-        super(props)
-        // Load the drag image once on component creation.
-        this.dragImage = new Image()
-        this.dragImage.src = "../assets/drag-image.svg"
-    }
-    dragImage: Image
-
-    // The state is passed down to the TreeView
     state = {
-        model: model,
-        category: "items",
-        display: (item: Object) => <a>{ item.label }</a>,
-        sort: (a: Object, b: Object) => a.label.localeCompare(b.label),
-        key: (item: Object) => item.label,
-        search: (input: string) => (i: Object) => string(i.label).contains(input),
-        selection: [],
-        onSelect: function(items) { this.setState({ selection: items }) }.bind(this),
-        transition: {
-            transitionName: "TreeViewDemoTransition",
-            transitionEnterTimeout: 300,
-            transitionLeaveTimeout: 300
-        },
-        css: { TreeView: "TreeViewDemo" },
-        strategies: {
-            selection: ["modifiers"],
-            click: [],
-            fold: ["opener-control"]
-        },
-        noOpener: false,
-        dragndrop: {
-            draggable: true,
-            droppable: true,
-            drag: (target: Object, event: DragEvent, ancestors: Object[], neighbours: Object[]) => {
-                event.dataTransfer && event.dataTransfer.setDragImage(this.dragImage, 0, 0)
-            },
-            drop: (target: Object, item: Object, event: DragEvent) => {
-                this.setState({
-                    model: dragndrop.drops.selection(
-                        target,
-                        this.state.model,
-                        this.state.category,
-                        this.state.selection)
-                })
-            }
-        }
+        selection: []
     }
 
-    // We render the TreeView with the state as props
+    // We render the TreeView into the window
     renderTreeView = () =>
         <div style={ { display: "inline-block" } }>
-            <TreeView { ...this.state }></TreeView>
+            <TreeViewDemo selection={ this.state.selection } update={ _ => this.setState({ selection: _ }) }></TreeViewDemo>
         </div>
 
-    // The rest of the demo (demo window / selection boxes) ...
+    // The rest of the demo (window / selection boxes) ...
     render = () =>
         <ComponentSection
                 componentName="TreeView Demo"
@@ -92,6 +42,7 @@ export class TreeViewSection extends React.PureComponent {
                     </div>
                 }
                 files={[
+                    "./components/Sections/TreeView/TreeViewDemo.js",
                     "./components/Sections/TreeView/TreeViewSection.js",
                     "./components/Sections/TreeView/TreeViewSection.css",
                     "../common/models/TreeViewModel.js"

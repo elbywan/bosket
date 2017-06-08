@@ -37,7 +37,7 @@ const getPrismExtension = file => {
 
 export class ComponentSection extends React.PureComponent {
 
-    state = { tab: "", showAll: false }
+    state = { tab: "", expand: "" }
     props: {
         componentName: string,
         description: string | React.Element<any>,
@@ -47,20 +47,29 @@ export class ComponentSection extends React.PureComponent {
 
     get files() : string[] { return this.props.files || [] }
     get tab() : string | null { return this.state.tab || (this.files.length > 0 ? this.files[0] : null) }
+    isExpanded = (state: string) : boolean => this.state.expand === state
+    set expand(state: string) {
+        this.setState({ expand: this.isExpanded(state) ? "" : state })
+    }
 
     render = () =>
         <div className="ComponentSection section">
             <h3>{ this.props.componentName }</h3>
             <div> { this.props.description } </div>
-            <div className="ComponentSection flexContainer">
-                <div className="ComponentSection demo-area">{ this.props.children }</div>
-                <div className={ "ComponentSection code" + (this.state.showAll ? " showAll" : "") }>
+            <div className={ "ComponentSection flexContainer"  + (this.state.expand ? " expanded" : "") }>
+                <div className={ "ComponentSection demo-area" + (this.isExpanded("demo") ? " expand" : "") }>
+                    <div className="ComponentSection expander" onClick={ _ => this.expand = "demo" }>
+                        <i className={ "fa" + (this.isExpanded("demo") ? " fa-compress" : " fa-expand") }></i>
+                    </div>
+                    { this.props.children }
+                </div>
+                <div className={ "ComponentSection code" + (this.state.expand === "code" ? " expand" : "") }>
+                    <div className="ComponentSection expander" onClick={ _ => this.expand = "code" }>
+                        <i className={ "fa" + (this.isExpanded("code") ? " fa-compress" : " fa-expand") }></i>
+                    </div>
                     { this.renderTabs(this.files) }
                     { this.files.filter(f => f === this.tab).map(this.renderFile) }
                 </div>
-            </div>
-            <div className="click-block" onClick={ _ => this.setState({ showAll: !this.state.showAll }) }>
-                { this.state.showAll ? "Show less." : "Show more." }
             </div>
         </div>
 

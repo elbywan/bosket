@@ -21,6 +21,7 @@
 .ComponentSection.flexContainer > * {
     flex: 1;
     min-width: 400px;
+    position: relative;
 }
 
 div.ComponentSection.demo-area {
@@ -29,8 +30,38 @@ div.ComponentSection.demo-area {
     align-self: flex-start;
 }
 
+.ComponentSection.flexContainer > div > .expander {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    top: -32px;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    background-color: #444;
+    border: 1px solid #444;
+    box-shadow: 0px 0px 2px #444;
+    box-sizing: border-box;
+    opacity: 0.5;
+    transition: all 0.25s ease-in-out;
+}
+.ComponentSection.flexContainer > div > .expander:hover {
+    opacity: 1;
+    color: crimson;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: none;
+}
+.ComponentSection.flexContainer.expanded > :not(.expand) { display: none; }
+.ComponentSection.flexContainer.expanded > .code.expand > pre > code {
+    position: relative;
+}
+
 div.ComponentSection.code {
-    overflow: hidden;
     display: flex;
     flex-direction: column;
 }
@@ -44,12 +75,11 @@ div.ComponentSection.code .tabs > * {
     vertical-align: middle;
     padding: 5px 10px;
     cursor: pointer;
-    border-top-right-radius: 10px;
     transition: all 0.25s ease-in-out;
 }
 div.ComponentSection.code .tabs > *:hover {
-    background-color: #DDD;
-    border-top-right-radius: 0px;
+    background-color: white;
+    color: crimson;
 }
 div.ComponentSection.code .tabs > *.selected {
     background-color: crimson;
@@ -65,7 +95,4 @@ div.ComponentSection.code > pre[class*=language-] {
 div.ComponentSection.code > pre > code {
     position: absolute;
     padding-bottom: 10px;
-}
-div.ComponentSection.code.showAll > pre > code {
-    position: relative;
 }
