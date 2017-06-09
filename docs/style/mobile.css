@@ -8,11 +8,11 @@
         & .frameworks {
             display: block;
             float: none;
-            background: #444;
+            background: var(--darkerColor);
             width: 100%;
             position: relative;
             left: 0;
-            border-top: 2px solid crimson;
+            border-top: 2px solid var(--accentColor);
             & img { height: 1.7em;  }
         }
     }

@@ -5,9 +5,6 @@ import "./TreeViewSection.css"
 import initialModel from "../../../../common/models/TreeViewModel"
 import { dragndrop } from "bosket/core/dragndrop"
 
-const timeoutPromise = (value, duration) => new Promise(resolve => setTimeout(() => resolve(value), duration))
-
-
 @Component({
     template:`<a>{{ item.label }}</a>`
 })

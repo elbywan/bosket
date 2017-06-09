@@ -2,7 +2,7 @@
 
 import React from "react"
 
-import { TreeViewSection } from "../../../components/Sections/TreeView/TreeViewSection"
+import { TreeViewSection } from "self/react/components/Sections/TreeView/TreeViewSection"
 
 export default {
     title: "Demo",

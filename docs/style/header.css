@@ -1,7 +1,7 @@
 header {
     position: relative;
-    background-color: #444;
-    color: crimson;
+    background-color: var(--darkerColor);
+    color: var(--accentColor);
     font-size: 1.7rem;
     padding: 0px 10%;
     height: 1.7em;
@@ -15,15 +15,15 @@ header {
         vertical-align: middle;
         background-color: rgb(220, 20, 60);
         padding: 0 20px 0 10px;
-        color: #FFF;
+        color: var(--lighterColor);
         text-shadow: 1px 1px black;
-        font-family: 'Cormorant Garamond', serif;
+        font-family: var(--serifFont);
         font-size: 1em;
         font-weight: bold;
         letter-spacing: 10px;
 
         & * { display: inline-block; vertical-align: middle; }
-        &:hover a { color: #444; }
+        &:hover a { color: var(--darkerColor); }
         & img { height: 1.7em; }
     }
 
@@ -38,7 +38,7 @@ header {
             height: calc(100% - 10px);
             width: 100%;
             padding: 6px 0px;
-            fill: crimson;
+            fill: var(--accentColor);
             transition: fill 0.25s ease-in-out;
 
             &:hover { fill: white; }
@@ -56,9 +56,9 @@ header {
             padding: 0px 10px;
             cursor: pointer;
             transition: all .25s ease-in-out;
-            border-bottom: 4px solid #444;
+            border-bottom: 4px solid var(--darkerColor);
 
-            &:hover { border-color: #EEE; }
+            &:hover { border-color: var(--lightColor); }
             &.selected { border-color: white; }
         }
     }

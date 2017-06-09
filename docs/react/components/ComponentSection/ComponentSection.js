@@ -4,7 +4,7 @@ import "./ComponentSection.css"
 
 import React from "react"
 
-import Prism from "../../../common/libs/prismjs/prism"
+import Prism from "self/common/libs/prismjs/prism"
 
 const memoize = new Map()
 

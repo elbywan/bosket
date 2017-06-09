@@ -8,7 +8,7 @@ import { string } from "bosket/tools"
 import { dragndrop } from "bosket/core/dragndrop"
 
 // Model
-import model from "../../../../common/models/TreeViewModel"
+import model from "self/common/models/TreeViewModel"
 
 export class TreeViewDemo extends React.PureComponent {
 

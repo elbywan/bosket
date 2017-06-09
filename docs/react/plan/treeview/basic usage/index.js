@@ -2,7 +2,7 @@
 
 import React from "react"
 
-import { jscode } from "../../../tools/tools"
+import { jscode } from "self/react/tools"
 
 export default {
     title: "Basic Usage",

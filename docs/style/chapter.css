@@ -1,7 +1,7 @@
 div.chapter {
     padding: 10px 10%;
     padding-bottom: 40px;
-    background-color: #444;
+    background-color: var(--darkerColor);
     color: white;
 
     & h1, & h2, & h3, & h4, & h5, & h6 {
@@ -13,7 +13,7 @@ div.chapter {
         text-align: center;
         font-size: 2.5em;
         padding: 10px 0px;
-        color: crimson;
+        color: var(--accentColor);
     }
     & h2 {
         padding: 20px 0px;
@@ -53,7 +53,7 @@ div.chapter {
         font-weight: bold;
         font-style: normal;
         & > a { transition: color 0.25s ease-in-out; }
-        & > a:hover { color: crimson; }
+        & > a:hover { color: var(--accentColor); }
     }
     & pre[class*=language-] {
         margin: 20px 0px;
@@ -65,21 +65,21 @@ div.chapter {
         font-size: 0.9em;
     }
     & .highlight {
-        color: crimson;
+        color: var(--accentColor);
     }
     & .click-block {
         font-family: 'Cormorant Garamond',serif;
         text-align: center;
         font-size: 1.1em;
         background-color: #DDD;
-        color: #444;
+        color: var(--darkerColor);
         padding: 5px 0px;
-        box-shadow: 0px 1px 1px #444;
+        box-shadow: 0px 1px 1px var(--darkerColor);
         cursor: pointer;
         transition: all 0.25s ease-in-out;
 
         &:hover {
-            background-color: crimson;
+            background-color: var(--accentColor);
             color: white;
         }
     }
@@ -90,22 +90,22 @@ div.chapter {
         & > pre { margin-bottom: 0px !important; }
     }
     & div.separate {
-        border-bottom: 1px solid crimson;
+        border-bottom: 1px solid var(--accentColor);
         padding-bottom: 15px;
         margin-bottom: 20px;
 
-        & a:hover { color: crimson; }
+        & a:hover { color: var(--accentColor); }
     }
     & div.framework-choice {
         & a:hover {
-            color: crimson;
+            color: var(--accentColor);
         }
         & > div {
-            background: #444;
-            color: #eee;
+            background: var(--darkerColor);
+            color: var(--lightColor);
             padding-bottom: 20px;
-            border-bottom: 2px solid crimson;
-            border-left: 5px solid #444;
+            border-bottom: 2px solid var(--accentColor);
+            border-left: 5px solid var(--darkerColor);
             transition: padding .25s ease-in-out;
             &:hover { padding-left: 2%; }
             & > * { display: inline-block; }

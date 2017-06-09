@@ -7,12 +7,12 @@ export var array = function array(self) {
         },
         "in": function _in(arr, otherCondition) {
             return self.filter(function (elt) {
-                return arr.indexOf(elt) >= 0 && otherCondition && otherCondition(elt);
+                return arr.indexOf(elt) >= 0 && (!otherCondition || otherCondition(elt));
             });
         },
         notIn: function notIn(arr, otherCondition) {
             return self.filter(function (elt) {
-                return arr.indexOf(elt) < 0 && otherCondition && otherCondition(elt);
+                return arr.indexOf(elt) < 0 && (!otherCondition || otherCondition(elt));
             });
         },
         is: function is(_ref, otherCondition) {
@@ -25,7 +25,7 @@ export var array = function array(self) {
                     return curr.indexOf(elt) >= 0 && acc;
                 }, true) && notIn.reduce(function (acc, curr) {
                     return curr.indexOf(elt) < 0 && acc;
-                }, true) && otherCondition && otherCondition(elt);
+                }, true) && (!otherCondition || otherCondition(elt));
             });
         },
         contains: function contains(element) {

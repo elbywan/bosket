@@ -4,7 +4,7 @@ import React from "react"
 
 import "./howto.css"
 
-import { jscode } from "../../../tools/tools"
+import { jscode } from "self/react/tools"
 
 export default {
     title: "How-to",

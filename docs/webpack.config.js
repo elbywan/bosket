@@ -13,7 +13,10 @@ module.exports = {
         path: resolve(__dirname, "")
     },
     resolve: {
-        extensions: [ ".js", ".ts" ]
+        extensions: [ ".js", ".ts" ],
+        alias: {
+            self: resolve(__dirname, ".")
+        }
     },
     devtool: "source-map",
     module: {

@@ -1,5 +1,7 @@
+@import "variables.css";
+
 body {
-    background: #444;
+    background: var(--darkerColor);
 }
 
 .App-intro {
@@ -7,8 +9,8 @@ body {
 }
 
 .App .chapter {
-    background-color: #EEE;
-    color: #444;
+    background-color: var(--lightColor);
+    color: var(--darkerColor);
     margin-bottom: 10px;
     /* margin-top: 10px; */
 }

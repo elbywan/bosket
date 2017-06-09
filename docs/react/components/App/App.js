@@ -3,9 +3,10 @@
 import "./App.css"
 import React from "react"
 
-import * as sectionsImport from "../Sections"
-import plan from "../../plan"
-import { Planner } from "../Planner/Planner"
+import * as sectionsImport from "self/react/components/Sections"
+import { Planner } from "self/react/components/Planner/Planner"
+
+import plan from "self/react/plan"
 
 const sections = (() => {
     const res = []

@@ -3,11 +3,12 @@
 import "./MenuViewSection.css"
 
 import React from "react"
-import { ComponentSection } from "../../ComponentSection/ComponentSection"
-import { MenuView } from "bosket/react"
-import { css } from "bosket/tools/css"
 
-import model from "../../../../common/models/MenuViewModel"
+import { css } from "bosket/tools/css"
+import { MenuView } from "bosket/react"
+
+import { ComponentSection } from "self/react/components/ComponentSection/ComponentSection"
+import model from "self/common/models/MenuViewModel"
 
 export class MenuViewSection extends React.PureComponent {
 
@@ -71,6 +72,4 @@ export class MenuViewSection extends React.PureComponent {
                 )}</div>
             </article>
         </div>
-
-
 }

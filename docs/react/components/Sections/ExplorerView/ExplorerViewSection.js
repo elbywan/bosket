@@ -3,7 +3,7 @@
 import "./ExplorerViewSection.css"
 
 import React from "react"
-import { ComponentSection } from "../../ComponentSection/ComponentSection"
+import { ComponentSection } from "self/react/components/ComponentSection/ComponentSection"
 import { ExplorerDemo } from "./ExplorerDemo"
 
 import helpers from "./helpers"

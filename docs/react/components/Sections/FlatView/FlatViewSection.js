@@ -3,12 +3,12 @@
 import "./FlatViewSection.css"
 
 import React from "react"
-import { ComponentSection } from "../../ComponentSection/ComponentSection"
-import { array, css, string } from "bosket/tools"
-import model from "../../../../common/models/FlatViewModel"
 
+import { array, css, string } from "bosket/tools"
 import { FlatView } from "bosket/react"
 
+import { ComponentSection } from "self/react/components/ComponentSection/ComponentSection"
+import model from "self/common/models/FlatViewModel"
 
 export class FlatViewSection extends React.PureComponent {
 

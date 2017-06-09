@@ -8,7 +8,7 @@
   "repository": "https://github.com/elbywan/bosket",
   "scripts": {
     "start": "npm run clean && npm run build && npm run build-docs",
-    "prebuild": "eslint ./ && flow && flow stop",
+    "prebuild": "eslint ./ && flow",
     "build": "npm run build-react && npm run build-angular",
     "build-react": "babel src -d build -s && flow-copy-source -v src build",
     "build-angular": "ngc -p src/angular/tsconfig.json && cd src && copy ./**/*.d.ts ../build",
@@ -53,6 +53,7 @@
     "flow-bin": "^0.47.0",
     "flow-copy-source": "^1.1.0",
     "postcss-cssnext": "^2.11.0",
+    "postcss-import": "^10.0.0",
     "postcss-loader": "^2.0.5",
     "postcss-nesting": "^4.0.1",
     "react": "^15.5.4",

@@ -2,7 +2,7 @@
 
 import React from "react"
 
-import { indent } from "../../common"
+import { indent } from "self/common/tools"
 
 const indentLanguage = (language, str, ...vals) =>
     <pre><code className={ `language-${language}` } >{

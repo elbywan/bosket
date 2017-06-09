@@ -9,7 +9,7 @@ import { ExplorerView } from "bosket/react"
 // Drag'n'drop utilities
 import { dragndrop } from "bosket/core/dragndrop"
 // Data model
-import model from "../../../../common/models/ExplorerViewModel"
+import model from "self/common/models/ExplorerViewModel"
 
 // Helpers for this demo
 import helpers from "./helpers"

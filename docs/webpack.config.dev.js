@@ -18,7 +18,8 @@ module.exports = {
     resolve: {
         extensions: [ ".js", ".ts" ],
         alias: {
-            bosket: resolve(__dirname, "../src")
+            bosket: resolve(__dirname, "../src"),
+            self: resolve(__dirname, ".")
         }
     },
 

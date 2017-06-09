@@ -4,9 +4,9 @@ div.subtitle {
     align-items: center;
     flex-wrap: wrap;
     padding: 20px 5%;
-    background: rgba(220, 20, 60, 1);
-    color: #FFF;
-    font-family: 'Cormorant Garamond', serif;
+    background: var(--accentColor);
+    color: var(--lighterColor);
+    font-family: var(--serifFont);
     font-size: 1.4em;
     line-height: 2em;
     font-weight: bold;
@@ -19,7 +19,7 @@ div.subtitle {
     & .tree-capture {
         text-align: center;
         line-height: 0;
-        background: radial-gradient(ellipse, rgba(255, 255, 255, 0.25), crimson 70%);
+        background: radial-gradient(ellipse, rgba(255, 255, 255, 0.25), var(--accentColor) 70%);
         padding: 25px;
 
         & > svg {
@@ -27,7 +27,7 @@ div.subtitle {
 
             & rect {
                 fill: #666;
-                stroke: #444;
+                stroke: var(--darkerColor);
                 stroke-width: 9px;
             }
 

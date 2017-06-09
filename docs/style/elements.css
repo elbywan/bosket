@@ -6,7 +6,7 @@ html{
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: --var(--sansSerifFont);
     /* font-size: 0.9em; */
     letter-spacing: 0.3px;
     overflow-x: hidden;
@@ -30,12 +30,12 @@ button {
     transition: all 0.25s ease-in-out;
 
     &:hover:not([disabled]) {
-        background: #ff6464;
+        background: var(--accentColorLight);
         color: white;
     }
 
     &.basic-button {
-        background: crimson;
+        background: var(--accentColor);
         color: white;
         border-radius: 5px;
         border: 1px solid rgba(0, 0, 0, 0.1);
@@ -52,7 +52,7 @@ button {
 
     &.control-button {
         border: 1px solid black;
-        background: #EEE;
+        background: var(--lightColor);
     }
 }
 
@@ -71,13 +71,13 @@ input[type="number"], input[type="text"], input[type="email"], input[type="searc
     -webkit-appearance: none;
     border: none;
     outline: none;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid var(--darkerColor);
     border-radius: 0px;
     padding: 5px 10px;
     transition: border 0.25s ease-in-out;
 
     &:focus {
-        border-color: crimson;
+        border-color: var(--accentColor);
     }
 }
 
@@ -91,7 +91,7 @@ select {
     color: black;
     min-width: 150px;
     appearance: none;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid var(--darkerColor);
     transition: all 0.25s ease-in-out;
 
     &:hover {
@@ -107,13 +107,13 @@ code {
         transition: color 0.25s ease-in-out;
 
         &:hover {
-            color: crimson;
+            color: var(--accentColor);
         }
     }
     &.terminal {
         display: block;
         background: #222;
-        color: #EEE;
+        color: var(--lightColor);
         padding: 5px 8px;
         margin: 20px 10px;
         border-radius: 3px;
@@ -121,7 +121,7 @@ code {
         font-family: Monaco, unicode;
 
         & em {
-            color: #888;
+            color: var(--darkColor);
         }
     }
 }

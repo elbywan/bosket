@@ -1,0 +1,11 @@
+:root {
+    --lightColor:       #EEE;
+    --lighterColor:     white;
+    --darkColor:        #888;
+    --darkerColor:      #444;
+    --accentColor:      crimson;
+    --accentColorLight: #ff6464;
+    --emphasisColor:    rgba(255,241,118,1);
+    --serifFont:        'Cormorant Garamond', serif;
+    --sansSerifFont:    'Open Sans', serif;
+}

@@ -1,3 +1,5 @@
+@import "variables.css";
+
 .ComponentSection {
 
     & .padded {
@@ -6,8 +8,8 @@
 
     &.section {
         padding: 5px 25px 25px;
-        background: #EEE;
-        border: 2px solid #444;
+        background: var(--lightColor);
+        border: 2px solid var(--darkerColor);
         color: black;
         margin: 10px 0px;
 
@@ -22,7 +24,7 @@
         display: flex;
         flex-wrap: wrap;
         margin-top: 30px;
-        box-shadow: 0px 0px 1px #444;
+        box-shadow: 0px 0px 1px var(--darkerColor);
 
         & > * {
             flex: 1;
@@ -33,7 +35,7 @@
             max-height: 100%;
             transition: all 0.5s;
 
-            @media (max-width: 600px) {
+            @media (max-width: 1100px) {
                 min-width: calc(100% - 40px);
                 animation: none;
             }
@@ -45,37 +47,41 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: white;
+            color: var(--lighterColor);
             top: -32px;
             right: 0px;
             width: 30px;
             height: 30px;
             font-size: 20px;
-            background-color: #444;
-            border: 1px solid #444;
-            box-shadow: 0px 0px 2px #444;
+            background-color: var(--darkerColor);
+            border: 1px solid var(--darkerColor);
+            box-shadow: 0px 0px 2px var(--darkerColor);
             box-sizing: border-box;
             opacity: 0.5;
             transition: all 0.25s ease-in-out;
 
             &:hover {
                 opacity: 1;
-                color: crimson;
-                background: white;
+                color: var(--accentColor);
+                background: var(--lighterColor);
                 border: 1px solid rgba(0, 0, 0, 0.3);
                 box-shadow: none;
             }
         }
 
         & > div.demo-area {
-            background-image: repeating-linear-gradient(145deg, #fff, #fff 30px, #f5f5f5 30px, #f5f5f5 60px);
+            background-image: repeating-linear-gradient(145deg,
+                var(--lighterColor),
+                var(--lighterColor) 30px,
+                color(var(--lighterColor) b(4%)) 30px,
+                color(var(--lighterColor) b(4%)) 60px);
             align-self: flex-start;
         }
 
         & > div.code {
             display: flex;
             flex-direction: column;
-            @media (max-width: 600px) { border-top: 2px solid crimson; }
+            @media (max-width: 1100px) { border-top: 2px solid var(--accentColor); }
 
             & > pre[class*=language-] {
                 position: relative;
@@ -89,11 +95,11 @@
             }
 
             & .tabs {
-                border-bottom: 2px solid crimson;
+                border-bottom: 2px solid var(--accentColor);
                 font-size: 12px;
 
-                @media (max-width: 600px) {
-                    background-color: #444;
+                @media (max-width: 1100px) {
+                    background-color: var(--darkerColor);
                     color: #DDD;
                     text-align: center;
                 }
@@ -101,22 +107,23 @@
                 & > * {
                     display: inline-block;
                     vertical-align: middle;
-                    padding: 5px 10px;
                     cursor: pointer;
+                    padding: 5px 10px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
                     transition: all 0.25s ease-in-out;
 
                     &:hover {
-                        background-color: white;
-                        color: crimson;
+                        background-color: var(--lighterColor);
+                        color: var(--accentColor);
 
                         @media (max-width: 600px) {
-                            color: white;
-                            background: crimson;
+                            color: var(--lighterColor);
+                            background: var(--accentColor);
                         }
                     }
                     &.selected {
-                        background-color: crimson;
-                        color: white;
+                        background-color: var(--accentColor);
+                        color: var(--lighterColor);
                     }
                 }
             }
@@ -128,7 +135,7 @@
                 flex-grow: 0;
                 min-width: 0;
 
-                @media (max-width: 600px) {
+                @media (max-width: 1100px) {
                     display: none;
                     animation: none;
                 }

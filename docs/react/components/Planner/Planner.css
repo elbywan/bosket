@@ -1,10 +1,12 @@
+@import "variables.css";
+
 .Planner {
     &.opener {
         position: fixed;
         z-index: 2;
         top: 0;
         background: rgba(68, 68, 68, 0.33);
-        color: #EEE;
+        color: var(--lightColor);
         padding: 0px 15px;
         height: 2.9rem;
         font-size: 27px;
@@ -17,7 +19,7 @@
             line-height: 1.7em;
         }
         &:hover {
-            color: crimson;
+            color: var(--accentColor);
             box-shadow: none;
         }
     }
@@ -29,9 +31,9 @@
         top: 0px;
         width: 300px;
         height: 100%;
-        background: #444;
-        color: #EEE;
-        font-family: 'Cormorant Garamond',serif;
+        background: var(--darkerColor);
+        color: var(--lightColor);
+        font-family: var(--serifFont);
         transform: translateX(-300px);
 
         & h1 {
@@ -39,13 +41,13 @@
             font-size: 1.5em;
             margin: 0px;
             padding-top: 0px;
-            border-bottom: 2px solid crimson;
+            border-bottom: 2px solid var(--accentColor);
             height: 2.9rem;
             line-height: 2em;
         }
         &.opened {
             transform: translateX(0px);
-            box-shadow: 0px 0px 10px #444;
+            box-shadow: 0px 0px 10px var(--darkerColor);
         }
     }
     &.side-panel, &.content {
@@ -104,7 +106,7 @@
 
         &.category > .item {
             display:block;
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid var(--lighterColor);
             transition: border 0.25s ease-in-out;
         }
 
@@ -115,8 +117,8 @@
 
         & > .item:hover,
         &.selected > .item {
-            color: rgb(255, 100, 100);
-            border-color: rgb(255, 100, 100);
+            color: var(--accentColorLight);
+            border-color: var(--accentColorLight);
 
         }
     }
