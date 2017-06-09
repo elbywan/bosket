@@ -1,28 +1,40 @@
 @media (max-width: 600px) {
-    header { text-align: center; padding: 0; height: auto; }
-    header .title a > span { display: none; }
-    header .title { padding: 0px 20px; }
-    header .frameworks {
-        display: block;
-        float: none;
-        background: #444;
-        width: 100%;
-        position: relative;
-        left: 0;
-        border-top: 2px solid crimson;
+    header {
+        text-align: center; padding: 0; height: auto;
+        & .title {
+            padding: 0px 20px;
+            & a > span { display: none; }
+        }
+        & .frameworks {
+            display: block;
+            float: none;
+            background: #444;
+            width: 100%;
+            position: relative;
+            left: 0;
+            border-top: 2px solid crimson;
+            & img { height: 1.7em;  }
+        }
     }
-    header .frameworks img { height: 1.7em;  }
     div.subtitle { text-align: center; }
-    code { font-size: 0.8em; }
-    code.terminal { margin: 0px; }
-    div.chapter { padding: 10px 20px; }
-    div.chapter ol.chapter-list, ul.chapter-list { padding: 0px; }
-    div.chapter .marged { margin: 0px; }
-    div.chapter h1, div.chapter h2, div.chapter h3, div.chapter h4 { text-align: center; }
-    div.chapter.marged { margin: 0px 20px; }
-    div.framework-choice { margin-top: 0px; }
-    div.framework-choice > div { text-align: center; margin-bottom: 20px; }
-    div.framework-choice > div:hover { padding-left: 0px }
-    div.framework-choice > div h2 { padding-top: 0; }
-    div.framework-choice > div > * { display: block; }
+    code {
+        font-size: 0.8em;
+        &.terminal { margin: 0px; }
+    }
+    div.chapter {
+        padding: 10px 20px;
+        & .marged { margin: 0px; }
+        &.marged  { margin: 0px 20px; }
+        & ol.chapter-list, & ul.chapter-list { padding: 0px; }
+        & h1, & h2, & h3, & h4 { text-align: center; }
+    }
+    div.framework-choice {
+        margin-top: 0px;
+        & > div {
+            text-align: center; margin-bottom: 20px;
+            &:hover { padding-left: 0px }
+            & h2 { padding-top: 0; }
+            & > * { display: block; }
+        }
+    }
 }

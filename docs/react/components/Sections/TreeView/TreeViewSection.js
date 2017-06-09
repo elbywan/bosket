@@ -26,8 +26,8 @@ export class TreeViewSection extends React.PureComponent {
                 description={
                     <div>
                         <p>
-                            <em>Typical use of the TreeView component</em>&nbsp;
-                            which shows how to override and use most of its&nbsp;
+                            <em>Typical use of the TreeView component </em>
+                            <span>which shows how to override and use most of its </span>
                             <em><a href="#TreeView#Required props">component props</a></em>, and&nbsp;
                             <em><a href="#TreeView#Css">css styles</a></em>.
                         </p>

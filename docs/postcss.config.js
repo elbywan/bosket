@@ -1,7 +1,11 @@
 module.exports = {
     parser: false,
     plugins: {
-        autoprefixer: {},
-        cssnano: {}
+        "postcss-cssnext": {
+            browsers: "> 5%"
+        },
+        cssnano: {
+            reduceIdents: false
+        }
     }
 }

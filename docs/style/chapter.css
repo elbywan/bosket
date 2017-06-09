@@ -3,128 +3,116 @@ div.chapter {
     padding-bottom: 40px;
     background-color: #444;
     color: white;
-}
-div.chapter h1, div.chapter h2, div.chapter h3, div.chapter h4, div.chapter h5, div.chapter h6 {
-    font-family: 'Cormorant Garamond',serif;
-    margin: 0;
-}
-div.chapter h1 {
-    text-align: center;
-    font-size: 2.5em;
-    padding: 10px 0px;
-    color: crimson;
-}
-div.chapter h2 {
-    padding: 20px 0px;
-    font-size: 1.8em;
-}
-div.chapter h3 {
-    padding: 20px 0px;
-    font-size: 1.6em;
-    font-weight: normal;
-}
-div.chapter h3 em {
-    font-weight: bold;
-    font-style: normal;
-}
-div.chapter h4 {
-    padding: 20px 0px;
-    font-size: 1.4em;
-    font-weight: normal;
-}
-div.chapter h4 em {
-    font-weight: bold;
-    font-style: normal;
-}
-div.chapter h5 {
-    padding: 15px 0px;
-    font-size: 1.3em;
-    font-weight: normal;
-}
-div.chapter h6 {
-    padding: 15px 0px;
-    margin: 0;
-    font-size: 1.3em;
-    font-weight: normal;
-}
-div.chapter p {
-    padding: 20px 0;
-    margin: 0;
-    /* font-size: 1.1em; */
-}
-div.chapter p em,
-div.chapter div.emphasis em {
-    font-weight: bold;
-    font-style: normal;
-}
-div.chapter p em > a,
-div.chapter div.emphasis em > a {
-    transition: color 0.25s ease-in-out;
-}
-div.chapter p em > a:hover,
-div.chapter div.emphasis em > a:hover {
-    color: crimson;
-}
-div.chapter .highlight {
-    color: crimson;
-}
-div.chapter .click-block {
-    font-family: 'Cormorant Garamond',serif;
-    text-align: center;
-    font-size: 1.1em;
-    background-color: #DDD;
-    color: #444;
-    padding: 5px 0px;
-    box-shadow: 0px 1px 1px #444;
-    cursor: pointer;
-    transition: all 0.25s ease-in-out;
-}
-div.chapter .click-block:hover {
-    background-color: crimson;
-    color: white;
-}
-div.chapter .marged {
-    margin: 0px 40px;
-    font-size: 0.9em;
-}
-div.chapter div.emphasis {
-    background: rgba(255, 241, 118, 0.7);
-    padding: 10px;
-    color: #222;
-}
-div.chapter div.emphasis > pre {
-    margin-bottom: 0px !important;
-}
-div.chapter div.separate {
-    border-bottom: 1px solid crimson;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
-}
-div.chapter div.separate a:hover {
-    color: crimson;
-}
-div.chapter pre[class*=language-] {
-    margin: 20px 0px;
-    font-size: 14px;
-}
-div.framework-choice a:hover {
-    color: crimson;
-}
-div.framework-choice > div {
-    background: #444;
-    color: #eee;
-    padding-bottom: 20px;
-    border-bottom: 2px solid crimson;
-    border-left: 5px solid #444;
-    transition: padding .25s ease-in-out;
-}
-div.framework-choice > div:hover {
-    padding-left: 2%;
-}
-div.framework-choice > div > a > img {
-    width: 100px;
-    height: 70px;
-}
-div.framework-choice > div > * {
-    display: inline-block;
+
+    & h1, & h2, & h3, & h4, & h5, & h6 {
+        font-family: 'Cormorant Garamond',serif;
+        margin: 0;
+    }
+
+    & h1 {
+        text-align: center;
+        font-size: 2.5em;
+        padding: 10px 0px;
+        color: crimson;
+    }
+    & h2 {
+        padding: 20px 0px;
+        font-size: 1.8em;
+    }
+    & h3 {
+        padding: 20px 0px;
+        font-size: 1.6em;
+        font-weight: normal;
+    }
+    & h4 {
+        padding: 20px 0px;
+        font-size: 1.4em;
+        font-weight: normal;
+    }
+    & h3 em, & h4 em {
+        font-weight: bold;
+        font-style: normal;
+    }
+    & h5 {
+        padding: 15px 0px;
+        font-size: 1.3em;
+        font-weight: normal;
+    }
+    & h6 {
+        padding: 15px 0px;
+        margin: 0;
+        font-size: 1.3em;
+        font-weight: normal;
+    }
+    & p {
+        padding: 20px 0;
+        margin: 0;
+    }
+    & p em,
+    & div.emphasis em {
+        font-weight: bold;
+        font-style: normal;
+        & > a { transition: color 0.25s ease-in-out; }
+        & > a:hover { color: crimson; }
+    }
+    & pre[class*=language-] {
+        margin: 20px 0px;
+        font-size: 14px;
+    }
+
+    & .marged {
+        margin: 0px 40px;
+        font-size: 0.9em;
+    }
+    & .highlight {
+        color: crimson;
+    }
+    & .click-block {
+        font-family: 'Cormorant Garamond',serif;
+        text-align: center;
+        font-size: 1.1em;
+        background-color: #DDD;
+        color: #444;
+        padding: 5px 0px;
+        box-shadow: 0px 1px 1px #444;
+        cursor: pointer;
+        transition: all 0.25s ease-in-out;
+
+        &:hover {
+            background-color: crimson;
+            color: white;
+        }
+    }
+    & div.emphasis {
+        background: rgba(255, 241, 118, 0.7);
+        padding: 10px;
+        color: #222;
+        & > pre { margin-bottom: 0px !important; }
+    }
+    & div.separate {
+        border-bottom: 1px solid crimson;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+
+        & a:hover { color: crimson; }
+    }
+    & div.framework-choice {
+        & a:hover {
+            color: crimson;
+        }
+        & > div {
+            background: #444;
+            color: #eee;
+            padding-bottom: 20px;
+            border-bottom: 2px solid crimson;
+            border-left: 5px solid #444;
+            transition: padding .25s ease-in-out;
+            &:hover { padding-left: 2%; }
+            & > * { display: inline-block; }
+            & > a > img {
+                width: 100px;
+                height: 70px;
+            }
+        }
+    }
 }

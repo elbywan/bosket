@@ -1,98 +1,146 @@
-.ComponentSection.section {
-    padding: 5px 25px 25px;
-    background: #EEE;
-    border: 2px solid #444;
-    color: black;
-    margin: 10px 0px;
-}
+.ComponentSection {
 
-.ComponentSection.section > h3 {
-    font-weight: 500;
-    font-size: 1.5em;
-}
+    & .padded {
+        padding: 20px;
+    }
 
-.ComponentSection.flexContainer {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    box-shadow: 0px 0px 1px #444;
-}
+    &.section {
+        padding: 5px 25px 25px;
+        background: #EEE;
+        border: 2px solid #444;
+        color: black;
+        margin: 10px 0px;
 
-.ComponentSection.flexContainer > * {
-    flex: 1;
-    min-width: 400px;
-    position: relative;
-}
+        & > h3 {
+            font-weight: 500;
+            font-size: 1.5em;
+        }
+    }
 
-div.ComponentSection.demo-area {
-    background-image: repeating-linear-gradient(145deg, #fff, #fff 30px, #f5f5f5 30px, #f5f5f5 60px);
-    padding: 20px;
-    align-self: flex-start;
-}
+    &.flexContainer {
 
-.ComponentSection.flexContainer > div > .expander {
-    position: absolute;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: white;
-    top: -32px;
-    right: 0px;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    background-color: #444;
-    border: 1px solid #444;
-    box-shadow: 0px 0px 2px #444;
-    box-sizing: border-box;
-    opacity: 0.5;
-    transition: all 0.25s ease-in-out;
-}
-.ComponentSection.flexContainer > div > .expander:hover {
-    opacity: 1;
-    color: crimson;
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    box-shadow: none;
-}
-.ComponentSection.flexContainer.expanded > :not(.expand) { display: none; }
-.ComponentSection.flexContainer.expanded > .code.expand > pre > code {
-    position: relative;
-}
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        box-shadow: 0px 0px 1px #444;
 
-div.ComponentSection.code {
-    display: flex;
-    flex-direction: column;
-}
+        & > * {
+            flex: 1;
+            flex-basis: 0px;
+            position: relative;
+            min-width: 400px;
+            max-width: 100%;
+            max-height: 100%;
+            transition: all 0.5s;
 
-div.ComponentSection.code .tabs {
-    border-bottom: 2px solid crimson;
-    font-size: 12px;
-}
-div.ComponentSection.code .tabs > * {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: all 0.25s ease-in-out;
-}
-div.ComponentSection.code .tabs > *:hover {
-    background-color: white;
-    color: crimson;
-}
-div.ComponentSection.code .tabs > *.selected {
-    background-color: crimson;
-    color: white;
-}
+            @media (max-width: 600px) {
+                min-width: calc(100% - 40px);
+                animation: none;
+            }
+        }
 
-div.ComponentSection.code > pre[class*=language-] {
-    position: relative;
-    height: calc(100% - 50px);
-    min-height: 250px;
-    margin: 0;
-}
-div.ComponentSection.code > pre > code {
-    position: absolute;
-    padding-bottom: 10px;
+        & > div > .expander {
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            top: -32px;
+            right: 0px;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            background-color: #444;
+            border: 1px solid #444;
+            box-shadow: 0px 0px 2px #444;
+            box-sizing: border-box;
+            opacity: 0.5;
+            transition: all 0.25s ease-in-out;
+
+            &:hover {
+                opacity: 1;
+                color: crimson;
+                background: white;
+                border: 1px solid rgba(0, 0, 0, 0.3);
+                box-shadow: none;
+            }
+        }
+
+        & > div.demo-area {
+            background-image: repeating-linear-gradient(145deg, #fff, #fff 30px, #f5f5f5 30px, #f5f5f5 60px);
+            align-self: flex-start;
+        }
+
+        & > div.code {
+            display: flex;
+            flex-direction: column;
+            @media (max-width: 600px) { border-top: 2px solid crimson; }
+
+            & > pre[class*=language-] {
+                position: relative;
+                height: calc(100% - 50px);
+                min-height: 250px;
+                margin: 0;
+            }
+            & > pre > code {
+                position: absolute;
+                padding-bottom: 10px;
+            }
+
+            & .tabs {
+                border-bottom: 2px solid crimson;
+                font-size: 12px;
+
+                @media (max-width: 600px) {
+                    background-color: #444;
+                    color: #DDD;
+                    text-align: center;
+                }
+
+                & > * {
+                    display: inline-block;
+                    vertical-align: middle;
+                    padding: 5px 10px;
+                    cursor: pointer;
+                    transition: all 0.25s ease-in-out;
+
+                    &:hover {
+                        background-color: white;
+                        color: crimson;
+
+                        @media (max-width: 600px) {
+                            color: white;
+                            background: crimson;
+                        }
+                    }
+                    &.selected {
+                        background-color: crimson;
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        &.expanded {
+            & > div:not(.expand) {
+                overflow: hidden;
+                flex-grow: 0;
+                min-width: 0;
+
+                @media (max-width: 600px) {
+                    display: none;
+                    animation: none;
+                }
+            }
+            & > div.code {
+                &:not(.expand) .tabs {
+                    height: 0px;
+                }
+                &.expand > pre > code {
+                    position: relative;
+                }
+            }
+        }
+    }
 }
