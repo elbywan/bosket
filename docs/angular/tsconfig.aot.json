@@ -9,13 +9,17 @@
         "removeComments": true,
         "noImplicitAny": false,
         "allowJs": true,
-        "lib": [ "es2015", "dom" ]
+        "lib": [ "es2015", "dom" ],
+        "baseUrl": ".",
+        "paths": {
+            "self/*": ["../../docs/*"]
+        }
     },
     "include": [
         "./**/*.ts"
     ],
     "angularCompilerOptions": {
-        "genDir": "./aot",
+        "genDir": "aot",
         "skipMetadataEmit" : true
     }
 }

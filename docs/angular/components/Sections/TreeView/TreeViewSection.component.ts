@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core"
 import { ItemComponent } from "bosket/angular"
 
 import "./TreeViewSection.css"
-import initialModel from "../../../../common/models/TreeViewModel"
+import initialModel from "self/common/models/TreeViewModel"
 import { dragndrop } from "bosket/core/dragndrop"
 
 @Component({

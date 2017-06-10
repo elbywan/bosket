@@ -22,7 +22,6 @@
     ],
     "compileOnSave": false,
     "angularCompilerOptions": {
-        "skipTemplateCodegen": true,
-        "debug": true
+        "skipTemplateCodegen": true
     }
 }

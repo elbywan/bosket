@@ -7,7 +7,8 @@ module.exports = {
             path: resolve(__dirname, "style")
         },
         "postcss-cssnext": {
-            browsers: "> 5%"
+            browsers: "> 5%",
+            warnForDuplicates: false
         },
         cssnano: {
             reduceIdents: false

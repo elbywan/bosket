@@ -1,5 +1,5 @@
 {
-   "compilerOptions": {
+    "compilerOptions": {
         "target": "es5",
         "module": "es2015",
         "moduleResolution": "node",
@@ -9,7 +9,12 @@
         "removeComments": true,
         "noImplicitAny": false,
         "allowJs": true,
-        "lib": [ "es2015", "dom" ]
+        "lib": [ "es2015", "dom" ],
+        "baseUrl": "../..",
+        "paths": {
+            "bosket/*": ["./src/*"],
+            "self/*": ["./docs/*"]
+        }
     },
     "angularCompilerOptions": {
         "genDir": "./aot",
