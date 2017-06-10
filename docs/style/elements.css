@@ -150,3 +150,56 @@ code {
 .big-text {
     font-size: 1.1em;
 }
+
+.bubble-icon {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+    margin-right: 20px;
+    text-align: center;
+    border-radius: 4em;
+    color: #EEE;
+    background: rgba(255, 255, 255, 0.6);
+    border: 5px solid #AAA;
+    box-shadow: 0 0 3px #EEE;
+    text-shadow: 0 0 1px #EEE;
+
+    &.large {
+        width: 2em;
+        height: 2em;
+        & > i { font-size: 1.2em }
+    }
+    &.dark {
+        background: rgba(0, 0, 0, 0.7);
+        border: 5px solid #BBB;
+        box-shadow: 0px 0px 3px #000;
+        & > i { text-shadow: 0 0 1px #000; }
+    }
+    & > i {
+        font-size: 1em;
+        font-style: normal;
+        display: block;
+    }
+
+    &.red { color: rgba(229,57,53 ,1); }
+    &.blue { color: rgba(30,136,229 ,1); }
+    &.green { color: rgba(76,175,80 ,1); }
+    &.accent { color: var(--accentColor); }
+    &.emphasis { color: var(--emphasisColor); }
+    &.darker-color { color: var(--darkerColor); }
+}
+
+.shadow-icon {
+    margin-right: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1em;
+    height: 1em;
+    width: 1em;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}

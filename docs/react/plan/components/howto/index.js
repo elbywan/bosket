@@ -2,8 +2,6 @@
 
 import React from "react"
 
-import "./howto.css"
-
 import { jscode } from "self/react/tools"
 
 export default {
@@ -11,7 +9,7 @@ export default {
     content:
         <div>
             <h3>
-                <span className="bubble-icon red"><i className="fa fa-crosshairs"></i></span>
+                <span className="bubble-icon red large dark"><i className="fa fa-crosshairs"></i></span>
                 <em>1 - Pick a view</em>
             </h3>
 
@@ -44,7 +42,7 @@ export default {
             </div>
 
             <h3>
-                <span className="bubble-icon green"><i className="fa fa-cogs"></i></span>
+                <span className="bubble-icon green large dark"><i className="fa fa-cogs"></i></span>
                 <em>2 - Import and render</em>
             </h3>
 
@@ -62,7 +60,7 @@ export default {
             <p>That's it !</p>
 
             <h3>
-                <span className="bubble-icon blue"><i className="fa fa-paint-brush"></i></span>
+                <span className="bubble-icon blue large dark"><i className="fa fa-paint-brush"></i></span>
                 <em>3 - Style with css</em>
             </h3>
 

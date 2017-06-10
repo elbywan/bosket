@@ -21,7 +21,7 @@ div.chapter {
     }
     & h3 {
         padding: 20px 0px;
-        font-size: 1.6em;
+        font-size: 1.5em;
         font-weight: normal;
     }
     & h4 {
@@ -41,7 +41,7 @@ div.chapter {
     & h6 {
         padding: 15px 0px;
         margin: 0;
-        font-size: 1.3em;
+        font-size: 1.2em;
         font-weight: normal;
     }
     & p {

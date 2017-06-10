@@ -7,6 +7,12 @@
     <title>Bosket</title>
     <link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <script src="./common/common.js"></script>
+    <style>
+        #home .chapter {
+            padding: 30px 10%;
+            border-top: 3px solid #505050;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,7 +35,7 @@
             </a>
         </span>
     </header>
-    <section id="content">
+    <section id="home">
         <div class="subtitle">
             <p>
                 Bosket is a collection of front-end tree view components.<br>
@@ -137,16 +143,22 @@
         <div>
             <div class="chapter">
                 <h1 id="Introduction">Introduction</h1>
-                <h2 class="highlight">Purpose</h2>
+                <h2 class="highlight">
+                    <!-- <span class="shadow-icon"><i class="fa fa-question"></i></span> -->
+                    Purpose
+                </h2>
                 <h3>
-                    Bosket is a library of tree view components, which are a pretty way to display nested arrays of objects.<br>
-                    These views are commonly used on websites as menus, file explorers or even combo-boxes.<br>
+                    Bosket is a library of tree view components, which are a pretty way to display nested lists.<br>
+                    These views are commonly used as file explorers, menus or category-based combo-boxes.<br>
                 </h3>
                 <h4>
                     At its core is a logic written in javascript, without any dependencies.<br>
                     Framework implementations all rest on this very same logic, which makes new implementations easy to write and having the same service contract.
                 </h4>
-                <h2 class="highlight">Features</h2>
+                <h2 class="highlight">
+                    <!-- <span class="shadow-icon"><i class="fa fa-check"></i></span> -->
+                    Features
+                </h2>
                 <h3>
                     The library supports advanced features out of the box, such as :
                 </h3>
@@ -154,16 +166,21 @@
                     - Drag and drop<br>
                     - Multiple selection<br>
                     - Asynchronous loading<br>
-                    - Item search<br>
+                    - Search<br>
                     - Keyboard modifiers<br>
                     - Animations<br>
                 </h4>
                 <h4>
                     And more.
                 </h4>
-                <h2 class="highlight">Flexibility</h2>
-                <h3>Each component is fully customizable with css for the appearance and with javascript code to to enable, tune or disable any functionality.</h3>
-                <h4>The library was designed to give developers the power to model the view according to their needs.</h4>
+                <h2 class="highlight">
+                    <!-- <span class="shadow-icon"><i class="fa fa-cog"></i></span> -->
+                    Flexibility
+                </h2>
+                <h3>Each component is fully customizable from its appearance to its behaviour.</h3>
+                <h4>
+                    You can easily enable/disable/tweak almost every feature, and style the result using simple CSS code.<br>
+                </h4>
             </div>
             <div class="chapter">
                 <h1 id="Setup">Setup</h1>
