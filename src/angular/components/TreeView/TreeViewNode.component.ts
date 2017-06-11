@@ -1,5 +1,5 @@
 import { Component, Input, ViewChildren, ChangeDetectionStrategy, ChangeDetectorRef,
-    ComponentFactoryResolver, AfterViewInit } from "@angular/core"
+    ComponentFactoryResolver, AfterViewInit, AfterViewChecked } from "@angular/core"
 import { ItemInjector, ItemComponent } from "./ItemInjector.directive"
 import { TreeNode } from "../../../core"
 import * as strategies from "../../../core/strategies"
@@ -13,7 +13,7 @@ const object = require("../../../tools/objects").object
     template: `
         <ul *ngIf="!folded && !loading"
             [ngClass]="node.ulCss()"
-            (dragover)="invokeEvent('onDragOver', null, $event, rootdrop)"
+            (dragover)="limitTick(invokeEvent, 'onDragOver', null, $event, rootdrop)"
             (dragenter)="invokeEvent('onDragEnter', null, $event, rootdrop)"
             (dragleave)="invokeEvent('onDragLeave', null, $event, rootdrop)"
             (drop)="invokeEvent('onDrop', null, $event, rootdrop)">
@@ -64,7 +64,7 @@ const object = require("../../../tools/objects").object
     `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TreeViewNode<Item extends Object> implements AfterViewInit{
+export class TreeViewNode<Item extends Object> implements AfterViewInit, AfterViewChecked {
 
     /* Adapter boilerplate */
 
@@ -197,12 +197,14 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit{
 
     injectItems() {
         if(!this.itemComponent || !this.itemInjectors) return
+        let changes = false
         this.itemInjectors.forEach(injector => {
              let item = injector.item
              if(injector.componentRef) {
                 if(injector.componentRef.item === item) return
                 injector.componentRef.item = item
              } else {
+                changes = true
                 let componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.itemComponent)
                 let viewContainerRef = injector.viewContainerRef
                 let componentRef = viewContainerRef.createComponent(componentFactory);
@@ -210,8 +212,21 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit{
                 injector.componentRef = (<ItemComponent<Item>> componentRef.instance)
              }
         })
-        this._cdRef.markForCheck()
-        this._cdRef.detectChanges()
+        if(changes) {
+            this._cdRef.markForCheck()
+            this._cdRef.detectChanges()
+        }
+    }
+
+    ticking = false
+    limitTick = (fun, ...args) => {
+        if(this.ticking) {
+            window.requestAnimationFrame(() => {
+                fun(...args)
+                this.ticking = false
+            })
+        }
+        this.ticking = true
     }
 
     invokeEvent = (name, item, event, condition = true) => {

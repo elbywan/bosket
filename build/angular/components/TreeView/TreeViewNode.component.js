@@ -65,6 +65,20 @@ var TreeViewNode = (function () {
                 _this.ancestorsMap.set(item, _this.ancestors.concat([item]));
             return _this.ancestorsMap.get(item);
         };
+        this.ticking = false;
+        this.limitTick = function (fun) {
+            var args = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args[_i - 1] = arguments[_i];
+            }
+            if (_this.ticking) {
+                window.requestAnimationFrame(function () {
+                    fun.apply(void 0, args);
+                    _this.ticking = false;
+                });
+            }
+            _this.ticking = true;
+        };
         this.invokeEvent = function (name, item, event, condition) {
             if (condition === void 0) { condition = true; }
             var fun = _this.node.getDragEvents(item, condition)[name];
@@ -89,6 +103,7 @@ var TreeViewNode = (function () {
         var _this = this;
         if (!this.itemComponent || !this.itemInjectors)
             return;
+        var changes = false;
         this.itemInjectors.forEach(function (injector) {
             var item = injector.item;
             if (injector.componentRef) {
@@ -97,6 +112,7 @@ var TreeViewNode = (function () {
                 injector.componentRef.item = item;
             }
             else {
+                changes = true;
                 var componentFactory = _this._componentFactoryResolver.resolveComponentFactory(_this.itemComponent);
                 var viewContainerRef = injector.viewContainerRef;
                 var componentRef = viewContainerRef.createComponent(componentFactory);
@@ -104,8 +120,10 @@ var TreeViewNode = (function () {
                 injector.componentRef = componentRef.instance;
             }
         });
-        this._cdRef.markForCheck();
-        this._cdRef.detectChanges();
+        if (changes) {
+            this._cdRef.markForCheck();
+            this._cdRef.detectChanges();
+        }
     };
     return TreeViewNode;
 }());
@@ -113,7 +131,7 @@ export { TreeViewNode };
 TreeViewNode.decorators = [
     { type: Component, args: [{
                 selector: 'TreeViewNode',
-                template: "\n        <ul *ngIf=\"!folded && !loading\"\n            [ngClass]=\"node.ulCss()\"\n            (dragover)=\"invokeEvent('onDragOver', null, $event, rootdrop)\"\n            (dragenter)=\"invokeEvent('onDragEnter', null, $event, rootdrop)\"\n            (dragleave)=\"invokeEvent('onDragLeave', null, $event, rootdrop)\"\n            (drop)=\"invokeEvent('onDrop', null, $event, rootdrop)\">\n\n            <li *ngFor=\"let item of getModel(); let i = index; trackBy: key\"\n                [class]=\"node.liCss(item)\"\n                (click)=\"node.onClick(item)($event)\"\n                [draggable]=\"node.getDragEvents(item).draggable\"\n                (dragstart)=\"invokeEvent('onDragStart', item, $event)\"\n                (dragover)=\"invokeEvent('onDragOver', item, $event)\"\n                (dragenter)=\"invokeEvent('onDragEnter', item, $event)\"\n                (dragleave)=\"invokeEvent('onDragLeave', item, $event)\"\n                (drop)=\"invokeEvent('onDrop', item, $event)\">\n                <span [class]=\"node.mixCss('item')\">\n                    <a *ngIf=\"!itemComponent\">{{ display(item, this.ancestors) }}</a>\n                    <ng-template *ngIf=\"itemComponent\" [itemInjector]=\"item\"></ng-template>\n                    <span\n                        *ngIf=\"node.hasChildren(item) || node.isAsync(item) && !noOpener\"\n                        [class]=\"node.mixCss('opener')\"\n                        (click)=\"node.onOpener(item)($event)\"></span>\n                </span>\n                <TreeViewNode\n                    *ngIf=\"node.hasChildren(item) || node.isAsync(item)\"\n                    [model]=\"getChildModel(item)\"\n                    [filteredModel]=\"getChildFiltered(item)\"\n                    [ancestors]=\"getAncestors(item)\"\n                    [depth]=\"(depth || 0) + 1\"\n                    [folded]=\"node.isFolded(item)\"\n                    [loading]=\"node.isAsync(item) && !node.isFolded(item)\"\n                    [category]=\"category\"\n                    [selection]=\"selection\"\n                    [onSelect]=\"onSelect\"\n                    [strategies]=\"strategies\"\n                    [labels]=\"labels\"\n                    [display]=\"display\"\n                    [css]=\"css\"\n                    [async]=\"async\"\n                    [dragndrop]=\"dragndrop\"\n                    [sort]=\"sort\"\n                    [disabled]=\"disabled\"\n                    [searched]=\"searched\"\n                    [noOpener]=\"noOpener\"\n                    [itemComponent]=\"itemComponent\">\n                </TreeViewNode>\n            </li>\n        </ul>\n        <span *ngIf=\"loading\"></span>\n    ",
+                template: "\n        <ul *ngIf=\"!folded && !loading\"\n            [ngClass]=\"node.ulCss()\"\n            (dragover)=\"limitTick(invokeEvent, 'onDragOver', null, $event, rootdrop)\"\n            (dragenter)=\"invokeEvent('onDragEnter', null, $event, rootdrop)\"\n            (dragleave)=\"invokeEvent('onDragLeave', null, $event, rootdrop)\"\n            (drop)=\"invokeEvent('onDrop', null, $event, rootdrop)\">\n\n            <li *ngFor=\"let item of getModel(); let i = index; trackBy: key\"\n                [class]=\"node.liCss(item)\"\n                (click)=\"node.onClick(item)($event)\"\n                [draggable]=\"node.getDragEvents(item).draggable\"\n                (dragstart)=\"invokeEvent('onDragStart', item, $event)\"\n                (dragover)=\"invokeEvent('onDragOver', item, $event)\"\n                (dragenter)=\"invokeEvent('onDragEnter', item, $event)\"\n                (dragleave)=\"invokeEvent('onDragLeave', item, $event)\"\n                (drop)=\"invokeEvent('onDrop', item, $event)\">\n                <span [class]=\"node.mixCss('item')\">\n                    <a *ngIf=\"!itemComponent\">{{ display(item, this.ancestors) }}</a>\n                    <ng-template *ngIf=\"itemComponent\" [itemInjector]=\"item\"></ng-template>\n                    <span\n                        *ngIf=\"node.hasChildren(item) || node.isAsync(item) && !noOpener\"\n                        [class]=\"node.mixCss('opener')\"\n                        (click)=\"node.onOpener(item)($event)\"></span>\n                </span>\n                <TreeViewNode\n                    *ngIf=\"node.hasChildren(item) || node.isAsync(item)\"\n                    [model]=\"getChildModel(item)\"\n                    [filteredModel]=\"getChildFiltered(item)\"\n                    [ancestors]=\"getAncestors(item)\"\n                    [depth]=\"(depth || 0) + 1\"\n                    [folded]=\"node.isFolded(item)\"\n                    [loading]=\"node.isAsync(item) && !node.isFolded(item)\"\n                    [category]=\"category\"\n                    [selection]=\"selection\"\n                    [onSelect]=\"onSelect\"\n                    [strategies]=\"strategies\"\n                    [labels]=\"labels\"\n                    [display]=\"display\"\n                    [css]=\"css\"\n                    [async]=\"async\"\n                    [dragndrop]=\"dragndrop\"\n                    [sort]=\"sort\"\n                    [disabled]=\"disabled\"\n                    [searched]=\"searched\"\n                    [noOpener]=\"noOpener\"\n                    [itemComponent]=\"itemComponent\">\n                </TreeViewNode>\n            </li>\n        </ul>\n        <span *ngIf=\"loading\"></span>\n    ",
                 changeDetection: ChangeDetectionStrategy.OnPush
             },] },
 ];

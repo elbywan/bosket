@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, ComponentFactoryResolver, AfterViewInit } from "@angular/core";
+import { ChangeDetectorRef, ComponentFactoryResolver, AfterViewInit, AfterViewChecked } from "@angular/core";
 import { ItemInjector } from "./ItemInjector.directive";
 import { TreeNode } from "../../../core";
-export declare class TreeViewNode<Item extends Object> implements AfterViewInit {
+export declare class TreeViewNode<Item extends Object> implements AfterViewInit, AfterViewChecked {
     private _cdRef;
     private _componentFactoryResolver;
     _props: {
@@ -61,5 +61,7 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit 
     ancestorsMap: Map<Item, Item[]>;
     getAncestors: (item: Item) => Item[];
     injectItems(): void;
+    ticking: boolean;
+    limitTick: (fun: any, ...args: any[]) => void;
     invokeEvent: (name: any, item: any, event: any, condition?: boolean) => void;
 }
