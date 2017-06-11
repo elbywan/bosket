@@ -4,6 +4,7 @@ import React from "react"
 
 import _import from "./import"
 import dataModel from "./data model"
+import howto from "./howto"
 
 export default {
     title: "Usage",
@@ -13,6 +14,7 @@ export default {
         </div>,
     subs: [
         _import,
-        dataModel
+        dataModel,
+        howto
     ]
 }

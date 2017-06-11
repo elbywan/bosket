@@ -110,11 +110,6 @@
             transition: border 0.25s ease-in-out;
         }
 
-        &.selected {
-            padding: 5px 5%;
-            margin-left: -5%;
-        }
-
         & > .item:hover,
         &.selected > .item {
             color: var(--accentColorLight);

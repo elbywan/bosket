@@ -54,7 +54,7 @@ export default {
                     children: [{
                         /* ... */,
                         // If you would like the children to be loaded asynchronously when
-                        // the node is unfolded, you should use a function returning a Promise instead.
+                        // the node is unfolded, you may use a function returning a Promise.
                         children: () => {
                             return new Promise(resolve =>
                                 setTimeout(() =>

@@ -10,10 +10,10 @@
     "start": "npm run clean && npm run build && npm run build-docs",
     "prebuild": "eslint ./ && flow",
     "build": "npm run build-react && npm run build-angular",
-    "postbuild": "npm install build --no-save",
+    "postbuild": "copy README.md ./build && flow stop",
     "build-react": "babel src -d build -s && flow-copy-source -v src build",
     "build-angular": "ngc -p src/angular/tsconfig.json && cd src && copy ./**/*.d.ts ../build",
-    "build-docs": "webpack --progress --colors --config docs/webpack.config.js -p",
+    "build-docs": "npm install build --no-save && webpack --progress --colors --config docs/webpack.config.js -p",
     "dev-server": "webpack-dev-server --config docs/webpack.config.dev.js",
     "clean": "rimraf build/{angular,core,react,tools} && rimraf **/.DS_Store"
   },

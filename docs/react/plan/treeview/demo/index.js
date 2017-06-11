@@ -6,5 +6,12 @@ import { TreeViewSection } from "self/react/components/Sections/TreeView/TreeVie
 
 export default {
     title: "Demo",
-    content: <TreeViewSection></TreeViewSection>
+    content:
+        <div>
+            <h4><button className="basic-button">
+                <i className="fa fa-download"></i>
+                <a download="BosketTreeView.css" href="./components/Sections/TreeView/TreeViewSection.css">Download stylesheet</a>
+            </button></h4>
+            <TreeViewSection></TreeViewSection>
+        </div>
 }
