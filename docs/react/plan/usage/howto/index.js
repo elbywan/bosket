@@ -19,7 +19,7 @@ export default {
                 Presets are higher order components wrapping an already configured TreeView. Some presets also provide additional functionalities.
             </p>
 
-            <div className="separate" style={{ "border-width": "2px" }}>
+            <div className="separate" style={{ borderWidth: "2px" }}>
                 <h4><em><a href="#TreeView">TreeView</a></em></h4>
                 <span>
                     TreeView is the generic view, suited for all purposes. This should be your default pick.
@@ -70,7 +70,7 @@ export default {
             </h3>
 
             <p>
-                <em>Once the component is included and rendered in your code, you will need to style it using css, otherwise it will look as pretty as a good old html unordered list.</em><br/>
+                <em>Once the component is included and rendered in your code, you will need to style it using css, otherwise it will look like a good old fashioned html unordered list.</em><br/>
                 <br/>
                 You will find an <em><a href="#TreeView#Css#Empty stylesheet">empty stylesheet</a></em> with classes and elements already filled for each components in their own documentation section.<br/>
                 Also, feel free to peek at the included <em><a href="#TreeView#Demo">demos css source code</a></em>.
