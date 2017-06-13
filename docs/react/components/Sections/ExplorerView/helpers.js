@@ -3,7 +3,7 @@
 import React from "react"
 
 const helpers = {
-     // Render a nice table to display folder contents //
+     // Render a nice table to display folder contents
     renderFolderView: function() {
         const header =
             <thead>
@@ -33,6 +33,7 @@ const helpers = {
             </table>
         )
     },
+    // Font awesome icon mapped to file extension
     getIcon: function(item: Object) {
         if(item.files) return "fa-folder-o"
         const split = item.filename.split(".")
@@ -57,6 +58,7 @@ const helpers = {
             }
         }
     },
+    // Scans the filesystem
     scanFiles: function(item: Object, model : Object[] = [], depth: number = 0) {
         const fileItem = {
             files: [],

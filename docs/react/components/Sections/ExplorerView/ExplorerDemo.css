@@ -1,3 +1,19 @@
+/* Search bar */
+
+.ExplorerView input[type="search"].search{
+    position: absolute;
+    width: 100%;
+    top: 35px;
+    left: 0;
+    background: #e3e3e3;
+    color: #444;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    border-top: 2px solid #ddd;
+    font-size: 12px;
+    font-family: Monaco, monospace;
+}
+
 /* Lists */
 
 .ExplorerView ul {
@@ -15,21 +31,6 @@
     min-height: 495px;
 }
 
-/* Search bar */
-
-.ExplorerView input[type="search"].search{
-    position: absolute;
-    width: 100%;
-    top: 35px;
-    left: 0;
-    background: #e3e3e3;
-    color: #444;
-    border: none;
-    border-bottom: 2px solid #ddd;
-    border-top: 2px solid #ddd;
-    font-size: 12px;
-    font-family: Monaco, monospace;
-}
 
 /* Item */
 

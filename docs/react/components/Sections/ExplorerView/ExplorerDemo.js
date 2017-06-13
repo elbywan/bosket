@@ -4,7 +4,7 @@ import "./ExplorerDemo.css"
 
 import React from "react"
 
-// Explorer Tree preset
+// ExplorerView preset
 import { ExplorerView } from "bosket/react"
 // Drag'n'drop utilities
 import { dragndrop } from "bosket/core/dragndrop"

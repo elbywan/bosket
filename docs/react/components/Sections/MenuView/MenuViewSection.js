@@ -4,35 +4,27 @@ import "./MenuViewSection.css"
 
 import React from "react"
 
+// Css tools
 import { css } from "bosket/tools/css"
-import { MenuView } from "bosket/react"
+// Bsoket MenuView demo
+import { MenuViewDemo } from "./MenuViewDemo"
 
 import { ComponentSection } from "self/react/components/ComponentSection/ComponentSection"
-import model from "self/common/models/MenuViewModel"
 
 export class MenuViewSection extends React.PureComponent {
 
     state = {
-        model: model,
-        category: "menu",
-        name: "name",
-        display: (item: Object) =>
-            <span><i className={ "fa " + item.icon }></i><span>{ item.name }</span></span>,
         selection: [],
-        onSelect: (_: Object[]) => { this.setState({ selection: _ }) },
-        transition: {
-            transitionName: "MenuViewTransition",
-            transitionEnterTimeout: 300,
-            transitionLeaveTimeout: 300
-        },
         opened: false
     }
 
     render = () =>
         <ComponentSection
-            componentName="MenuView"
+            componentName="Side panel menu"
             description={ <p>A nested menu featuring ancestors selection, custom display and transitions.</p> }
             files={[
+                "./components/Sections/MenuView/MenuViewDemo.js",
+                "./components/Sections/MenuView/MenuViewDemo.css",
                 "./components/Sections/MenuView/MenuViewSection.js",
                 "./components/Sections/MenuView/MenuViewSection.css",
                 "../common/models/MenuViewModel.js"
@@ -40,7 +32,10 @@ export class MenuViewSection extends React.PureComponent {
 
             <div className="MenuViewSection window">
                 <div className={ "MenuViewSection side-panel " + css.classes({ opened: this.state.opened }) }>
-                    <MenuView { ...this.state }></MenuView>
+                    { /* The menu is rendered here */ }
+                    <MenuViewDemo
+                        selection={ this.state.selection }
+                        updateSelection={ _ => this.setState({ selection: _ }) }></MenuViewDemo>
                 </div>
                 <div className="MenuViewSection upperBar">
                     <div className="MenuViewSection opener"

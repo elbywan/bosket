@@ -16,7 +16,7 @@ export default {
             <p>
                 Bosket/react contains a generic <em><a href="#TreeView">TreeView component</a></em>, and <em><a href="#Components">preset components</a></em>.<br/>
                 <br/>
-                Presets are higher order components wrapping an already configured TreeView. Some presets also provide additional functionalities.
+                Presets are higher order components wrapping and configuring a TreeView. Some presets also provide additional functionalities.
             </p>
 
             <div className="separate" style={{ borderWidth: "2px" }}>

@@ -19,7 +19,7 @@ export class ExplorerViewSection extends React.PureComponent {
     // Render the whole explorer window //
     render = () =>
         <ComponentSection
-            componentName="ExplorerView"
+            componentName="File explorer look alike"
             description={
                 <span>
                     A simple file explorer, featuring :
