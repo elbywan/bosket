@@ -1,4 +1,5 @@
 export * from "./components";
+export * from "./traits";
 ;
 
 var _temp = function () {

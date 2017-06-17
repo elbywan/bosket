@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../src/react/index.js"],"names":[],"mappings":"AAEA,cAAc,cAAd","file":"index.js","sourcesContent":["// @flow\n\nexport * from \"./components\""]}
+{"version":3,"sources":["../../src/react/index.js"],"names":[],"mappings":"AAEA,cAAc,cAAd;AACA,cAAc,UAAd","file":"index.js","sourcesContent":["// @flow\n\nexport * from \"./components\"\nexport * from \"./traits\"\n"]}

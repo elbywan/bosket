@@ -42,7 +42,7 @@
 
         //top: 175px;
         transform: translateX(0px);
-        border-right: 5px solid var(--darkerColor);
+        border-right: 2px solid var(--darkerColor);
         @media (max-width: 1224px) {
             top: 0px !important;
             position: fixed !important;
