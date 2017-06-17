@@ -2,6 +2,10 @@
 
 .Planner {
     &.opener {
+
+        display: none;
+        @media (max-width: 1224px) { display: initial; }
+
         position: fixed;
         z-index: 2;
         top: 0;
@@ -28,13 +32,28 @@
         position: fixed;
         z-index: 1;
         overflow-y: scroll;
-        top: 0px;
-        width: 300px;
+
+        width: 350px;
         height: 100%;
-        background: var(--darkerColor);
-        color: var(--lightColor);
+        background: var(--lightColor);
+        color: var(--darkerColor);
         font-family: var(--serifFont);
-        transform: translateX(-300px);
+        font-weight: bold;
+
+        //top: 175px;
+        transform: translateX(0px);
+        border-right: 5px solid var(--darkerColor);
+        @media (max-width: 1224px) {
+            top: 0px !important;
+            position: fixed !important;
+            transform: translateX(-350px);
+            border-right: none;
+        }
+
+        & > div:first-child {
+            display: none;
+            @media (max-width: 1224px) { display: block; }
+        }
 
         & h1 {
             text-align: center;
@@ -47,14 +66,13 @@
         }
         &.opened {
             transform: translateX(0px);
-            box-shadow: 0px 0px 10px var(--darkerColor);
+
+            box-shadow: none;
+            @media (max-width: 1224px) { box-shadow: 0px 0px 10px var(--darkerColor); }
         }
     }
     &.side-panel, &.content {
         transition: transform 0.3s ease-in-out;
-    }
-    &.side-panel.opened + &.content {
-        transform: translateX(300px);
     }
 
     &.heading {
@@ -65,7 +83,7 @@
             font-size: 0.6em;
             transition: opacity 0.25s ease-in-out;
 
-            @media (max-width: 600px) { position: absolute; }
+            @media (max-width: 1224px) { position: absolute; }
         }
         &:hover > a {
             opacity: 1;
@@ -75,6 +93,15 @@
     & div.planner-section {
         margin-bottom: 25px;
     }
+
+    &.content {
+        padding-left: 350px;
+        @media (max-width: 1224px) { padding-left: 0px; }
+    }
+}
+
+.Planner.side-panel.opened + .Planner.content {
+    @media (max-width: 1224px) { transform: translateX(350px); }
 }
 
 .PlannerTree {
@@ -82,7 +109,10 @@
     font-size: 1.3em;
     padding: 0px 15px;
     overflow-y: scroll;
-    height: calc(100% - 55px);
+
+
+    height: 100%;
+    @media (max-width: 1224px) { height: calc(100% - 55px); }
 
     & ul {
         list-style: none;
@@ -104,17 +134,21 @@
             margin-bottom: 0;
         }
 
+        & > .item > a {
+            display: block;
+            width: 100%;
+        }
+
         &.category > .item {
             display:block;
-            border-bottom: 1px solid var(--lighterColor);
+            border-bottom: 1px solid var(--darkerColor);
             transition: border 0.25s ease-in-out;
         }
 
         & > .item:hover,
         &.selected > .item {
-            color: var(--accentColorLight);
-            border-color: var(--accentColorLight);
-
+            color: var(--accentColor);
+            border-color: var(--accentColor);
         }
     }
 }

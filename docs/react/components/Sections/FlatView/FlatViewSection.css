@@ -40,7 +40,6 @@
     border-bottom: 1px solid black;
     font-weight: bold;
     font-family: inherit;
-    min-width: 250px;
 }
 .FlatViewSection .comboBox > button:hover {
     /* color: #f44336; */

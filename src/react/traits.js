@@ -35,11 +35,13 @@ export const withListener : trait<> = ({
         eventType = "click",
         propName = "listener",
         mountOn = null,
-        autoMount = false } = {}) => Component =>
+        autoMount = false,
+        regulate = false } = {}) => Component =>
     class extends React.Component<void, { listener: Object }, void> {
 
         static displayName = displayName("withListener", Component)
         listening = false
+        ticking = false
 
         /* Lifecycle */
 
@@ -59,11 +61,20 @@ export const withListener : trait<> = ({
         /* Subscriptions */
 
         callback = null
-        subscribe = (cb: Event => mixed) => {
+        subscribe = (cb: (Event, ?(void => void)) => mixed) => {
             this.callback = cb
         }
         onEvent = function(event: Event) {
-            if(this.callback) this.callback(event)
+            if(this.callback) {
+                if(regulate) {
+                    if(!this.ticking) {
+                        const callback = this.callback
+                        window.requestAnimationFrame(() => callback(event, () => { this.ticking = false }))
+                    }
+                    this.ticking = true
+                } else
+                    this.callback(event)
+            }
         }.bind(this)
 
         /* Events */

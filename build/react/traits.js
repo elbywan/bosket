@@ -71,7 +71,9 @@ export var withListener = function withListener() {
         _ref$mountOn = _ref.mountOn,
         mountOn = _ref$mountOn === undefined ? null : _ref$mountOn,
         _ref$autoMount = _ref.autoMount,
-        autoMount = _ref$autoMount === undefined ? false : _ref$autoMount;
+        autoMount = _ref$autoMount === undefined ? false : _ref$autoMount,
+        _ref$regulate = _ref.regulate,
+        regulate = _ref$regulate === undefined ? false : _ref$regulate;
 
     return function (Component) {
         var _class2, _temp2;
@@ -91,6 +93,7 @@ export var withListener = function withListener() {
                 = _possibleConstructorReturn(this, (_class2.__proto__ || Object.getPrototypeOf(_class2)).call(this, props));
 
                 _this2.listening = false;
+                _this2.ticking = false;
                 _this2.callback = null;
 
                 _this2.subscribe = function (cb) {
@@ -98,7 +101,21 @@ export var withListener = function withListener() {
                 };
 
                 _this2.onEvent = function (event) {
-                    if (this.callback) this.callback(event);
+                    var _this3 = this;
+
+                    if (this.callback) {
+                        if (regulate) {
+                            if (!this.ticking) {
+                                var callback = this.callback;
+                                window.requestAnimationFrame(function () {
+                                    return callback(event, function () {
+                                        _this3.ticking = false;
+                                    });
+                                });
+                            }
+                            this.ticking = true;
+                        } else this.callback(event);
+                    }
                 }.bind(_this2);
 
                 _this2.mount = function () {
@@ -165,7 +182,7 @@ export var withTransition = function withTransition(_ref2) {
             function _class3() {
                 var _ref3;
 
-                var _temp3, _this3, _ret;
+                var _temp3, _this4, _ret;
 
                 _classCallCheck(this, _class3);
 
@@ -173,13 +190,13 @@ export var withTransition = function withTransition(_ref2) {
                     args[_key2] = arguments[_key2];
                 }
 
-                return _ret = (_temp3 = (_this3 = _possibleConstructorReturn(this, (_ref3 = _class3.__proto__ || Object.getPrototypeOf(_class3)).call.apply(_ref3, [this].concat(args))), _this3), _this3.render = function () {
-                    return _this3.props.transition ? React.createElement(
+                return _ret = (_temp3 = (_this4 = _possibleConstructorReturn(this, (_ref3 = _class3.__proto__ || Object.getPrototypeOf(_class3)).call.apply(_ref3, [this].concat(args))), _this4), _this4.render = function () {
+                    return _this4.props.transition ? React.createElement(
                         CSSTransitionGroup,
-                        _this3.props.transition,
-                        React.createElement(Component, _extends({}, _this3.props, { key: key(_this3.props) }))
-                    ) : React.createElement(Component, _this3.props);
-                }, _temp3), _possibleConstructorReturn(_this3, _ret);
+                        _this4.props.transition,
+                        React.createElement(Component, _extends({}, _this4.props, { key: key(_this4.props) }))
+                    ) : React.createElement(Component, _this4.props);
+                }, _temp3), _possibleConstructorReturn(_this4, _ret);
             }
 
             return _class3;
@@ -202,7 +219,7 @@ export var withDebugUpdates = function withDebugUpdates(_ref4) {
             function _class4() {
                 var _ref5;
 
-                var _temp5, _this4, _ret2;
+                var _temp5, _this5, _ret2;
 
                 _classCallCheck(this, _class4);
 
@@ -210,7 +227,7 @@ export var withDebugUpdates = function withDebugUpdates(_ref4) {
                     args[_key3] = arguments[_key3];
                 }
 
-                return _ret2 = (_temp5 = (_this4 = _possibleConstructorReturn(this, (_ref5 = _class4.__proto__ || Object.getPrototypeOf(_class4)).call.apply(_ref5, [this].concat(args))), _this4), _this4.monkeyPatch = function (ref) {
+                return _ret2 = (_temp5 = (_this5 = _possibleConstructorReturn(this, (_ref5 = _class4.__proto__ || Object.getPrototypeOf(_class4)).call.apply(_ref5, [this].concat(args))), _this5), _this5.monkeyPatch = function (ref) {
                     if (!ref) return;
                     var originalFunction = ref.shouldComponentUpdate;
                     ref.shouldComponentUpdate = function (nextProps, nextState, nextContext) {
@@ -227,12 +244,12 @@ export var withDebugUpdates = function withDebugUpdates(_ref4) {
                         /* eslint-enable */
                         );return originalFunction.bind(ref)(nextProps, nextState);
                     };
-                }, _this4.render = function () {
-                    return React.createElement(Component, _extends({}, _this4.props, {
+                }, _this5.render = function () {
+                    return React.createElement(Component, _extends({}, _this5.props, {
                         ref: function ref(_ref6) {
-                            return _this4.monkeyPatch(_ref6);
+                            return _this5.monkeyPatch(_ref6);
                         } }));
-                }, _temp5), _possibleConstructorReturn(_this4, _ret2);
+                }, _temp5), _possibleConstructorReturn(_this5, _ret2);
             }
 
             return _class4;

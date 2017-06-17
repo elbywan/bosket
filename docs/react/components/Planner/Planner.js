@@ -5,49 +5,17 @@ import "./Planner.css"
 
 import { TreeView } from "bosket/react"
 import { css } from "bosket/tools"
-import { withListener } from "bosket/react/traits"
+import { withListener, combine } from "bosket/react/traits"
 
 const headerLevel = (depth, prefix, inner) => {
     const id = prefix ? `${prefix}#${inner}` : inner
-    switch (depth) {
-        case 1: return (
-            <h1 id={ id } className="Planner heading">
-                <span>{ inner }</span>
-                <a href={ "#" + id }><i className="fa fa-link"></i></a>
-            </h1>
-        )
-        case 2: return (
-            <h2 id={ id } className="Planner heading">
-                <span>{ inner }</span>
-                <a href={ "#" + id }><i className="fa fa-link"></i></a>
-            </h2>
-        )
-        case 3: return (
-            <h3 id={ id } className="Planner heading">
-                <em><span>{ inner }</span></em>
-                <a href={ "#" + id }><i className="fa fa-link"></i></a>
-            </h3>
-        )
-        case 4: return (
-            <h4 id={ id } className="Planner heading">
-                <span>{ inner }</span>
-                <a href={ "#" + id }><i className="fa fa-link"></i></a>
-            </h4>
-        )
-        case 5: return (
-            <h5 id={ id } className="Planner heading">
-                <span>{ inner }</span>
-                <a href={ "#" + id }><i className="fa fa-link"></i></a>
-            </h5>
-        )
-        case 6: return (
-            <h6 id={ id } className="Planner heading">
-                <span>{ inner }</span>
-                <a href={ "#" + id }><i className="fa fa-link"></i></a>
-            </h6>
-        )
-        default: return null
-    }
+    return React.createElement("h" + depth, {
+        id: id,
+        className: "Planner heading"
+    },
+        <span>{ inner }</span>,
+        <a href={ "#" + id }><i className="fa fa-link"></i></a>
+    )
 }
 
 const processContent = (plan, parentPrefix = "", depth = 1) => {
@@ -72,34 +40,43 @@ type Plan = {
     subs?: Plan[]
 }
 
-export const Planner = withListener({ autoMount: true })(class extends React.PureComponent {
+export const Planner = combine(
+    withListener({ propName: "clickListener", autoMount: true }),
+    withListener({ eventType: "scroll", propName: "scrollListener", autoMount: true, regulate: true }),
+    withListener({ eventType: "scroll", propName: "offsetListener", autoMount: true, regulate: true })
+)(class extends React.PureComponent {
 
     props : {
         plan: Plan[],
-        listener?: Object,
-        maxDepth?: number
+        clickListener?: Object,
+        scrollListener?: Object,
+        offsetListener?: Object,
+        maxDepth?: number,
+        sticky?: boolean
     }
 
     state = {
-        css: { TreeView: "PlannerTree" },
-        category: "subs",
-        selection: [],
-        display: (item, ancestors) => <a href={ `${ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
-        onSelect: _ => { if(_.length > 0) { this.setState({ selection: _ }) } },
-        strategies: {
-            selection: ["ancestors"],
-            fold: [ "max-depth", "not-selected", "no-child-selection" ]
+        conf: {
+            css: { TreeView: "PlannerTree" },
+            category: "subs",
+            selection: [],
+            display: (item, ancestors) => <a href={ `${ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
+            onSelect: _ => { if(_.length > 0) { this.setState({ conf: { ...this.state.conf, selection: _ }}) } },
+            strategies: {
+                selection: ["ancestors"],
+                fold: [ "max-depth", "not-selected", "no-child-selection" ]
+            },
+            noOpener: true
         },
-        noOpener: true,
         opened: false
     }
-    opener: ?HTMLElement = null
-    sidePanel: ?HTMLElement = null
+    opener: HTMLElement
+    sidePanel: HTMLElement
+    content: HTMLElement
     ticking = false
-    scrollListener: ?EventListener = null
 
     componentDidMount = () => {
-        this.props.listener && this.props.listener.subscribe((ev: Event) => {
+        this.props.clickListener && this.props.clickListener.subscribe((ev: Event) => {
             if(!(ev.target instanceof HTMLElement)) return
             if(this.opener && this.opener.contains(ev.target)) {
                 this.setState({ opened: !this.state.opened })
@@ -107,45 +84,48 @@ export const Planner = withListener({ autoMount: true })(class extends React.Pur
                 this.setState({ opened: false })
         })
 
-        this.ticking = false
-        this.scrollListener = window.addEventListener("scroll", e => {
-            if(!this.ticking) {
-                window.requestAnimationFrame(() => {
-                    const result = []
-                    const loop = (arr, acc = []) => {
-                        for(let i = 0; i < arr.length; i++) {
-                            const elt = arr[i]
-                            const domElt = document.getElementById(acc.length > 0 ? acc.join("#") + "#" + elt.title : elt.title)
-                            if(domElt && domElt.parentElement &&
-                                    domElt.parentElement.getBoundingClientRect().top <= 50 &&
-                                    domElt.parentElement.getBoundingClientRect().bottom > 10) {
-                                result.push(elt)
-                                if(elt.subs)
-                                    loop(elt.subs, [ ...acc, elt.title ])
-                                break
-                            }
-                        }
+        this.props.scrollListener && this.props.scrollListener.subscribe((ev: Event, end: void => void) => {
+            const result = []
+            const loop = (arr, acc = []) => {
+                for(let i = 0; i < arr.length; i++) {
+                    const elt = arr[i]
+                    const domElt = document.getElementById(acc.length > 0 ? acc.join("#") + "#" + elt.title : elt.title)
+                    if(domElt && domElt.parentElement &&
+                            domElt.parentElement.getBoundingClientRect().top <= 50 &&
+                            domElt.parentElement.getBoundingClientRect().bottom > 10) {
+                        result.push(elt)
+                        if(elt.subs)
+                            loop(elt.subs, [ ...acc, elt.title ])
+                        break
                     }
-                    loop(this.props.plan)
-                    this.setState({ selection: result })
-                    const newHash = "#" + result.map(_ => _.title).join("#")
-                    if(newHash !== window.location.hash) {
-                        window.history && window.history.replaceState(
-                            {},
-                            document.title,
-                            "#" + result.map(_ => _.title).join("#"))
-                    }
-                    // Prevents safari security exception (SecurityError (DOM Exception 18): Attempt to use history.replaceState() more than 100 times per 30.000000 seconds)
-                    setTimeout(() => this.ticking = false, 100)
-                })
+                }
             }
-            this.ticking = true
-        })
-    }
+            loop(this.props.plan)
+            this.setState({ conf: { ...this.state.conf, selection: result }})
+            const newHash = "#" + result.map(_ => _.title).join("#")
+            if(newHash !== window.location.hash) {
+                window.history && window.history.replaceState(
+                    {},
+                    document.title,
+                    "#" + result.map(_ => _.title).join("#"))
+            }
 
-    componentWillUnmount = () => {
-        if(this.scrollListener)
-            window.removeEventListener("scroll", this.scrollListener)
+            // Prevents safari security exception (SecurityError (DOM Exception 18): Attempt to use history.replaceState() more than 100 times per 30.000000 seconds)
+            setTimeout(() => end(), 100)
+        })
+
+        this.props.offsetListener && this.props.offsetListener.subscribe((ev: Event, end: void => void) => {
+            if(this.sidePanel && this.content && this.props.sticky) {
+                if(this.content.getBoundingClientRect().top > 0) {
+                    this.sidePanel.style.position = "absolute"
+                    this.sidePanel.style.top = ""
+                } else {
+                    this.sidePanel.style.position = "fixed"
+                    this.sidePanel.style.top = "0px"
+                }
+            }
+            end()
+        })
     }
 
     render = () => !this.props.plan ? null :
@@ -158,9 +138,11 @@ export const Planner = withListener({ autoMount: true })(class extends React.Pur
             </div>
             <div ref={ ref => this.sidePanel = ref } className={ "Planner side-panel " + css.classes({ opened: this.state.opened }) }>
                 <div><h1>Table of contents</h1></div>
-                <TreeView model={ this.props.plan } maxDepth={ this.props.maxDepth } { ...this.state }></TreeView>
+                <TreeView model={ this.props.plan } maxDepth={ this.props.maxDepth } { ...this.state.conf }></TreeView>
             </div>
-            <div className="Planner content">{ processContent(this.props.plan) }</div>
+            <div ref={ ref => this.content = ref } className="Planner content">
+                { processContent(this.props.plan) }
+            </div>
         </div>
 
 })
