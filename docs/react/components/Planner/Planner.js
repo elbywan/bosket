@@ -114,8 +114,8 @@ export const Planner = combine(
             setTimeout(() => end(), 100)
         })
 
-        this.props.offsetListener && this.props.offsetListener.subscribe((ev: Event, end: void => void) => {
-            if(this.sidePanel && this.content && this.props.sticky) {
+        if(this.props.sticky)
+            this.props.offsetListener && this.props.offsetListener.subscribe((ev: Event, end: void => void) => {
                 if(this.content.getBoundingClientRect().top > 0) {
                     this.sidePanel.style.position = "absolute"
                     this.sidePanel.style.top = ""
@@ -123,9 +123,8 @@ export const Planner = combine(
                     this.sidePanel.style.position = "fixed"
                     this.sidePanel.style.top = "0px"
                 }
-            }
-            end()
-        })
+                end()
+            })
     }
 
     render = () => !this.props.plan ? null :

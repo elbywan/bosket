@@ -7,11 +7,11 @@
     }
 
     &.section {
-        padding: 5px 25px 25px;
+        padding: 0px 20px 20px;
+        @media (max-width: 600px) { padding: 0px 10px 10px; }
         background: var(--lightColor);
-        border: 2px solid #ccc;
-        border-radius: 10px;
-        box-shadow: 0px 0px 5px #aaa;
+        border-left: 3px solid var(--accentColor);
+        box-shadow: 1px 1px 2px #aaa;
         color: black;
         margin: 10px 0px;
 
