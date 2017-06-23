@@ -2,7 +2,8 @@
 
 import React from "react"
 
-import { jscode, tscode } from "../../../tools/tools"
+import { jscode, tscode } from "self/react/tools"
+import dragndrop from "./dragndrop"
 
 export default {
     title: "Optional props",
@@ -248,66 +249,7 @@ export default {
                         <TreeView /* ... */ async={ async } model={ model }></TreeView>` }
                 </div>
         },
-        {
-            title: "dragndrop",
-            content:
-                <div className="marged">
-                    <p>The drag'n'drop configuration object.</p>
-
-                    <div className="emphasis">
-                        Defaults to :
-                        { jscode`
-                            dragndrop: {
-                                draggable: false, // make items draggable
-                                droppable: false, // make the tree droppable
-                                drag: null,       // action to perform on drag
-                                drop: null,       // action to perform on drop
-                                cancel: null      // action to perform on cancellation
-                            }` }
-                    </div>
-
-                    { jscode`
-                        /* [Drag'n'drop presets](https://github.com/elbywan/bosket/blob/master/src/core/dragndrop.js) */
-                        import { dragndrop } from "bosket/core/dragndrop"
-
-                        /* ... */
-
-                        state = {
-                            model:      /* ... */,
-                            selection:  /* ... */
-                        }
-
-                        dragndrop = {
-                            // To drag or drop on specific items
-                            // you can use a function : (item) => true/false
-                            draggable: true,
-                            droppable: true,
-
-                            // target       -> item dragged
-                            // event        -> original drag event
-                            // inputs       -> props of the component where the drag is triggered
-                            drag: (target, event, inputs) => {
-                                /* ... */
-                            },
-
-                            // target       -> item on which the drop occured
-                            // item         -> the item which is dropped
-                            // inputs       -> props of the component where the drop is triggered
-                            drop: (target, item, event) => {
-                                /* ... */
-                            },
-
-                            // target       -> the dragged item
-                            // item         -> the item which is dropped
-                            // inputs       -> props of the component where the drag was triggered
-                            cancel: (target, item, event) => {
-                                /* ... */
-                            }
-                        }
-
-                        <TreeView /* ... */ dragndrop={ this.dragndrop }></TreeView>`}
-                </div>
-        },
+        dragndrop,
         {
             title: "noOpener",
             content:

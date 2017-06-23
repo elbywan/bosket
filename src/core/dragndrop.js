@@ -9,12 +9,12 @@ export const dragndrop = {
     selection: (model: void => Object[], cb: Object[] => void) => ({
         draggable: true,
         droppable: true,
-        guard: (event: DragEvent, item: ?Object, inputs: Object) => {
+        guard: (target: ?Object, event: DragEvent, inputs: Object) => {
             // Other data types
             if(event && event.dataTransfer && event.dataTransfer.types.length > 0)
                 return false
             // Prevent drop on self
-            const selfDrop = () => item && array(inputs.selection).contains(item)
+            const selfDrop = () => target && array(inputs.selection).contains(target)
             // Prevent drop on child
             const childDrop = () => inputs.ancestors &&
                     inputs.ancestors.reduce((prev, curr) =>
@@ -22,7 +22,7 @@ export const dragndrop = {
 
             return selfDrop() || childDrop()
         },
-        drop: (target: Object, event: DragEvent, inputs: Object) => {
+        drop: (target: ?Object, event: DragEvent, inputs: Object) => {
             let updatedModel = tree(model(), inputs.category).filter(e => inputs.selection.indexOf(e) < 0)
             const adjustedTarget =
                 target ?
@@ -36,8 +36,43 @@ export const dragndrop = {
                 updatedModel = [ ...updatedModel, ...inputs.selection ]
             cb(updatedModel)
         }
+    }),
+    // Plucks an item on drag
+    pluck: (model: void => Object[], cb: Object[] => void) => ({
+        draggable: true,
+        backup: [],
+        drag: (item: Object, event: DragEvent, inputs: Object) => {
+            bak = JSON.stringify(model())
+            event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(item))
+            setTimeout(() => cb(tree(model(), inputs.category).filter(e => e !== item)), 20)
+        },
+        cancel: () => {
+            setTimeout(() => cb(JSON.parse(bak)), 20)
+        }
+    }),
+    // Pastes item(s) on drop
+    paste: (model: void => Object[], cb: Object[] => void) => ({
+        droppable: true,
+        drop: (target: Object, event: DragEvent, inputs: Object) => {
+            if(event.dataTransfer && event.dataTransfer.types.indexOf("application/json") > -1) {
+                const data = JSON.parse(event.dataTransfer.getData("application/json"))
+                let updatedModel = [...model()]
+                const adjustedTarget =
+                    target ?
+                        target[inputs.category] && target[inputs.category] instanceof Array ?
+                            target :
+                            array(inputs.ancestors).last() :
+                        null
+                if(adjustedTarget)
+                    adjustedTarget[inputs.category] = [ ...adjustedTarget[inputs.category], data ]
+                else
+                    updatedModel = [ ...updatedModel, data ]
+                cb(updatedModel)
+            }
+        }
     })
 }
+let bak = "[]"
 
 // Utils
 
@@ -75,7 +110,7 @@ export const nodeEvents = {
             event.preventDefault()
             event.stopPropagation()
 
-            if(this.inputs.get().dragndrop.guard && this.inputs.get().dragndrop.guard(event, item, this.inputs.get())) {
+            if(this.inputs.get().dragndrop.guard && this.inputs.get().dragndrop.guard(item, event, this.inputs.get())) {
                 event.dataTransfer && (event.dataTransfer.dropEffect = "none")
                 css.addClass(event.currentTarget, this.mixCss("nodrop"))
                 return

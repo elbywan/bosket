@@ -12,12 +12,12 @@ export var dragndrop = {
         return {
             draggable: true,
             droppable: true,
-            guard: function guard(event, item, inputs) {
+            guard: function guard(target, event, inputs) {
                 // Other data types
                 if (event && event.dataTransfer && event.dataTransfer.types.length > 0) return false;
                 // Prevent drop on self
                 var selfDrop = function selfDrop() {
-                    return item && array(inputs.selection).contains(item
+                    return target && array(inputs.selection).contains(target
                     // Prevent drop on child
                     );
                 };var childDrop = function childDrop() {
@@ -37,11 +37,49 @@ export var dragndrop = {
                 cb(updatedModel);
             }
         };
+    },
+    // Plucks an item on drag
+    pluck: function pluck(model, cb) {
+        return {
+            draggable: true,
+            backup: [],
+            drag: function drag(item, event, inputs) {
+                bak = JSON.stringify(model());
+                event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(item));
+                setTimeout(function () {
+                    return cb(tree(model(), inputs.category).filter(function (e) {
+                        return e !== item;
+                    }));
+                }, 20);
+            },
+            cancel: function cancel() {
+                setTimeout(function () {
+                    return cb(JSON.parse(bak));
+                }, 20);
+            }
+        };
+    },
+    // Pastes item(s) on drop
+    paste: function paste(model, cb) {
+        return {
+            droppable: true,
+            drop: function drop(target, event, inputs) {
+                if (event.dataTransfer && event.dataTransfer.types.indexOf("application/json") > -1) {
+                    var data = JSON.parse(event.dataTransfer.getData("application/json"));
+                    var updatedModel = [].concat(_toConsumableArray(model()));
+                    var adjustedTarget = target ? target[inputs.category] && target[inputs.category] instanceof Array ? target : array(inputs.ancestors).last() : null;
+                    if (adjustedTarget) adjustedTarget[inputs.category] = [].concat(_toConsumableArray(adjustedTarget[inputs.category]), [data]);else updatedModel = [].concat(_toConsumableArray(updatedModel), [data]);
+                    cb(updatedModel);
+                }
+            }
+        };
     }
+};
+var bak = "[]";
 
-    // Utils
+// Utils
 
-};export var utils = {
+export var utils = {
     // Returns a list of local files/folders dropped
     filesystem: function filesystem(event) {
         var items = event.dataTransfer ? event.dataTransfer.items : null;
@@ -74,7 +112,7 @@ export var dragndrop = {
             event.preventDefault();
             event.stopPropagation();
 
-            if (this.inputs.get().dragndrop.guard && this.inputs.get().dragndrop.guard(event, item, this.inputs.get())) {
+            if (this.inputs.get().dragndrop.guard && this.inputs.get().dragndrop.guard(item, event, this.inputs.get())) {
                 event.dataTransfer && (event.dataTransfer.dropEffect = "none");
                 css.addClass(event.currentTarget, this.mixCss("nodrop"));
                 return;
@@ -147,6 +185,8 @@ var _temp = function () {
     }
 
     __REACT_HOT_LOADER__.register(dragndrop, "dragndrop", "src/core/dragndrop.js");
+
+    __REACT_HOT_LOADER__.register(bak, "bak", "src/core/dragndrop.js");
 
     __REACT_HOT_LOADER__.register(utils, "utils", "src/core/dragndrop.js");
 

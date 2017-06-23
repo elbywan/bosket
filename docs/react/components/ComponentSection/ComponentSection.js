@@ -6,25 +6,7 @@ import React from "react"
 
 import Prism from "self/common/libs/prismjs/prism"
 
-const memoize = new Map()
-
-const loadFile = (filePath, cb) => {
-    if(memoize.has(filePath))
-        return cb(memoize.get(filePath))
-    const req = new XMLHttpRequest()
-
-    req.onreadystatechange = function(event) {
-        if(this.readyState === 4) {
-            if(this.status === 200) {
-                memoize.set(filePath, this.responseText)
-                cb(this.responseText)
-            }
-        }
-    }
-
-    req.open("GET", filePath, true)
-    req.send(null)
-}
+import { loadFile } from "self/common/tools"
 
 const getFileName = file => file.split("/").splice(-1)
 const getPrismExtension = file => {

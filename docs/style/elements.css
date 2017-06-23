@@ -6,7 +6,7 @@ html{
 body {
     margin: 0;
     padding: 0;
-    font-family: --var(--sansSerifFont);
+    font-family: var(--sansSerifFont);
     /* font-size: 0.9em; */
     letter-spacing: 0.3px;
     overflow-x: hidden;

@@ -61,6 +61,8 @@ rules:
           after: false
         while:
           after: false
+        catch:
+          after: false
   linebreak-style:
     - error
   new-cap:

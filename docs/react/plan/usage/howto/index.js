@@ -27,21 +27,21 @@ export default {
             </div>
 
             <div className="marged separate">
-                <h4><em><a>ExplorerView preset</a></em></h4>
+                <h4><em><a href="#Presets#ExplorerView">ExplorerView preset</a></em></h4>
                 <span>
                     A file explorer like preset with drag'n'drop, multi selection using keyboard modifiers, sorted elements and search.
                 </span>
             </div>
 
             <div className="marged separate">
-                <h4><em><a>MenuView preset</a></em></h4>
+                <h4><em><a href="#Presets#MenuView">MenuView preset</a></em></h4>
                  <span>
                     A preset best suited for nested menus with automatic item folding/unfolding and ancestors selection.
                 </span>
             </div>
 
             <div className="marged separate">
-                <h4><em><a>FlatView preset</a></em></h4>
+                <h4><em><a href="#Presets#FlatView">FlatView preset</a></em></h4>
                  <span>
                     A flat view preset, with all items unfolded (all visible) and multi selection.
                 </span>

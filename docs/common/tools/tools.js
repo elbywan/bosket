@@ -22,3 +22,22 @@ export const indent = (str: string | string[], ...params: any[]) => {
             line.substring(baseIndent)
     ).join("\n")
 }
+
+const memoize = new Map()
+export const loadFile = (filePath: string, cb: any => any) => {
+    if(memoize.has(filePath))
+        return cb(memoize.get(filePath))
+    const req = new XMLHttpRequest()
+
+    req.onreadystatechange = function(event) {
+        if(this.readyState === 4) {
+            if(this.status === 200) {
+                memoize.set(filePath, this.responseText)
+                cb(this.responseText)
+            }
+        }
+    }
+
+    req.open("GET", filePath, true)
+    req.send(null)
+}
