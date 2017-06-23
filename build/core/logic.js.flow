@@ -1,6 +1,7 @@
 // @flow
 
 import { css, array, tree } from "../tools"
+import { wrapEvents, nodeEvents } from "./dragndrop"
 import { selectionStrategies, foldStrategies, clickStrategies } from "./strategies"
 import { defaults } from "./defaults"
 
@@ -53,7 +54,7 @@ export class TreeNode extends Core {
     }
     hasChildren = (item: Object) => item[this.inputs.get().category] && item[this.inputs.get().category] instanceof Array
     isAsync = (item: ?Object) : boolean => !!item && [this.inputs.get().category] && typeof item[this.inputs.get().category] === "function"
-    isDisabled= (item: Object) => {
+    isDisabled = (item: Object) => {
         const disabledFun = this.inputs.get().disabled
         return disabledFun ? disabledFun(item) : false
     }
@@ -144,78 +145,16 @@ export class TreeNode extends Core {
 
     // Drag'n'drop //
 
-    onDragStart = (item: ?Object) => (event: DragEvent) => {
-        event.stopPropagation()
-        this.inputs.get().dragndrop.dragStart(item, event, this.inputs.get().ancestors, this.inputs.get().model)
-    }
-    onDragOver = (item: ?Object) => (event: DragEvent) => {
-        event.preventDefault()
-        event.stopPropagation()
-
-        if(this.dragGuard(item, event)) {
-            event.dataTransfer && (event.dataTransfer.dropEffect = "none")
-            css.addClass(event.currentTarget, this.mixCss("nodrop"))
-            return
-        }
-
-        css.addClass(event.currentTarget, this.mixCss("dragover"))
-    }
-    onDragEnter = (item: ?Object) => (event: DragEvent) => {
-        event.preventDefault()
-        event.stopPropagation()
-        // If dragging over an opener
-        if(item && !this.dragGuard(item, event) && (this.hasChildren(item) || this.isAsync(item)) && css.hasClass(event.target, this.mixCss("opener"))) {
-            const newVal = this.state.get().unfolded.filter(i => i !== item)
-            newVal.push(item)
-            this.state.set({ unfolded: newVal })
-        }
-    }
-    onDragLeave = (event: DragEvent) => {
-        event.stopPropagation()
-        css.removeClass(event.currentTarget, this.mixCss("dragover"))
-        css.removeClass(event.currentTarget, this.mixCss("nodrop"))
-    }
-    onDrop = (item: ?Object) => (event: DragEvent) => {
-        event.stopPropagation()
-        css.removeClass(event.currentTarget, this.mixCss("dragover"))
-        css.removeClass(event.currentTarget, this.mixCss("nodrop"))
-        if(this.dragGuard(item, event))
-            return
-        const target = item ?
-            this.hasChildren(item) ?
-                item :
-                array(this.inputs.get().ancestors).last() :
-            null
-        this.inputs.get().dragndrop.onDrop(target, event)
-    }
-
-    // Guard against bad drop
-    dragGuard = (item: ?Object, event: DragEvent) => {
-        // Prevent drop when not droppable
-        if(!this.isDroppable(item)) return false
-        // If we are dragging files authorize drop
-        const items = event.dataTransfer ? event.dataTransfer.items : null
-        if(items && items.length > 0 && items[0].kind === "file")
-            return false
-        // Prevent drop on self
-        const selfDrop = item && array(this.inputs.get().selection).contains(item)
-        // Prevent drop on child
-        const childDrop = this.inputs.get().ancestors &&
-                this.inputs.get().ancestors.reduce((prev, curr) =>
-                    prev || array(this.inputs.get().selection).contains(curr), false)
-
-        return selfDrop || childDrop
-    }
-
     getDragEvents = (item: ?Object, condition?: boolean = true) => {
         if(!condition) return {}
         const result = {
             draggable:      this.isDraggable(item),
-            onDragStart:    this.isDraggable(item) && this.onDragStart(item).bind(this),
-            onDragOver:     this.onDragOver(item).bind(this),
-            onDragEnter:    this.onDragEnter(item).bind(this),
-            onDragLeave:    this.onDragLeave.bind(this),
-            onDrop:         this.isDroppable(item) && this.onDrop(item).bind(this)
+            onDragStart:    this.isDraggable(item) && nodeEvents.onDragStart(item).bind(this),
+            onDragOver:     this.isDroppable(item) && nodeEvents.onDragOver(item).bind(this),
+            onDragEnter:    this.isDroppable(item) && nodeEvents.onDragEnter(item).bind(this),
+            onDragLeave:    this.isDroppable(item) && nodeEvents.onDragLeave.bind(this),
+            onDrop:         this.isDroppable(item) && nodeEvents.onDrop(item).bind(this),
+            onDragEnd:      this.isDraggable(item) && nodeEvents.onDragEnd(item).bind(this)
         }
         for(const key in result)
             if(!result[key])
@@ -258,36 +197,12 @@ export class RootNode extends Core {
         const newSelection = selectionStrategy
                                 .map(strat => (selectionStrategies[strat] || strat).bind(this))
                                     .reduce((last, curr) => curr(item, last, neighbours, ancestors), this.inputs.get().selection)
-        return this.outputs.onSelect(newSelection, item, ancestors, neighbours)
-    }
-
-    // Drag start
-    onDragStart = (target: Object, event: DragEvent, ancestors: Object[], neighbours: Object[]) => {
-        event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(target))
-        event.dataTransfer && (event.dataTransfer.dropEffect = "move")
-
-        if(!array(this.inputs.get().selection).contains(target)) {
-            this.onSelect(target, ancestors, neighbours)
-        }
-        this.outputs.onDrag(target, event, ancestors, neighbours)
-    }
-
-    // Drop event
-    onDrop = (target: Object, event: DragEvent) => {
-        event.preventDefault()
-        const jsonData = event.dataTransfer ?
-            event.dataTransfer.getData("application/json") :
-            "{}"
-
-        this.outputs.onDrop(target, jsonData ? JSON.parse(jsonData) : null, event)
+        this.outputs.onSelect(newSelection, item, ancestors, neighbours)
+        return newSelection
     }
 
     // Framework input wrapper
-    wrapDragNDrop = () => ({
-        ...this.inputs.get().dragndrop,
-        dragStart: this.onDragStart,
-        onDrop: this.onDrop
-    })
+    wrapDragNDrop = wrapEvents.bind(this)
 
     // Css mixin helper
     mixCss = (prop: string) => this.inputs.get().css[prop] || defaults.css[prop]

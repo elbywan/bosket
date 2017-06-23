@@ -131,7 +131,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
             return React.createElement(
                 "ul",
                 _extends({ className: this.node.ulCss()
-                }, this.node.getDragEvents(null, this.props.dragndrop && this.props.dragndrop.draggable && !this.props.depth)),
+                }, this.node.getDragEvents(null, !this.props.depth)),
                 list
             );
         }

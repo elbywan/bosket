@@ -1,4 +1,4 @@
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -9,7 +9,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React from "react";
 
 import { TreeView } from "../TreeView";
-import { string, tree, deepMix } from "../../../tools";
+import { string, deepMix } from "../../../tools";
+import { dragndrop } from "../../../core";
 
 export var ExplorerView = function (_React$PureComponent) {
     _inherits(ExplorerView, _React$PureComponent);
@@ -52,17 +53,13 @@ export var ExplorerView = function (_React$PureComponent) {
                 click: ["unfold-on-selection"],
                 fold: ["opener-control"]
             },
-            dragndrop: {
-                draggable: true,
-                droppable: true,
-                drop: function drop(target, item, event) {
-                    var updatedModel = tree(_this.props.model, _this.props.category).filter(function (e) {
-                        return _this.props.selection.indexOf(e) < 0;
-                    });
-                    if (target) target[_this.props.category] = [].concat(_toConsumableArray(target[_this.props.category]), _toConsumableArray(_this.props.selection));else updatedModel = [].concat(_toConsumableArray(updatedModel), _toConsumableArray(_this.props.selection));
-                    _this.props.updateModel(updatedModel);
+            dragndrop: _extends({}, dragndrop.selection(function () {
+                return _this.props.model;
+            }, _this.props.updateModel), {
+                droppable: function droppable(_) {
+                    return !_ || _[_this.props.category];
                 }
-            }
+            })
         }, _this.render = function () {
             return React.createElement(TreeView, deepMix(_this.conf, _this.props, true));
         }, _temp), _possibleConstructorReturn(_this, _ret);

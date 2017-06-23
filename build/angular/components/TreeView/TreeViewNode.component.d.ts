@@ -37,10 +37,11 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit,
     async: (_: Function) => Promise<any>;
     itemComponent: any;
     dragndrop: {
-        draggable: boolean;
-        droppable: boolean;
-        dragStart<Item extends Object>(target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>): void;
-        onDrop<Item extends Object>(target: Item, event: DragEvent): void;
+        draggable: boolean | (() => boolean);
+        droppable: boolean | (() => boolean);
+        drag?: (event: DragEvent, item: Item, inputs: Object) => void;
+        guard?: (event: DragEvent, item: Item, inputs: Object) => boolean;
+        drop?: (event: DragEvent, item: Item, inputs: Object) => void;
     };
     filteredModel: Map<Item, Map<Item, any>>;
     css: {
@@ -54,7 +55,6 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit,
     onSelect: (item: Item, ancestors: Array<Item>, neighbours: Array<Item>) => Array<Item>;
     itemInjectors: ItemInjector[];
     node: TreeNode<Item>;
-    readonly rootdrop: boolean;
     getModel: () => Item[];
     getChildModel: (item: Item) => any;
     getChildFiltered: (item: Item) => Map<Item, any>;

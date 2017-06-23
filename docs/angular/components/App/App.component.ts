@@ -4,7 +4,7 @@ import { Component } from "@angular/core"
     selector: "div#framework-root",
     template: `
         <div class="App">
-            <p>This page is rendered using angular 4.1.2</p>
+            <p>This page is rendered using angular 4.2.4</p>
             <div class="components-container">
                 <treeview-section></treeview-section>
             </div>

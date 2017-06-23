@@ -3,16 +3,16 @@ var ItemInjector = (function () {
     function ItemInjector(viewContainerRef) {
         this.viewContainerRef = viewContainerRef;
     }
+    ItemInjector.decorators = [
+        { type: Directive, args: [{ selector: '[itemInjector]' },] },
+    ];
+    ItemInjector.ctorParameters = function () { return [
+        { type: ViewContainerRef, },
+    ]; };
+    ItemInjector.propDecorators = {
+        'item': [{ type: Input, args: ["itemInjector",] },],
+    };
     return ItemInjector;
 }());
 export { ItemInjector };
-ItemInjector.decorators = [
-    { type: Directive, args: [{ selector: '[itemInjector]' },] },
-];
-ItemInjector.ctorParameters = function () { return [
-    { type: ViewContainerRef, },
-]; };
-ItemInjector.propDecorators = {
-    'item': [{ type: Input, args: ["itemInjector",] },],
-};
 //# sourceMappingURL=ItemInjector.directive.js.map

@@ -2,6 +2,8 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, Change
 import { RootNode, defaults } from "../../../core"
 import * as strategies from "../../../core/strategies"
 
+type dragOutput<T> = { target: T, event: DragEvent, inputs: Object }
+
 /* Root tree node */
 
 @Component({
@@ -62,8 +64,9 @@ export class TreeView<Item extends Object> {
     }
     _outputs = {
         onSelect: (selection, item, ancestors, neighbours) => this.selectionChange.emit(selection),
-        onDrop: (target, item, event) => this.onDrop.emit([target, item, event]),
-        onDrag: (target, event, ancestors, neighbours) => this.onDrag.emit({target, event, ancestors, neighbours})
+        onDrop:     (target, event, inputs) => this.onDrop.emit({target, event, inputs}),
+        onDrag:     (target, event, inputs) => this.onDrag.emit({target, event, inputs}),
+        onCancel:   (target, event, inputs) => this.onCancel.emit({target, event, inputs})
     }
     _state = {
         search: "",
@@ -125,10 +128,9 @@ export class TreeView<Item extends Object> {
 
     // Outputs
     @Output() selectionChange = new EventEmitter<Array<Item>>()
-    @Output() onDrop = new EventEmitter<[Item, Item, DragEvent]>()
-    @Output() onDrag = new EventEmitter<{
-        target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>
-    }>()
+    @Output() onDrop = new EventEmitter<dragOutput<Item>>()
+    @Output() onDrag = new EventEmitter<dragOutput<Item>>()
+    @Output() onCancel = new EventEmitter<dragOutput<Item>>()
 
     /* Internal logic */
 

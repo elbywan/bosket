@@ -7,7 +7,7 @@ import React from "react"
 // ExplorerView preset
 import { ExplorerView } from "bosket/react"
 // Drag'n'drop utilities
-import { dragndrop } from "bosket/core/dragndrop"
+import { dragndrop, utils as dragtools } from "bosket/core/dragndrop"
 // Data model
 import model from "self/common/models/ExplorerViewModel"
 
@@ -73,9 +73,9 @@ export class ExplorerDemo extends React.PureComponent {
 
         // Drag and drop config.
         dragndrop: {
-            // On drop, two possibilites, real files & folders or inner selection.
-            drop: (target: Object, item: Object, event: DragEvent) => {
-                const fsEntries = dragndrop.drops.filesystem(event)
+            // Custom drop, two possibilites, real files & folders or inner selection.
+            drop: (target: Object, event: DragEvent, inputs: Object) => {
+                const fsEntries =  dragtools.filesystem(event)
                 if(fsEntries) {
                     // Allow real filesystem drop //
                     const targetModel = target ?
@@ -84,17 +84,10 @@ export class ExplorerDemo extends React.PureComponent {
                     fsEntries.forEach(entry => {
                         helpers.scanFiles.bind(this)(entry, targetModel)
                     })
-
                     this.setState({ model: this.state.model.slice() })
                 } else {
                     // "Standard"" drop //
-                    this.setState({
-                        model: dragndrop.drops.selection(
-                            target,
-                            this.state.model,
-                            this.state.category,
-                            this.props.selection)
-                    })
+                    dragndrop.selection(() => this.state.model, m => this.setState({ model: m })).drop(target, event, inputs)
                 }
             }
         }

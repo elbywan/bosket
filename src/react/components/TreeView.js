@@ -56,8 +56,9 @@ class TreeViewBaseClass extends React.PureComponent<void, TreeViewProps, TreeVie
             this._props,
             {
                 onSelect:   this.props.onSelect,
-                onDrag:     this.props.dragndrop && this.props.dragndrop.drag || (() => {}),
-                onDrop:     this.props.dragndrop && this.props.dragndrop.drop
+                onDrag:     this.props.dragndrop && this.props.dragndrop.drag,
+                onDrop:     this.props.dragndrop && this.props.dragndrop.drop,
+                onCancel:   this.props.dragndrop && this.props.dragndrop.cancel
             },
             this._state,
             () => { if(!this._unmounted) this.forceUpdate() }

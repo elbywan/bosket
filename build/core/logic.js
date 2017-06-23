@@ -1,5 +1,3 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -11,6 +9,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 import { css, array, tree } from "../tools";
+import { wrapEvents, nodeEvents } from "./dragndrop";
 import { selectionStrategies, foldStrategies, clickStrategies } from "./strategies";
 import { defaults } from "./defaults";
 
@@ -98,75 +97,18 @@ export var TreeNode = function (_Core) {
                 _this.inputs.get().onSelect(item, _this.inputs.get().ancestors, _this.inputs.get().model);
                 event.stopPropagation();
             };
-        }, _this.onDragStart = function (item) {
-            return function (event) {
-                event.stopPropagation();
-                _this.inputs.get().dragndrop.dragStart(item, event, _this.inputs.get().ancestors, _this.inputs.get().model);
-            };
-        }, _this.onDragOver = function (item) {
-            return function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-
-                if (_this.dragGuard(item, event)) {
-                    event.dataTransfer && (event.dataTransfer.dropEffect = "none");
-                    css.addClass(event.currentTarget, _this.mixCss("nodrop"));
-                    return;
-                }
-
-                css.addClass(event.currentTarget, _this.mixCss("dragover"));
-            };
-        }, _this.onDragEnter = function (item) {
-            return function (event) {
-                event.preventDefault();
-                event.stopPropagation
-                // If dragging over an opener
-                ();if (item && !_this.dragGuard(item, event) && (_this.hasChildren(item) || _this.isAsync(item)) && css.hasClass(event.target, _this.mixCss("opener"))) {
-                    var newVal = _this.state.get().unfolded.filter(function (i) {
-                        return i !== item;
-                    });
-                    newVal.push(item);
-                    _this.state.set({ unfolded: newVal });
-                }
-            };
-        }, _this.onDragLeave = function (event) {
-            event.stopPropagation();
-            css.removeClass(event.currentTarget, _this.mixCss("dragover"));
-            css.removeClass(event.currentTarget, _this.mixCss("nodrop"));
-        }, _this.onDrop = function (item) {
-            return function (event) {
-                event.stopPropagation();
-                css.removeClass(event.currentTarget, _this.mixCss("dragover"));
-                css.removeClass(event.currentTarget, _this.mixCss("nodrop"));
-                if (_this.dragGuard(item, event)) return;
-                var target = item ? _this.hasChildren(item) ? item : array(_this.inputs.get().ancestors).last() : null;
-                _this.inputs.get().dragndrop.onDrop(target, event);
-            };
-        }, _this.dragGuard = function (item, event) {
-            // Prevent drop when not droppable
-            if (!_this.isDroppable(item)) return false;
-            // If we are dragging files authorize drop
-            var items = event.dataTransfer ? event.dataTransfer.items : null;
-            if (items && items.length > 0 && items[0].kind === "file") return false;
-            // Prevent drop on self
-            var selfDrop = item && array(_this.inputs.get().selection).contains(item
-            // Prevent drop on child
-            );var childDrop = _this.inputs.get().ancestors && _this.inputs.get().ancestors.reduce(function (prev, curr) {
-                return prev || array(_this.inputs.get().selection).contains(curr);
-            }, false);
-
-            return selfDrop || childDrop;
         }, _this.getDragEvents = function (item) {
             var condition = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
             if (!condition) return {};
             var result = {
                 draggable: _this.isDraggable(item),
-                onDragStart: _this.isDraggable(item) && _this.onDragStart(item).bind(_this),
-                onDragOver: _this.onDragOver(item).bind(_this),
-                onDragEnter: _this.onDragEnter(item).bind(_this),
-                onDragLeave: _this.onDragLeave.bind(_this),
-                onDrop: _this.isDroppable(item) && _this.onDrop(item).bind(_this)
+                onDragStart: _this.isDraggable(item) && nodeEvents.onDragStart(item).bind(_this),
+                onDragOver: _this.isDroppable(item) && nodeEvents.onDragOver(item).bind(_this),
+                onDragEnter: _this.isDroppable(item) && nodeEvents.onDragEnter(item).bind(_this),
+                onDragLeave: _this.isDroppable(item) && nodeEvents.onDragLeave.bind(_this),
+                onDrop: _this.isDroppable(item) && nodeEvents.onDrop(item).bind(_this),
+                onDragEnd: _this.isDraggable(item) && nodeEvents.onDragEnd(item).bind(_this)
             };
             for (var _key2 in result) {
                 if (!result[_key2]) delete result[_key2];
@@ -214,8 +156,6 @@ export var TreeNode = function (_Core) {
 
         // Drag'n'drop //
 
-        // Guard against bad drop
-
     }]);
 
     return TreeNode;
@@ -233,6 +173,9 @@ export var RootNode = function (_Core2) {
         var _temp2, _this3
 
         // When new element(s) are selected
+
+
+        // Css mixin helper
         , _ret2;
 
         _classCallCheck(this, RootNode);
@@ -254,26 +197,9 @@ export var RootNode = function (_Core2) {
             }).reduce(function (last, curr) {
                 return curr(item, last, neighbours, ancestors);
             }, _this3.inputs.get().selection);
-            return _this3.outputs.onSelect(newSelection, item, ancestors, neighbours);
-        }, _this3.onDragStart = function (target, event, ancestors, neighbours) {
-            event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(target));
-            event.dataTransfer && (event.dataTransfer.dropEffect = "move");
-
-            if (!array(_this3.inputs.get().selection).contains(target)) {
-                _this3.onSelect(target, ancestors, neighbours);
-            }
-            _this3.outputs.onDrag(target, event, ancestors, neighbours);
-        }, _this3.onDrop = function (target, event) {
-            event.preventDefault();
-            var jsonData = event.dataTransfer ? event.dataTransfer.getData("application/json") : "{}";
-
-            _this3.outputs.onDrop(target, jsonData ? JSON.parse(jsonData) : null, event);
-        }, _this3.wrapDragNDrop = function () {
-            return _extends({}, _this3.inputs.get().dragndrop, {
-                dragStart: _this3.onDragStart,
-                onDrop: _this3.onDrop
-            });
-        }, _this3.mixCss = function (prop) {
+            _this3.outputs.onSelect(newSelection, item, ancestors, neighbours);
+            return newSelection;
+        }, _this3.wrapDragNDrop = wrapEvents.bind(_this3), _this3.mixCss = function (prop) {
             return _this3.inputs.get().css[prop] || defaults.css[prop];
         }, _this3.filterTree = function (input) {
             var search = _this3.inputs.get().search;
@@ -286,16 +212,7 @@ export var RootNode = function (_Core2) {
     // Keyboard modifiers list
 
 
-    // Drag start
-
-
-    // Drop event
-
-
     // Framework input wrapper
-
-
-    // Css mixin helper
 
 
     // Filters the tree on a search

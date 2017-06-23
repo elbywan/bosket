@@ -56,8 +56,9 @@ var TreeViewBaseClass = function (_React$PureComponent) {
 
         _this.rootNode = new RootNode(_this._props, {
             onSelect: _this.props.onSelect,
-            onDrag: _this.props.dragndrop && _this.props.dragndrop.drag || function () {},
-            onDrop: _this.props.dragndrop && _this.props.dragndrop.drop
+            onDrag: _this.props.dragndrop && _this.props.dragndrop.drag,
+            onDrop: _this.props.dragndrop && _this.props.dragndrop.drop,
+            onCancel: _this.props.dragndrop && _this.props.dragndrop.cancel
         }, _this._state, function () {
             if (!_this._unmounted) _this.forceUpdate();
         });

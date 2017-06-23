@@ -30,16 +30,9 @@ export declare class TreeNode<Item extends Object> extends Core {
     /* Events */
     onClick:        ((Item) => (MouseEvent) => string) | null
     onOpener:       ((Item) => (MouseEvent) => string) | null
-    onDragStart:    ((Item) => (DragEvent) => string) | null
-    onDragOver:     ((Item) => (DragEvent) => string) | null
-    onDragEnter:    ((Item) => (DragEvent) => string) | null
-    onDragLeave:    ((DragEvent) => string) | null
-    onDrop:         ((Item) => (DragEvent) => string) | null
-
-    dragGuard:      (Item) => boolean
 
     getDragEvents: (Item, boolean?) => {
-        draggable:      boolean,
+        draggable:       boolean,
         onDragStart?:    (DragEvent) => string,
         onDragOver?:     (DragEvent) => string,
         onDragEnter?:    (DragEvent) => string,

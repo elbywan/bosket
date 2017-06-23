@@ -3,7 +3,8 @@
 import React from "react"
 
 import { TreeView } from "../TreeView"
-import { string, tree, deepMix } from "../../../tools"
+import { string, deepMix } from "../../../tools"
+import { dragndrop } from "../../../core"
 
 import type { TreeViewProps } from "../TreeView"
 
@@ -30,16 +31,8 @@ export class ExplorerView extends React.PureComponent<void, ExplorerViewProps, v
             fold: ["opener-control"]
         },
         dragndrop: {
-            draggable: true,
-            droppable: true,
-            drop: (target: Object, item: Object, event: DragEvent) => {
-                let updatedModel = tree(this.props.model, this.props.category).filter((e: Object) => this.props.selection.indexOf(e) < 0)
-                if(target)
-                    target[this.props.category] = [ ...target[this.props.category], ...this.props.selection ]
-                else
-                    updatedModel = [ ...updatedModel, ...this.props.selection ]
-                this.props.updateModel(updatedModel)
-            }
+            ...dragndrop.selection(() => this.props.model, this.props.updateModel),
+            droppable: _ => !_ || _[this.props.category]
         }
     }
 

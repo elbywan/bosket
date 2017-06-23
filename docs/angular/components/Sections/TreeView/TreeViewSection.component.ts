@@ -31,7 +31,7 @@ export class ItemDisplay implements ItemComponent<{ label }> {
                 [dragndrop]="dragndrop"
                 [itemComponent]="itemComponent"
                 [css]="css"
-                (onDrop)="onDrop($event[0], $event[1])"
+                (onDrop)="onDrop($event)"
                 (onDrag)="onDrag($event)">
             </TreeView>
         </div>
@@ -61,7 +61,7 @@ export class TreeViewSection {
         this.dragImage.src = "../assets/drag-image.svg"
     }
 
-    model = initialModel
+    model: Object[] = initialModel
 
     category = "items"
     display = item => item.label
@@ -76,16 +76,14 @@ export class TreeViewSection {
         fold: ["opener-control"]
     }
     noOpener = false
-    dragndrop = {
-        draggable: true,
-        droppable: true
-    }
+    dragndrop = dragndrop.selection(() => this.model, m => this.model = m)
     css = { TreeView: "TreeViewDemo" }
     dragImage: HTMLImageElement
-    onDrop = (target, item) => {
-        this.model = dragndrop.drops.selection(target, this.model, this.category, this.selection)
+    onDrop = ({target, event, inputs}) => {
+        //this.model = dragndrop.drops.selection(target, this.model, this.category, this.selection)
+        this.dragndrop.drop(target, event, inputs)
     }
-    onDrag = ({target, event, ancestors, neighbours}) => {
+    onDrag = ({target, event, inputs}) => {
         event.dataTransfer.setDragImage(this.dragImage, 0, 0)
     }
     itemComponent = ItemDisplay

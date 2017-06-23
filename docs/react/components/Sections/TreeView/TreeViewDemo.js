@@ -19,6 +19,7 @@ export class TreeViewDemo extends React.PureComponent {
         this.dragImage.src = "../assets/drag-image.svg"
     }
     dragImage: Image
+    backupModel: Object[]
 
     // The TreeView rendering
     render = () =>
@@ -64,24 +65,11 @@ export class TreeViewDemo extends React.PureComponent {
             transitionEnterTimeout: 300,
             transitionLeaveTimeout: 300
         },
-        // We mark elements as draggable & droppable
+        // Use the "selection" drag and drop preset
         dragndrop: {
-            draggable: true,
-            droppable: true,
-            // On drag init, set the drag image
-            drag: (target: Object, event: DragEvent, ancestors: Object[], neighbours: Object[]) => {
-                event.dataTransfer && event.dataTransfer.setDragImage(this.dragImage, 0, 0)
-            },
-            // On drop, move the element (& the previous selection) to the new position
-            drop: (target: Object, item: Object, event: DragEvent) => {
-                this.setState({
-                    model: dragndrop.drops.selection(
-                        target,
-                        this.state.model,
-                        this.state.category,
-                        this.props.selection)
-                })
-            }
+            ...dragndrop.selection(() => this.state.model, m => this.setState({ model: m })),
+            // Drop only on categories or root
+            droppable: _ => !_ || _.items
         }
     }
 }

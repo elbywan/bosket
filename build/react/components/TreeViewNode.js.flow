@@ -131,7 +131,7 @@ class TreeViewNodeBaseClass extends React.PureComponent<*, TreeViewNodeProps, Tr
 
         return (
             <ul className={ this.node.ulCss() }
-                { ...this.node.getDragEvents(null, this.props.dragndrop && this.props.dragndrop.draggable && !this.props.depth) }>
+                { ...this.node.getDragEvents(null, !this.props.depth) }>
                 { list }
             </ul>
         )

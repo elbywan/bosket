@@ -8,8 +8,9 @@ export declare class TreeView<Item extends Object> {
     };
     _outputs: {
         onSelect: (selection: any, item: any, ancestors: any, neighbours: any) => void;
-        onDrop: (target: any, item: any, event: any) => void;
-        onDrag: (target: any, event: any, ancestors: any, neighbours: any) => void;
+        onDrop: (target: any, event: any, inputs: any) => void;
+        onDrag: (target: any, event: any, inputs: any) => void;
+        onCancel: (target: any, event: any, inputs: any) => void;
     };
     _state: {
         search: string;
@@ -50,12 +51,20 @@ export declare class TreeView<Item extends Object> {
         droppable: boolean;
     };
     selectionChange: EventEmitter<Item[]>;
-    onDrop: EventEmitter<[Item, Item, DragEvent]>;
+    onDrop: EventEmitter<{
+        target: Item;
+        event: DragEvent;
+        inputs: Object;
+    }>;
     onDrag: EventEmitter<{
         target: Item;
         event: DragEvent;
-        ancestors: Item[];
-        neighbours: Item[];
+        inputs: Object;
+    }>;
+    onCancel: EventEmitter<{
+        target: Item;
+        event: DragEvent;
+        inputs: Object;
     }>;
     rootNode: RootNode<Item>;
     getChildModel: () => Item[];

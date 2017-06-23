@@ -13,10 +13,10 @@ const object = require("../../../tools/objects").object
     template: `
         <ul *ngIf="!folded && !loading"
             [ngClass]="node.ulCss()"
-            (dragover)="limitTick(invokeEvent, 'onDragOver', null, $event, rootdrop)"
-            (dragenter)="invokeEvent('onDragEnter', null, $event, rootdrop)"
-            (dragleave)="invokeEvent('onDragLeave', null, $event, rootdrop)"
-            (drop)="invokeEvent('onDrop', null, $event, rootdrop)">
+            (dragover)="limitTick(invokeEvent, 'onDragOver', null, $event, depth === 0)"
+            (dragenter)="invokeEvent('onDragEnter', null, $event, depth === 0)"
+            (dragleave)="invokeEvent('onDragLeave', null, $event, depth === 0)"
+            (drop)="invokeEvent('onDrop', null, $event, depth === 0)">
 
             <li *ngFor="let item of getModel(); let i = index; trackBy: key"
                 [class]="node.liCss(item)"
@@ -26,6 +26,7 @@ const object = require("../../../tools/objects").object
                 (dragover)="invokeEvent('onDragOver', item, $event)"
                 (dragenter)="invokeEvent('onDragEnter', item, $event)"
                 (dragleave)="invokeEvent('onDragLeave', item, $event)"
+                (dragend)="invokeEvent('onDragEnd', item, $event)"
                 (drop)="invokeEvent('onDrop', item, $event)">
                 <span [class]="node.mixCss('item')">
                     <a *ngIf="!itemComponent">{{ display(item, this.ancestors) }}</a>
@@ -40,7 +41,7 @@ const object = require("../../../tools/objects").object
                     [model]="getChildModel(item)"
                     [filteredModel]="getChildFiltered(item)"
                     [ancestors]="getAncestors(item)"
-                    [depth]="(depth || 0) + 1"
+                    [depth]="depth + 1"
                     [folded]="node.isFolded(item)"
                     [loading]="node.isAsync(item) && !node.isFolded(item)"
                     [category]="category"
@@ -142,10 +143,11 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit, AfterVi
     @Input() async: (_: Function) => Promise<any>
     @Input() itemComponent
     @Input() dragndrop : {
-        draggable: boolean,
-        droppable: boolean,
-        dragStart<Item extends Object>(target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>): void,
-        onDrop<Item extends Object>(target: Item, event: DragEvent): void
+        draggable: boolean | (() => boolean),
+        droppable: boolean | (() => boolean),
+        drag?:  (event: DragEvent, item: Item, inputs: Object) => void,
+        guard?: (event: DragEvent, item: Item, inputs: Object) => boolean,
+        drop?:  (event: DragEvent, item: Item, inputs: Object) => void
     }
 
     // Internal
@@ -163,7 +165,6 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit, AfterVi
     /* Internal logic */
 
     node: TreeNode<Item>
-    get rootdrop(){ return this.dragndrop.draggable && !this.depth }
 
     getModel = () =>
         this.searched ?
