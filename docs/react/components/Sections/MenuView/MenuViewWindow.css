@@ -1,11 +1,9 @@
-/* Section */
-
-.MenuViewSection i.fa {
+.MenuViewWindow i.fa {
     margin-right: 15px;
     margin-left: 10px;
 }
 
-.MenuViewSection.window {
+.MenuViewWindow.window {
     background: rgba(245,245,245 ,1);
     color: #222;
     box-shadow: 0px 0px 10px #888;
@@ -14,26 +12,26 @@
     overflow: hidden;
 }
 
-.MenuViewSection.upperBar {
+.MenuViewWindow.upperBar {
     background: #3F51B5;
     height: 40px;
 }
 
-.MenuViewSection.opener {
+.MenuViewWindow.opener {
     color: white;
     line-height: 40px;
     font-size: 27px;
     float: left;
 }
 
-.MenuViewSection.title {
+.MenuViewWindow.title {
     color: white;
     font-size: 18px;
     line-height: 40px;
     text-align: center;
 }
 
-.MenuViewSection.side-panel {
+.MenuViewWindow.side-panel {
     background: #3F51B5;
     color: white;
     position: absolute;
@@ -44,44 +42,44 @@
     transform: translateX(-250px);
 }
 
-.MenuViewSection.side-panel.opened {
+.MenuViewWindow.side-panel.opened {
     transform: translateX(0px);
 }
 
-.MenuViewSection.content {
+.MenuViewWindow.content {
     min-height: 300px;
     transition: all 0.25s ease-in-out;
     transform: translateX(0px);
 }
 
-.MenuViewSection.content.opened {
+.MenuViewWindow.content.opened {
     transform: translateX(250px);
 }
 
-.MenuViewSection.content h3 {
+.MenuViewWindow.content h3 {
     margin: 0;
     padding: 10px;
     background-color: #3F51B5;
     color: white;
 }
 
-.MenuViewSection.content article {
+.MenuViewWindow.content article {
     padding: 0px 20px;
 }
 
-.MenuViewSection.content .children > h4 {
+.MenuViewWindow.content .children > h4 {
     margin: 0px;
     padding: 10px;
 }
-.MenuViewSection.content .children > h4 > a {
+.MenuViewWindow.content .children > h4 > a {
     transition: color 0.25s ease-in-out;
 }
-.MenuViewSection.content .children > h4 > a:hover {
+.MenuViewWindow.content .children > h4 > a:hover {
     color: #3F51B5;
 }
 
 /* Responsive */
 
 @media (max-width: 600px) {
-    .MenuViewSection.window { min-height: 300px }
+    .MenuViewWindow.window { min-height: 300px }
 }

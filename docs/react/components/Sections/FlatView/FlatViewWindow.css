@@ -1,6 +1,4 @@
-/* Flat Tree section */
-
-.FlatViewSection {
+.FlatViewWindow {
     width: 100%;
     height: 100%;
     background: rgba(2,119,189 ,0.4);
@@ -8,16 +6,16 @@
     box-shadow: 0 0 10px #AAA;
     letter-spacing: 1.5px;
 }
-.FlatViewSection p {
+.FlatViewWindow p {
     padding: 20px;
     margin: 0px;
 }
-.FlatViewSection em {
+.FlatViewWindow em {
     font-style: normal;
     font-weight: bold;
     color: #f44336;
 }
-.FlatViewSection > h3 {
+.FlatViewWindow > h3 {
     text-align: center;
     padding: 10px 20px;
     margin: 0;
@@ -28,11 +26,11 @@
     border-top-left-radius: 10px;
     border-bottom: 2px solid #f44336;
 }
-.FlatViewSection .comboBox {
+.FlatViewWindow .comboBox {
     position: relative;
     display: inline;
 }
-.FlatViewSection .comboBox > button {
+.FlatViewWindow .comboBox > button {
     padding: 5px 20px;
     height: 27px;
     background-color: rgba(255, 255, 255, 0.3);
@@ -41,22 +39,22 @@
     font-weight: bold;
     font-family: inherit;
 }
-.FlatViewSection .comboBox > button:hover {
+.FlatViewWindow .comboBox > button:hover {
     /* color: #f44336; */
     border-color: #f44336;
     box-shadow: 0px 0px 3px #aaa;
 }
-.FlatViewSection .comboBoxOpener {
+.FlatViewWindow .comboBoxOpener {
     float: right;
     pointer-events: none;
 }
-.FlatViewSection .comboBoxOpener > i.fa {
+.FlatViewWindow .comboBoxOpener > i.fa {
     transition: transform 0.25s ease-in-out;
 }
-.FlatViewSection .comboBox.opened .comboBoxOpener > i.fa {
+.FlatViewWindow .comboBox.opened .comboBoxOpener > i.fa {
     transform: rotate(90deg);
 }
-.FlatViewSection .comboBox .container {
+.FlatViewWindow .comboBox .container {
     position: absolute;
     z-index: 5;
     opacity: 0;
@@ -71,56 +69,56 @@
     text-align: center;
     transition: all 0.25s ease-in-out;
 }
-.FlatViewSection .comboBox.opened .container {
+.FlatViewWindow .comboBox.opened .container {
     height: 300px;
     opacity: 1;
 }
-.FlatViewSection .comboBox.opened .container,
-.FlatViewSection .comboBox.opened > button {
+.FlatViewWindow .comboBox.opened .container,
+.FlatViewWindow .comboBox.opened > button {
     box-shadow: 0px 0px 3px #aaa;
 }
 
-.FlatViewSection div.form-like {
+.FlatViewWindow div.form-like {
     display: table;
     table-layout: fixed;
     width: calc(100% - 40px);
     padding: 20px;
     border-spacing: 20px;
 }
-.FlatViewSection div.form-line {
+.FlatViewWindow div.form-line {
     display: table-row;
 }
-.FlatViewSection div.form-line > * {
+.FlatViewWindow div.form-line > * {
     display: table-cell;
 }
-.FlatViewSection div.form-line > input {
+.FlatViewWindow div.form-line > input {
     background: rgba(255, 255, 255, 0.3);
     border-bottom: 1px solid black;
     font-family: inherit;
 }
-.FlatViewSection div.form-line input,
-.FlatViewSection div.form-line button {
+.FlatViewWindow div.form-line input,
+.FlatViewWindow div.form-line button {
     width: 100%;
     box-sizing: border-box;
 }
-.FlatViewSection .form-line > input:hover {
+.FlatViewWindow .form-line > input:hover {
     box-shadow: 0px 0px 3px #aaa !important;
 }
-.FlatViewSection div.form-line label {
+.FlatViewWindow div.form-line label {
     font-weight: bold;
 }
 
-.FlatViewSection input {
+.FlatViewWindow input {
     transition: all 0.25s ease-in-out;
 }
-.FlatViewSection input:focus {
+.FlatViewWindow input:focus {
     border-color: #f44336 !important;
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-    .FlatViewSection > h3 { margin-bottom: 0px; }
-    .FlatViewSection div.form-like { padding: 0; border-spacing: 10px; width: 100%; }
-    .FlatViewSection div.form-line label { font-size: 0.7em; }
-    .FlatViewSection .comboBox > button { min-width: auto; padding: 0px; }
+    .FlatViewWindow > h3 { margin-bottom: 0px; }
+    .FlatViewWindow div.form-like { padding: 0; border-spacing: 10px; width: 100%; }
+    .FlatViewWindow div.form-line label { font-size: 0.7em; }
+    .FlatViewWindow .comboBox > button { min-width: auto; padding: 0px; }
 }

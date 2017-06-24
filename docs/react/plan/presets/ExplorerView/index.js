@@ -14,7 +14,7 @@ export default {
             <div>
                 <h4><button className="basic-button">
                     <i className="fa fa-download"></i>
-                    <a download="BosketExplorerView.css" href="./components/Sections/ExplorerView/ExplorerDemo.css">Download stylesheet</a>
+                    <a download="BosketExplorerView.css" href="./components/Sections/ExplorerView/ExplorerViewWindow.css">Download stylesheet</a>
                 </button></h4>
                 <ExplorerViewSection></ExplorerViewSection>
             </div>

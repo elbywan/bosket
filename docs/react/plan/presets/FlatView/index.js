@@ -14,7 +14,7 @@ export default {
             <div>
                 <h4><button className="basic-button">
                     <i className="fa fa-download"></i>
-                    <a download="BosketFlatView.css" href="./components/Sections/FlatView/FlatViewDemo.css">Download stylesheet</a>
+                    <a download="BosketFlatView.css" href="./components/Sections/FlatView/FlatViewWindow.css">Download stylesheet</a>
                 </button></h4>
                 <FlatViewSection></FlatViewSection>
             </div>

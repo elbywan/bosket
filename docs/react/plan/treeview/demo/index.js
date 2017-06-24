@@ -10,7 +10,7 @@ export default {
         <div>
             <h4><button className="basic-button">
                 <i className="fa fa-download"></i>
-                <a download="BosketTreeView.css" href="./components/Sections/TreeView/TreeViewSection.css">Download stylesheet</a>
+                <a download="BosketTreeView.css" href="./components/Sections/TreeView/TreeViewDemo.css">Download stylesheet</a>
             </button></h4>
             <TreeViewSection></TreeViewSection>
         </div>

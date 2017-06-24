@@ -7,6 +7,9 @@ import { TreeView } from "bosket/react"
 import { string } from "bosket/tools"
 import { dragndrop } from "bosket/core/dragndrop"
 
+// Css
+import "./TreeViewDemo.css"
+
 // Model
 import model from "self/common/models/TreeViewModel"
 
