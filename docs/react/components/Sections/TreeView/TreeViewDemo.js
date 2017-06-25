@@ -68,9 +68,11 @@ export class TreeViewDemo extends React.PureComponent {
             transitionEnterTimeout: 300,
             transitionLeaveTimeout: 300
         },
-        // Use the "selection" drag and drop preset
         dragndrop: {
+            // Use the "selection" drag and drop preset
             ...dragndrop.selection(() => this.state.model, m => this.setState({ model: m })),
+            // Add a custom image on drag
+            drag: (_, event) => event.dataTransfer.setDragImage(this.dragImage, 0, 0),
             // Drop only on categories or root
             droppable: _ => !_ || _.items
         }
