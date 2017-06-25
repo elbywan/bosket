@@ -22,7 +22,7 @@ export class ExplorerView extends React.PureComponent<void, ExplorerViewProps, v
         display: (item: Object) => <a>{ item[this.props.name] }</a>,
         sort: (a: Object, b: Object) =>
             !a[this.props.category] === !b[this.props.category] ? a[this.props.name].localeCompare(b[this.props.name]) :
-            a[this.props.category] ? -1 : 1,
+                a[this.props.category] ? -1 : 1,
         key: (item: Object) : string => item[this.props.name],
         search: (input: string) => (i: Object) => string(i[this.props.name]).contains(input),
         strategies: {

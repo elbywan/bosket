@@ -1,9 +1,12 @@
+// @flow
+
 import React from "react"
 
 import { TreeView } from "bosket/react"
 import { dragndrop } from "bosket/core"
 
 const dragModel = [
+    { name: "< Drag these items >" },
     { name: 1, children: [{ name: 11 }, { name: 12 }, { name: 13 }]},
     { name: 2, children: [{ name: 21 }, { name: 22 }]},
     { name: 3 },

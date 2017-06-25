@@ -7,7 +7,6 @@ import { Planner } from "self/react/components/Planner/Planner"
 import plan from "self/react/plan"
 
 export class App extends React.PureComponent {
-
     componentDidMount = () => {
         if(window.location.hash) {
             const elt = document.getElementById(window.location.hash.substring(1))

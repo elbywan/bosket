@@ -1,6 +1,10 @@
 const { resolve } = require("path")
 const webpack = require("webpack")
 const ngtools = require("@ngtools/webpack")
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const htmlTargets = [ "angular", "react" ]
 
 module.exports = {
     entry: {
@@ -9,7 +13,7 @@ module.exports = {
         common: "./docs/common/index.js"
     },
     output: {
-        filename: "[name]/[name].js",
+        filename: "[name]/build/[name].js",
         path: resolve(__dirname, "")
     },
     resolve: {
@@ -28,11 +32,10 @@ module.exports = {
                 loader: "babel-loader"
             }, {
                 test: /\.css$/,
-                use: [
-                    { loader: "style-loader" },
-                    { loader: "css-loader", options: { importLoaders: 1 }},
+                use: ExtractTextPlugin.extract([
+                    "css-loader",
                     "postcss-loader"
-                ]
+                ])
             },
             {
                 test: /\.tsx?$/,
@@ -47,6 +50,12 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: "common"
-        })
+        }),
+        new ExtractTextPlugin("./[name]/build/[name].css"),
+        ...htmlTargets.map(target => new HtmlWebpackPlugin({
+            filename: `${__dirname}/${target}/index.html`,
+            template: `${__dirname}/${target}/index.ejs`,
+            chunks: [ 'common', target ]
+        }))
     ]
 }

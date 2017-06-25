@@ -1,8 +1,8 @@
 /.vscode
 /node_modules
 /build
-/docs/angular/angular.js
-/docs/react/react.js
-/docs/common/common.js
+/docs/angular/build
+/docs/react/build
+/docs/common/build
 /docs/common/libs
 /docs/webpack.*

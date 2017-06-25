@@ -88,6 +88,7 @@
             & > pre[class*=language-] {
                 position: relative;
                 height: calc(100% - 50px);
+                @media (max-width: 1100px) { height: auto; }
                 min-height: 250px;
                 margin: 0;
             }

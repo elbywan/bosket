@@ -6,7 +6,7 @@ import "./FlatViewDemo.css"
 import React from "react"
 // Bosket
 import { FlatView } from "bosket/react"
-    // (Useful tools)
+// (Useful tools)
 import { array, string } from "bosket/tools"
 // Data model
 import model from "self/common/models/FlatViewModel"
@@ -15,10 +15,10 @@ export class FlatViewDemo extends React.PureComponent {
 
     // Rendering
     render = () => <FlatView
-            { ...this.state }
-            selection={ this.props.selection }
-            onSelect={ this.props.onSelect }
-            limit={ this.props.limit }></FlatView>
+        { ...this.state }
+        selection={ this.props.selection }
+        onSelect={ this.props.onSelect }
+        limit={ this.props.limit }></FlatView>
 
     // State
     state = {
@@ -26,8 +26,8 @@ export class FlatViewDemo extends React.PureComponent {
         category: "items",
         name: "label",
         search: (input: string) => (i: Object) => !i.items && string(i.label).contains(input),
-        display: (item: Object) =>
-            !item.items ? item.label :
+        display: (item: Object) => !item.items ?
+            item.label :
             <div onClick={ ev => this.toggleCategory(item) }>{ item.label }</div>,
         formData: { firstName: "", lastName: "" },
         opened: false

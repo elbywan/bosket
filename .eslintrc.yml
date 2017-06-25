@@ -89,9 +89,6 @@ rules:
   operator-linebreak:
     - warn
     - after
-  padded-blocks:
-    - warn
-    - never
   quote-props:
     - error
     - as-needed

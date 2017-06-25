@@ -3,7 +3,7 @@
 import React from "react"
 
 const helpers = {
-     // Render a nice table to display folder contents
+    // Render a nice table to display folder contents
     renderFolderView: function() {
         const header =
             <thead>
@@ -13,7 +13,7 @@ const helpers = {
             const splittedName = file.filename.split(".")
             return (
                 <tr className={ this.state.selection.indexOf(file) >= 0 ? "selected" : null }
-                        onClick={ event => this.setState({ selection: [file]}) } key={ file.filename }>
+                    onClick={ event => this.setState({ selection: [file]}) } key={ file.filename }>
                     <td>
                         <i className={"icon fa " + helpers.getIcon(file)}></i>
                         { splittedName.length === 1 ? file.filename : splittedName.slice(0, -1).join(".") }

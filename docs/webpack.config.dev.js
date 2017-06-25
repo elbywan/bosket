@@ -1,5 +1,8 @@
 const { resolve } = require("path")
 const webpack = require("webpack")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const htmlTargets = [ "angular", "react" ]
 
 module.exports = {
     entry: {
@@ -11,7 +14,7 @@ module.exports = {
         common: "./docs/common/index.js"
     },
     output: {
-        filename: "[name]/[name].js",
+        filename: "[name]/build/[name].js",
         path: resolve(__dirname, ""),
         publicPath: "/"
     },
@@ -57,6 +60,11 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin()
+        new webpack.NamedModulesPlugin(),
+        ...htmlTargets.map(target => new HtmlWebpackPlugin({
+            filename: `${__dirname}/${target}/index.html`,
+            template: `${__dirname}/${target}/index.ejs`,
+            chunks: [ 'common', target ]
+        }))
     ]
 }

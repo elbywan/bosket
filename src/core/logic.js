@@ -50,7 +50,7 @@ export class TreeNode extends Core {
         return  (!this.inputs.get().searched || this.isAsync(item)) &&
                     (strats && strats.fold || [])
                         .map(strat => (foldStrategies[strat] || strat).bind(this))
-                            .reduce((last, curr) => last && curr(item, last), true)
+                        .reduce((last, curr) => last && curr(item, last), true)
     }
     hasChildren = (item: Object) => item[this.inputs.get().category] && item[this.inputs.get().category] instanceof Array
     isAsync = (item: ?Object) : boolean => !!item && [this.inputs.get().category] && typeof item[this.inputs.get().category] === "function"
@@ -61,15 +61,15 @@ export class TreeNode extends Core {
     isDraggable = (item: ?Object) =>
         item &&
         this.inputs.get().dragndrop.draggable && (
-        typeof this.inputs.get().dragndrop.draggable === "function" ?
-            this.inputs.get().dragndrop.draggable(item) :
-            true
+            typeof this.inputs.get().dragndrop.draggable === "function" ?
+                this.inputs.get().dragndrop.draggable(item) :
+                true
         )
     isDroppable = (item: ?Object) =>
         this.inputs.get().dragndrop.droppable && (
-        typeof this.inputs.get().dragndrop.droppable === "function" ?
-            this.inputs.get().dragndrop.droppable(item) :
-            true
+            typeof this.inputs.get().dragndrop.droppable === "function" ?
+                this.inputs.get().dragndrop.droppable(item) :
+                true
         )
 
     /* Styles calculation */
@@ -126,8 +126,8 @@ export class TreeNode extends Core {
                 return
             const strats = this.inputs.get().strategies;
             (strats && strats.click || [])
-                        .map(strat => (clickStrategies[strat] || strat).bind(this))
-                            .forEach(strat => strat(item, event, this.inputs.get().ancestors, this.inputs.get().model))
+                .map(strat => (clickStrategies[strat] || strat).bind(this))
+                .forEach(strat => strat(item, event, this.inputs.get().ancestors, this.inputs.get().model))
             this.inputs.get().onSelect(item, this.inputs.get().ancestors, this.inputs.get().model)
             event.stopPropagation()
         }
@@ -195,8 +195,8 @@ export class RootNode extends Core {
     onSelect = (item: Object, ancestors: Object[], neighbours: Object[]) => {
         const selectionStrategy = this.inputs.get().strategies.selection || []
         const newSelection = selectionStrategy
-                                .map(strat => (selectionStrategies[strat] || strat).bind(this))
-                                    .reduce((last, curr) => curr(item, last, neighbours, ancestors), this.inputs.get().selection)
+            .map(strat => (selectionStrategies[strat] || strat).bind(this))
+            .reduce((last, curr) => curr(item, last, neighbours, ancestors), this.inputs.get().selection)
         this.outputs.onSelect(newSelection, item, ancestors, neighbours)
         return newSelection
     }

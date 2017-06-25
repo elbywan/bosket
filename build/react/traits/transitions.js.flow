@@ -16,5 +16,5 @@ export const withTransition : trait<> = ({ key }) => Component =>
                 <CSSTransitionGroup { ...this.props.transition }>
                     <Component { ...this.props } key={ key(this.props) }></Component>
                 </CSSTransitionGroup> :
-            <Component { ...this.props }></Component>
+                <Component { ...this.props }></Component>
     }

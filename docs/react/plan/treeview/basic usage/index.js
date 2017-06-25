@@ -13,7 +13,7 @@ export default {
                 <br/>
                 Appearance can be tweaked with <em><a href="#TreeView#Css">css</a></em> styles.
             </p>
-           { jscode`
+            { jscode`
                 import { TreeView } from "bosket/react"
 
                 const usage = _ =>

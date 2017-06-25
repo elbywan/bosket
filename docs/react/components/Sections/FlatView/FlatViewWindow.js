@@ -67,22 +67,22 @@ export class FlatViewWindow extends React.PureComponent {
                 </div>
 
                 { this.validate() ?
-                <div>
-                    <p>
-                        Your name is <em>{ this.state.formData.firstName } { this.state.formData.lastName }&nbsp;</em>
-                        and {
-                            this.state.selection.length === 1 ?
-                                "this is the thing you like :" :
-                                <span>these are the <em>{ this.state.selection.length }</em> things you like :</span>
-                        }
-                    </p>
-                    <div className="inline-row">
-                        { this.state.selection.map(s =>
-                            <em key={ s.label }>{s.label}</em>
-                        ) }
-                    </div>
-                </div> :
-                <p>Please complete the <em>form</em> above.</p>
+                    <div>
+                        <p>
+                            Your name is <em>{ this.state.formData.firstName } { this.state.formData.lastName }&nbsp;</em>
+                            and {
+                                this.state.selection.length === 1 ?
+                                    "this is the thing you like :" :
+                                    <span>these are the <em>{ this.state.selection.length }</em> things you like :</span>
+                            }
+                        </p>
+                        <div className="inline-row">
+                            { this.state.selection.map(s =>
+                                <em key={ s.label }>{s.label}</em>
+                            ) }
+                        </div>
+                    </div> :
+                    <p>Please complete the <em>form</em> above.</p>
                 }
             </div>
         </div>

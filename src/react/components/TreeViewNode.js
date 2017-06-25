@@ -115,19 +115,19 @@ class TreeViewNodeBaseClass extends React.PureComponent<*, TreeViewNodeProps, Tr
 
         const OpenerComponent = this.props.opener || "span"
         const list = model
-                .filter(m => !this.props.searched || this.props.filteredModel && this.props.filteredModel.has(m))
-                .map((item, idx) =>
-                    <li key={ key && key(item) || idx }
-                        className={ this.node.liCss(item) }
-                        onClick={ this.node.onClick(item) }
-                        { ...this.node.getDragEvents(item) }>
-                        <span className={ this.node.mixCss("item") }>
-                            { display && display(item, this.props.ancestors) }
-                            { this.renderOpener(item, OpenerComponent) }
-                        </span>
-                        { this.renderSubtree(item) }
-                    </li>
-                )
+            .filter(m => !this.props.searched || this.props.filteredModel && this.props.filteredModel.has(m))
+            .map((item, idx) =>
+                <li key={ key && key(item) || idx }
+                    className={ this.node.liCss(item) }
+                    onClick={ this.node.onClick(item) }
+                    { ...this.node.getDragEvents(item) }>
+                    <span className={ this.node.mixCss("item") }>
+                        { display && display(item, this.props.ancestors) }
+                        { this.renderOpener(item, OpenerComponent) }
+                    </span>
+                    { this.renderSubtree(item) }
+                </li>
+            )
 
         return (
             <ul className={ this.node.ulCss() }

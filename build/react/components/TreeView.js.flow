@@ -90,10 +90,10 @@ class TreeViewBaseClass extends React.PureComponent<void, TreeViewProps, TreeVie
         const props : any = { ...defaults, ...rest }
 
         const searchBar = !this.props.search ? null :
-                <input type="search" className={ this.rootNode.mixCss("search") }
-                    value={ this.state.search }
-                    placeholder={ this.props.labels && this.props.labels["search.placeholder"] }
-                    onChange={ this.onSearch } />
+            <input type="search" className={ this.rootNode.mixCss("search") }
+                value={ this.state.search }
+                placeholder={ this.props.labels && this.props.labels["search.placeholder"] }
+                onChange={ this.onSearch } />
 
         return (
             <div className={ this.rootNode.mixCss("TreeView") }>

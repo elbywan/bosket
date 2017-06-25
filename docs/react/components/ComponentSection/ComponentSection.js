@@ -65,8 +65,8 @@ export class ComponentSection extends React.PureComponent {
         <div className="tabs">
             { files.map(f =>
                 <div key={f}
-                        onClick={ ev => this.setState({ tab: f }) }
-                        className={ f === this.tab ? "selected" : "" }>
+                    onClick={ ev => this.setState({ tab: f }) }
+                    className={ f === this.tab ? "selected" : "" }>
                     { getFileName(f) }
                 </div>
             )}

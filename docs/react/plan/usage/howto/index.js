@@ -35,14 +35,14 @@ export default {
 
             <div className="marged separate">
                 <h4><em><a href="#Presets#MenuView">MenuView preset</a></em></h4>
-                 <span>
+                <span>
                     A preset best suited for nested menus with automatic item folding/unfolding and ancestors selection.
                 </span>
             </div>
 
             <div className="marged separate">
                 <h4><em><a href="#Presets#FlatView">FlatView preset</a></em></h4>
-                 <span>
+                <span>
                     A flat view preset, with all items unfolded (all visible) and multi selection.
                 </span>
             </div>

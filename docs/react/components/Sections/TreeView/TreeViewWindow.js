@@ -18,11 +18,11 @@ export class TreeViewWindow extends React.PureComponent {
                 </div>
             }
 
-             <p>
+            <p>
                 {
                     this.state.selection.length === 0 ? "No elements are" :
-                    this.state.selection.length === 1 ? "One element is" :
-                    this.state.selection.length  + " elements are"
+                        this.state.selection.length === 1 ? "One element is" :
+                            this.state.selection.length  + " elements are"
                 } selected.
             </p>
 

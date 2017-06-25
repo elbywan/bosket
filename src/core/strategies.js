@@ -51,16 +51,16 @@ export const selectionStrategies = {
                 if(this.lastPivot) {
                     const lastIndex = neighbours.indexOf(this.lastPivot)
                     const [ smaller, higher ] = originIndex > lastIndex ?
-                            [ lastIndex, originIndex ] :
-                            [ originIndex, lastIndex ]
+                        [ lastIndex, originIndex ] :
+                        [ originIndex, lastIndex ]
                     const deletions : any = neighbours.slice(smaller, higher + 1)
                     newSelection = array(newSelection).notIn(deletions)
                 }
                 this.lastPivot = item
 
                 const [ smaller, higher ] = originIndex > endIndex ?
-                        [ endIndex, originIndex ] :
-                        [ originIndex, endIndex ]
+                    [ endIndex, originIndex ] :
+                    [ originIndex, endIndex ]
                 const additions : any = !this.inputs.get().disabled ?
                     neighbours.slice(smaller, higher + 1) :
                     neighbours.slice(smaller, higher + 1).filter(i => !this.inputs.get().disabled(i))
@@ -78,10 +78,10 @@ export const selectionStrategies = {
     },
     ancestors: function(item: Object, selection: Object[], neighbours: Object[], ancestors: Object[]) {
         return selection.length === 0 ?
-                [item] :
+            [item] :
             array(selection).contains(item) ?
                 [...ancestors] :
-            [ ...ancestors, item ]
+                [ ...ancestors, item ]
     }
 }
 

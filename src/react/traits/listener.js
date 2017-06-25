@@ -8,11 +8,11 @@ import type { trait } from "./helpers"
 import { displayName } from "./helpers"
 
 export const withListener : trait<> = ({
-        eventType = "click",
-        propName = "listener",
-        mountOn = null,
-        autoMount = false,
-        regulate = false } = {}) => Component =>
+    eventType = "click",
+    propName = "listener",
+    mountOn = null,
+    autoMount = false,
+    regulate = false } = {}) => Component =>
     class extends React.Component<void, { listener: Object }, void> {
 
         static displayName = displayName("withListener", Component)

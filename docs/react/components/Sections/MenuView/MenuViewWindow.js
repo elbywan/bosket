@@ -40,7 +40,7 @@ export class MenuViewWindow extends React.PureComponent {
                     { this.renderContent(this.state.selection[this.state.selection.length - 1]) }
                 </div>
             </div>
-         </div>
+        </div>
 
     renderContent = (item: Object) => !item ? <article><h4>Pick an item.</h4></article> :
         <div>

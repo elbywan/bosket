@@ -9,10 +9,12 @@ import { withListener, combine } from "bosket/react/traits"
 
 const headerLevel = (depth, prefix, inner) => {
     const id = prefix ? `${prefix}#${inner}` : inner
-    return React.createElement("h" + depth, {
-        id: id,
-        className: "Planner heading"
-    },
+    return React.createElement(
+        "h" + depth,
+        {
+            id: id,
+            className: "Planner heading"
+        },
         <span>{ inner }</span>,
         <a href={ "#" + id }><i className="fa fa-link"></i></a>
     )
@@ -27,8 +29,8 @@ const processContent = (plan, parentPrefix = "", depth = 1) => {
             { headerLevel(depth, parentPrefix, item.title) }
             { item.content }
             { item.subs && item.subs.length > 0 ?
-                    processContent(item.subs, parentPrefix ? `${parentPrefix}#${item.title}` : item.title, depth + 1) :
-                    null
+                processContent(item.subs, parentPrefix ? `${parentPrefix}#${item.title}` : item.title, depth + 1) :
+                null
             }
         </div>
     )

@@ -25,7 +25,7 @@ export default {
                     }` }
             </div>
 
-            <p>Tip: for mobile drag'n'drop, use a <em><a target="_blank" href="https://github.com/Bernardo-Castilho/dragdroptouch">polyfill</a></em>.</p>
+            <p>Tip: for mobile drag'n'drop, use a <em><a target="_blank" rel="noopener noreferrer" href="https://github.com/Bernardo-Castilho/dragdroptouch">polyfill</a></em>.</p>
 
             { jscode`
                 /* [Drag'n'drop presets](https://github.com/elbywan/bosket/blob/master/src/core/dragndrop.js) */
@@ -69,11 +69,11 @@ export default {
 
                 <TreeView /* ... */ dragndrop={ this.dragndrop }></TreeView>`}
 
-                <p>Example of a draggable tree associated with a droppable tree :</p>
+            <p>Example of a draggable tree associated with a droppable tree :</p>
 
-                <DragTree/><DropTree/>
+            <DragTree/><DropTree/>
 
-                { jscode`
+            { jscode`
                     import React from "react"
 
                     import { TreeView } from "bosket/react"
