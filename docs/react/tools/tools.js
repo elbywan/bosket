@@ -3,11 +3,12 @@
 import React from "react"
 
 import { indent } from "self/common/tools"
+import Prism from "self/common/libs/prismjs/prism"
 
 const indentLanguage = (language, str, ...vals) =>
-    <pre><code className={ `language-${language}` } >{
-        indent(str, ...vals)
-    }</code></pre>
+    <pre className={ `language-${language}` }><code className={ `language-${language}` } ref={
+        ref => ref.innerHTML = Prism.highlight(indent(str, ...vals), Prism.languages[language])
+    }></code></pre>
 
 export const jscode     = (str: string | string[], ...vals: any[])    => indentLanguage("javascript", str, ...vals)
 export const tscode     = (str: string | string[], ...vals: any[])    => indentLanguage("typescript", str, ...vals)

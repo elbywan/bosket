@@ -36,7 +36,7 @@ export default {
                         The name of the property containing the children.<br/>
                         In the above example, it would be list.
                     </p>
-                    <pre><code className="language-javascript">{ '<TreeView /* ... */ category="list"></TreeView>' }</code></pre>
+                    { jscode`<TreeView /* ... */ category="list"></TreeView>` }
                 </div>
         },
         {

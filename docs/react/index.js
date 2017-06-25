@@ -2,9 +2,9 @@
 
 import React from "react"
 import ReactDOM from "react-dom"
-import { App } from "./components/App/App"
-
 import { AppContainer } from "react-hot-loader"
+
+import { App } from "./components/App/App"
 
 const render = Component =>
     ReactDOM.render(
@@ -14,7 +14,7 @@ const render = Component =>
         document.getElementById("framework-root")
     )
 
-render(App)
+window.onload = () => render(App)
 
 // Hot Module Replacement API
 if(module.hot && typeof module.hot.accept === "function") {

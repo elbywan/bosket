@@ -10,6 +10,4 @@ if(process.env.NODE_ENV === "production") {
     enableProdMode()
 }
 
-platform.bootstrapModule(DemoModule)
-
-
+window.onload = () => platform.bootstrapModule(DemoModule)

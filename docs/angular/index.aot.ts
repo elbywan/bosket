@@ -10,4 +10,4 @@ if (process.env.NODE_ENV === 'production') {
     enableProdMode()
 }
 
-platform.bootstrapModuleFactory(DemoModuleNgFactory)
+window.onload = () => platform.bootstrapModuleFactory(DemoModuleNgFactory)

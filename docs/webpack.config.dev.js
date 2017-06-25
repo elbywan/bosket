@@ -6,10 +6,12 @@ const htmlTargets = [ "angular", "react" ]
 
 module.exports = {
     entry: {
-        hotloader: "react-hot-loader/patch",
         endpoint: "webpack-dev-server/client?http://localhost:8080",
-        hotreload: "webpack/hot/only-dev-server",
-        react: "./docs/react/index.js",
+        react: [
+            "react-hot-loader/patch",
+            "webpack/hot/only-dev-server",
+            "./docs/react/index.js"
+        ],
         angular: "./docs/angular/index.ts",
         common: "./docs/common/index.js"
     },
@@ -61,10 +63,17 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
+        new HtmlWebpackPlugin({
+            filename: `${__dirname}/index.html`,
+            template: `${__dirname}/index.ejs`,
+            chunks: [ 'common' ],
+            inject: 'head'
+        }),
         ...htmlTargets.map(target => new HtmlWebpackPlugin({
             filename: `${__dirname}/${target}/index.html`,
             template: `${__dirname}/${target}/index.ejs`,
-            chunks: [ 'common', target ]
+            chunks: [ 'common', target ],
+            inject: 'head'
         }))
     ]
 }

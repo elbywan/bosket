@@ -68,7 +68,7 @@ export class FlatViewWindow extends React.PureComponent {
 
                 { this.validate() ?
                     <div>
-                        <p>
+                        <p className="center-text">
                             Your name is <em>{ this.state.formData.firstName } { this.state.formData.lastName }&nbsp;</em>
                             and {
                                 this.state.selection.length === 1 ?
@@ -76,13 +76,13 @@ export class FlatViewWindow extends React.PureComponent {
                                     <span>these are the <em>{ this.state.selection.length }</em> things you like :</span>
                             }
                         </p>
-                        <div className="inline-row">
+                        <div className="inline-row center-text">
                             { this.state.selection.map(s =>
                                 <em key={ s.label }>{s.label}</em>
                             ) }
                         </div>
                     </div> :
-                    <p>Please complete the <em>form</em> above.</p>
+                    <p className="center-text">Please complete the <em>form</em> above.</p>
                 }
             </div>
         </div>
