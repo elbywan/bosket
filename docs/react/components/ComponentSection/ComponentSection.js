@@ -33,8 +33,8 @@ export class ComponentSection extends React.PureComponent {
         this.setState({ expand: this.isExpanded(state) ? "" : state })
     }
 
-    render = () =>
-        <div className="ComponentSection section">
+    render() {
+        return <div className="ComponentSection section">
             <h3>{ this.props.componentName }</h3>
             <div> { this.props.description } </div>
             <div className={ "ComponentSection flexContainer" + (this.state.expand ? " expanded" : "") }>
@@ -53,6 +53,7 @@ export class ComponentSection extends React.PureComponent {
                 </div>
             </div>
         </div>
+    }
 
     renderFile = (file: string) =>
         <pre key={ file } className={"language-" + getPrismExtension(file)}>

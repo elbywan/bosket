@@ -129,7 +129,8 @@ export const Planner = combine(
             })
     }
 
-    render = () => !this.props.plan ? null :
+    render() {
+        return !this.props.plan ? null :
         <div className="Planner">
             <div className="Planner opener" ref={ ref => this.opener = ref }>
                 <i className={ "fa " + css.classes({
@@ -145,5 +146,5 @@ export const Planner = combine(
                 { processContent(this.props.plan) }
             </div>
         </div>
-
+    }
 })

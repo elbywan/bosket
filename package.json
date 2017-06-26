@@ -67,7 +67,7 @@
     "style-loader": "^0.18.2",
     "ts-loader": "^2.2.0",
     "typescript": "^2.4.0",
-    "webpack": "^2.6.0",
+    "webpack": "^2.6.1",
     "webpack-dev-server": "^2.5.0",
     "zone.js": "^0.8.12"
   }

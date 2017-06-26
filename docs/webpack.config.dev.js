@@ -6,10 +6,9 @@ const htmlTargets = [ "angular", "react" ]
 
 module.exports = {
     entry: {
-        endpoint: "webpack-dev-server/client?http://localhost:8080",
+        hotreload: "webpack/hot/only-dev-server",
         react: [
             "react-hot-loader/patch",
-            "webpack/hot/only-dev-server",
             "./docs/react/index.js"
         ],
         angular: "./docs/angular/index.ts",
@@ -33,7 +32,9 @@ module.exports = {
     devServer: {
         hot: true,
         contentBase: resolve(__dirname, ""),
-        publicPath: "/"
+        publicPath: "/",
+        port: 8080,
+        compress: true
     },
 
     module: {
