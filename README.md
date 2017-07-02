@@ -3,7 +3,7 @@
     Bosket
 </h1>
 <h4 align="center">
-	Bosket is collection of tree views implemented for various font-end frameworks.
+	Bosket is collection of tree views for front-end frameworks.
 </h4>
 
 <div align="center">

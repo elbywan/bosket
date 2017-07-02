@@ -10,7 +10,7 @@
         padding: 2px 5px;
         transition: all 0.25s;
     }
-    & li[draggable="true"] > .item:hover {
+    & li.dragover > .item, & li[draggable="true"] > .item:hover {
         background-color: crimson;
         color: white;
     }

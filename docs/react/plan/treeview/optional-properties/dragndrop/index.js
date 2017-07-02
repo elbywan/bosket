@@ -119,9 +119,12 @@ export default {
                             <div className="tree-sample">
                                 <TreeView
                                     { ...conf.bind(this)() }
-                                    // Paste preset
-                                    dragndrop={ dragndrop.paste(() => this.state.model, m => this.setState({ model: m })) }>
-                                </TreeView>
+                                    // Paste preset + only drop on items with children
+                                    dragndrop={{
+                                        ...dragndrop.paste(() => this.state.model, m => this.setState({ model: m })),
+                                        droppable: item => item && item.children
+                                    }}
+                                />
                             </div>
                     }
                 ` }
