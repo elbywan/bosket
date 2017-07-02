@@ -31,6 +31,8 @@ module.exports = {
 
     devServer: {
         hot: true,
+        host: "0.0.0.0",
+        disableHostCheck: true,
         contentBase: resolve(__dirname, ""),
         publicPath: "/",
         port: 8080,
