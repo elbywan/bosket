@@ -11,8 +11,7 @@ body {
 .App .chapter {
     background-color: var(--lightColor);
     color: var(--darkerColor);
-    margin-bottom: 2px;
-    /* margin-top: 10px; */
+    @media(max-width: 600px) { margin-bottom: 2px; }
 }
 
 .App .chapter h1 {

@@ -9,22 +9,16 @@
         position: fixed;
         z-index: 2;
         top: 0;
-        background: rgba(68, 68, 68, 0.33);
-        color: var(--lightColor);
+        color: var(--accentColor);
         padding: 0px 15px;
         height: 2.9rem;
         font-size: 27px;
-        border-bottom-right-radius: 10px;
         cursor: pointer;
         transition: all 0.25s ease-in-out;
 
         & > i {
             display: block;
             line-height: 1.7em;
-        }
-        &:hover {
-            color: var(--accentColor);
-            box-shadow: none;
         }
     }
 
@@ -67,7 +61,7 @@
             transform: translateX(0px);
 
             box-shadow: none;
-            @media (max-width: 1224px) { box-shadow: 0px 0px 10px var(--darkerColor); }
+            @media (max-width: 1224px) { box-shadow: 0px 0px 2px var(--darkerColor); }
         }
     }
     &.side-panel, &.content {

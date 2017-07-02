@@ -1,6 +1,6 @@
 div.chapter {
     padding: 10px 5%;
-    padding-bottom: 40px;
+    /*padding-bottom: 40px;*/
     background-color: var(--darkerColor);
     color: white;
 
