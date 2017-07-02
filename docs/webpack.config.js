@@ -51,6 +51,7 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: "common"
         }),
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new ExtractTextPlugin("./[name]/build/[name].css"),
         new HtmlWebpackPlugin({
             filename: `${__dirname}/index.html`,
