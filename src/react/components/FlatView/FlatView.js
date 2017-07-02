@@ -29,11 +29,7 @@ export class FlatView extends React.PureComponent<void, FlatViewProps, void> {
             item[this.props.category],
         display: (item: Object) => item[this.props.name],
         key: (item: Object) => item[this.props.name],
-        noOpener: true,
-        dragndrop: {
-            draggable: false,
-            droppable: false
-        }
+        noOpener: true
     }
 
     render = () => <TreeView { ...deepMix(this.conf, this.props, true) }></TreeView>

@@ -2,11 +2,11 @@
 
 import React from "react"
 
-import { ComponentSection } from "self/react/components/ComponentSection/ComponentSection"
+import { ComponentDemo } from "self/react/components/ComponentDemo/ComponentDemo"
 import { TreeViewWindow } from "./TreeViewWindow"
 
 export const TreeViewSection = () =>
-    <ComponentSection
+    <ComponentDemo
         componentName="Nested lists"
         description={
             <div>
@@ -28,10 +28,10 @@ export const TreeViewSection = () =>
             </div>
         }
         files={[
-            "./components/Sections/TreeView/TreeViewDemo.js",
-            "./components/Sections/TreeView/TreeViewDemo.css",
-            "./components/Sections/TreeView/TreeViewWindow.js",
+            "./components/Demos/TreeView/TreeViewDemo.js",
+            "./components/Demos/TreeView/TreeViewDemo.css",
+            "./components/Demos/TreeView/TreeViewWindow.js",
             "../common/models/TreeViewModel.js"
         ]}>
         <TreeViewWindow/>
-    </ComponentSection>
+    </ComponentDemo>

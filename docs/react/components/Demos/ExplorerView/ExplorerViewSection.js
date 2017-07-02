@@ -1,11 +1,11 @@
 // @flow
 
 import React from "react"
-import { ComponentSection } from "self/react/components/ComponentSection/ComponentSection"
+import { ComponentDemo } from "self/react/components/ComponentDemo/ComponentDemo"
 import { ExplorerViewWindow } from "./ExplorerViewWindow"
 
 export const ExplorerViewSection = () =>
-    <ComponentSection
+    <ComponentDemo
         componentName="File explorer look alike"
         description={
             <span>
@@ -19,12 +19,12 @@ export const ExplorerViewSection = () =>
             </span>
         }
         files={[
-            "./components/Sections/ExplorerView/ExplorerDemo.js",
-            "./components/Sections/ExplorerView/ExplorerDemo.css",
-            "./components/Sections/ExplorerView/ExplorerViewWindow.js",
-            "./components/Sections/ExplorerView/ExplorerViewWindow.css",
-            "./components/Sections/ExplorerView/helpers.js",
+            "./components/Demos/ExplorerView/ExplorerDemo.js",
+            "./components/Demos/ExplorerView/ExplorerDemo.css",
+            "./components/Demos/ExplorerView/ExplorerViewWindow.js",
+            "./components/Demos/ExplorerView/ExplorerViewWindow.css",
+            "./components/Demos/ExplorerView/helpers.js",
             "../common/models/ExplorerViewModel.js"
         ]}>
         <ExplorerViewWindow/>
-    </ComponentSection>
+    </ComponentDemo>

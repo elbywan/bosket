@@ -1,6 +1,6 @@
 // @flow
 
-import "./ComponentSection.css"
+import "./ComponentDemo.css"
 
 import React from "react"
 
@@ -16,7 +16,7 @@ const getPrismExtension = file => {
     return extension
 }
 
-export class ComponentSection extends React.PureComponent {
+export class ComponentDemo extends React.PureComponent {
 
     state : { tab: string, expand: null | string} = { tab: "", expand: null }
     props: {
@@ -34,18 +34,18 @@ export class ComponentSection extends React.PureComponent {
     }
 
     render() {
-        return <div className="ComponentSection section">
+        return <div className="ComponentDemo section">
             <h3>{ this.props.componentName }</h3>
             <div> { this.props.description } </div>
-            <div className={ "ComponentSection flexContainer" + (this.state.expand ? " expanded" : "") }>
-                <div className={ "ComponentSection demo-area" + (this.isExpanded("demo") ? " expand" : "") }>
-                    <div className="ComponentSection expander" onClick={ _ => this.expand = "demo" }>
+            <div className={ "ComponentDemo flexContainer" + (this.state.expand ? " expanded" : "") }>
+                <div className={ "ComponentDemo demo-area" + (this.isExpanded("demo") ? " expand" : "") }>
+                    <div className="ComponentDemo expander" onClick={ _ => this.expand = "demo" }>
                         <i className={ "fa" + (this.isExpanded("demo") ? " fa-compress" : " fa-expand") }></i>
                     </div>
-                    <div className="ComponentSection padded">{ this.props.children }</div>
+                    <div className="ComponentDemo padded">{ this.props.children }</div>
                 </div>
-                <div className={ "ComponentSection code" + (this.state.expand === "code" ? " expand" : "") }>
-                    <div className="ComponentSection expander" onClick={ _ => this.expand = "code" }>
+                <div className={ "ComponentDemo code" + (this.state.expand === "code" ? " expand" : "") }>
+                    <div className="ComponentDemo expander" onClick={ _ => this.expand = "code" }>
                         <i className={ "fa" + (this.isExpanded("code") ? " fa-compress" : " fa-expand") }></i>
                     </div>
                     { this.renderTabs(this.files) }

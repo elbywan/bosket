@@ -1,6 +1,7 @@
 import React from "react"
 
-import { MenuViewSection } from "self/react/components/Sections"
+import { MenuViewSection } from "self/react/components/Demos"
+import { jscode } from "self/react/tools"
 
 export default {
     title: "MenuView",
@@ -8,15 +9,74 @@ export default {
         <p>
             A preset best suited for nested menus with automatic item folding/unfolding and ancestors selection.
         </p>,
-    subs: [{
-        title: "Demo",
-        content:
-            <div>
-                <h4><button className="basic-button">
-                    <i className="fa fa-download"></i>
-                    <a download="BosketMenuView.css" href="./components/Sections/MenuView/MenuViewWindow.css">Download stylesheet</a>
-                </button></h4>
-                <MenuViewSection></MenuViewSection>
-            </div>
-    }]
+    subs: [
+        {
+            title: "Basic Usage",
+            content:
+                <div>
+                    <p>
+                        To use the MenuView, you have to <em><a href="#Usage#Import">import</a></em> it in your code, then render it.<br/>
+                        <br/>
+                        Appearance can be tweaked with <em><a href="#TreeView#Css">css</a></em> styles.
+                    </p>
+                    { jscode`
+                        import { MenuView } from "bosket/react"
+
+                        const usage = _ =>
+                            <MenuView
+                                /* [Use the TreeView components props](#TreeView#Basic Usage) */
+
+                                /* Additional properties are required for this preset : */
+
+                                name={ /* [The name of the property containing the displayed label.](#Presets#MenuView#Additional props#name) */ }
+
+                                /* The following properties are already set by the preset :
+                                    - display
+                                    - key
+                                    - strategies
+                                    - noOpener
+                                */
+                            ></MenuView>
+                    ` }
+                </div>
+        },
+        {
+            title: "Demo",
+            content:
+                <div>
+                    <h4><button className="basic-button">
+                        <i className="fa fa-download"></i>
+                        <a download="BosketMenuView.css" href="./components/Demos/MenuView/MenuViewWindow.css">Download stylesheet</a>
+                    </button></h4>
+                    <MenuViewSection></MenuViewSection>
+                </div>
+        },
+        {
+            title: "Additional props",
+            subs: [
+                {
+                    title: "name",
+                    content:
+                        <div className="marged">
+                            <p>
+                                The name of the property containing the displayed label.<br/>
+                                Also used for unicity.
+                            </p>
+                            { jscode`
+                            const model = [
+                                { label: "One" },
+                                { label: "Two" },
+                                { label: "Three", list: [
+                                    { label: "Four" },
+                                    { label: "Five" }
+                                ] }
+                            ]
+
+                            // The label is displayed. ("One, "Two", "Three" ...)
+                            <MenuView /* ... */ name={ label }></MenuView>` }
+                        </div>
+                }
+            ]
+        }
+    ]
 }

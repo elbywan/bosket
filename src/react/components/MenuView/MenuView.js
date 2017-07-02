@@ -23,10 +23,6 @@ export class MenuView extends React.PureComponent<void, MenuViewProps, void> {
             fold: [ "not-selected", "no-child-selection" ]
         },
         noOpener: true,
-        dragndrop: {
-            draggable: false,
-            droppable: false
-        },
         display: (item: Object) => item[this.props.name],
         key: (item: Object) => item[this.props.name]
     }

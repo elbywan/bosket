@@ -23,6 +23,8 @@ export default {
                 <div>
                     <p>
                         Below is the <em>full HTML layout</em> of a TreeView, with the <em><a href="#TreeView#Optional props#css">default classes</a></em>.<br/>
+                        <br/>
+                        For presets, replace the TreeView class with the preset css class name.
                     </p>
 
                     { htmlcode(htmlLayout) }
