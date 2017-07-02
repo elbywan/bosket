@@ -73,8 +73,8 @@ export class TreeViewDemo extends React.PureComponent {
             ...dragndrop.selection(() => this.state.model, m => this.setState({ model: m })),
             // Add a custom image on drag
             drag: (_, event) => event.dataTransfer.setDragImage(this.dragImage, 0, 0),
-            // Drop only on categories or root
-            droppable: _ => !_ || _.items
+            // Drop only on categories or root (excluding asynchronous promises)
+            droppable: _ => !_ || _.items && _.items instanceof Array
         }
     }
 }
