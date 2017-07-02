@@ -1,6 +1,6 @@
 {
   "name": "bosket",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A collection of tree views.",
   "main": "index.js",
   "author": "Julien Elbaz",
