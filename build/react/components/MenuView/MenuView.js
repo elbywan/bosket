@@ -33,10 +33,6 @@ export var MenuView = function (_React$PureComponent) {
                 fold: ["not-selected", "no-child-selection"]
             },
             noOpener: true,
-            dragndrop: {
-                draggable: false,
-                droppable: false
-            },
             display: function display(item) {
                 return item[_this.props.name];
             },

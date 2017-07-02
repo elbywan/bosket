@@ -43,11 +43,7 @@ export var FlatView = function (_React$PureComponent) {
             key: function key(item) {
                 return item[_this.props.name];
             },
-            noOpener: true,
-            dragndrop: {
-                draggable: false,
-                droppable: false
-            }
+            noOpener: true
         }, _this.render = function () {
             return React.createElement(TreeView, deepMix(_this.conf, _this.props, true));
         }, _temp), _possibleConstructorReturn(_this, _ret);
