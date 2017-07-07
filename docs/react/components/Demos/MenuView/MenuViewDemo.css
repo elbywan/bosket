@@ -12,7 +12,7 @@
     width: 100%;
     height: calc(100% - 2px);
     background: #3F51B5;
-    top: 2px;
+    top: -1px;
     overflow: hidden;
 }
 
