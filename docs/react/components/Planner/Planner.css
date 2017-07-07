@@ -32,11 +32,11 @@
         height: 100%;
         background: var(--lightColor);
         color: var(--darkerColor);
-        font-family: var(--serifFont);
-        font-weight: bold;
+        /*font-family: var(--serifFont);*/
+        /*font-weight: bold;*/
 
         transform: translateX(0px);
-        border-right: 2px solid var(--darkerColor);
+        border-right: 1px solid var(--darkerColor);
         @media (max-width: 1224px) {
             top: 0px !important;
             position: fixed !important;
@@ -50,6 +50,7 @@
         }
 
         & h1 {
+            font-family: var(--serifFont);
             text-align: center;
             font-size: 1.5em;
             margin: 0px;
@@ -62,7 +63,7 @@
             transform: translateX(0px);
 
             box-shadow: none;
-            @media (max-width: 1224px) { box-shadow: 1px 0px 3px var(--darkerColor); }
+            @media (max-width: 1224px) { box-shadow: 1px 0px 6px #AAA; }
         }
     }
     &.side-panel, &.content {
@@ -100,8 +101,8 @@
 
 .PlannerTree {
     line-height: 1.5em;
-    font-size: 1.3em;
-    padding: 0px 15px;
+    /*font-size: 1.3em;*/
+    padding: 0px 25px;
     overflow-y: scroll;
 
 
@@ -137,6 +138,7 @@
             display:block;
             border-bottom: 1px solid var(--darkerColor);
             transition: border 0.25s ease-in-out;
+            & > a { padding-bottom: 5px; }
         }
 
         & > .item:hover,

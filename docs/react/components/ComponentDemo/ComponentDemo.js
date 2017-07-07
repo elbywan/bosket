@@ -18,7 +18,7 @@ const getPrismExtension = file => {
 
 export class ComponentDemo extends React.PureComponent {
 
-    state : { tab: string, expand: null | string} = { tab: "", expand: null }
+    state : { tab: string, expand: null | string} = { tab: "", expand: "demo" }
     props: {
         componentName: string,
         description: string | React.Element<any>,

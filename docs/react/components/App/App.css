@@ -4,16 +4,26 @@ body {
     background: var(--darkerColor);
 }
 
-.App-intro {
-    font-size: large;
+#framework-root {
+    background-color: var(--lightColor);
+}
+
+.App {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 1px solid var(--darkerColor);
+    border-right: 1px solid var(--darkerColor);
+    @media (max-width: 1224px) { border: none; }
 }
 
 .App .chapter {
     background-color: var(--lightColor);
     color: var(--darkerColor);
+    font-size: 0.9em;
     @media(max-width: 600px) { margin-bottom: 2px; }
 }
 
 .App .chapter h1 {
-    padding: 30px 0px;
+    padding: 0.5em 0px;
 }
