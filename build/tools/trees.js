@@ -84,15 +84,4 @@ export var tree = function tree(t, prop) {
         }
     };
 };
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(tree, "tree", "src/tools/trees.js");
-}();
-
-;
 //# sourceMappingURL=trees.js.map

@@ -2,7 +2,7 @@ const { resolve } = require("path")
 const webpack = require("webpack")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const htmlTargets = [ "angular", "react" ]
+const htmlTargets = [ "angular", "react", "vue" ]
 
 module.exports = {
     entry: {
@@ -12,6 +12,7 @@ module.exports = {
             "./docs/react/index.js"
         ],
         angular: "./docs/angular/index.ts",
+        vue: "./docs/vue/index.js",
         common: "./docs/common/index.js"
     },
     output: {
@@ -45,7 +46,8 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: "babel-loader"
-            }, {
+            },
+            {
                 test: /\.css$/,
                 use: [
                     { loader: "style-loader" },
@@ -59,6 +61,13 @@ module.exports = {
                 options: {
                     configFileName: resolve(__dirname, "angular/tsconfig.json"),
                     transpileOnly: true
+                }
+            },
+            {
+                test: /\.vue$/,
+                loader: "vue-loader",
+                options: {
+                    postcss: [ require('postcss-cssnext')() ]
                 }
             }
         ]

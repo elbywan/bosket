@@ -67,15 +67,4 @@ export var ExplorerView = function (_React$PureComponent) {
 
     return ExplorerView;
 }(React.PureComponent);
-;
-
-var _temp2 = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(ExplorerView, "ExplorerView", "src/react/components/ExplorerView/ExplorerView.js");
-}();
-
-;
 //# sourceMappingURL=ExplorerView.js.map

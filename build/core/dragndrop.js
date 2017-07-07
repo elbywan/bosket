@@ -177,23 +177,4 @@ export var wrapEvents = function wrapEvents() {
         }
     });
 };
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(dragndrop, "dragndrop", "src/core/dragndrop.js");
-
-    __REACT_HOT_LOADER__.register(bak, "bak", "src/core/dragndrop.js");
-
-    __REACT_HOT_LOADER__.register(utils, "utils", "src/core/dragndrop.js");
-
-    __REACT_HOT_LOADER__.register(nodeEvents, "nodeEvents", "src/core/dragndrop.js");
-
-    __REACT_HOT_LOADER__.register(wrapEvents, "wrapEvents", "src/core/dragndrop.js");
-}();
-
-;
 //# sourceMappingURL=dragndrop.js.map

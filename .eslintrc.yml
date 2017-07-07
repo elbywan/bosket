@@ -136,3 +136,5 @@ rules:
     - warn
   react/no-direct-mutation-state:
     - off
+  react/react-in-jsx-scope:
+    - off

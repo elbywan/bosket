@@ -46,15 +46,4 @@ export var MenuView = function (_React$PureComponent) {
 
     return MenuView;
 }(React.PureComponent);
-;
-
-var _temp2 = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(MenuView, "MenuView", "src/react/components/MenuView/MenuView.js");
-}();
-
-;
 //# sourceMappingURL=MenuView.js.map

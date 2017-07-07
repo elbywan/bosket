@@ -220,19 +220,4 @@ export var RootNode = function (_Core2) {
 
     return RootNode;
 }(Core);
-;
-
-var _temp3 = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(Core, "Core", "src/core/logic.js");
-
-    __REACT_HOT_LOADER__.register(TreeNode, "TreeNode", "src/core/logic.js");
-
-    __REACT_HOT_LOADER__.register(RootNode, "RootNode", "src/core/logic.js");
-}();
-
-;
 //# sourceMappingURL=logic.js.map

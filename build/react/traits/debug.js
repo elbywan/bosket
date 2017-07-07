@@ -65,15 +65,4 @@ export var withDebugUpdates = function withDebugUpdates(_ref) {
         }(React.Component), _class.displayName = displayName("withDebugUpdates", Component), _temp2;
     };
 };
-;
-
-var _temp3 = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(withDebugUpdates, "withDebugUpdates", "src/react/traits/debug.js");
-}();
-
-;
 //# sourceMappingURL=debug.js.map

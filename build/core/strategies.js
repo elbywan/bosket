@@ -138,23 +138,4 @@ export var selectionStrategies = {
         return this.inputs.get().maxDepth && !isNaN(parseInt(this.inputs.get().maxDepth, 10)) ? this.inputs.get().depth >= parseInt(this.inputs.get().maxDepth, 10) : false;
     }
 };
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(singleSelect, "singleSelect", "src/core/strategies.js");
-
-    __REACT_HOT_LOADER__.register(multiSelect, "multiSelect", "src/core/strategies.js");
-
-    __REACT_HOT_LOADER__.register(selectionStrategies, "selectionStrategies", "src/core/strategies.js");
-
-    __REACT_HOT_LOADER__.register(clickStrategies, "clickStrategies", "src/core/strategies.js");
-
-    __REACT_HOT_LOADER__.register(foldStrategies, "foldStrategies", "src/core/strategies.js");
-}();
-
-;
 //# sourceMappingURL=strategies.js.map

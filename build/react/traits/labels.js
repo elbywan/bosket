@@ -38,15 +38,4 @@ export var withLabels = function withLabels(defaultLabels) {
         }(React.Component), _class.displayName = displayName("withLabels", Component), _temp;
     };
 };
-;
-
-var _temp2 = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(withLabels, "withLabels", "src/react/traits/labels.js");
-}();
-
-;
 //# sourceMappingURL=labels.js.map

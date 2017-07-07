@@ -12,7 +12,8 @@ export const withListener : trait<> = ({
     propName = "listener",
     mountOn = null,
     autoMount = false,
-    regulate = false } = {}) => Component =>
+    regulate = false
+} = {}) => Component =>
     class extends React.Component<void, { listener: Object }, void> {
 
         static displayName = displayName("withListener", Component)

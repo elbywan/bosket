@@ -10,15 +10,4 @@ export var printer = {
         logger("%c" + msg, msgStyle);
     }
 };
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(printer, "printer", "src/tools/printer.js");
-}();
-
-;
 //# sourceMappingURL=printer.js.map

@@ -4,12 +4,13 @@ const ngtools = require("@ngtools/webpack")
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const htmlTargets = [ "angular", "react" ]
+const htmlTargets = [ "angular", "react", "vue" ]
 
 module.exports = {
     entry: {
         react: "./docs/react/index.js",
         angular: "./docs/angular/index.aot.ts",
+        vue: "./docs/vue/index.js",
         common: "./docs/common/index.js"
     },
     output: {
@@ -27,7 +28,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
                 loader: "babel-loader"
             }, {
@@ -40,6 +41,14 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: "@ngtools/webpack"
+            },
+            {
+                test: /\.vue$/,
+                loader: "vue-loader",
+                options: {
+                    extractCSS: true,
+                    postcss: [ require('postcss-cssnext')() ]
+                }
             }
         ]
     },

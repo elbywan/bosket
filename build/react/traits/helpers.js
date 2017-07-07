@@ -7,15 +7,4 @@ import React from "react";
 export var displayName = function displayName(name, WrappedComponent) {
     return name + "(" + (WrappedComponent.displayName || WrappedComponent.name || "Component") + ")";
 };
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(displayName, "displayName", "src/react/traits/helpers.js");
-}();
-
-;
 //# sourceMappingURL=helpers.js.map

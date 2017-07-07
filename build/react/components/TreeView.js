@@ -59,9 +59,7 @@ var TreeViewBaseClass = function (_React$PureComponent) {
             onDrag: _this.props.dragndrop && _this.props.dragndrop.drag,
             onDrop: _this.props.dragndrop && _this.props.dragndrop.drop,
             onCancel: _this.props.dragndrop && _this.props.dragndrop.cancel
-        }, _this._state, function () {
-            if (!_this._unmounted) _this.forceUpdate();
-        });
+        }, _this._state, _this.forceUpdate);
         if (props.keyDownListener) props.keyDownListener.subscribe(_this.rootNode.onKey);
         if (props.keyUpListener) props.keyUpListener.subscribe(_this.rootNode.onKey);
         return _this;
@@ -110,17 +108,4 @@ var TreeViewBaseClass = function (_React$PureComponent) {
 }(React.PureComponent);
 
 export var TreeView = combine(withLabels(defaults.labels), withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true }), withListener({ eventType: "keyup", propName: "keyUpListener", autoMount: true }))(TreeViewBaseClass);
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(TreeViewBaseClass, "TreeViewBaseClass", "src/react/components/TreeView.js");
-
-    __REACT_HOT_LOADER__.register(TreeView, "TreeView", "src/react/components/TreeView.js");
-}();
-
-;
 //# sourceMappingURL=TreeView.js.map

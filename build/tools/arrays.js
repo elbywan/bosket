@@ -38,16 +38,4 @@ export var array = function array(self) {
         }
     };
 };
-
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(array, "array", "src/tools/arrays.js");
-}();
-
-;
 //# sourceMappingURL=arrays.js.map

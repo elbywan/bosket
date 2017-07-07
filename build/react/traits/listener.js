@@ -123,15 +123,4 @@ export var withListener = function withListener() {
         }(React.Component), _class.displayName = displayName("withListener", Component), _temp;
     };
 };
-;
-
-var _temp2 = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(withListener, "withListener", "src/react/traits/listener.js");
-}();
-
-;
 //# sourceMappingURL=listener.js.map

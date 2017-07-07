@@ -49,10 +49,8 @@ export class ItemDisplay implements ItemComponent<{ label }> {
             </button>
         </div>
 
-        </component-section>
-    `,
-    styles: [`
-    `]
+    </component-section>`,
+    styles: []
 })
 export class TreeViewSection {
 

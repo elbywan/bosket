@@ -22,7 +22,6 @@ export class TreeViewDemo extends React.PureComponent {
         this.dragImage.src = "../assets/drag-image.svg"
     }
     dragImage: Image
-    backupModel: Object[]
 
     // The TreeView rendering
     render = () =>

@@ -28,6 +28,7 @@
         overflow-y: scroll;
 
         width: 350px;
+        max-width: 90%;
         height: 100%;
         background: var(--lightColor);
         color: var(--darkerColor);
@@ -61,7 +62,7 @@
             transform: translateX(0px);
 
             box-shadow: none;
-            @media (max-width: 1224px) { box-shadow: 0px 0px 2px var(--darkerColor); }
+            @media (max-width: 1224px) { box-shadow: 1px 0px 3px var(--darkerColor); }
         }
     }
     &.side-panel, &.content {
@@ -94,7 +95,7 @@
 }
 
 .Planner.side-panel.opened + .Planner.content {
-    @media (max-width: 1224px) { transform: translateX(350px); }
+    @media (min-width: 800px) and (max-width: 1224px) { transform: translateX(350px); }
 }
 
 .PlannerTree {

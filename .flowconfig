@@ -4,8 +4,13 @@
 <PROJECT_ROOT>/build/.*
 <PROJECT_ROOT>/docs/angular/angular\.js
 <PROJECT_ROOT>/docs/react/react\.js
+<PROJECT_ROOT>/docs/vue/vue\.js
 <PROJECT_ROOT>/docs/common/common\.js
 <PROJECT_ROOT>/docs/webpack\..*
+
+<PROJECT_ROOT>/node_modules/config-chain.*
+<PROJECT_ROOT>/node_modules/npm.*
+<PROJECT_ROOT>/node_modules/vue/src.*
 
 [include]
 

@@ -51,15 +51,4 @@ export var FlatView = function (_React$PureComponent) {
 
     return FlatView;
 }(React.PureComponent);
-;
-
-var _temp2 = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(FlatView, "FlatView", "src/react/components/FlatView/FlatView.js");
-}();
-
-;
 //# sourceMappingURL=FlatView.js.map

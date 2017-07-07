@@ -23,15 +23,4 @@ var css = {
     }
 };
 export { css };
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(css, "css", "src/tools/css.js");
-}();
-
-;
 //# sourceMappingURL=css.js.map

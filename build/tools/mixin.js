@@ -22,15 +22,4 @@ export var deepMix = function deepMix(one, two) {
 
     return clone;
 };
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(deepMix, "deepMix", "src/tools/mixin.js");
-}();
-
-;
 //# sourceMappingURL=mixin.js.map

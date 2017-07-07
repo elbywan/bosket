@@ -45,15 +45,4 @@ export var withTransition = function withTransition(_ref) {
         }(React.PureComponent), _class.displayName = displayName("withTransition", Component), _temp2;
     };
 };
-;
-
-var _temp3 = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(withTransition, "withTransition", "src/react/traits/transitions.js");
-}();
-
-;
 //# sourceMappingURL=transitions.js.map

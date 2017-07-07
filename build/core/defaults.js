@@ -34,15 +34,4 @@ export var defaults = {
         droppable: false
     }
 };
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(defaults, "defaults", "src/core/defaults.js");
-}();
-
-;
 //# sourceMappingURL=defaults.js.map

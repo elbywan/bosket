@@ -143,17 +143,4 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
 export var TreeViewNode = withTransition({ key: function key(props) {
         return props.folded || props.loading;
     } })(TreeViewNodeBaseClass);
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(TreeViewNodeBaseClass, "TreeViewNodeBaseClass", "src/react/components/TreeViewNode.js");
-
-    __REACT_HOT_LOADER__.register(TreeViewNode, "TreeViewNode", "src/react/components/TreeViewNode.js");
-}();
-
-;
 //# sourceMappingURL=TreeViewNode.js.map

@@ -17,15 +17,4 @@ export * from "./listener";
 export * from "./labels";
 export * from "./transitions";
 export * from "./debug";
-;
-
-var _temp = function () {
-    if (typeof __REACT_HOT_LOADER__ === 'undefined') {
-        return;
-    }
-
-    __REACT_HOT_LOADER__.register(combine, "combine", "src/react/traits/index.js");
-}();
-
-;
 //# sourceMappingURL=index.js.map

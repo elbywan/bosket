@@ -61,7 +61,7 @@ class TreeViewBaseClass extends React.PureComponent<void, TreeViewProps, TreeVie
                 onCancel:   this.props.dragndrop && this.props.dragndrop.cancel
             },
             this._state,
-            () => { if(!this._unmounted) this.forceUpdate() }
+            this.forceUpdate
         )
         if(props.keyDownListener) props.keyDownListener.subscribe(this.rootNode.onKey)
         if(props.keyUpListener) props.keyUpListener.subscribe(this.rootNode.onKey)
