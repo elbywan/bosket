@@ -1,11 +1,11 @@
 {
-  "name": "bosket",
-  "version": "0.0.3",
-  "description": "A collection of tree views.",
-  "main": "index.js",
-  "author": "Julien Elbaz",
-  "license": "MIT",
-  "repository": {
+    "name": "bosket",
+    "version": "0.0.3",
+    "description": "A collection of tree views.",
+    "main": "index.js",
+    "author": "Julien Elbaz",
+    "license": "MIT",
+    "repository": {
         "type": "git",
         "url": "https://github.com/elbywan/bosket"
     },

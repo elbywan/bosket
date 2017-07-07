@@ -83,14 +83,13 @@ export default {
                     title: "updateModel",
                     content:
                         <div className="marged">
+                            { jscode`
+                                // On model update (for instance when drag'n'dropping item(s)) :
+                                const updateModel = function(model: Object[]) {
+                                    this.setState({ model: model })
+                                }
 
-                        { jscode`
-                            // On model update (for instance when drag'n'dropping item(s)) :
-                            const updateModel = function(model: Object[]) {
-                                this.setState({ model: model })
-                            }
-
-                            <ExplorerView /* ... */ updateModel={ updateModel }></ExplorerView>`}
+                                <ExplorerView /* ... */ updateModel={ updateModel }></ExplorerView>`}
                         </div>
                 }
             ]

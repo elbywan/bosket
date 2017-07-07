@@ -131,20 +131,20 @@ export const Planner = combine(
 
     render() {
         return !this.props.plan ? null :
-        <div className="Planner">
-            <div className="Planner opener" ref={ ref => this.opener = ref }>
-                <i className={ "fa " + css.classes({
-                    "fa-bars": !this.state.opened,
-                    "fa-times": this.state.opened
-                })}></i>
+            <div className="Planner">
+                <div className="Planner opener" ref={ ref => this.opener = ref }>
+                    <i className={ "fa " + css.classes({
+                        "fa-bars": !this.state.opened,
+                        "fa-times": this.state.opened
+                    })}></i>
+                </div>
+                <div ref={ ref => this.sidePanel = ref } className={ "Planner side-panel " + css.classes({ opened: this.state.opened }) }>
+                    <div><h1>Table of contents</h1></div>
+                    <TreeView model={ this.props.plan } maxDepth={ this.props.maxDepth } { ...this.state.conf }></TreeView>
+                </div>
+                <div ref={ ref => this.content = ref } className="Planner content">
+                    { processContent(this.props.plan) }
+                </div>
             </div>
-            <div ref={ ref => this.sidePanel = ref } className={ "Planner side-panel " + css.classes({ opened: this.state.opened }) }>
-                <div><h1>Table of contents</h1></div>
-                <TreeView model={ this.props.plan } maxDepth={ this.props.maxDepth } { ...this.state.conf }></TreeView>
-            </div>
-            <div ref={ ref => this.content = ref } className="Planner content">
-                { processContent(this.props.plan) }
-            </div>
-        </div>
     }
 })

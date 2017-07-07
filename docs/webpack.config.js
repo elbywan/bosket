@@ -49,6 +49,10 @@ module.exports = {
                     extractCSS: true,
                     postcss: [ require('postcss-cssnext')() ]
                 }
+            },
+            {
+                test: /\.hbs/,
+                loader: 'handlebars-loader'
             }
         ]
     },
@@ -64,13 +68,13 @@ module.exports = {
         new ExtractTextPlugin("./[name]/build/[name].css"),
         new HtmlWebpackPlugin({
             filename: `${__dirname}/index.html`,
-            template: `${__dirname}/index.ejs`,
+            template: `${__dirname}/index.hbs`,
             chunks: [ 'common' ],
             inject: 'head'
         }),
         ...htmlTargets.map(target => new HtmlWebpackPlugin({
             filename: `${__dirname}/${target}/index.html`,
-            template: `${__dirname}/${target}/index.ejs`,
+            template: `${__dirname}/${target}/index.hbs`,
             chunks: [ 'common', target ],
             inject: 'head'
         }))

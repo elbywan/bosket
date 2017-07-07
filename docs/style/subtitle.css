@@ -16,7 +16,7 @@ div.subtitle {
         flex: 0 1 auto;
     }
 
-    & .tree-capture {
+    & .tree-svg {
         text-align: center;
         line-height: 0;
         background: radial-gradient(ellipse, rgba(255, 255, 255, 0.25), var(--accentColor) 70%);

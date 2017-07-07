@@ -82,11 +82,10 @@ export default {
                     title: "limit",
                     content:
                         <div className="marged">
-
-                        { jscode`
-                            // At most 3 items can be selected at the same time. Others will be disabled.
-                            // 0 = no limit
-                            <ExplorerView /* ... */ limit={ 3 }></ExplorerView>`}
+                            { jscode`
+                                // At most 3 items can be selected at the same time. Others will be disabled.
+                                // 0 = no limit
+                                <ExplorerView /* ... */ limit={ 3 }></ExplorerView>`}
                         </div>
                 }
             ]
