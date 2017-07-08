@@ -1,22 +1,4 @@
 @media (max-width: 600px) {
-    header {
-        text-align: center; padding: 0; height: auto;
-        & .title {
-            padding: 0px 20px;
-            & a > span { display: none; }
-        }
-        & .frameworks {
-            display: block;
-            float: none;
-            background: var(--darkerColor);
-            width: 100%;
-            position: relative;
-            left: 0;
-            border-top: 2px solid var(--accentColor);
-            & img { height: 1.7em;  }
-        }
-    }
-    div.subtitle { text-align: center; }
     code {
         font-size: 0.8em;
         &.terminal { margin: 0px; }
@@ -37,4 +19,24 @@
             & > * { display: block; }
         }
     }
+}
+@media (max-width: 750px) {
+    header {
+        text-align: center; padding: 0; height: auto;
+        & .title {
+            padding: 0px 20px;
+            & a > span { display: none; }
+        }
+        & .frameworks {
+            display: block;
+            float: none;
+            background: var(--darkerColor);
+            width: 100%;
+            position: relative;
+            left: 0;
+            border-top: 2px solid var(--accentColor);
+            & img { height: 1.7em;  }
+        }
+    }
+    div.subtitle { text-align: center; }
 }

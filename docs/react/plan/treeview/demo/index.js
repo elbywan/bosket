@@ -8,10 +8,11 @@ export default {
     title: "Demo",
     content:
         <div>
-            <h4><button className="basic-button">
-                <i className="fa fa-download"></i>
-                <a download="BosketTreeView.css" href="./components/Demos/TreeView/TreeViewDemo.css">Download stylesheet</a>
-            </button></h4>
+            <h4>
+                <a download="BosketTreeView.css" href="./components/Demos/TreeView/TreeViewDemo.css" className="anchor-button basic-button">
+                    <i className="fa fa-download"></i>Download stylesheet
+                </a>
+            </h4>
             <TreeViewSection></TreeViewSection>
         </div>
 }

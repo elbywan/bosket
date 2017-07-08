@@ -21,7 +21,7 @@ body {
     background: lightgray !important;
 }
 
-button {
+button, a.anchor-button {
     font-size: 0.7em;
     border: none;
     outline: none;
@@ -34,16 +34,16 @@ button {
         color: white;
     }
 
+    & > i {
+        margin-right: 10px;
+    }
+
     &.basic-button {
         background: var(--accentColor);
         color: white;
         border-radius: 5px;
         border: 1px solid rgba(0, 0, 0, 0.1);
         box-shadow: 0px 0px 2px #999;
-
-        & > i {
-            margin-right: 10px;
-        }
 
         &:hover:not([disabled]) {
             box-shadow: none;

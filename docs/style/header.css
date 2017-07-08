@@ -16,7 +16,6 @@ header {
         background-color: rgb(220, 20, 60);
         padding: 0 20px 0 10px;
         color: var(--lighterColor);
-        text-shadow: 1px 1px black;
         font-family: var(--serifFont);
         font-size: 1em;
         font-weight: bold;

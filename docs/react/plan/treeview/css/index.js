@@ -34,14 +34,17 @@ export default {
             title: "Empty stylesheet",
             content:
                 <div>
-                    <button className="basic-button">
-                        <i className="fa fa-download"></i>
-                        <a download="bosket_empty_stylesheet.css" ref={ ref => {
-                            ref.href = window.URL.createObjectURL(new Blob([emptyStylesheet], {
-                                type: "text/css"
-                            }))
-                        } }>Download</a>
-                    </button>
+                    <h4>
+                        <a download="bosket_empty_stylesheet.css"
+                            className="anchor-button basic-button"
+                            ref={ ref => {
+                                ref.href = window.URL.createObjectURL(new Blob([emptyStylesheet], { type: "text/css" }))
+                            }}>
+                            <i className="fa fa-download"></i>
+                            Download
+                        </a>
+                    </h4>
+
                     { csscode(emptyStylesheet) }
                 </div>
         }

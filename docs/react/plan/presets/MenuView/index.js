@@ -44,10 +44,12 @@ export default {
             title: "Demo",
             content:
                 <div>
-                    <h4><button className="basic-button">
-                        <i className="fa fa-download"></i>
-                        <a download="BosketMenuView.css" href="./components/Demos/MenuView/MenuViewWindow.css">Download stylesheet</a>
-                    </button></h4>
+                    <h4>
+                        <a download="BosketMenuView.css" href="./components/Demos/MenuView/MenuViewWindow.css" className="anchor-button basic-button">
+                            <i className="fa fa-download"></i>
+                            Download stylesheet
+                        </a>
+                    </h4>
                     <MenuViewSection></MenuViewSection>
                 </div>
         },
