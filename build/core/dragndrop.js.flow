@@ -9,9 +9,12 @@ export const dragndrop = {
     selection: (model: void => Object[], cb: Object[] => void) => ({
         draggable: true,
         droppable: true,
+        drag: (item: Object, event: DragEvent, inputs: Object) => {
+            event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(inputs.selection))
+        },
         guard: (target: ?Object, event: DragEvent, inputs: Object) => {
             // Other data types
-            if(event && event.dataTransfer && event.dataTransfer.types.length > 0)
+            if(event && event.dataTransfer && event.dataTransfer.types.indexOf("application/json") < 0)
                 return false
             // Prevent drop on self
             const selfDrop = () => target && array(inputs.selection).contains(target)

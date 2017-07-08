@@ -56,7 +56,7 @@ export class TreeViewSection {
 
     constructor(){
         this.dragImage = new Image()
-        this.dragImage.src = "../assets/drag-image.svg"
+        this.dragImage.src = "../assets/drag-image.png"
     }
 
     model: Object[] = initialModel
@@ -83,6 +83,7 @@ export class TreeViewSection {
     }
     onDrag = ({target, event, inputs}) => {
         event.dataTransfer.setDragImage(this.dragImage, 0, 0)
+        event.dataTransfer.setData("application/json", JSON.stringify(this.selection))
     }
     itemComponent = ItemDisplay
 }

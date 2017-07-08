@@ -61,7 +61,5 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit,
     ancestorsMap: Map<Item, Item[]>;
     getAncestors: (item: Item) => Item[];
     injectItems(): void;
-    ticking: boolean;
-    limitTick: (fun: any, ...args: any[]) => void;
     invokeEvent: (name: any, item: any, event: any, condition?: boolean) => void;
 }

@@ -11,7 +11,7 @@ import "./TreeViewDemo.css"
 export default {
     created() {
         this.dragImage = new Image()
-        this.dragImage.src = "../assets/drag-image.svg"
+        this.dragImage.src = "../assets/drag-image.png"
     },
     data() {
         return {
@@ -50,7 +50,10 @@ export default {
                 // Use the "selection" drag and drop preset
                 ...dragndrop.selection(() => this.model, m => { this.model = m }),
                 // Add a custom image on drag
-                drag: (_, event) => { event.dataTransfer.setDragImage(this.dragImage, 0, 0) },
+                drag: (_, event) => {
+                    event.dataTransfer.setDragImage(this.dragImage, 0, 0)
+                    event.dataTransfer.setData("application/json", JSON.stringify(this.selection))
+                },
                 // Drop only on categories or root (excluding asynchronous promises)
                 droppable: _ => !_ || _.items && _.items instanceof Array
             }

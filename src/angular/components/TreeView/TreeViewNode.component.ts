@@ -13,10 +13,10 @@ const object = require("../../../tools/objects").object
     template: `
         <ul *ngIf="!folded && !loading"
             [ngClass]="node.ulCss()"
-            (dragover)="limitTick(invokeEvent, 'onDragOver', null, $event, depth === 0)"
-            (dragenter)="invokeEvent('onDragEnter', null, $event, depth === 0)"
-            (dragleave)="invokeEvent('onDragLeave', null, $event, depth === 0)"
-            (drop)="invokeEvent('onDrop', null, $event, depth === 0)">
+            (dragover)="invokeEvent('onDragOver', null, $event, !depth)"
+            (dragenter)="invokeEvent('onDragEnter', null, $event, !depth)"
+            (dragleave)="invokeEvent('onDragLeave', null, $event, !depth)"
+            (drop)="invokeEvent('onDrop', null, $event, !depth)">
 
             <li *ngFor="let item of getModel(); let i = index; trackBy: key"
                 [class]="node.liCss(item)"
@@ -217,17 +217,6 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit, AfterVi
             this._cdRef.markForCheck()
             this._cdRef.detectChanges()
         }
-    }
-
-    ticking = false
-    limitTick = (fun, ...args) => {
-        if(this.ticking) {
-            window.requestAnimationFrame(() => {
-                fun(...args)
-                this.ticking = false
-            })
-        }
-        this.ticking = true
     }
 
     invokeEvent = (name, item, event, condition = true) => {

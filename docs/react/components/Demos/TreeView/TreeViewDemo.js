@@ -19,7 +19,7 @@ export class TreeViewDemo extends React.PureComponent {
     constructor(props: { selection: Object[], update: Object[] => void }) {
         super(props)
         this.dragImage = new Image()
-        this.dragImage.src = "../assets/drag-image.svg"
+        this.dragImage.src = "../assets/drag-image.png"
     }
     dragImage: Image
 
@@ -71,7 +71,10 @@ export class TreeViewDemo extends React.PureComponent {
             // Use the "selection" drag and drop preset
             ...dragndrop.selection(() => this.state.model, m => this.setState({ model: m })),
             // Add a custom image on drag
-            drag: (_, event) => event.dataTransfer.setDragImage(this.dragImage, 0, 0),
+            drag: (_, event) => {
+                event.dataTransfer.setDragImage(this.dragImage, 0, 0)
+                event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(this.props.selection))
+            },
             // Drop only on categories or root (excluding asynchronous promises)
             droppable: _ => !_ || _.items && _.items instanceof Array
         }
