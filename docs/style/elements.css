@@ -65,6 +65,10 @@ a {
     text-decoration: inherit;
     color: inherit;
     transition: color 0.25s ease-in-out;
+
+    &:hover {
+        color: var(--accentColor);
+    }
 }
 
 input[type="number"], input[type="text"], input[type="email"], input[type="search"] {
@@ -105,10 +109,6 @@ code {
         text-decoration: underline;
         color: rgba(255,241,118 ,1);
         transition: color 0.25s ease-in-out;
-
-        &:hover {
-            color: var(--accentColor);
-        }
     }
     &.terminal {
         display: block;
@@ -122,6 +122,10 @@ code {
 
         & em {
             color: var(--darkColor);
+        }
+
+        & span.keyword {
+            color: deepskyblue;
         }
     }
 }
@@ -202,4 +206,29 @@ code {
     width: 1em;
     background: rgba(0, 0, 0, 0.3);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.serif {
+    font-family: var(--serifFont);
+}
+
+ul.highlight-list {
+    font-family: var(--serifFont);
+    padding-left: 0px;
+
+    & li {
+        border-left: 5px solid var(--accentColor);
+        padding-left: 15px;
+        margin-bottom: 20px;
+    }
+}
+
+ul.pick-list {
+    padding-left: 0px;
+
+    & h5 {
+        border-left: 2px solid var(--accentColor);
+        padding: 5px 15px !important;
+        font-family: var(--serifFont);
+    }
 }

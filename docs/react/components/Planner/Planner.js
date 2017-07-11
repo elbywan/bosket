@@ -138,10 +138,10 @@ export const Planner = combine(
                         "fa-times": this.state.opened
                     })}></i>
                 </div>
-                <div ref={ ref => this.sidePanel = ref } className={ "Planner side-panel " + css.classes({ opened: this.state.opened }) }>
+                <aside ref={ ref => this.sidePanel = ref } className={ "Planner side-panel " + css.classes({ opened: this.state.opened }) }>
                     <div><h1>Table of contents</h1></div>
                     <TreeView model={ this.props.plan } maxDepth={ this.props.maxDepth } { ...this.state.conf }></TreeView>
-                </div>
+                </aside>
                 <div ref={ ref => this.content = ref } className="Planner content">
                     { processContent(this.props.plan) }
                 </div>

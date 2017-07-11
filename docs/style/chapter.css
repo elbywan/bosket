@@ -13,6 +13,7 @@ div.chapter {
         text-align: center;
         font-size: 2.5em;
         padding: 10px 0px;
+        margin-bottom: 20px;
         color: var(--accentColor);
     }
     & h2 {
@@ -49,11 +50,9 @@ div.chapter {
         margin: 0;
     }
     & p em,
-    & div.emphasis em {
+    & .emphasis em {
         font-weight: bold;
         font-style: normal;
-        & > a { transition: color 0.25s ease-in-out; }
-        & > a:hover { color: var(--accentColor); }
     }
     & pre[class*=language-] {
         margin: 20px 0px;

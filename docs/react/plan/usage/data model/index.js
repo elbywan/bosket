@@ -10,9 +10,7 @@ export default {
     content:
         <span>
             <p>
-                <em>In order to use a component you will first need to use a specific data model to populate it.</em><br/><br/>
-                The data model must be a "tree-like" array of javascript objects. Each object is considered to be either a node, if it has children, or a leaf.<br/>
-                In case the object is a node, its children must be contained in one of its properties and must respect the same data model.
+                <em>In order to use a component you will first need to use a specific data model to populate it.</em>
             </p>
             { jscode`
                 // A model is simply an array of objects.
@@ -44,11 +42,11 @@ export default {
 
             { jscode`
             [
-                { label: "Click me, I'm a node.", children: [
-                    { label: "I am a child." },
-                    { label: "And also a leaf." }
+                { label: "Click me, I'm a node with two children.", children: [
+                    { label: "I am a childless leaf." },
+                    { label: "I am a also a childless leaf." }
                 ]},
-                { label: "I'm a leaf." },
+                { label: "I'm a leaf, I do not have children." },
                 { label: "I am an asynchronous node, click me and wait one second.", children: () =>
                     new Promise(resolve =>
                         setTimeout(() =>

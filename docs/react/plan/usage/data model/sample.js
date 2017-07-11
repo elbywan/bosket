@@ -3,11 +3,11 @@ import React from "react"
 import { TreeView } from  "bosket/react"
 
 const sampleModel = [
-    { label: "Click me, I'm a node.", children: [
-        { label: "I am a child." },
-        { label: "And also a leaf." }
+    { label: "Click me, I'm a node with two children.", children: [
+        { label: "I am a childless leaf." },
+        { label: "I am a also a childless leaf." }
     ]},
-    { label: "I'm a leaf." },
+    { label: "I'm a leaf, I do not have children." },
     { label: "I am an asynchronous node, click me and wait one second.", children: () =>
         new Promise(resolve =>
             setTimeout(() =>

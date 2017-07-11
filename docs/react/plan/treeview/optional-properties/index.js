@@ -40,9 +40,7 @@ export default {
             content:
                 <div className="marged">
                     <p>
-                        A function returning a unique&nbsp;
-                        <em><a href="https://facebook.github.io/react/docs/lists-and-keys.html#keys" target="_blank" rel="noopener noreferrer">key</a></em>&nbsp;
-                        used by React to perform list updates.<br/>
+                        A function returning a unique <em><a href="https://facebook.github.io/react/docs/lists-and-keys.html#keys" target="_blank" rel="noopener noreferrer">key</a></em> used by React to perform list updates.<br/>
                     </p>
                     <div className="emphasis">
                          Defaults to the index of the item in the list.
