@@ -48,16 +48,29 @@ header {
         float: right;
         height: 100%;
 
-        & img {
+        & > div {
             height: 100%;
+            display: inline-block;
             vertical-align: middle;
-            width: 2em;
-            padding: 0px 10px;
-            cursor: pointer;
-            transition: all .25s ease-in-out;
             border-bottom: 4px solid var(--darkerColor);
 
-            &:hover { border-color: var(--lightColor); }
+            transition: border .25s ease-in-out;
+            & img {
+                height: 100%;
+                vertical-align: middle;
+                width: 2em;
+                padding: 0px 10px;
+                cursor: pointer;
+                transition: all .25s ease-in-out;
+            }
+
+            &:hover {
+                border-color: var(--lightColor);
+                & img {
+                    transform: scale(1.2);
+                    filter: drop-shadow(0px 0px 1px #000);
+                }
+            }
             &.selected { border-color: white; }
         }
     }

@@ -10,18 +10,19 @@
         padding: 0px 20px 20px;
         @media (max-width: 600px) { padding: 0px 10px 10px; }
         background: var(--lightColor);
-        border-left: 3px solid var(--accentColor);
-        box-shadow: 1px 1px 2px #aaa;
+        border-left: 2px solid var(--accentColor);
+        @media (max-width: 600px) { border-left: none; }
         color: black;
         margin: 10px 0px;
 
         & > h3 {
             font-weight: 500;
             font-size: 1.5em;
+            text-align: center;
         }
     }
 
-    &.flexContainer {
+    &.flex-container {
 
         display: flex;
         flex-wrap: wrap;

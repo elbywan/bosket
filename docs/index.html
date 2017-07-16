@@ -7,12 +7,21 @@
     <title>Bosket</title>
     <link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <style>
+        section {
+            padding-bottom: 50px;
+        }
         section .chapter {
             padding: 30px 10% !important;
             border-top: 3px solid #505050;
         }
-        .chapter p, .chapter ul {
+        section .chapter p, .chapter ul {
             font-size: 1.2em;
+        }
+        h1, h2 {
+            text-shadow: 1px 0px #2F2F2F;
+        }
+        h2 {
+            padding-top: 30px;
         }
     </style>
 <link href="./common/build/common.css" rel="stylesheet"><script type="text/javascript" src="common/build/common.js"></script></head>
@@ -31,15 +40,21 @@
             </svg>
         </a>
         <span class="frameworks">
-            <a href="./react/index.html">
-                <img src="./assets/react.svg" alt="react-logo" class="react "/>
-            </a>
-            <a href="./angular/index.html">
-                <img src="./assets/angular.svg" alt="angular-logo" class="angular "/>
-            </a>
-            <a href="./vue/index.html">
-                <img src="./assets/vue.svg" alt="vue-logo" class="vue "/>
-            </a>
+            <div >
+                <a href="./react/index.html">
+                    <img src="./assets/react.svg" alt="react-logo" class="react"/>
+                </a>
+            </div>
+            <div >
+                <a href="./angular/index.html">
+                    <img src="./assets/angular.svg" alt="angular-logo" class="angular"/>
+                </a>
+            </div>
+            <div >
+                <a href="./vue/index.html">
+                    <img src="./assets/vue.svg" alt="vue-logo" class="vue"/>
+                </a>
+            </div>
         </span>
     </header>
     <section>
@@ -146,23 +161,23 @@
                 </svg>
             </div>
         </div>
-        <div class="serif">
-            <div class="chapter">
-                <h1>The why</h1>
+        <div>
+            <div class="chapter serif">
+                <h1>Why Bosket ?</h1>
                 <div>
                     <h2 class="highlight">Purpose</h2>
                     <p>
-                        Bosket is a tree views library, which are basically an elegant way to display nested lists.<br>
-                        Tree views are very versatile, and can be used as file explorers, menus, table of contents or category-based data ...<br>
+                        Bosket is a library of tree views implementations for well known front-end reactive frameworks suck as Angular or React.<br>
+                        Tree views, which are basically an elegant way to display nested lists, are very versatile and can for example be used as file explorers, menus, table of contents or category lists.<br>
                         <br>
-                        At its core is a logic written in javascript, without any dependencies.<br>
-                        Framework implementations all rest on this very same logic, which makes new implementations easy to write and having the same service contract.
+                        The core logic is written in plain javascript, without any dependencies.<br>
+                        Framework implementations rely on this very same code, which makes new implementations easy to write and by extension new frameworks easy to support.
                     </p>
                 </div>
                 <div>
                     <h2 class="highlight">Features</h2>
                     <p>
-                        The library supports advanced features out of the box, such as :
+                        Bosket supports advanced features out of the box, such as :
                     </p>
                     <ul class="highlight-list">
                         <li>Drag and drop</li>
@@ -185,15 +200,15 @@
                     </p>
                 </div>
             </div>
-            <div class="chapter">
+            <div class="chapter serif">
                 <h1 id="Setup">Setup</h1>
 
                 <h2 class="highlight">As a dependency</h2>
 
-                <p>Installing as a dependency is the easiest and recommended way.</p>
+                <p>Installing as a package dependency is the easiest and recommended way.</p>
 
                 <code class="terminal">
-                    <span class="keyword">npm</span> install --dev bosket
+                    <span class="keyword">npm</span> i -D bosket
                 </code>
 
                 <h2 class="highlight">By cloning the repository</h2>
@@ -218,7 +233,7 @@
             <div class="chapter">
                 <h1>Frameworks</h1>
 
-                <h2>Pick a supported framework.</h2>
+                <h2>Pick your framework of choice :</h2>
 
                 <div class="framework-choice">
                     <div>
@@ -246,6 +261,22 @@
             </div>
         </div>
     </section>
-</body>
+    <footer>
+        <div class="logo">
+            <a href=".">
+                <img src="./assets/bosket-logo.svg" />
+            </a>
+        </div>
+        <div class="icons">
+            <div><i class="fa fa-code" aria-hidden="true"></i></div>
+            <div><i class="fa fa-copyright" aria-hidden="true"></i></div>
+            <div><i class="fa fa-balance-scale" aria-hidden="true"></i></div>
+        </div>
+        <div class="text">
+            <div><a href="https://github.com/elbywan" target="_blank" rel="noopener noreferrer">Julien Elbaz</a></div>
+            <div><a href="https://github.com/elbywan/bosket/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">2017</a></div>
+            <div><a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a></div>
+        </div>
+    </footer></body>
 
 </html>

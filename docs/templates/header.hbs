@@ -11,14 +11,20 @@
         </svg>
     </a>
     <span class="frameworks">
-        <a href="{{#if path}}{{path}}{{else}}..{{/if}}/react/index.html">
-            <img src="{{#if path}}{{path}}{{else}}..{{/if}}/assets/react.svg" alt="react-logo" class="react {{#if react}}selected{{/if}}"/>
-        </a>
-        <a href="{{#if path}}{{path}}{{else}}..{{/if}}/angular/index.html">
-            <img src="{{#if path}}{{path}}{{else}}..{{/if}}/assets/angular.svg" alt="angular-logo" class="angular {{#if angular}}selected{{/if}}"/>
-        </a>
-        <a href="{{#if path}}{{path}}{{else}}..{{/if}}/vue/index.html">
-            <img src="{{#if path}}{{path}}{{else}}..{{/if}}/assets/vue.svg" alt="vue-logo" class="vue {{#if vue}}selected{{/if}}"/>
-        </a>
+        <div {{#if react}}class="selected"{{/if}}>
+            <a href="{{#if path}}{{path}}{{else}}..{{/if}}/react/index.html">
+                <img src="{{#if path}}{{path}}{{else}}..{{/if}}/assets/react.svg" alt="react-logo" class="react"/>
+            </a>
+        </div>
+        <div {{#if angular}}class="selected"{{/if}}>
+            <a href="{{#if path}}{{path}}{{else}}..{{/if}}/angular/index.html">
+                <img src="{{#if path}}{{path}}{{else}}..{{/if}}/assets/angular.svg" alt="angular-logo" class="angular"/>
+            </a>
+        </div>
+        <div {{#if vue}}class="selected"{{/if}}>
+            <a href="{{#if path}}{{path}}{{else}}..{{/if}}/vue/index.html">
+                <img src="{{#if path}}{{path}}{{else}}..{{/if}}/assets/vue.svg" alt="vue-logo" class="vue"/>
+            </a>
+        </div>
     </span>
 </header>

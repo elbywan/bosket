@@ -3,7 +3,7 @@ export default `
 <div class="TreeView">
 
     <!-- If [search](#TreeView#Optional props#search) is defined, hidden otherwise.-->
-    <input type="search" class="search" value="" placeholder="Search ..." />
+    <input type="search" class="search" />
 
     <!-- 'depth-0'' is the root list, each nested list has the depth incremented by 1 -->
     <!-- If [transition](#TreeView#Optional props#transition) is set, react-transition-group classes will be set on this element. -->

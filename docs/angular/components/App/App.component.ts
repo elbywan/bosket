@@ -1,23 +1,16 @@
 import { Component } from "@angular/core"
+import plan from "self/angular/plan/plan"
+
+import "self/common/styles/App.css"
 
 @Component({
     selector: "div#framework-root",
     template: `
         <div class="App">
-            <h4 class="inline-row">This page is rendered using Angular 4.2.5</h4>
-            <div class="components-container">
-                <treeview-section></treeview-section>
-            </div>
+            <planner [plan]="plan" [maxDepth]="1" [sticky]="true"></planner>
         </div>
-    `,
-    styles: [`
-        .App {
-            /* text-align: center; */
-        }
-
-        .App-intro {
-            font-size: large;
-        }
-    `]
+    `
 })
-export class AppComponent {}
+export class AppComponent {
+    public plan = plan
+}

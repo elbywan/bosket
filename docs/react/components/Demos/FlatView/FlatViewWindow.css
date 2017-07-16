@@ -118,7 +118,16 @@
 /* Responsive */
 @media (max-width: 600px) {
     .FlatViewWindow > h3 { margin-bottom: 0px; }
-    .FlatViewWindow div.form-like { padding: 0; border-spacing: 10px; width: 100%; }
-    .FlatViewWindow div.form-line label { font-size: 0.7em; }
+    .FlatViewWindow div.form-like {
+        display: block;
+        padding: 10px;
+        width: 100%;
+    }
+    .FlatViewWindow div.form-line {
+        display: block;
+        width: calc(100% - 20px);
+        & > * { display: block; }
+        & label { font-size: 0.8em; margin: 10px 0px; }
+    }
     .FlatViewWindow .comboBox > button { min-width: auto; padding: 0px; }
 }

@@ -1,11 +1,14 @@
-import { ChangeDetectorRef, ComponentFactoryResolver, AfterViewInit, AfterViewChecked } from "@angular/core";
+import { ChangeDetectorRef, ComponentFactoryResolver, AfterViewInit } from "@angular/core";
 import { ItemInjector } from "./ItemInjector.directive";
 import { TreeNode } from "../../../core";
-export declare class TreeViewNode<Item extends Object> implements AfterViewInit, AfterViewChecked {
+export declare class TreeViewNode<Item extends Object> implements AfterViewInit {
     private _cdRef;
     private _componentFactoryResolver;
+    private keys;
     _props: {
-        get: () => {};
+        memoized: any;
+        update: () => void;
+        get: () => any;
         set: (s: {}) => void;
     };
     _state: {
@@ -16,8 +19,8 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit,
         set: (s: {}) => void;
     };
     constructor(_cdRef: ChangeDetectorRef, _componentFactoryResolver: ComponentFactoryResolver);
+    ngOnChanges(): void;
     ngAfterViewInit(): void;
-    ngAfterViewChecked(): void;
     model: Array<Item>;
     category: string;
     selection: Array<Item>;
@@ -60,6 +63,5 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit,
     getChildFiltered: (item: Item) => Map<Item, any>;
     ancestorsMap: Map<Item, Item[]>;
     getAncestors: (item: Item) => Item[];
-    injectItems(): void;
     invokeEvent: (name: any, item: any, event: any, condition?: boolean) => void;
 }

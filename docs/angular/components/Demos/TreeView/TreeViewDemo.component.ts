@@ -1,7 +1,7 @@
 import { Component, Input } from "@angular/core"
 import { ItemComponent } from "bosket/angular"
 
-import "./TreeViewSection.css"
+import "./TreeViewDemo.css"
 import initialModel from "self/common/models/TreeViewModel"
 import { dragndrop } from "bosket/core/dragndrop"
 
@@ -13,27 +13,29 @@ export class ItemDisplay implements ItemComponent<{ label }> {
 }
 
 @Component({
-    selector: "treeview-section",
+    selector: "treeview-demo",
     template: `
-     <component-section componentName="TreeView" description="Powerful tree of nested objects.">
+     <component-demo componentName="TreeView" description="Powerful tree of nested objects." style="text-align: center">
 
         <div class="inline-row">
-            <TreeView
-                [model]="model"
-                [category]="category"
-                [(selection)]="selection"
-                [display]="display"
-                [sort]="sort"
-                [key]="key"
-                [search]="search"
-                [strategies]="strategies"
-                [noOpener]="noOpener"
-                [dragndrop]="dragndrop"
-                [itemComponent]="itemComponent"
-                [css]="css"
-                (onDrop)="onDrop($event)"
-                (onDrag)="onDrag($event)">
-            </TreeView>
+            <div style="text-align: left">
+                <TreeView
+                    [model]="model"
+                    [category]="category"
+                    [(selection)]="selection"
+                    [display]="display"
+                    [sort]="sort"
+                    [key]="key"
+                    [search]="search"
+                    [strategies]="strategies"
+                    [noOpener]="noOpener"
+                    [dragndrop]="dragndrop"
+                    [itemComponent]="itemComponent"
+                    [css]="css"
+                    (onDrop)="onDrop($event)"
+                    (onDrag)="onDrag($event)">
+                </TreeView>
+            </div>
         </div>
 
         <p>
@@ -49,10 +51,10 @@ export class ItemDisplay implements ItemComponent<{ label }> {
             </button>
         </div>
 
-    </component-section>`,
+    </component-demo>`,
     styles: []
 })
-export class TreeViewSection {
+export class TreeViewDemo {
 
     constructor(){
         this.dragImage = new Image()
@@ -74,13 +76,13 @@ export class TreeViewSection {
         fold: ["opener-control"]
     }
     noOpener = false
-    dragndrop = dragndrop.selection(() => this.model, m => this.model = m)
+    dragndrop = {
+        ...dragndrop.selection(() => this.model, m => this.model = m),
+        droppable: _ => !_ || _.items && _.items instanceof Array
+    }
     css = { TreeView: "TreeViewDemo" }
     dragImage: HTMLImageElement
-    onDrop = ({target, event, inputs}) => {
-        //this.model = dragndrop.drops.selection(target, this.model, this.category, this.selection)
-        this.dragndrop.drop(target, event, inputs)
-    }
+    onDrop = ({target, event, inputs}) => this.dragndrop.drop(target, event, inputs)
     onDrag = ({target, event, inputs}) => {
         event.dataTransfer.setDragImage(this.dragImage, 0, 0)
         event.dataTransfer.setData("application/json", JSON.stringify(this.selection))

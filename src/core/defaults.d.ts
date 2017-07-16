@@ -15,7 +15,8 @@ export declare const defaults : {
     dragndrop: {
         draggable: boolean,
         droppable: boolean,
-        start<Item extends Object>(target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>): void,
-        drop<Item extends Object>(target: Item, event: DragEvent): void
+        drag?<Item extends Object>(target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>): void,
+        drop?<Item extends Object>(target: Item, event: DragEvent): void,
+        guard?<Item extends Object>(target: Item | null, event: DragEvent, inputs: Object): boolean
     }
 }

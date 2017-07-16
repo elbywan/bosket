@@ -11,9 +11,9 @@ export class TreeViewWindow extends React.PureComponent {
     }
 
     render = () =>
-        <div>
+        <div style={{ textAlign: "center" }}>
             { /* The TreeView is rendered here */
-                <div style={ { display: "inline-block" } }>
+                <div style={{ display: "inline-block", textAlign: "left" }}>
                     <TreeViewDemo selection={ this.state.selection } update={ _ => this.setState({ selection: _ }) }/>
                 </div>
             }

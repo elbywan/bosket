@@ -1,16 +1,34 @@
-import { Directive, Input, ViewContainerRef } from "@angular/core";
+import { Directive, Input, ComponentFactoryResolver, ViewContainerRef } from "@angular/core";
 var ItemInjector = (function () {
-    function ItemInjector(viewContainerRef) {
+    function ItemInjector(viewContainerRef, _componentFactoryResolver) {
         this.viewContainerRef = viewContainerRef;
+        this._componentFactoryResolver = _componentFactoryResolver;
+        this.componentRef = null;
     }
+    ItemInjector.prototype.ngOnChanges = function (changes) {
+        if (!this.component || !this.item)
+            return;
+        if (changes.component) {
+            this.viewContainerRef.clear();
+            var componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.component);
+            this.componentRef = this.viewContainerRef.createComponent(componentFactory);
+        }
+        if (this.componentRef && changes.item)
+            this.componentRef.instance.item = this.item;
+        if (this.componentRef && changes.inputs)
+            this.componentRef.instance.inputs = this.inputs;
+    };
     ItemInjector.decorators = [
         { type: Directive, args: [{ selector: '[itemInjector]' },] },
     ];
     ItemInjector.ctorParameters = function () { return [
         { type: ViewContainerRef, },
+        { type: ComponentFactoryResolver, },
     ]; };
     ItemInjector.propDecorators = {
         'item': [{ type: Input, args: ["itemInjector",] },],
+        'component': [{ type: Input, args: ["inject",] },],
+        'inputs': [{ type: Input, args: ["inputs",] },],
     };
     return ItemInjector;
 }());

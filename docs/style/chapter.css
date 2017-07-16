@@ -96,21 +96,26 @@ div.chapter {
         & a:hover { color: var(--accentColor); }
     }
     & div.framework-choice {
+        margin-top: 30px;
         & a:hover {
             color: var(--accentColor);
         }
         & > div {
             background: var(--darkerColor);
             color: var(--lightColor);
+            border-bottom: 1px solid var(--lightColor);
             padding-bottom: 20px;
-            border-bottom: 2px solid var(--accentColor);
-            border-left: 5px solid var(--darkerColor);
-            transition: padding .25s ease-in-out;
-            &:hover { padding-left: 2%; }
+            &, & > a { transition: all .25s ease-in-out; }
             & > * { display: inline-block; }
             & > a > img {
                 width: 100px;
                 height: 70px;
+            }
+            &:hover {
+                & > a {
+                    transform: scale(1.2);
+                    filter: drop-shadow(0px 0px 1px #000);
+                }
             }
         }
     }

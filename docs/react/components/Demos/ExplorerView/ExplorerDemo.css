@@ -5,10 +5,10 @@
     width: 100%;
     top: 35px;
     left: 0;
-    background: #e3e3e3;
+    background: #eee;
     color: #444;
     border: none;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 1px solid #ddd;
     border-top: 2px solid #ddd;
     font-size: 12px;
     font-family: Monaco, monospace;
@@ -50,13 +50,15 @@
 }
 
 .ExplorerView li:hover > .item {
-    background: #DEDEDE;
-    box-shadow: -1px 1px 1px #DDD;
+    /*background: #DEDEDE;*/
+}
+.ExplorerView li:hover > .item > a {
+    color: #000;
 }
 
 .ExplorerView li.selected > .item {
     background: rgb(187,222,251);
-    box-shadow: -1px 0px 3px #CCC;
+    box-shadow: -1px 1px 1px #CCC;
 }
 
 .ExplorerView li.category > .item > a {
@@ -86,16 +88,16 @@
 /* Drag'n'drop */
 
 .ExplorerView li.dragover, .ExplorerView ul.dragover {
-    box-shadow: 0px 0px 2px #AAA;
+    box-shadow: -1px 1px 1px #CCC;
 }
 .ExplorerView ul.dragover {
-    background-color: rgba(255,224,178,.5);
+    background-color: aliceblue;
 }
 .ExplorerView li.dragover > span.item {
-    background-color: rgba(255,224,178,.5);
+    background-color: aliceblue;
 }
 .ExplorerView li.nodrop > span.item {
-    box-shadow: 0px 0px 2px crimson;
+    box-shadow: -1px 1px 1px crimson;
     background-color: rgba(255, 20, 60, 0.1);
 }
 

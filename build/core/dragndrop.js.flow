@@ -47,10 +47,10 @@ export const dragndrop = {
         drag: (item: Object, event: DragEvent, inputs: Object) => {
             bak = JSON.stringify(model())
             event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(item))
-            setTimeout(() => cb(tree(model(), inputs.category).filter(e => e !== item)), 20)
+            cb(tree(model(), inputs.category).filter(e => e !== item))
         },
         cancel: () => {
-            setTimeout(() => cb(JSON.parse(bak)), 20)
+            cb(JSON.parse(bak))
         }
     }),
     // Pastes item(s) on drop
@@ -101,6 +101,7 @@ export const utils = {
 
 // Internal use //
 
+let tickDragover = false
 export const nodeEvents = {
     onDragStart: function(item: ?Object) {
         return function(event: DragEvent) {
@@ -113,13 +114,17 @@ export const nodeEvents = {
             event.preventDefault()
             event.stopPropagation()
 
+            if(tickDragover) return
+            tickDragover = true
+
             if(this.inputs.get().dragndrop.guard && this.inputs.get().dragndrop.guard(item, event, this.inputs.get())) {
                 event.dataTransfer && (event.dataTransfer.dropEffect = "none")
                 css.addClass(event.currentTarget, this.mixCss("nodrop"))
-                return
+            } else {
+                css.addClass(event.currentTarget, this.mixCss("dragover"))
             }
 
-            css.addClass(event.currentTarget, this.mixCss("dragover"))
+            requestAnimationFrame(() => { tickDragover = false })
         }
     },
     onDragEnter: function(item: ?Object) {

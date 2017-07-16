@@ -1,10 +1,15 @@
-import { ViewContainerRef } from "@angular/core";
+import { ComponentFactoryResolver, ViewContainerRef, OnChanges, SimpleChanges } from "@angular/core";
 export interface ItemComponent<Item> {
     item: Item;
+    inputs?: any;
 }
-export declare class ItemInjector {
+export declare class ItemInjector implements OnChanges {
     viewContainerRef: ViewContainerRef;
-    constructor(viewContainerRef: ViewContainerRef);
+    private _componentFactoryResolver;
+    constructor(viewContainerRef: ViewContainerRef, _componentFactoryResolver: ComponentFactoryResolver);
     item: any;
-    componentRef: ItemComponent<any>;
+    component: any;
+    inputs: any;
+    componentRef: any;
+    ngOnChanges(changes: SimpleChanges): void;
 }

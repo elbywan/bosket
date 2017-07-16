@@ -48,11 +48,11 @@ export class MenuViewWindow extends React.PureComponent {
             <article>
                 <p> A bunch of { item.name } options. </p>
                 <div className="MenuViewWindow children">{ !item.menu ? null : item.menu.map(menuItem =>
-                    <h4 key={ menuItem.name }>
+                    <div key={ menuItem.name }>
                         <a onClick={ ev => this.setState({ selection: [ ...this.state.selection, menuItem ]})}>
                             <i className={ "fa " + menuItem.icon }></i>{ menuItem.name }
                         </a>
-                    </h4>
+                    </div>
                 )}</div>
             </article>
         </div>

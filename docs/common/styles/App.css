@@ -1,9 +1,5 @@
 @import "variables.css";
 
-body {
-    background: var(--darkerColor);
-}
-
 #framework-root {
     background-color: var(--lightColor);
 }

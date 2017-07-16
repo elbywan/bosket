@@ -67,14 +67,15 @@
     padding: 0px 20px;
 }
 
-.MenuViewWindow.content .children > h4 {
+.MenuViewWindow.content .children > div {
     margin: 0px;
     padding: 10px;
+    text-align: left;
 }
-.MenuViewWindow.content .children > h4 > a {
+.MenuViewWindow.content .children > div > a {
     transition: color 0.25s ease-in-out;
 }
-.MenuViewWindow.content .children > h4 > a:hover {
+.MenuViewWindow.content .children > div > a:hover {
     color: #3F51B5;
 }
 

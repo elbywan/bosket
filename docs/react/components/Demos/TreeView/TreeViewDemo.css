@@ -159,7 +159,7 @@
 
 .TreeViewDemo li.dragover {
     background-color: rgba(100, 100, 100, 0.05);
-    padding: 0px 10px;
+    padding: 0px 5px;
 }
 
 .TreeViewDemo li.dragover>span.item {
@@ -169,5 +169,5 @@
 .TreeViewDemo li.nodrop {
     box-shadow: 0px 0px 5px crimson;
     background-color: rgba(255, 20, 60, 0.1);
-    padding: 0px 10px;
+    padding: 0px 5px;
 }

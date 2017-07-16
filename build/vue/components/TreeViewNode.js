@@ -17,7 +17,7 @@ var TreeViewNodeBase = {
                 return _this.$props;
             } }, {}, {
             get: function get() {
-                return _extends({}, _this.$data);
+                return _this.$data;
             },
             set: function set(s) {
                 for (var key in s) {

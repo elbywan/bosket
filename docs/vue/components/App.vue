@@ -15,6 +15,10 @@
         font-size: large;
     }
 
+    body {
+        background-color: #eee;
+    }
+
 </style>
 
 <script>

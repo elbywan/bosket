@@ -82,7 +82,7 @@
     background-color: rgba(227,242,253 ,1);
 }
 .explorer-window .folder-view table tbody tr:hover {
-    background: rgba(255,224,178 ,0.5);
+    background: rgb(187, 222, 251);
 }
 .explorer-window .folder-view table tbody tr.selected {
     background: #bbdefb;
@@ -103,7 +103,7 @@
     overflow: scroll;
     width: 200px;
     height: 500px;
-    margin-top: 35px;
+    margin-top: 34px;
     border-right: 2px solid #DDD;
     color: #444;
 }

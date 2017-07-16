@@ -1,7 +1,8 @@
 // @flow
 
-import "./App.css"
 import React from "react"
+
+import "self/common/styles/App.css"
 
 import { Planner } from "self/react/components/Planner/Planner"
 import plan from "self/react/plan"

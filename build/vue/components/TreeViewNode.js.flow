@@ -9,7 +9,7 @@ const TreeViewNodeBase = {
             { get: () => this.$props },
             {},
             {
-                get: () => ({ ...this.$data }),
+                get: () => this.$data,
                 set: s => {
                     for(const key in s) {
                         if(key in this.$data) this.$data[key] = s[key]

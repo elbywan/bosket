@@ -18,12 +18,12 @@ export const TreeViewSection = () =>
                 </p>
                 <span>Featuring :</span>
                 <ul>
-                    <li>- Drag and drop, with a custom drag image.</li>
-                    <li>- Asynchronous children loading</li>
-                    <li>- Multiselection using keyboard modifiers (shift / ctrl or cmd)</li>
-                    <li>- Transitions on fold / unfold</li>
-                    <li>- Alphabetical sort</li>
-                    <li>- Search bar</li>
+                    <li>Drag and drop, with a custom drag image.</li>
+                    <li>Asynchronous children loading</li>
+                    <li>Multiselection using keyboard modifiers (shift / ctrl or cmd)</li>
+                    <li>Transitions on fold / unfold</li>
+                    <li>Alphabetical sort</li>
+                    <li>Search bar</li>
                 </ul>
             </div>
         }

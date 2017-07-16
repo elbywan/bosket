@@ -49,16 +49,12 @@ export var dragndrop = {
             drag: function drag(item, event, inputs) {
                 bak = JSON.stringify(model());
                 event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(item));
-                setTimeout(function () {
-                    return cb(tree(model(), inputs.category).filter(function (e) {
-                        return e !== item;
-                    }));
-                }, 20);
+                cb(tree(model(), inputs.category).filter(function (e) {
+                    return e !== item;
+                }));
             },
             cancel: function cancel() {
-                setTimeout(function () {
-                    return cb(JSON.parse(bak));
-                }, 20);
+                cb(JSON.parse(bak));
             }
         };
     },
@@ -103,7 +99,8 @@ export var utils = {
 
     // Internal use //
 
-};export var nodeEvents = {
+};var tickDragover = false;
+export var nodeEvents = {
     onDragStart: function onDragStart(item) {
         return function (event) {
             event.stopPropagation();
@@ -115,13 +112,19 @@ export var utils = {
             event.preventDefault();
             event.stopPropagation();
 
+            if (tickDragover) return;
+            tickDragover = true;
+
             if (this.inputs.get().dragndrop.guard && this.inputs.get().dragndrop.guard(item, event, this.inputs.get())) {
                 event.dataTransfer && (event.dataTransfer.dropEffect = "none");
                 css.addClass(event.currentTarget, this.mixCss("nodrop"));
-                return;
+            } else {
+                css.addClass(event.currentTarget, this.mixCss("dragover"));
             }
 
-            css.addClass(event.currentTarget, this.mixCss("dragover"));
+            requestAnimationFrame(function () {
+                tickDragover = false;
+            });
         };
     },
     onDragEnter: function onDragEnter(item) {

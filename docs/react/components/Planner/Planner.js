@@ -76,6 +76,7 @@ export const Planner = combine(
     sidePanel: HTMLElement
     content: HTMLElement
     ticking = false
+    sticking = false
 
     componentDidMount = () => {
         this.props.clickListener && this.props.clickListener.subscribe((ev: Event) => {
@@ -116,17 +117,22 @@ export const Planner = combine(
             setTimeout(() => end(), 100)
         })
 
-        if(this.props.sticky)
+        if(this.props.sticky) {
             this.props.offsetListener && this.props.offsetListener.subscribe((ev: Event, end: void => void) => {
                 if(this.content.getBoundingClientRect().top > 0) {
                     this.sidePanel.style.position = "absolute"
                     this.sidePanel.style.top = ""
+                    this.sticking = false
+                    end()
                 } else {
                     this.sidePanel.style.position = "fixed"
                     this.sidePanel.style.top = "0px"
+                    this.sticking = true
+                    end()
                 }
                 end()
             })
+        }
     }
 
     render() {

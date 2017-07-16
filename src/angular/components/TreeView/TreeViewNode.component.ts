@@ -1,6 +1,6 @@
 import { Component, Input, ViewChildren, ChangeDetectionStrategy, ChangeDetectorRef,
     ComponentFactoryResolver, AfterViewInit, AfterViewChecked } from "@angular/core"
-import { ItemInjector, ItemComponent } from "./ItemInjector.directive"
+import { ItemInjector } from "./ItemInjector.directive"
 import { TreeNode } from "../../../core"
 import * as strategies from "../../../core/strategies"
 
@@ -29,8 +29,8 @@ const object = require("../../../tools/objects").object
                 (dragend)="invokeEvent('onDragEnd', item, $event)"
                 (drop)="invokeEvent('onDrop', item, $event)">
                 <span [class]="node.mixCss('item')">
-                    <a *ngIf="!itemComponent">{{ display(item, this.ancestors) }}</a>
-                    <ng-template *ngIf="itemComponent" [itemInjector]="item"></ng-template>
+                    <ng-container *ngIf="!itemComponent">{{ display(item, this.ancestors) }}</ng-container>
+                    <ng-template *ngIf="itemComponent" [itemInjector]="item" [inject]="itemComponent" [inputs]="_props.get()"></ng-template>
                     <span
                         *ngIf="node.hasChildren(item) || node.isAsync(item) && !noOpener"
                         [class]="node.mixCss('opener')"
@@ -65,21 +65,26 @@ const object = require("../../../tools/objects").object
     `,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TreeViewNode<Item extends Object> implements AfterViewInit, AfterViewChecked {
+export class TreeViewNode<Item extends Object> implements AfterViewInit {
 
     /* Adapter boilerplate */
 
+    private keys = [
+        "model", "category", "selection", "display", "key", "strategies", "dragndrop",
+        "labels", "sort", "disabled", "noOpener", "async", "css", "folded",
+        "loading", "depth", "ancestors", "searched", "onSelect"
+    ]
+
     _props = {
-        get: () => {
-            const keys = [ "model", "category", "selection", "display", "key", "strategies", "dragndrop",
-                "labels", "sort", "disabled", "noOpener", "async", "css", "folded",
-                "loading", "depth", "ancestors", "searched", "onSelect" ]
+        memoized: null,
+        update: () => {
             const props = {}
-            keys.forEach(key => {
+            this.keys.forEach(key => {
                 props[key] = this[key]
             })
-            return props
+            this._props.memoized = props
         },
+        get: () => this._props.memoized || this._props.update() && this._props.memoized,
         set: (s: {}) => {
             for(const key in s) {
                 if(key in this) this[key] = s[key]
@@ -88,9 +93,7 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit, AfterVi
     }
     _state = {
         unfolded: [],
-        get: () => {
-            return { unfolded: this._state.unfolded }
-        },
+        get: () => ({ unfolded: this._state.unfolded }),
         set: (s: {}) => {
             for(const key in s) {
                 if(key in this._state) this._state[key] = s[key]
@@ -109,13 +112,11 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit, AfterVi
         )
     }
 
+    ngOnChanges() { this._props.update() }
+
     ngAfterViewInit(): void {
         if(this.model instanceof Array)
             this.model.forEach(i => this.ancestorsMap.set(i, [ ...this.ancestors, i ]))
-    }
-
-    ngAfterViewChecked(): void {
-        this.injectItems()
     }
 
     /* Inputs / outputs declaration */
@@ -194,29 +195,6 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit, AfterVi
         if(!this.ancestorsMap.has(item))
             this.ancestorsMap.set(item, [ ...this.ancestors, item ])
         return this.ancestorsMap.get(item)
-    }
-
-    injectItems() {
-        if(!this.itemComponent || !this.itemInjectors) return
-        let changes = false
-        this.itemInjectors.forEach(injector => {
-             let item = injector.item
-             if(injector.componentRef) {
-                if(injector.componentRef.item === item) return
-                injector.componentRef.item = item
-             } else {
-                changes = true
-                let componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.itemComponent)
-                let viewContainerRef = injector.viewContainerRef
-                let componentRef = viewContainerRef.createComponent(componentFactory);
-                (<ItemComponent<Item>> componentRef.instance).item = item
-                injector.componentRef = (<ItemComponent<Item>> componentRef.instance)
-             }
-        })
-        if(changes) {
-            this._cdRef.markForCheck()
-            this._cdRef.detectChanges()
-        }
     }
 
     invokeEvent = (name, item, event, condition = true) => {

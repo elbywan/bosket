@@ -1,6 +1,6 @@
 // @flow
 
-import "./ComponentDemo.css"
+import "self/common/styles/ComponentDemo.css"
 
 import React from "react"
 
@@ -37,7 +37,7 @@ export class ComponentDemo extends React.PureComponent {
         return <div className="ComponentDemo section">
             <h3>{ this.props.componentName }</h3>
             <div> { this.props.description } </div>
-            <div className={ "ComponentDemo flexContainer" + (this.state.expand ? " expanded" : "") }>
+            <div className={ "ComponentDemo flex-container" + (this.state.expand ? " expanded" : "") }>
                 <div className={ "ComponentDemo demo-area" + (this.isExpanded("demo") ? " expand" : "") }>
                     <div className="ComponentDemo expander" onClick={ _ => this.expand = "demo" }>
                         <i className={ "fa" + (this.isExpanded("demo") ? " fa-compress" : " fa-expand") }></i>

@@ -1,3 +1,4 @@
 export * from "./App/App.component"
-export * from "./ComponentSection/ComponentSection.component"
-export * from "./Sections"
+export * from "./ComponentDemo/ComponentDemo.component"
+export * from "./Language/Language.component"
+export * from "./Demos"
