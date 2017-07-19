@@ -38,7 +38,7 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit 
     disabled: (_: Item) => boolean;
     noOpener: boolean;
     async: (_: Function) => Promise<any>;
-    itemComponent: any;
+    displayComponent: any;
     dragndrop: {
         draggable: boolean | (() => boolean);
         droppable: boolean | (() => boolean);

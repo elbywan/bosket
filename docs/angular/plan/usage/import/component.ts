@@ -6,12 +6,10 @@ import { Component } from "@angular/core"
         <syntax-highlight language="typescript">
             import {{ '{' }} BosketModule } from "bosket/angular"
 
-            // [Use the angular imports](https://angular.io/guide/ngmodule#import-supporting-modules) //
+            // [Use the angular imports](https://angular.io/guide/ngmodule#import-supporting-modules)
 
             @NgModule({{ '{' }}
-                // ... //
-                imports: [ /* ... */, BosketModule, /* ... */ ],
-                // ... //
+                imports: [ BosketModule, /* ... */ ],
             })
         </syntax-highlight>
     `

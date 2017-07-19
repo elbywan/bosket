@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core"
-import { ItemComponent } from "bosket/angular"
+import { DisplayComponent } from "bosket/angular"
 
 import "./TreeViewDemo.css"
 import initialModel from "self/common/models/TreeViewModel"
@@ -8,14 +8,14 @@ import { dragndrop } from "bosket/core/dragndrop"
 @Component({
     template:`<a>{{ item.label }}</a>`
 })
-export class ItemDisplay implements ItemComponent<{ label }> {
+export class ItemDisplay implements DisplayComponent<{ label }> {
     @Input() item : { label }
 }
 
 @Component({
     selector: "treeview-demo",
     template: `
-     <component-demo componentName="TreeView" description="Powerful tree of nested objects." style="text-align: center">
+     <component-demo componentName="TreeView" description="Powerful tree of nested objects." [files]="files" style="text-align: center">
 
         <div class="inline-row">
             <div style="text-align: left">
@@ -30,7 +30,7 @@ export class ItemDisplay implements ItemComponent<{ label }> {
                     [strategies]="strategies"
                     [noOpener]="noOpener"
                     [dragndrop]="dragndrop"
-                    [itemComponent]="itemComponent"
+                    [displayComponent]="displayComponent"
                     [css]="css"
                     (onDrop)="onDrop($event)"
                     (onDrag)="onDrag($event)">
@@ -61,6 +61,11 @@ export class TreeViewDemo {
         this.dragImage.src = "../assets/drag-image.png"
     }
 
+    files=[
+        "./components/Demos/TreeView/TreeViewDemo.component.ts",
+        "./components/Demos/TreeView/TreeViewDemo.css"
+    ]
+
     model: Object[] = initialModel
 
     category = "items"
@@ -87,5 +92,5 @@ export class TreeViewDemo {
         event.dataTransfer.setDragImage(this.dragImage, 0, 0)
         event.dataTransfer.setData("application/json", JSON.stringify(this.selection))
     }
-    itemComponent = ItemDisplay
+    displayComponent = ItemDisplay
 }

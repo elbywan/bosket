@@ -29,8 +29,8 @@ const object = require("../../../tools/objects").object
                 (dragend)="invokeEvent('onDragEnd', item, $event)"
                 (drop)="invokeEvent('onDrop', item, $event)">
                 <span [class]="node.mixCss('item')">
-                    <ng-container *ngIf="!itemComponent">{{ display(item, this.ancestors) }}</ng-container>
-                    <ng-template *ngIf="itemComponent" [itemInjector]="item" [inject]="itemComponent" [inputs]="_props.get()"></ng-template>
+                    <ng-container *ngIf="!displayComponent">{{ display(item, this.ancestors) }}</ng-container>
+                    <ng-template *ngIf="displayComponent" [itemInjector]="item" [inject]="displayComponent" [inputs]="_props.get()"></ng-template>
                     <span
                         *ngIf="node.hasChildren(item) || node.isAsync(item) && !noOpener"
                         [class]="node.mixCss('opener')"
@@ -50,14 +50,14 @@ const object = require("../../../tools/objects").object
                     [strategies]="strategies"
                     [labels]="labels"
                     [display]="display"
+                    [displayComponent]="displayComponent"
                     [css]="css"
                     [async]="async"
                     [dragndrop]="dragndrop"
                     [sort]="sort"
                     [disabled]="disabled"
                     [searched]="searched"
-                    [noOpener]="noOpener"
-                    [itemComponent]="itemComponent">
+                    [noOpener]="noOpener">
                 </TreeViewNode>
             </li>
         </ul>
@@ -142,7 +142,7 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit {
     @Input() noOpener: boolean = false
     // Opener template ?!
     @Input() async: (_: Function) => Promise<any>
-    @Input() itemComponent
+    @Input() displayComponent
     @Input() dragndrop : {
         draggable: boolean | (() => boolean),
         droppable: boolean | (() => boolean),

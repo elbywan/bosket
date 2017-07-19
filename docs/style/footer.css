@@ -6,7 +6,7 @@ footer {
     background: inherit;
     padding: 20px 0px;
     font-size: 0.8em;
-    border-top: 5px solid var(--accentColor);
+    border-top: 4px solid var(--accentColor);
     letter-spacing: 1px;
 
     & > div {

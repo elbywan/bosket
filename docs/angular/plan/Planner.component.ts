@@ -2,7 +2,7 @@ import { Component, Input, ChangeDetectionStrategy, ComponentFactoryResolver,
     SimpleChanges, Type, ViewChild, ElementRef, ViewContainerRef, ChangeDetectorRef } from "@angular/core"
 
 import { css } from "bosket/tools"
-import { ItemComponent } from "bosket/angular"
+import { DisplayComponent } from "bosket/angular"
 
 import "./Planner.css"
 
@@ -87,7 +87,7 @@ export class PlannerContent {
     template: `<a [href]="href()">{{ item.title }}</a>`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PlannerInjector implements ItemComponent<Plan> {
+export class PlannerInjector implements DisplayComponent<Plan> {
     @Input() item : Plan
     @Input() inputs: any
 
@@ -116,7 +116,7 @@ export class PlannerInjector implements ItemComponent<Plan> {
                     [(selection)]="selection"
                     [strategies]="{ selection: ['ancestors'], fold: [ foldDepth(), 'not-selected', 'no-child-selection' ]}"
                     noOpener="true"
-                    [itemComponent]="component">
+                    [displayComponent]="component">
                 </TreeView>
             </aside>
             <div #content class="Planner content">

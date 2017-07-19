@@ -28,8 +28,8 @@ export default {
 
                                 /* Additional properties are required for this preset : */
 
-                                name={ /* [The name of the property containing the displayed label.](#Presets#ExplorerView#Additional props#name) */ },
-                                limit={ /* [Maximum number of selected items.](#Presets#ExplorerView#Additional props#limit)  */ }
+                                name={ /* [The name of the property containing the displayed label.](#Presets#FlatView#Additional props#name) */ },
+                                limit={ /* [Maximum number of selected items.](#Presets#FlatView#Additional props#limit)  */ }
 
                                 /* The following properties are already set by the preset :
                                     - display

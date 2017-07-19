@@ -1,5 +1,5 @@
 import { ComponentFactoryResolver, ViewContainerRef, OnChanges, SimpleChanges } from "@angular/core";
-export interface ItemComponent<Item> {
+export interface DisplayComponent<Item> {
     item: Item;
     inputs?: any;
 }

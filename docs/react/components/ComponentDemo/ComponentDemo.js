@@ -49,7 +49,7 @@ export class ComponentDemo extends React.PureComponent {
                         <i className={ "fa" + (this.isExpanded("code") ? " fa-compress" : " fa-expand") }></i>
                     </div>
                     { this.renderTabs(this.files) }
-                    { this.files.filter(f => f === this.tab).map(this.renderFile) }
+                    { this.tab && this.renderFile(this.tab) }
                 </div>
             </div>
         </div>

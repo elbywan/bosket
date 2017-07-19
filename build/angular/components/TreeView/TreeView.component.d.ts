@@ -26,6 +26,7 @@ export declare class TreeView<Item extends Object> {
     category: string;
     selection: Array<Item>;
     display: (item: Item, ancestors: Item[]) => string;
+    displayComponent: any;
     key: (index: number, _: Item) => string;
     search: (input: string) => (_: Item) => boolean;
     strategies: {
@@ -41,7 +42,6 @@ export declare class TreeView<Item extends Object> {
     disabled: (_: Item) => boolean;
     noOpener: boolean;
     async: (_: Function) => Promise<any>;
-    itemComponent: any;
     dragndrop: {
         draggable: boolean;
         droppable: boolean;

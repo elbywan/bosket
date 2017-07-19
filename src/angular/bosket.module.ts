@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { TreeView, TreeViewNode, ItemInjector } from "./components"
 
-export { ItemComponent } from "./components"
+export { DisplayComponent } from "./components"
 
 @NgModule({
     imports: [ CommonModule ],

@@ -3,7 +3,7 @@ import { Directive, Input, ComponentFactoryResolver,
 
 /* Injects a custom component to enhance item display if needed */
 
-export interface ItemComponent<Item> {
+export interface DisplayComponent<Item> {
     item: Item
     inputs?: any
 }
@@ -25,8 +25,8 @@ export class ItemInjector implements OnChanges {
             this.componentRef = this.viewContainerRef.createComponent(componentFactory)
         }
         if(this.componentRef && changes.item)
-            (<ItemComponent<any>> this.componentRef.instance).item = this.item
+            (<DisplayComponent<any>> this.componentRef.instance).item = this.item
         if(this.componentRef && changes.inputs)
-            (<ItemComponent<any>> this.componentRef.instance).inputs = this.inputs
+            (<DisplayComponent<any>> this.componentRef.instance).inputs = this.inputs
     }
 }

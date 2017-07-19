@@ -32,7 +32,7 @@ type dragOutput<T> = { target: T, event: DragEvent, inputs: Object }
                     [sort]="sort"
                     [disabled]="disabled"
                     [searched]="_state.search.trim()"
-                    [itemComponent]="itemComponent">
+                    [displayComponent]="displayComponent">
                 </TreeViewNode>
             </div>
     `,
@@ -101,6 +101,7 @@ export class TreeView<Item extends Object> {
 
     // Recommended
     @Input() display: (item: Item, ancestors: Item[]) => string = defaults.display
+    @Input() displayComponent
     @Input() key: (index: number, _: Item) => string = (idx, _) => "" + idx
     @Input() search: (input: string) => (_: Item) => boolean
     @Input() strategies: {
@@ -117,7 +118,6 @@ export class TreeView<Item extends Object> {
     @Input() noOpener: boolean = defaults.noOpener
     // Opener template ?!
     @Input() async: (_: Function) => Promise<any> = defaults.async
-    @Input() itemComponent
     @Input()
     set dragndrop(d) { this._dragndrop = d; this._dragndrop = this.rootNode.wrapDragNDrop() }
     get dragndrop(){ return this._dragndrop }
