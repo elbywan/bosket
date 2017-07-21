@@ -7,6 +7,7 @@ import { SampleTree } from "./sample"
 
 export default {
     title: "Data model",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/usage/data%20model/index.js",
     content:
         <span>
             <p>

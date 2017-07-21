@@ -6,6 +6,7 @@ import { jscode } from "self/react/tools"
 
 export default {
     title: "Basic Usage",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/basic%20usage/index.js",
     content:
         <div>
             <p>
@@ -22,7 +23,7 @@ export default {
                         // Required //
 
                         model={         /* [the model array](#TreeView#Required props#model) */ }
-                        category={      /* [property containing children](#TreeView#Required props#category) */ }
+                        category={      /* [name of the property containing the children](#TreeView#Required props#category) */ }
                         selection={     /* [the selection array, updated when the user (de)selects items](#TreeView#Required props#selection) */ }
                         onSelect={      /* [selection callback](#TreeView#Required props#onSelect) */ }
 

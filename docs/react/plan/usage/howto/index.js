@@ -6,6 +6,7 @@ import { jscode, htmlcode } from "self/react/tools"
 
 export default {
     title: "Start",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/usage/howto/index.js",
     content:
         <div>
             <h3><em>Pick a view</em></h3>

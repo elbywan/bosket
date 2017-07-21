@@ -18,9 +18,9 @@ export class TreeViewBasicUsage {
 
             // Required //
 
-            [model]=        /* [the model array](#TreeView#Required props#model) */
-            [category]=     /* [property containing children](#TreeView#Required props#category) */
-            [(selection)]=  /* [the selection array, updated when the user (de)selects items](#TreeView#Required props#selection) */
+            [model]=            /* [the model array](#TreeView#Required props#model) */
+            [category]=         /* [name of the property containing the children](#TreeView#Required props#category) */
+            [(selection)]=      /* [the selection array, updated when the user (de)selects items](#TreeView#Required props#selection) */
 
             // Optional //
 

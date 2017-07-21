@@ -1,0 +1,143 @@
+import { mixListener } from "bosket/vue/mixins"
+import { css } from "bosket/tools"
+import { TreeView } from "bosket/vue"
+
+import "self/common/styles/Planner.css"
+
+export default {
+    mixins: [
+        mixListener({ cb: "onDocumentClick", autoMount: true }),
+        mixListener({ eventType: "scroll", cb: "onDocumentScroll", autoMount: true, regulate: true }),
+        mixListener({ eventType: "scroll",   cb: "onStickyScroll", autoMount: true, regulate: true })
+    ],
+    props: [ "plan", "maxDepth", "sticky" ],
+    data() {
+        return {
+            conf: {
+                css: { TreeView: "PlannerTree" },
+                category: "subs",
+                selection: [],
+                display: (item, ancestors) => <a href={ `${ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
+                onSelect: _ => { if(_.length > 0) { this.conf = { ...this.conf, selection: _ } } },
+                strategies: {
+                    selection: ["ancestors"],
+                    fold: [ "max-depth", "not-selected", "no-child-selection" ]
+                },
+                noOpener: true
+            },
+            opened: false
+        }
+    },
+    methods: {
+        onDocumentClick(ev) {
+            if(!(ev.target instanceof HTMLElement)) return
+            if(this.$refs.opener && this.$refs.opener.contains(ev.target)) {
+                this.opened = !this.opened
+            } else if(this.opened && this.$refs.sidePanel && !this.$refs.sidePanel.contains(ev.target))
+                this.opened = false
+        },
+        onDocumentScroll(ev, end) {
+            const result = []
+            const loop = (arr, acc = []) => {
+                for(let i = 0; i < arr.length; i++) {
+                    const elt = arr[i]
+                    const domElt = document.getElementById(acc.length > 0 ? acc.join("#") + "#" + elt.title : elt.title)
+                    if(domElt && domElt.parentElement &&
+                            domElt.parentElement.getBoundingClientRect().top <= 50 &&
+                            domElt.parentElement.getBoundingClientRect().bottom > 10) {
+                        result.push(elt)
+                        if(elt.subs)
+                            loop(elt.subs, [ ...acc, elt.title ])
+                        break
+                    }
+                }
+            }
+            loop(this.plan)
+            this.conf = { ...this.conf, selection: result }
+            const newHash = "#" + result.map(_ => _.title).join("#")
+            if(newHash !== window.location.hash) {
+                window.history && window.history.replaceState(
+                    {},
+                    document.title,
+                    "#" + result.map(_ => _.title).join("#"))
+            }
+
+            // Prevents safari security exception (SecurityError (DOM Exception 18): Attempt to use history.replaceState() more than 100 times per 30.000000 seconds)
+            setTimeout(() => end(), 100)
+        },
+        onStickyScroll(ev, end) {
+            if(!this.sticky) return
+            if(this.$refs.content.getBoundingClientRect().top > 0) {
+                this.$refs.sidePanel.style.position = "absolute"
+                this.$refs.sidePanel.style.top = ""
+                this.sticking = false
+                end()
+            } else {
+                this.$refs.sidePanel.style.position = "fixed"
+                this.$refs.sidePanel.style.top = "0px"
+                this.sticking = true
+                end()
+            }
+        }
+    },
+    render(h) {
+        const props = {
+            props: { ...this.conf }
+        }
+
+        return !this.plan ? null :
+            <div class="Planner">
+                <div class="Planner opener" ref="opener">
+                    <i class={ "fa " + css.classes({
+                        "fa-bars": !this.opened,
+                        "fa-times": this.opened
+                    })}></i>
+                </div>
+                <aside ref="sidePanel" class={ "Planner side-panel " + css.classes({ opened: this.opened }) }>
+                    <div><h1>Table of contents</h1></div>
+                    <TreeView model={ this.plan } maxDepth={ this.maxDepth } { ...props }></TreeView>
+                </aside>
+                <div ref="content" class="Planner content">
+                    { processContent(h, this.plan) }
+                </div>
+            </div>
+    }
+}
+
+const headerLevel = (h, depth, prefix, item) => {
+    const id = prefix ? `${prefix}#${item.title}` : item.title
+    const editLink = !item.editLink ? null : <a href={ item.editLink } target="_blank" rel=" noopener noreferrer"><i class="fa fa-pencil"></i></a>
+    return h(
+        "h" + depth,
+        {
+            attrs: { id: id },
+            "class": {
+                Planner: true,
+                heading: true
+            }
+        },
+        [
+            <span>{ item.title }</span>,
+            <span class="icons">
+                <a href={ "#" + id }><i class="fa fa-link"></i></a>
+                { editLink }
+            </span>
+        ]
+    )
+}
+
+const processContent = (h, plan, parentPrefix = "", depth = 1) => {
+    if(!plan && plan.length < 1)
+        return null
+
+    return plan.map(item =>
+        <div class={ depth === 1 ? "chapter" : "planner-section" } key={ item.title }>
+            { headerLevel(h, depth, parentPrefix, item) }
+            { item.content(h) }
+            { item.subs && item.subs.length > 0 ?
+                processContent(h, item.subs, parentPrefix ? `${parentPrefix}#${item.title}` : item.title, depth + 1) :
+                null
+            }
+        </div>
+    )
+}

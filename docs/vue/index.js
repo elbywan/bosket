@@ -3,5 +3,5 @@ import App from "./components/App.vue"
 
 window.onload = () => new Vue({
     el: "#framework-root",
-    render: h => <App/>
+    render: h => <div id="framework-root"><App/></div>
 })

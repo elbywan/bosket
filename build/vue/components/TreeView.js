@@ -16,7 +16,9 @@ var TreeViewBase = {
 
         this.rootNode = new RootNode({
             get: function get() {
-                return _extends({}, defaults, _this.$props);
+                return _extends({}, defaults, object(_this.$props).filter(function (prop) {
+                    return !!prop;
+                }));
             }
         }, {
             onSelect: this.$props.onSelect,

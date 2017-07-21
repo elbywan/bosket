@@ -5,6 +5,7 @@ import { jscode } from "self/react/tools"
 
 export default {
     title: "MenuView",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/MenuView/index.js",
     content:
         <p>
             A preset best suited for nested menus with automatic item folding/unfolding and ancestors selection.
@@ -12,6 +13,7 @@ export default {
     subs: [
         {
             title: "Basic Usage",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/MenuView/index.js",
             content:
                 <div>
                     <p>
@@ -42,6 +44,7 @@ export default {
         },
         {
             title: "Demo",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/MenuView/index.js",
             content:
                 <div>
                     <h4>
@@ -55,6 +58,7 @@ export default {
         },
         {
             title: "Additional props",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/MenuView/index.js",
             subs: [
                 {
                     title: "name",

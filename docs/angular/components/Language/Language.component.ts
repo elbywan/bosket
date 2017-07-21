@@ -17,7 +17,7 @@ export class SyntaxHighlight {
     ngDoCheck() {
         setTimeout(() => {
             if(this.ref.nativeElement.childElementCount > 0) return
-            this.ref.nativeElement.innerText = indent(this.ref.nativeElement.innerText)
+            this.ref.nativeElement.textContent = indent(this.ref.nativeElement.textContent)
             Prism.highlightElement(this.ref.nativeElement)
         }, 0)
     }

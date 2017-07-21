@@ -49,9 +49,11 @@ export var dragndrop = {
             drag: function drag(item, event, inputs) {
                 bak = JSON.stringify(model());
                 event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(item));
-                cb(tree(model(), inputs.category).filter(function (e) {
-                    return e !== item;
-                }));
+                setTimeout(function () {
+                    return cb(tree(model(), inputs.category).filter(function (e) {
+                        return e !== item;
+                    }));
+                }, 20);
             },
             cancel: function cancel() {
                 cb(JSON.parse(bak));

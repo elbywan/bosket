@@ -2,14 +2,14 @@
 
 import { array, tree } from "../tools"
 
+type selectionStrategy = (item: Object, selection: Object[], neighbours: Object[], ancestors: Object[]) => Object[]
 type clickStrategy = (item: Object, event: MouseEvent, ancestors: Array<Object>, neighbours: Array<Object>) => void
 type foldStrategy = (item: Object, folded: boolean) => boolean
 
-// Selection strategies are triggered while updating the selection
-const singleSelect = function(item: Object, selection: Object[], neighbours: Object[], ancestors: Object[]) {
+const singleSelect : selectionStrategy = function(item, selection, neighbours, ancestors) {
     return array(selection).contains(item) ? [] : [item]
 }
-const multiSelect = function(item: Object, selection: Object[], neighbours: Object[], ancestors: Object[]) {
+const multiSelect : selectionStrategy = function(item, selection, neighbours, ancestors) {
     let alreadySelected = false
     let newSelection = selection.filter(i => {
         // Mark if the item was already selected
@@ -27,10 +27,19 @@ const multiSelect = function(item: Object, selection: Object[], neighbours: Obje
     return newSelection
 }
 
-export const selectionStrategies = {
+// Selection strategies are triggered when the selection is updated.
+export const selectionStrategies : { [key: string] : selectionStrategy } = {
+    // The single strategy allows only one selected item at the same time (usually the last item clicked).
     single: singleSelect,
+    // The multiple strategy allows any number of selected items and will add the last item clicked to the selection list.
     multiple: multiSelect,
-    modifiers: function(item: Object, selection: Object[], neighbours: Object[], ancestors: Object[]) {
+    /*
+    The modifiers strategy is the way most file explorers behave.
+    Without keyboard modifiers, only one selected item is allowed.
+    While pressing the shift key, all items between the two last selected siblings are added to the selection array.
+    While pressing the ctrl (or cmd for mac users) key, the item is added to the selection list.
+     */
+    modifiers: function(item, selection, neighbours, ancestors) {
         if(this.modifiers.control || this.modifiers.meta) {
             this.lastSelection = item
             delete this.lastIndex
@@ -76,7 +85,8 @@ export const selectionStrategies = {
             return singleSelect.bind(this)(item, selection.length > 1 ? [] : selection, neighbours, ancestors)
         }
     },
-    ancestors: function(item: Object, selection: Object[], neighbours: Object[], ancestors: Object[]) {
+    // Selects an item and its ancestors.
+    ancestors: function(item, selection, neighbours, ancestors) {
         return selection.length === 0 ?
             [item] :
             array(selection).contains(item) ?
@@ -87,14 +97,16 @@ export const selectionStrategies = {
 
 // Click strategies are triggered on item click
 export const clickStrategies : { [key: string] : clickStrategy } = {
-    "unfold-on-selection": function(item: Object) {
+    // Unfold an item when selecting it. Pair it with the "opener-control" fold strategy.
+    "unfold-on-selection": function(item) {
         if(!this.isSelected(item)) {
             const newUnfolded = this.state.get().unfolded.filter(i => i !== item)
             newUnfolded.push(item)
             this.state.set({ unfolded: newUnfolded })
         }
     },
-    "toggle-fold": function(item: Object) {
+    // Toggle fold/unfold. Pair it with the "opener-control" fold strategy.
+    "toggle-fold": function(item) {
         const newUnfolded = this.state.get().unfolded.filter(i => i !== item)
         if(newUnfolded.length === this.state.get().unfolded.length) {
             newUnfolded.push(item)
@@ -103,16 +115,19 @@ export const clickStrategies : { [key: string] : clickStrategy } = {
     }
 }
 
-// Fold strategies are triggered during render to fold / unfold children
+// Fold strategies determine if an item will be folded or not, meaning if its children are hidden.
 export const foldStrategies : { [key: string] : foldStrategy } = {
-    "opener-control": function(item: Object) {
+    // Allow the opener (usually an arrow-like element) to control the fold state.
+    "opener-control": function(item) {
         return !array(this.state.get().unfolded).contains(item)
     },
-    "not-selected": function(item: Object) {
+    // Fold when not selected.
+    "not-selected": function(item) {
         return !this.isSelected(item)
     },
-    "no-child-selection": function(item: Object) {
-        // naive ...
+    // Unfold as long as there is at least one child selected.
+    "no-child-selection": function(item) {
+        // naive algorithm ...
         const recurseCheck = node =>
             this.isSelected(node) ||
             node[this.inputs.get().category] &&
@@ -120,6 +135,7 @@ export const foldStrategies : { [key: string] : foldStrategy } = {
             node[this.inputs.get().category].some(recurseCheck)
         return !recurseCheck(item)
     },
+    // Fold every item deeper than then "max-depth" component property.
     "max-depth": function() {
         return this.inputs.get().maxDepth && !isNaN(parseInt(this.inputs.get().maxDepth, 10)) ?
             this.inputs.get().depth >= parseInt(this.inputs.get().maxDepth, 10) :

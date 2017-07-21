@@ -9,6 +9,7 @@ import { DragTree, DropTree } from "./example"
 
 export default {
     title: "dragndrop",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/dragndrop/index.js",
     content:
         <div className="marged">
             <p>The drag'n'drop configuration object.</p>
@@ -31,13 +32,6 @@ export default {
                 /* [Drag'n'drop presets](https://github.com/elbywan/bosket/blob/master/src/core/dragndrop.js) */
 
                 import { dragndrop } from "bosket/core/dragndrop"
-
-                /* ... */
-
-                state = {
-                    model:      /* ... */,
-                    selection:  /* ... */
-                }
 
                 dragndrop = {
                     // To drag or drop on specific items
@@ -67,7 +61,7 @@ export default {
                     }
                 }
 
-                <TreeView /* ... */ dragndrop={ this.dragndrop }></TreeView>`}
+                <TreeView /* ... */ dragndrop={ dragndrop }></TreeView>`}
 
             <p>Example of a draggable tree associated with a droppable tree :</p>
 
@@ -81,6 +75,7 @@ export default {
 
                     /* Model */
                     const dragModel = [
+                        { name: "< Drag these items >" },
                         { name: 1, children: [{ name: 11 }, { name: 12 }, { name: 13 }]},
                         { name: 2, children: [{ name: 21 }, { name: 22 }]},
                         { name: 3 },

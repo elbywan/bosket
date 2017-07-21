@@ -6,6 +6,7 @@ import { TreeViewSection } from "self/react/components/Demos/TreeView/TreeViewSe
 
 export default {
     title: "Demo",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/demo/index.js",
     content:
         <div>
             <h4>

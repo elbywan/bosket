@@ -12,26 +12,26 @@ const Prism = require("self/common/libs/prismjs/prism")
         <div class="ComponentDemo section">
             <h3>{{ componentName }}</h3>
             <p> {{ description }}</p>
-            <div class="ComponentDemo flex-container" [ngClass]="{ expanded: this.expand }">
-                <div class="ComponentDemo demo-area" [ngClass]="{ expand: this.expand === 'demo' }">
+            <div class="ComponentDemo flex-container" [ngClass]="{ expanded: expand }">
+                <div class="ComponentDemo demo-area" [ngClass]="{ expand: expand === 'demo' }">
                     <!-- Expand button -->
-                    <div class="ComponentDemo expander" (click)="this.expand = this.expand === 'demo' ? '' : 'demo'">
+                    <div class="ComponentDemo expander" (click)="expand = expand === 'demo' ? '' : 'demo'">
                         <i class="fa" [ngClass]="{
-                            'fa-compress':  this.expand === 'demo',
-                            'fa-expand':    this.expand !== 'demo'
+                            'fa-compress':  expand === 'demo',
+                            'fa-expand':    expand !== 'demo'
                         }"></i>
                     </div>
                     <!-- Demo content -->
-                    <div className="ComponentDemo padded">
+                    <div class="ComponentDemo padded">
                         <ng-content></ng-content>
                     </div>
                 </div>
-                <div class="ComponentDemo code" [ngClass]="{ expand: this.expand === 'code' }">
+                <div class="ComponentDemo code" [ngClass]="{ expand: expand === 'code' }">
                     <!-- Expand button -->
-                    <div class="ComponentDemo expander" (click)="this.expand = this.expand === 'code' ? '' : 'code'">
+                    <div class="ComponentDemo expander" (click)="expand = expand === 'code' ? '' : 'code'">
                         <i class="fa" [ngClass]="{
-                            'fa-compress':  this.expand === 'code',
-                            'fa-expand':    this.expand !== 'code'
+                            'fa-compress':  expand === 'code',
+                            'fa-expand':    expand !== 'code'
                         }"></i>
                     </div>
                     <!-- Code files tabs -->

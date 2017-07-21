@@ -9,6 +9,7 @@ import emptyStylesheet from "./empty_stylesheet"
 
 export default {
     title: "Css",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/css/index.js",
     content:
         <div>
             <p>

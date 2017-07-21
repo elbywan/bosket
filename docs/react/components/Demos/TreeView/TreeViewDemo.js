@@ -50,7 +50,7 @@ export class TreeViewDemo extends React.PureComponent {
         sort: (a: Object, b: Object) => a.label.localeCompare(b.label),
         // Unique identifier using an item name
         key: (item: Object) => item.label,
-        // Search bu regex
+        // Search bar algorithm
         search: (input: string) => (i: Object) => string(i.label).contains(input),
         strategies: {
             // Use keyboard modifiers

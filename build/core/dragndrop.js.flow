@@ -47,7 +47,7 @@ export const dragndrop = {
         drag: (item: Object, event: DragEvent, inputs: Object) => {
             bak = JSON.stringify(model())
             event.dataTransfer && event.dataTransfer.setData("application/json", JSON.stringify(item))
-            cb(tree(model(), inputs.category).filter(e => e !== item))
+            setTimeout(() => cb(tree(model(), inputs.category).filter(e => e !== item)), 20)
         },
         cancel: () => {
             cb(JSON.parse(bak))

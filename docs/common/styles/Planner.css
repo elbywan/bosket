@@ -71,14 +71,26 @@
     }
 
     &.heading {
+        & > .icons {
+            position: absolute;
+            opacity: 0;
+            font-size: 0.6em;
+            transition: opacity 0.25s ease-in-out;
+
+            & > a {
+                display: inline-block;
+                margin-left: 10px;
+            }
+        }
+        &:hover > .icons {
+            opacity: 1;
+        }
         & > a {
             position: absolute;
             margin-left: 10px;
             opacity: 0;
             font-size: 0.6em;
             transition: opacity 0.25s ease-in-out;
-
-            @media (max-width: 1224px) { position: absolute; }
         }
         &:hover > a {
             opacity: 1;
@@ -129,7 +141,7 @@
             margin-bottom: 0;
         }
 
-        & > .item > a {
+        & > .item > a, & > .item > ng-component > a {
             display: block;
             width: 100%;
         }
@@ -138,7 +150,7 @@
             display:block;
             border-bottom: 1px solid var(--darkerColor);
             transition: border 0.25s ease-in-out;
-            & > a { padding-bottom: 5px; }
+            & > a, & > ng-component > a { padding-bottom: 5px; }
         }
 
         & > .item:hover,

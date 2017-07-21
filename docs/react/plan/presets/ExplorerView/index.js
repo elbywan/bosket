@@ -5,6 +5,7 @@ import { jscode } from "self/react/tools"
 
 export default {
     title: "ExplorerView",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/ExplorerView/index.js",
     content:
         <p>
             A file explorer like preset with drag'n'drop, multi selection using keyboard modifiers, sorted elements and search.
@@ -12,6 +13,7 @@ export default {
     subs: [
         {
             title: "Basic Usage",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/ExplorerView/index.js",
             content:
                 <div>
                     <p>
@@ -45,6 +47,7 @@ export default {
         },
         {
             title: "Demo",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/ExplorerView/index.js",
             content:
                 <div>
                     <h4>
@@ -61,6 +64,7 @@ export default {
             subs: [
                 {
                     title: "name",
+                    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/ExplorerView/index.js",
                     content:
                         <div className="marged">
                             <p>
@@ -83,6 +87,7 @@ export default {
                 },
                 {
                     title: "updateModel",
+                    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/ExplorerView/index.js",
                     content:
                         <div className="marged">
                             { jscode`

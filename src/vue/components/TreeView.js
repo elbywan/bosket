@@ -13,7 +13,10 @@ const TreeViewBase = {
     created() {
         this.rootNode = new RootNode(
             {
-                get: () => ({ ...defaults, ...this.$props })
+                get: () => ({
+                    ...defaults,
+                    ...object(this.$props).filter(prop => !!prop)
+                })
             },
             {
                 onSelect:   this.$props.onSelect,

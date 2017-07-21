@@ -6,6 +6,7 @@ import flatView from "./FlatView"
 
 export default {
     title: "Presets",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/index.js",
     content:
         <p>
             Presets are higher order components wrapping and configuring a TreeView.

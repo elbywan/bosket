@@ -11,6 +11,7 @@ import demo from "./demo"
 
 export default {
     title: "TreeView",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/index.js",
     content:
         <div>
             <p>TreeView is the generic, most configurable component.</p>

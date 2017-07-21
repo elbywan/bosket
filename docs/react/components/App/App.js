@@ -16,8 +16,10 @@ export class App extends React.PureComponent {
     }
 
     render() {
-        return <div className="App">
-            <Planner plan={ plan } maxDepth={ 1 } sticky={ true }></Planner>
-        </div>
+        return (
+            <div className="App">
+                <Planner plan={ plan } maxDepth={ 1 } sticky={ true }></Planner>
+            </div>
+        )
     }
 }

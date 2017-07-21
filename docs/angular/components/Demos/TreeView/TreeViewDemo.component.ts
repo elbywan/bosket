@@ -63,7 +63,8 @@ export class TreeViewDemo {
 
     files=[
         "./components/Demos/TreeView/TreeViewDemo.component.ts",
-        "./components/Demos/TreeView/TreeViewDemo.css"
+        "./components/Demos/TreeView/TreeViewDemo.css",
+        "../common/models/TreeViewModel.js"
     ]
 
     model: Object[] = initialModel

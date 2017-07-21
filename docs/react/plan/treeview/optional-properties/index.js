@@ -8,9 +8,11 @@ import strategies from "./strategies"
 
 export default {
     title: "Optional props",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
     subs: [
         {
             title: "display",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
                     <p>
@@ -38,6 +40,7 @@ export default {
         },
         {
             title: "key",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
                     <p>
@@ -55,6 +58,7 @@ export default {
         strategies,
         {
             title: "sort",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
                     <p>A custom sorting function.</p>
@@ -66,6 +70,7 @@ export default {
         },
         {
             title: "disabled",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
                     <p>A disable function, which prevents selection and apply the css 'disabled'' class.</p>
@@ -78,6 +83,7 @@ export default {
         },
         {
             title: "search",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
                     <p>A search function which enables the built-in search bar.</p>
@@ -89,6 +95,7 @@ export default {
         },
         {
             title: "async",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
                     <p>A function used to unwrap <em><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise" target="_blank" rel="noopener noreferrer">Promises</a></em> in case of asynchronous children.</p>
@@ -116,6 +123,7 @@ export default {
         dragndrop,
         {
             title: "noOpener",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
                     <p>Hides the opener.</p>
@@ -125,6 +133,7 @@ export default {
         },
         {
             title: "labels",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
                     <p>Labels override.</p>
@@ -145,6 +154,7 @@ export default {
         },
         {
             title: "css",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
                     <p>Css classnames overrides.</p>
@@ -176,6 +186,7 @@ export default {
         },
         {
             title: "transition",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
                     <p>Creation / destruction transitions using <em><a href="https://github.com/reactjs/react-transition-group" target="_blank" rel="noopener noreferrer">react-transition-group</a></em>.</p>

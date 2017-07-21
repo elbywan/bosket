@@ -6,6 +6,7 @@ import { jscode } from "self/react/tools/tools"
 
 export default {
     title: "Import",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/usage/import/index.js",
     content:
         <span>
             <p>Preferred way of loading Bosket is to use ES2015 modules.</p>

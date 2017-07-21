@@ -1,22 +1,26 @@
 // @flow
 
 import React from "react"
-import "./Planner.css"
+import "self/common/styles/Planner.css"
 
 import { TreeView } from "bosket/react"
 import { css } from "bosket/tools"
 import { withListener, combine } from "bosket/react/traits"
 
-const headerLevel = (depth, prefix, inner) => {
-    const id = prefix ? `${prefix}#${inner}` : inner
+const headerLevel = (depth, prefix, item) => {
+    const id = prefix ? `${prefix}#${item.title}` : item.title
+    const editLink = !item.editLink ? null : <a href={ item.editLink } target="_blank" rel=" noopener noreferrer"><i className="fa fa-pencil"></i></a>
     return React.createElement(
         "h" + depth,
         {
             id: id,
             className: "Planner heading"
         },
-        <span>{ inner }</span>,
-        <a href={ "#" + id }><i className="fa fa-link"></i></a>
+        <span>{ item.title }</span>,
+        <span className="icons">
+            <a href={ "#" + id }><i className="fa fa-link"></i></a>
+            { editLink }
+        </span>
     )
 }
 
@@ -26,7 +30,7 @@ const processContent = (plan, parentPrefix = "", depth = 1) => {
 
     return plan.map(item =>
         <div className={ depth === 1 ? "chapter" : "planner-section" } key={ item.title }>
-            { headerLevel(depth, parentPrefix, item.title) }
+            { headerLevel(depth, parentPrefix, item) }
             { item.content }
             { item.subs && item.subs.length > 0 ?
                 processContent(item.subs, parentPrefix ? `${parentPrefix}#${item.title}` : item.title, depth + 1) :
@@ -130,7 +134,6 @@ export const Planner = combine(
                     this.sticking = true
                     end()
                 }
-                end()
             })
         }
     }

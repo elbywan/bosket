@@ -4,7 +4,7 @@ import { Component, Input, ChangeDetectionStrategy, ComponentFactoryResolver,
 import { css } from "bosket/tools"
 import { DisplayComponent } from "bosket/angular"
 
-import "./Planner.css"
+import "self/common/styles/Planner.css"
 
 type Plan = {
     title: string,
@@ -18,31 +18,66 @@ type Plan = {
         <div [class]="depth === 1 ? 'chapter' : 'planner-section'">
             <h1 *ngIf="depth === 1" [id]="id()" class="Planner heading">
                 <span>{{ plan.title }}</span>
-                <a [href]="'#' + id() "><i className="fa fa-link"></i></a>
+                <span class="icons">
+                    <a [href]="'#' + id() "><i class="fa fa-link"></i></a>
+                    <a *ngIf="plan.editLink" [href]="plan.editLink" target="_blank" rel=" noopener noreferrer">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </span>
             </h1>
             <h2 *ngIf="depth === 2" [id]="id()" class="Planner heading">
                 <span>{{ plan.title }}</span>
-                <a [href]="'#' + id() "><i className="fa fa-link"></i></a>
+                <span class="icons">
+                    <a [href]="'#' + id() "><i class="fa fa-link"></i></a>
+                    <a *ngIf="plan.editLink" [href]="plan.editLink" target="_blank" rel=" noopener noreferrer">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </span>
             </h2>
             <h3 *ngIf="depth === 3" [id]="id()" class="Planner heading">
                 <span>{{ plan.title }}</span>
-                <a [href]="'#' + id() "><i className="fa fa-link"></i></a>
+                <span class="icons">
+                    <a [href]="'#' + id() "><i class="fa fa-link"></i></a>
+                    <a *ngIf="plan.editLink" [href]="plan.editLink" target="_blank" rel=" noopener noreferrer">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </span>
             </h3>
             <h4 *ngIf="depth === 4" [id]="id()" class="Planner heading">
                 <span>{{ plan.title }}</span>
-                <a [href]="'#' + id() "><i className="fa fa-link"></i></a>
+                <span class="icons">
+                    <a [href]="'#' + id() "><i class="fa fa-link"></i></a>
+                    <a *ngIf="plan.editLink" [href]="plan.editLink" target="_blank" rel=" noopener noreferrer">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </span>
             </h4>
             <h5 *ngIf="depth === 5" [id]="id()" class="Planner heading">
                 <span>{{ plan.title }}</span>
-                <a [href]="'#' + id() "><i className="fa fa-link"></i></a>
+                <span class="icons">
+                    <a [href]="'#' + id() "><i class="fa fa-link"></i></a>
+                    <a *ngIf="plan.editLink" [href]="plan.editLink" target="_blank" rel=" noopener noreferrer">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </span>
             </h5>
             <h6 *ngIf="depth === 6" [id]="id()" class="Planner heading">
                 <span>{{ plan.title }}</span>
-                <a [href]="'#' + id() "><i className="fa fa-link"></i></a>
+                <span class="icons">
+                    <a [href]="'#' + id() "><i class="fa fa-link"></i></a>
+                    <a *ngIf="plan.editLink" [href]="plan.editLink" target="_blank" rel=" noopener noreferrer">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </span>
             </h6>
             <p *ngIf="depth > 6" [id]="id()" class="Planner heading">
                 <span>{{ plan.title }}</span>
-                <a [href]="'#' + id() "><i className="fa fa-link"></i></a>
+                <span class="icons">
+                    <a [href]="'#' + id() "><i class="fa fa-link"></i></a>
+                    <a *ngIf="plan.editLink" [href]="plan.editLink" target="_blank" rel=" noopener noreferrer">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                </span>
             </p>
             <div #content></div>
             <div *ngIf="plan.subs">

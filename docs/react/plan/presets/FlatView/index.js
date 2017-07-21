@@ -5,6 +5,7 @@ import { jscode } from "self/react/tools"
 
 export default {
     title: "FlatView",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/FlatView/index.js",
     content:
         <p>
             A flat view preset, with all items unfolded (all visible) and multi selection.
@@ -12,6 +13,7 @@ export default {
     subs: [
         {
             title: "Basic Usage",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/FlatView/index.js",
             content:
                 <div>
                     <p>
@@ -44,6 +46,7 @@ export default {
         },
         {
             title: "Demo",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/FlatView/index.js",
             content:
                 <div>
                     <h4>
@@ -57,9 +60,11 @@ export default {
         },
         {
             title: "Additional props",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/FlatView/index.js",
             subs: [
                 {
                     title: "name",
+                    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/FlatView/index.js",
                     content:
                         <div className="marged">
                             <p>
@@ -82,6 +87,7 @@ export default {
                 },
                 {
                     title: "limit",
+                    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/FlatView/index.js",
                     content:
                         <div className="marged">
                             { jscode`

@@ -1,41 +1,92 @@
 
 <template>
 
-    <div class="ComponentSection section">
+    <div class="ComponentDemo section">
         <h3>{{ componentName }}</h3>
         <p> {{ description }}</p>
-        <div class="ComponentSection highlight">
-            <slot></slot>
+        <div class="ComponentDemo flex-container" :class="{ expanded: expand }">
+            <div class="ComponentDemo demo-area" :class="{ expand: expand === 'demo' }">
+                <!-- Expand button -->
+                <div class="ComponentDemo expander" @click="expand = expand === 'demo' ? '' : 'demo'">
+                    <i class="fa" :class="{
+                        'fa-compress':  expand === 'demo',
+                        'fa-expand':    expand !== 'demo'
+                    }"></i>
+                </div>
+                <!-- Demo content -->
+                <div class="ComponentDemo padded">
+                    <slot></slot>
+                </div>
+            </div>
+            <div v-if="files && files.length > 0" class="ComponentDemo code" :class="{ expand: expand === 'code' }">
+                <!-- Expand button -->
+                <div class="ComponentDemo expander" @click="expand = expand === 'code' ? '' : 'code'">
+                    <i class="fa" :class="{
+                        'fa-compress':  expand === 'code',
+                        'fa-expand':    expand !== 'code'
+                    }"></i>
+                </div>
+                <!-- Code files tabs -->
+                <div class="tabs">
+                    <div v-for="f in files" @click="tab = f" :class="{ selected: tab === f }">
+                        {{ getFileName(f) }}
+                    </div>
+                </div>
+                <!-- Code files content -->
+                <pre :class="'language-' + getPrismExtension(tab)"><code :class="'language-' + getPrismExtension(tab)" ref="tabContents"></code></pre>
+            </div>
         </div>
     </div>
 
 </template>
 
 <script>
+    import "self/common/styles/ComponentDemo.css"
+
+    import { loadFile } from "self/common/tools"
+    import Prism from "self/common/libs/prismjs/prism"
 
     export default {
-        props: [ "componentName", "description" ]
+        props: [ "componentName", "description", "files" ],
+        data: () => ({
+            expand: "demo",
+            _tab: ""
+        }),
+        computed: {
+            tab: {
+                get: function() {
+                    return this.$data._tab || (this.files && this.files.length > 0 ? this.files[0] : null)
+                },
+                set: function(file) {
+                    this.$data._tab = file
+                    this.refresh()
+                }
+            }
+        },
+        methods: {
+            getFileName(file) {
+                return file.split("/").splice(-1).join("")
+            },
+            getPrismExtension(file) {
+                if(!file) return ""
+                const split = file.split(".")
+                let extension = "javascript"
+                if(split[split.length - 1] === "css")
+                    extension = "css"
+                else if(split[split.length - 1] === "ts")
+                    extension = "typescript"
+                return extension
+            },
+            refresh() {
+                const file = this.tab
+                loadFile(file, code => {
+                    this.$refs.tabContents.innerHTML = Prism.highlight(code, Prism.languages[this.getPrismExtension(file)])
+                })
+            }
+        },
+        created: function() {
+            this.refresh()
+        }
     }
 
 </script>
-
-<style>
-
-    .ComponentSection.section {
-        padding: 5px 25px 25px;
-        margin: 20px;
-        box-shadow: 0px 0px 5px #666;
-    }
-
-    .ComponentSection.section > h3 {
-        font-weight: 500;
-        font-size: 1.5em;
-    }
-
-    .ComponentSection > div.highlight {
-        background-image: repeating-linear-gradient(145deg, #fff, #fff 30px, #f5f5f5 30px, #f5f5f5 60px);
-        border: 2px solid #EEE;
-        padding: 20px;
-    }
-
-</style>

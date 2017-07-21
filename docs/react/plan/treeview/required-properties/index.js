@@ -6,9 +6,11 @@ import { jscode } from "self/react/tools/tools"
 
 export default {
     title: "Required props",
+    editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/required-properties/index.js",
     subs: [
         {
             title: "model",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/required-properties/index.js",
             content:
                 <div className="marged">
                     <p>
@@ -30,6 +32,7 @@ export default {
         },
         {
             title: "category",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/required-properties/index.js",
             content:
                 <div className="marged">
                     <p>
@@ -41,6 +44,7 @@ export default {
         },
         {
             title: "selection",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/required-properties/index.js",
             content:
                 <div className="marged">
                     <p>
@@ -54,6 +58,7 @@ export default {
         },
         {
             title: "onSelect",
+            editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/required-properties/index.js",
             content:
                 <div className="marged">
                     <p>

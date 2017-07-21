@@ -15,6 +15,11 @@ export default {
     },
     data() {
         return {
+            files: [
+                "./components/Demos/TreeView/TreeViewDemo.js",
+                "./components/Demos/TreeView/TreeViewDemo.css",
+                "../common/models/TreeViewModel.js"
+            ],
             // Data model
             model: model,
             // Property of the model containing children
@@ -67,7 +72,7 @@ export default {
             props: { ...this.$data }
         }
         return (
-            <ComponentDemo componentName="TreeView" description="Powerful tree of nested objects.">
+            <ComponentDemo componentName="TreeView" description="Powerful tree of nested objects." files={ this.files }>
                 <div class="inline-row">
                     <TreeView { ...props }/>
                 </div>

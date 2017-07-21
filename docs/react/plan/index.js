@@ -2,7 +2,7 @@
 
 import introduction from "./introduction"
 import usage from "./usage"
-import treeview from "./TreeView"
+import treeview from "./treeview"
 import presets from "./presets"
 
 export default [
