@@ -1,16 +1,15 @@
-import { mixListener } from "bosket/vue/mixins"
+import { combine, withListener } from "bosket/vue/traits"
 import { css } from "bosket/tools"
 import { TreeView } from "bosket/vue"
 
 import "self/common/styles/Planner.css"
 
-export default {
-    mixins: [
-        mixListener({ cb: "onDocumentClick", autoMount: true }),
-        mixListener({ eventType: "scroll", cb: "onDocumentScroll", autoMount: true, regulate: true }),
-        mixListener({ eventType: "scroll",   cb: "onStickyScroll", autoMount: true, regulate: true })
-    ],
-    props: [ "plan", "maxDepth", "sticky" ],
+export default combine(
+    withListener({ prop: "clickListener", autoMount: true }),
+    withListener({ eventType: "scroll", prop: "scrollListener", autoMount: true, regulate: true }),
+    withListener({ eventType: "scroll", prop: "offsetListener", autoMount: true, regulate: true })
+)({
+    props: [ "plan", "maxDepth", "sticky", "clickListener", "scrollListener", "offsetListener" ],
     data() {
         return {
             conf: {
@@ -27,6 +26,11 @@ export default {
             },
             opened: false
         }
+    },
+    mounted() {
+        this.clickListener.subscribe(this.onDocumentClick)
+        this.scrollListener.subscribe(this.onDocumentScroll)
+        this.offsetListener.subscribe(this.onStickyScroll)
     },
     methods: {
         onDocumentClick(ev) {
@@ -102,7 +106,7 @@ export default {
                 </div>
             </div>
     }
-}
+})
 
 const headerLevel = (h, depth, prefix, item) => {
     const id = prefix ? `${prefix}#${item.title}` : item.title

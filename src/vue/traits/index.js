@@ -1,5 +1,6 @@
 export * from "./labels"
 export * from "./transitions"
+export * from "./listener"
 
 /* HOC reducer helper */
 export const combine = (...factories) => Component =>

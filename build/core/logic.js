@@ -172,9 +172,6 @@ export var RootNode = function (_Core2) {
 
         var _temp2, _this3
 
-        // When new element(s) are selected
-
-
         // Css mixin helper
         , _ret2;
 
@@ -185,12 +182,12 @@ export var RootNode = function (_Core2) {
         }
 
         return _ret2 = (_temp2 = (_this3 = _possibleConstructorReturn(this, (_ref2 = RootNode.__proto__ || Object.getPrototypeOf(RootNode)).call.apply(_ref2, [this].concat(args))), _this3), _this3.modifiers = {}, _this3.onKey = function (event) {
-            this.modifiers = {
+            _this3.modifiers = {
                 control: event.getModifierState("Control"),
                 meta: event.getModifierState("Meta"),
                 shift: event.getModifierState("Shift")
             };
-        }.bind(_this3), _this3.onSelect = function (item, ancestors, neighbours) {
+        }, _this3.onSelect = function (item, ancestors, neighbours) {
             var selectionStrategy = _this3.inputs.get().strategies.selection || [];
             var newSelection = selectionStrategy.map(function (strat) {
                 return (selectionStrategies[strat] || strat).bind(_this3);
@@ -212,10 +209,13 @@ export var RootNode = function (_Core2) {
     // Keyboard modifiers list
 
 
+    // When new element(s) are selected
+
+
     // Framework input wrapper
 
 
-    // Filters the tree on a search
+    // Used to filter the tree when performing a search
 
 
     return RootNode;

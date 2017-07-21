@@ -2,8 +2,14 @@
 
 export const withLabels = defaultLabels => Component => ({
     name: `withLabels-${ Component.name }`,
-    functional: true,
-    render(h, ctx) {
-        return <Component { ...{ props: ctx.props } } labels={ { ...defaultLabels, ...ctx.props.labels } } />
+    props: [...Component.props || []],
+    render() {
+        const props = {
+            props: {
+                ...this.$props,
+                labels: { ...defaultLabels, ...this.$props.labels }
+            }
+        }
+        return <Component { ...props } />
     }
 })

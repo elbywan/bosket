@@ -183,13 +183,13 @@ export class RootNode extends Core {
 
     // Keyboard modifiers list
     modifiers = {}
-    onKey = function(event: KeyboardEvent) {
+    onKey = (event: KeyboardEvent) => {
         this.modifiers = {
             control: event.getModifierState("Control"),
             meta: event.getModifierState("Meta"),
             shift: event.getModifierState("Shift")
         }
-    }.bind(this)
+    }
 
     // When new element(s) are selected
     onSelect = (item: Object, ancestors: Object[], neighbours: Object[]) => {
@@ -207,7 +207,7 @@ export class RootNode extends Core {
     // Css mixin helper
     mixCss = (prop: string) => this.inputs.get().css[prop] || defaults.css[prop]
 
-    // Filters the tree on a search
+    // Used to filter the tree when performing a search
     filterTree = (input: string) => {
         const search = this.inputs.get().search
         return !search ? null : !input.trim() ? null :

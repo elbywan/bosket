@@ -107,5 +107,5 @@ var TreeViewBaseClass = function (_React$PureComponent) {
     return TreeViewBaseClass;
 }(React.PureComponent);
 
-export var TreeView = combine(withLabels(defaults.labels), withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true }), withListener({ eventType: "keyup", propName: "keyUpListener", autoMount: true }))(TreeViewBaseClass);
+export var TreeView = combine(withLabels(defaults.labels), withListener({ eventType: "keyup", propName: "keyUpListener", autoMount: true }), withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true }))(TreeViewBaseClass);
 //# sourceMappingURL=TreeView.js.map

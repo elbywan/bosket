@@ -2,14 +2,18 @@
 
 export const withTransition = ({ key }) => Component => ({
     name: `withTransition-${ Component.name }`,
-    functional: true,
-    render(h, ctx) {
-        if(!ctx.props.transition)
-            return <Component { ...ctx.data } />
-        const transitionProps = { ...ctx.props.transition }
+    props: [...Component.props || []],
+    render() {
+        const props = {
+            props: { ...this.$props }
+        }
+        const transition  = { ...this.transition }
+
+        if(!this.transition)
+            return <Component { ...props } />
         return (
-            <transition { ...transitionProps }>
-                <Component { ...ctx.data } key={ key(ctx.props) }/>
+            <transition { ...transition }>
+                <Component { ...props } key={ key(this.$props) }/>
             </transition>
         )
     }

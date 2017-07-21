@@ -5,40 +5,11 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import { object, tree } from "../../tools";
 import { RootNode, defaults } from "../../core";
 import { TreeViewNode } from "./TreeViewNode";
-import { withLabels } from "../traits";
-import { mixListener } from "../mixins";
+import { combine, withLabels, withListener } from "bosket/vue/traits";
 
 var TreeViewBase = {
     name: "TreeView",
-    mixins: [mixListener({ eventType: "keydown", cb: "modifierCb", autoMount: true }), mixListener({ eventType: "keyup", cb: "modifierCb", autoMount: true })],
-    created: function created() {
-        var _this = this;
-
-        this.rootNode = new RootNode({
-            get: function get() {
-                return _extends({}, defaults, object(_this.$props).filter(function (prop) {
-                    return !!prop;
-                }));
-            }
-        }, {
-            onSelect: this.$props.onSelect,
-            onDrag: this.$props.dragndrop && this.$props.dragndrop.drag,
-            onDrop: this.$props.dragndrop && this.$props.dragndrop.drop,
-            onCancel: this.$props.dragndrop && this.$props.dragndrop.cancel
-        }, {
-            get: function get() {
-                return _extends({}, _this.$data);
-            },
-            set: function set(s) {
-                for (var key in s) {
-                    if (key in _this.$data) _this.$data[key] = s[key];
-                }
-            }
-        }, this.$forceUpdate);
-        this.modifierCb = this.rootNode.onKey;
-    },
-
-    props: ["model", "category", "selection", "onSelect", "display", "search", "transition", "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async"],
+    props: ["model", "category", "selection", "onSelect", "display", "search", "transition", "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async", "keyUpListener", "keyDownListener"],
     data: function data() {
         return {
             searchInput: "",
@@ -59,6 +30,37 @@ var TreeViewBase = {
         wrapDragNDrop: function wrapDragNDrop() {
             return this.rootNode.wrapDragNDrop();
         }
+    },
+    created: function created() {
+        var _this = this;
+
+        var root = new RootNode({
+            get: function get() {
+                return _extends({}, defaults, object(_this.$props).filter(function (prop) {
+                    return !!prop;
+                }));
+            }
+        }, {
+            onSelect: this.$props.onSelect,
+            onDrag: this.$props.dragndrop && this.$props.dragndrop.drag,
+            onDrop: this.$props.dragndrop && this.$props.dragndrop.drop,
+            onCancel: this.$props.dragndrop && this.$props.dragndrop.cancel
+        }, {
+            get: function get() {
+                return _extends({}, _this.$data);
+            },
+            set: function set(s) {
+                for (var key in s) {
+                    if (key in _this.$data) _this.$data[key] = s[key];
+                }
+            }
+        }, this.$forceUpdate);
+        this.modifierCb = root.onKey;
+        this.rootNode = root;
+    },
+    mounted: function mounted() {
+        this.keyUpListener.subscribe(this.rootNode.onKey);
+        this.keyDownListener.subscribe(this.rootNode.onKey);
     },
     render: function render() {
         var h = arguments[0];
@@ -112,5 +114,5 @@ var TreeViewBase = {
     }
 };
 
-export var TreeView = withLabels(defaults.labels)(TreeViewBase);
+export var TreeView = combine(withLabels(defaults.labels), withListener({ eventType: "keyup", prop: "keyUpListener", autoMount: true }), withListener({ eventType: "keydown", prop: "keyDownListener", autoMount: true }))(TreeViewBase);
 //# sourceMappingURL=TreeView.js.map

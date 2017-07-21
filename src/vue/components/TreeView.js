@@ -1,17 +1,36 @@
 import { object, tree } from "../../tools"
 import { RootNode, defaults } from "../../core"
 import { TreeViewNode } from "./TreeViewNode"
-import { withLabels } from "../traits"
-import { mixListener } from "../mixins"
+import { combine, withLabels, withListener } from "bosket/vue/traits"
 
 const TreeViewBase = {
     name: "TreeView",
-    mixins: [
-        mixListener({ eventType: "keydown", cb: "modifierCb", autoMount: true }),
-        mixListener({ eventType: "keyup",   cb: "modifierCb", autoMount: true })
-    ],
+    props: [ "model", "category", "selection", "onSelect", "display", "search", "transition",
+        "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async",
+        "keyUpListener", "keyDownListener" ],
+    data: () => ({
+        searchInput: "",
+        filtered: null
+    }),
+    methods: {
+        onSearch(evt) {
+            const input = evt.currentTarget.value
+            this.$data.searchInput = input
+            this.$data.filtered = !input.trim() ? null :
+                tree(this.$props.model, this.$props.category)
+                    .treeFilter(this.$props.search(input.trim()))
+        }
+    },
+    computed: {
+        computedModel() {
+            return this.$props.sort ?
+                this.$props.model.sort(this.$props.sort) :
+                this.$props.model
+        },
+        wrapDragNDrop() { return this.rootNode.wrapDragNDrop() }
+    },
     created() {
-        this.rootNode = new RootNode(
+        const root = new RootNode(
             {
                 get: () => ({
                     ...defaults,
@@ -34,30 +53,12 @@ const TreeViewBase = {
             },
             this.$forceUpdate
         )
-        this.modifierCb = this.rootNode.onKey
+        this.modifierCb = root.onKey
+        this.rootNode = root
     },
-    props: [ "model", "category", "selection", "onSelect", "display", "search", "transition",
-        "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async" ],
-    data: () => ({
-        searchInput: "",
-        filtered: null
-    }),
-    methods: {
-        onSearch(evt) {
-            const input = evt.currentTarget.value
-            this.$data.searchInput = input
-            this.$data.filtered = !input.trim() ? null :
-                tree(this.$props.model, this.$props.category)
-                    .treeFilter(this.$props.search(input.trim()))
-        }
-    },
-    computed: {
-        computedModel() {
-            return this.$props.sort ?
-                this.$props.model.sort(this.$props.sort) :
-                this.$props.model
-        },
-        wrapDragNDrop() { return this.rootNode.wrapDragNDrop() }
+    mounted() {
+        this.keyUpListener.subscribe(this.rootNode.onKey)
+        this.keyDownListener.subscribe(this.rootNode.onKey)
     },
     render() {
         const { onSelect, sort, model, ...rest } = object(this.$props).filter(prop => !!prop)
@@ -93,4 +94,8 @@ const TreeViewBase = {
     }
 }
 
-export const TreeView = withLabels(defaults.labels)(TreeViewBase)
+export const TreeView = combine(
+    withLabels(defaults.labels),
+    withListener({ eventType: "keyup", prop: "keyUpListener", autoMount: true }),
+    withListener({ eventType: "keydown", prop: "keyDownListener", autoMount: true })
+)(TreeViewBase)

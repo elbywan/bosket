@@ -117,6 +117,6 @@ class TreeViewBaseClass extends React.PureComponent<void, TreeViewProps, TreeVie
 
 export const TreeView = combine(
     withLabels(defaults.labels),
-    withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true }),
-    withListener({ eventType: "keyup", propName: "keyUpListener", autoMount: true })
+    withListener({ eventType: "keyup", propName: "keyUpListener", autoMount: true }),
+    withListener({ eventType: "keydown", propName: "keyDownListener", autoMount: true })
 )(TreeViewBaseClass)
