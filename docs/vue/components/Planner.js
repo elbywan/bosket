@@ -57,9 +57,9 @@ export default combine(
                 }
             }
             loop(this.plan)
-            this.conf = { ...this.conf, selection: result }
             const newHash = "#" + result.map(_ => _.title).join("#")
             if(newHash !== window.location.hash) {
+                this.conf = { ...this.conf, selection: result }
                 window.history && window.history.replaceState(
                     {},
                     document.title,

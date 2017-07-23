@@ -14,11 +14,13 @@ import { displayName } from "./helpers";
 
 import { printer } from "../../tools/printer";
 
-export var withDebugUpdates = function withDebugUpdates(_ref) {
-    var _ref$print = _ref.print,
+export var withDebugUpdates = function withDebugUpdates() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        _ref$print = _ref.print,
         print = _ref$print === undefined ? function (_) {
         return _;
     } : _ref$print;
+
     return function (Component) {
         var _class, _temp2;
 
@@ -51,7 +53,7 @@ export var withDebugUpdates = function withDebugUpdates(_ref) {
                         /* eslint-disable */
                         printer.debug("shouldComponentUpdate [" + print(ref.toString()) + "]", "State diff : " + stateDiff.join(" ") + "\nProps diff : " + propsDiff.join(" ")
                         /* eslint-enable */
-                        );return originalFunction.bind(ref)(nextProps, nextState);
+                        );return originalFunction && originalFunction.bind(ref)(nextProps, nextState);
                     };
                 }, _this.render = function () {
                     return React.createElement(Component, _extends({}, _this.props, {

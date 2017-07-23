@@ -4,7 +4,7 @@ import React from "react"
 import "self/common/styles/Planner.css"
 
 import { TreeView } from "bosket/react"
-import { css } from "bosket/tools"
+import { array, css } from "bosket/tools"
 import { withListener, combine } from "bosket/react/traits"
 
 const headerLevel = (depth, prefix, item) => {
@@ -108,9 +108,9 @@ export const Planner = combine(
                 }
             }
             loop(this.props.plan)
-            this.setState({ conf: { ...this.state.conf, selection: result }})
             const newHash = "#" + result.map(_ => _.title).join("#")
             if(newHash !== window.location.hash) {
+                this.setState({ conf: { ...this.state.conf, selection: result }})
                 window.history && window.history.replaceState(
                     {},
                     document.title,

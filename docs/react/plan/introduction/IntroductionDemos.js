@@ -12,22 +12,22 @@ export class IntroductionDemos extends React.PureComponent {
     state = { demo: this.demos[0] }
 
     renderDemo() {
-        switch (this.state.demo) {
-            case "ChuckNorris":
-                return (
-                    <ComponentDemo files={[ "./components/Demos/ChuckNorris/ChuckNorris.js", "./components/Demos/ChuckNorris/ChuckNorris.css" ]}>
-                        <ChuckNorris/>
-                    </ComponentDemo>
-                )
-            case "HackerNews":
-                return (
-                    <ComponentDemo files={[ "./components/Demos/HackerNews/HackerNews.js", "./components/Demos/HackerNews/HackerNews.css" ]}>
-                        <HackerNews />
-                    </ComponentDemo>
-                )
-            default:
-                return null
-        }
+        const Component =
+            this.state.demo === "ChuckNorris" ? ChuckNorris :
+                this.state.demo === "HackerNews" ? HackerNews :
+                    null
+
+        const files = [
+            `./components/Demos/${this.state.demo}/${this.state.demo}.js`,
+            `./components/Demos/${this.state.demo}/${this.state.demo}.css`,
+            `./components/Demos/${this.state.demo}/models.js`
+        ]
+
+        return (
+            <ComponentDemo files={ files }>
+                <Component />
+            </ComponentDemo>
+        )
     }
 
     renderButtons() {

@@ -208,9 +208,9 @@ export class Planner {
                     }
                 }
                 loop(this.plan)
-                this.selection = result
                 const newHash = "#" + result.map(_ => _.title).join("#")
                 if(newHash !== window.location.hash) {
+                    this.selection = result
                     window.history && window.history.replaceState(
                         {},
                         document.title,

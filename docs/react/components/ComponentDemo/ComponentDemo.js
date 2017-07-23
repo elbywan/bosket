@@ -35,7 +35,7 @@ export class ComponentDemo extends React.PureComponent {
 
     render() {
         return <div className="ComponentDemo section">
-            <h3>{ this.props.componentName }</h3>
+            { this.props.componentName ? <h3>{ this.props.componentName }</h3> : null }
             <div> { this.props.description } </div>
             <div className={ "ComponentDemo flex-container" + (this.state.expand ? " expanded" : "") }>
                 <div className={ "ComponentDemo demo-area" + (this.isExpanded("demo") ? " expand" : "") }>

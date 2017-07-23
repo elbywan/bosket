@@ -9,7 +9,7 @@ import { displayName } from "./helpers"
 
 import { printer } from "../../tools/printer"
 
-export const withDebugUpdates : trait<> = ({ print = (_:string) : string => _ }) => Component =>
+export const withDebugUpdates : trait<> = ({ print = (_:string) : string => _ } = {}) => Component =>
     class extends React.Component {
         static displayName = displayName("withDebugUpdates", Component)
         monkeyPatch = (ref: Object) => {
@@ -29,7 +29,7 @@ export const withDebugUpdates : trait<> = ({ print = (_:string) : string => _ })
                 /* eslint-disable */
                 printer.debug(`shouldComponentUpdate [${print(ref.toString())}]`, `State diff : ${stateDiff.join(" ")}\nProps diff : ${propsDiff.join(" ")}`)
                 /* eslint-enable */
-                return originalFunction.bind(ref)(nextProps, nextState)
+                return originalFunction && originalFunction.bind(ref)(nextProps, nextState)
             }
         }
 
