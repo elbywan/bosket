@@ -87,6 +87,11 @@ export var withListener = function withListener() {
                 };
 
                 if (autoMount) _this.mount();
+                _this.listenerProp = _defineProperty({}, propName, {
+                    subscribe: _this.subscribe,
+                    mount: _this.mount,
+                    unmount: _this.unmount
+                });
                 return _this;
             }
 
@@ -110,12 +115,7 @@ export var withListener = function withListener() {
                 /* Rendering */
 
                 value: function render() {
-                    var listener = _defineProperty({}, propName, {
-                        subscribe: this.subscribe,
-                        mount: this.mount,
-                        unmount: this.unmount
-                    });
-                    return React.createElement(Component, _extends({}, listener, this.props));
+                    return React.createElement(Component, _extends({}, this.listenerProp, this.props));
                 }
             }]);
 

@@ -17,7 +17,8 @@ export class Category {
                 onClick={ _ => {
                     this.children = []
                     this.loadJoke().then(joke => {
-                        this.children = joke; update()
+                        this.children = joke
+                        update()
                     })
                 }}>
             </i>

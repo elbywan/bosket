@@ -38,6 +38,7 @@ class TreeViewNodeBaseClass extends React.PureComponent<*, TreeViewNodeProps, Tr
     /* Lifecycle & data */
     node: TreeNode
     _unmounted: boolean
+    ancestorsMap : Map<Object, Object[]> = new Map()
 
     state : TreeViewNodeState = {
         unfolded: []
@@ -58,10 +59,31 @@ class TreeViewNodeBaseClass extends React.PureComponent<*, TreeViewNodeProps, Tr
             this._state,
             () => { if(!this._unmounted) this.forceUpdate() }
         )
+
+        if(this.props.model instanceof Array) {
+            this.props.model.forEach(item => item && this.ancestorsMap.set(item, [ ...this.props.ancestors, item ]))
+        }
     }
 
     componentWillUnmount() {
         this._unmounted = true
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.model !== nextProps.model) {
+            if(nextProps.model instanceof Array) {
+                const newMap = new Map()
+                nextProps.model.forEach(item => {
+                    if(!item) return
+                    const lastVal = this.ancestorsMap.get(item)
+                    if(lastVal)
+                        newMap.set(item, lastVal)
+                    else
+                        newMap.set(item, [ ...this.props.ancestors, item ])
+                })
+                this.ancestorsMap = newMap
+            }
+        }
     }
 
     /* Rendering */
@@ -89,7 +111,7 @@ class TreeViewNodeBaseClass extends React.PureComponent<*, TreeViewNodeProps, Tr
                 { ...(this.props: TreeViewNodeProps) }
                 model={ childModel }
                 filteredModel={ filteredModel }
-                ancestors={ [ ...this.props.ancestors, item ] }
+                ancestors={ this.ancestorsMap.get(item) }
                 depth={ (this.props.depth || 0) + 1 }
                 folded={ this.node.isFolded(item) }
                 loading={ this.node.isAsync(item) && !this.node.isFolded(item) }>

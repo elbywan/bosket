@@ -139,18 +139,22 @@
                 overflow: hidden;
                 flex-grow: 0;
                 min-width: 0;
+                max-height: 500px;
 
                 @media (max-width: 1100px) {
                     display: none;
                     animation: none;
                 }
             }
+            & > div.expand { align-self: baseline; }
             & > div.code {
                 &:not(.expand) .tabs {
                     height: 0px;
                 }
-                &.expand > pre > code {
-                    position: relative;
+                &.expand {
+                    & > pre > code {
+                        position: relative;
+                    }
                 }
             }
         }

@@ -12,6 +12,11 @@ export class ChuckNorris extends React.PureComponent {
         selection: []
     }
 
+    conf = {
+        strategies: { fold: ["opener-control"], click: ["unfold-on-selection"]},
+        css: { TreeView: "ChuckNorrisDemo" }
+    }
+
     constructor(props) {
         super(props)
         this.init()
@@ -24,6 +29,11 @@ export class ChuckNorris extends React.PureComponent {
                 this.setState({ categories: categories.map(cat => new Category(cat)) })
             })
     }
+
+    doDisplay = (_, inputs) => _.display(() => {
+        inputs.ancestors.forEach(a => a.children = [...a.children])
+        this.setState({ categories: [...this.state.categories]})
+    })
 
     render = () =>
         <div>
@@ -42,11 +52,11 @@ export class ChuckNorris extends React.PureComponent {
             <TreeView
                 model={ this.state.categories }
                 category="children"
-                display={ _  => _.display(this.forceUpdate.bind(this)) }
+                display={ this.doDisplay }
                 selection={ this.state.selection }
                 onSelect={ _ => this.setState({ selection: _ }) }
-                strategies={{ fold: ["opener-control"], click: ["unfold-on-selection"]} }
-                css={{ TreeView: "ChuckNorrisDemo" }}/>
+                strategies={ this.conf.strategies }
+                css={ this.conf.css }/>
         </div>
 
 }

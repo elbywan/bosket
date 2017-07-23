@@ -2,8 +2,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -19,12 +17,12 @@ import { TreeViewNode } from "./TreeViewNode";
 var TreeViewBaseClass = function (_React$PureComponent) {
     _inherits(TreeViewBaseClass, _React$PureComponent);
 
-    /* Data & lifecycle */
     function TreeViewBaseClass(props) {
         _classCallCheck(this, TreeViewBaseClass);
 
         var _this = _possibleConstructorReturn(this, (TreeViewBaseClass.__proto__ || Object.getPrototypeOf(TreeViewBaseClass)).call(this, props));
 
+        _this.ancestors = [];
         _this.state = {
             search: "",
             filtered: null
@@ -62,25 +60,36 @@ var TreeViewBaseClass = function (_React$PureComponent) {
         }, _this._state, _this.forceUpdate);
         if (props.keyDownListener) props.keyDownListener.subscribe(_this.rootNode.onKey);
         if (props.keyUpListener) props.keyUpListener.subscribe(_this.rootNode.onKey);
+        _this.wrappedDragNDrop = _this.rootNode.wrapDragNDrop();
         return _this;
     }
 
     /* Events */
 
+    /* Data & lifecycle */
+
+
     _createClass(TreeViewBaseClass, [{
-        key: "render",
+        key: "componentWillReceiveProps",
 
 
         /* Rendering */
 
+        value: function componentWillReceiveProps(nextProps) {
+            var update = false;
+            for (var _key in defaults) {
+                if (nextProps[_key] !== this.props[_key]) {
+                    update = true;
+                    break;
+                }
+            }
+            if (update) this.defaultsMix = _extends({}, defaults, nextProps);
+        }
+    }, {
+        key: "render",
         value: function render() {
             var sort = this.props.sort;
-
-            var _props = this.props,
-                onSelect = _props.onSelect,
-                rest = _objectWithoutProperties(_props, ["onSelect"]);
-
-            var props = _extends({}, defaults, rest);
+            var props = this.defaultsMix || _extends({}, defaults, this.props);
 
             var searchBar = !this.props.search ? null : React.createElement("input", { type: "search", className: this.rootNode.mixCss("search"),
                 value: this.state.search,
@@ -95,8 +104,8 @@ var TreeViewBaseClass = function (_React$PureComponent) {
                     model: sort ? this.props.model.sort(sort) : this.props.model,
                     filteredModel: this.state.filtered,
                     onSelect: this.rootNode.onSelect,
-                    dragndrop: this.rootNode.wrapDragNDrop(),
-                    ancestors: [],
+                    dragndrop: this.wrappedDragNDrop,
+                    ancestors: this.ancestors,
                     sort: sort,
                     folded: false,
                     searched: !!this.state.search.trim() }))

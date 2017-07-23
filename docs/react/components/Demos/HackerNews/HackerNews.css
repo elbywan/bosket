@@ -1,3 +1,14 @@
+// PostCSS nextcss syntax
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
 button.HackerNewsButton {
     background: transparent;
     margin: 10px;
@@ -39,73 +50,71 @@ button.HackerNewsButton {
     & .commentCount {
         margin-right: 5px;
     }
-}
-.HackerNewsDemo ul {
-    list-style: none;
-    padding: 0 1.5em;
-    &.depth-0 {
-        padding: 0;
-        margin: 0;
-        & > li {
-            &.folded, &:not(.category) { border-bottom: 1px solid #d8d8d8; }
-        }
 
-        & > li > span.item .commentCount {
-            font-size: 0.8em;
+    & .opener {
+        order: 1;
+        cursor: pointer;
+        font-size: 0.7em;
+        &:hover {
+            color: #f26522;
         }
+        &::after {
+           content: '[+]';
+           display: block;
+           transition: all 0.25s;
+       }
     }
-    &:not(.depth-0) {
-        border-left: 1px solid #f26522;
 
-        & > li {
-            color: #444;
-            padding-left: 10px;
-        }
-    }
-    & > li {
-        & > span.item {
-            display: flex;
-            margin: 1em 0px;
-            & > .comment {
+    & ul {
+
+        list-style: none;
+        padding: 0 1.5em;
+
+        &.depth-0 {
+            padding: 0;
+            margin: 0;
+            & > li {
+                &.folded, &:not(.category) { border-bottom: 1px solid #d8d8d8; }
+            }
+
+            & > li > span.item .commentCount {
                 font-size: 0.8em;
-                & > .infobar {
-                    color: #828282;
+                margin-right: 15px;
+            }
+        }
+        &:not(.depth-0) {
+            border-left: 1px solid #f26522;
+
+            & > li {
+                color: #444;
+                padding-left: 10px;
+            }
+        }
+
+        & > li {
+            & > span.item {
+                display: flex;
+                margin: 1em 0px;
+                & > .comment {
+                    font-size: 0.8em;
+                    & > .infobar {
+                        color: #828282;
+                    }
+                    & > .text {
+                        color: black;
+                    }
                 }
-                & > .text {
-                    color: black;
-                }
+            }
+
+            &.category > span.item {
+                & > .story, & > .comment { order: 2 }
+            }
+            &.category:not(.folded) > span.item > .opener::after {
+                content: '[-]'
+            }
+            &.category.loading > span.item > .opener::after {
+                animation: spin 1s infinite;
             }
         }
     }
-}
-.HackerNewsDemo ul li.category > span.item {
-    & > .story, & > .comment { order: 2 }
-}
-.HackerNewsDemo .opener {
-    order: 1;
-    cursor: pointer;
-    font-size: 0.7em;
-    &:hover {
-        color: #f26522;
-    }
-}
-.HackerNewsDemo .opener::after {
-    content: '[+]';
-    display: block;
-    transition: all 0.25s;
-}
-.HackerNewsDemo ul li.category:not(.folded) > span.item > .opener::after {
-    content: '[-]'
-}
-.HackerNewsDemo li.category.async > span.item > .opener::after {}
-@keyframes spin {
-    from {
-        transform: rotate(0deg)
-    }
-    to {
-        transform: rotate(360deg)
-    }
-}
-.HackerNewsDemo li.category.loading > span.item > .opener::after {
-    animation: spin 1s infinite;
 }

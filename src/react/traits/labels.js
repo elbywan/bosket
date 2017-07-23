@@ -10,7 +10,14 @@ import { displayName } from "./helpers"
 export const withLabels : trait<> = (defaultLabels: Object) => Component =>
     class extends React.Component {
         static displayName = displayName("withLabels", Component)
+        labels = { ...defaultLabels }
+
+        componentWillUpdate(nextProps) {
+            if(nextProps.labels !== this.props.labels)
+                this.labels = { ...defaultLabels, ...nextProps.labels }
+        }
+
         render() {
-            return <Component { ...this.props } labels={ { ...defaultLabels, ...this.props.labels } }></Component>
+            return <Component { ...this.props } labels={ this.labels }></Component>
         }
     }

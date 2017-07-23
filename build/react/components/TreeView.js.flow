@@ -37,6 +37,9 @@ class TreeViewBaseClass extends React.PureComponent<void, TreeViewProps, TreeVie
 
     /* Data & lifecycle */
     rootNode: RootNode
+    defaultsMix: Object
+    wrappedDragNDrop: Object
+    ancestors = []
 
     state : TreeViewState = {
         search: "",
@@ -65,6 +68,7 @@ class TreeViewBaseClass extends React.PureComponent<void, TreeViewProps, TreeVie
         )
         if(props.keyDownListener) props.keyDownListener.subscribe(this.rootNode.onKey)
         if(props.keyUpListener) props.keyUpListener.subscribe(this.rootNode.onKey)
+        this.wrappedDragNDrop = this.rootNode.wrapDragNDrop()
     }
 
     /* Events */
@@ -84,10 +88,21 @@ class TreeViewBaseClass extends React.PureComponent<void, TreeViewProps, TreeVie
 
     /* Rendering */
 
+    componentWillReceiveProps(nextProps) {
+        let update = false
+        for(const key in defaults) {
+            if(nextProps[key] !== this.props[key]) {
+                update = true
+                break
+            }
+        }
+        if(update)
+            this.defaultsMix = { ...defaults, ...nextProps }
+    }
+
     render() {
         const sort = this.props.sort
-        const { onSelect, ...rest } = this.props
-        const props : any = { ...defaults, ...rest }
+        const props : any = this.defaultsMix || { ...defaults, ...this.props }
 
         const searchBar = !this.props.search ? null :
             <input type="search" className={ this.rootNode.mixCss("search") }
@@ -103,8 +118,8 @@ class TreeViewBaseClass extends React.PureComponent<void, TreeViewProps, TreeVie
                     model={ sort ? this.props.model.sort(sort) : this.props.model }
                     filteredModel={ this.state.filtered }
                     onSelect={ this.rootNode.onSelect }
-                    dragndrop={ this.rootNode.wrapDragNDrop() }
-                    ancestors={ [] }
+                    dragndrop={ this.wrappedDragNDrop }
+                    ancestors={ this.ancestors }
                     sort={ sort }
                     folded={ false }
                     searched={ !!this.state.search.trim() }>

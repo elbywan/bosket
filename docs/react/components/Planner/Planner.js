@@ -1,10 +1,11 @@
+
 // @flow
 
 import React from "react"
 import "self/common/styles/Planner.css"
 
 import { TreeView } from "bosket/react"
-import { array, css } from "bosket/tools"
+import { css } from "bosket/tools"
 import { withListener, combine } from "bosket/react/traits"
 
 const headerLevel = (depth, prefix, item) => {
@@ -62,18 +63,16 @@ export const Planner = combine(
     }
 
     state = {
-        conf: {
-            css: { TreeView: "PlannerTree" },
-            category: "subs",
-            selection: [],
-            display: (item, inputs) => <a href={ `${inputs.ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
-            onSelect: _ => { if(_.length > 0) { this.setState({ conf: { ...this.state.conf, selection: _ }}) } },
-            strategies: {
-                selection: ["ancestors"],
-                fold: [ "max-depth", "not-selected", "no-child-selection" ]
-            },
-            noOpener: true
+        css: { TreeView: "PlannerTree" },
+        category: "subs",
+        selection: [],
+        display: (item, inputs) => <a href={ `${inputs.ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
+        onSelect: _ => { if(_.length > 0) { this.setState({ selection: _ }) } },
+        strategies: {
+            selection: ["ancestors"],
+            fold: [ "max-depth", "not-selected", "no-child-selection" ]
         },
+        noOpener: true,
         opened: false
     }
     opener: HTMLElement
@@ -109,8 +108,8 @@ export const Planner = combine(
             }
             loop(this.props.plan)
             const newHash = "#" + result.map(_ => _.title).join("#")
-            if(newHash !== window.location.hash) {
-                this.setState({ conf: { ...this.state.conf, selection: result }})
+            if(newHash !== (window.location.hash || "#")) {
+                this.setState({ selection: result })
                 window.history && window.history.replaceState(
                     {},
                     document.title,
@@ -149,7 +148,7 @@ export const Planner = combine(
                 </div>
                 <aside ref={ ref => this.sidePanel = ref } className={ "Planner side-panel " + css.classes({ opened: this.state.opened }) }>
                     <div><h1>Table of contents</h1></div>
-                    <TreeView model={ this.props.plan } maxDepth={ this.props.maxDepth } { ...this.state.conf }></TreeView>
+                    <TreeView model={ this.props.plan } maxDepth={ this.props.maxDepth } { ...this.state }></TreeView>
                 </aside>
                 <div ref={ ref => this.content = ref } className="Planner content">
                     { processContent(this.props.plan) }

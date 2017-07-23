@@ -10,6 +10,6 @@
     }
     & .demo-area {
         background: none !important;
-        & > .ComponentDemo.padded { padding: 10px 0px !important; }
+        & > .ComponentDemo.padded { padding: 0 !important; }
     }
 }

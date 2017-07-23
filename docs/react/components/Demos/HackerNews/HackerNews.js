@@ -12,6 +12,11 @@ export class HackerNews extends React.PureComponent {
         selection: []
     }
 
+    conf = {
+        strategies: { fold: ["opener-control"]},
+        css: { TreeView: "HackerNewsDemo" }
+    }
+
     componentDidMount() {
         this.init()
     }
@@ -22,6 +27,11 @@ export class HackerNews extends React.PureComponent {
             .then(topStories => fetchLast(topStories, _ => `https://hacker-news.firebaseio.com/v0/item/${_}.json`))
             .then(topStories => this.setState({ stories: topStories.map(story => new TopStory(story)) }))
     }
+
+    doDisplay = (_, inputs) => _.display(() => {
+        inputs.ancestors.forEach(a => a.children = [...a.children])
+        this.setState({ stories: [...this.state.stories]})
+    })
 
     render = () =>
         <div>
@@ -40,10 +50,10 @@ export class HackerNews extends React.PureComponent {
             <TreeView
                 model={ this.state.stories }
                 category="children"
-                display={ _  => _.display(this.forceUpdate.bind(this)) }
+                display={ this.doDisplay }
                 selection={ this.state.selection }
                 onSelect={ _ => this.setState({ selection: _ }) }
-                strategies={{ fold: ["opener-control"]}}
-                css={{ TreeView: "HackerNewsDemo" }}/>
+                strategies={ this.conf.strategies }
+                css={ this.conf.css }/>
         </div>
 }

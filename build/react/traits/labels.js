@@ -16,26 +16,39 @@ import { displayName } from "./helpers";
 
 export var withLabels = function withLabels(defaultLabels) {
     return function (Component) {
-        var _class, _temp;
+        var _class, _temp2;
 
-        return _temp = _class = function (_React$Component) {
+        return _temp2 = _class = function (_React$Component) {
             _inherits(_class, _React$Component);
 
             function _class() {
+                var _ref;
+
+                var _temp, _this, _ret;
+
                 _classCallCheck(this, _class);
 
-                return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                    args[_key] = arguments[_key];
+                }
+
+                return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.labels = _extends({}, defaultLabels), _temp), _possibleConstructorReturn(_this, _ret);
             }
 
             _createClass(_class, [{
+                key: "componentWillUpdate",
+                value: function componentWillUpdate(nextProps) {
+                    if (nextProps.labels !== this.props.labels) this.labels = _extends({}, defaultLabels, nextProps.labels);
+                }
+            }, {
                 key: "render",
                 value: function render() {
-                    return React.createElement(Component, _extends({}, this.props, { labels: _extends({}, defaultLabels, this.props.labels) }));
+                    return React.createElement(Component, _extends({}, this.props, { labels: this.labels }));
                 }
             }]);
 
             return _class;
-        }(React.Component), _class.displayName = displayName("withLabels", Component), _temp;
+        }(React.Component), _class.displayName = displayName("withLabels", Component), _temp2;
     };
 };
 //# sourceMappingURL=labels.js.map

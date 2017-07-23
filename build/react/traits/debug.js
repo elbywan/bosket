@@ -39,7 +39,7 @@ export var withDebugUpdates = function withDebugUpdates() {
                 }
 
                 return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref2 = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref2, [this].concat(args))), _this), _this.monkeyPatch = function (ref) {
-                    if (!ref) return;
+                    if (!ref) return true;
                     var originalFunction = ref.shouldComponentUpdate;
                     ref.shouldComponentUpdate = function (nextProps, nextState, nextContext) {
                         var propsDiff = [];
@@ -53,7 +53,7 @@ export var withDebugUpdates = function withDebugUpdates() {
                         /* eslint-disable */
                         printer.debug("shouldComponentUpdate [" + print(ref.toString()) + "]", "State diff : " + stateDiff.join(" ") + "\nProps diff : " + propsDiff.join(" ")
                         /* eslint-enable */
-                        );return originalFunction && originalFunction.bind(ref)(nextProps, nextState);
+                        );return originalFunction && originalFunction.bind(ref)(nextProps, nextState) || true;
                     };
                 }, _this.render = function () {
                     return React.createElement(Component, _extends({}, _this.props, {

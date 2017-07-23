@@ -19,11 +19,13 @@ import { TreeNode } from "../../core";
 var TreeViewNodeBaseClass = function (_React$PureComponent) {
     _inherits(TreeViewNodeBaseClass, _React$PureComponent);
 
+    /* Lifecycle & data */
     function TreeViewNodeBaseClass(props) {
         _classCallCheck(this, TreeViewNodeBaseClass);
 
         var _this = _possibleConstructorReturn(this, (TreeViewNodeBaseClass.__proto__ || Object.getPrototypeOf(TreeViewNodeBaseClass)).call(this, props));
 
+        _this.ancestorsMap = new Map();
         _this.state = {
             unfolded: []
         };
@@ -61,7 +63,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
             return React.createElement(TreeViewNode, _extends({}, _this.props, {
                 model: childModel,
                 filteredModel: filteredModel,
-                ancestors: [].concat(_toConsumableArray(_this.props.ancestors), [item]),
+                ancestors: _this.ancestorsMap.get(item),
                 depth: (_this.props.depth || 0) + 1,
                 folded: _this.node.isFolded(item),
                 loading: _this.node.isAsync(item) && !_this.node.isFolded(item) }));
@@ -74,16 +76,36 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
         _this.node = new TreeNode(_this._props, {}, _this._state, function () {
             if (!_this._unmounted) _this.forceUpdate();
         });
+
+        if (_this.props.model instanceof Array) {
+            _this.props.model.forEach(function (item) {
+                return item && _this.ancestorsMap.set(item, [].concat(_toConsumableArray(_this.props.ancestors), [item]));
+            });
+        }
         return _this;
     }
-
-    /* Lifecycle & data */
-
 
     _createClass(TreeViewNodeBaseClass, [{
         key: "componentWillUnmount",
         value: function componentWillUnmount() {
             this._unmounted = true;
+        }
+    }, {
+        key: "componentWillReceiveProps",
+        value: function componentWillReceiveProps(nextProps) {
+            var _this2 = this;
+
+            if (this.props.model !== nextProps.model) {
+                if (nextProps.model instanceof Array) {
+                    var newMap = new Map();
+                    nextProps.model.forEach(function (item) {
+                        if (!item) return;
+                        var lastVal = _this2.ancestorsMap.get(item);
+                        if (lastVal) newMap.set(item, lastVal);else newMap.set(item, [].concat(_toConsumableArray(_this2.props.ancestors), [item]));
+                    });
+                    this.ancestorsMap = newMap;
+                }
+            }
         }
 
         /* Rendering */
@@ -91,7 +113,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
     }, {
         key: "render",
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
             var _props = this.props,
                 model = _props.model,
@@ -110,21 +132,21 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
 
             var OpenerComponent = this.props.opener || "span";
             var list = model.filter(function (m) {
-                return !_this2.props.searched || _this2.props.filteredModel && _this2.props.filteredModel.has(m);
+                return !_this3.props.searched || _this3.props.filteredModel && _this3.props.filteredModel.has(m);
             }).map(function (item, idx) {
                 return React.createElement(
                     "li",
                     _extends({ key: key && key(item) || idx,
-                        className: _this2.node.liCss(item),
-                        onClick: _this2.node.onClick(item)
-                    }, _this2.node.getDragEvents(item)),
+                        className: _this3.node.liCss(item),
+                        onClick: _this3.node.onClick(item)
+                    }, _this3.node.getDragEvents(item)),
                     React.createElement(
                         "span",
-                        { className: _this2.node.mixCss("item") },
-                        display && display(item, _this2.props),
-                        _this2.renderOpener(item, OpenerComponent)
+                        { className: _this3.node.mixCss("item") },
+                        display && display(item, _this3.props),
+                        _this3.renderOpener(item, OpenerComponent)
                     ),
-                    _this2.renderSubtree(item)
+                    _this3.renderSubtree(item)
                 );
             });
 

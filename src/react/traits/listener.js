@@ -19,12 +19,26 @@ export const withListener : trait<> = ({
         static displayName = displayName("withListener", Component)
         listening = false
         ticking = false
+        listenerProp: {
+            [key: string]: {
+                subscribe: ((Event, ?(void => void)) => mixed) => void,
+                mount:     () => void,
+                unmount:   () => void
+            }
+        }
 
         /* Lifecycle */
 
         constructor(props) {
             super(props)
             if(autoMount) this.mount()
+            this.listenerProp = {
+                [propName]: {
+                    subscribe: this.subscribe,
+                    mount:     this.mount,
+                    unmount:   this.unmount
+                }
+            }
         }
 
         componentWillUnmount() {
@@ -73,13 +87,6 @@ export const withListener : trait<> = ({
         /* Rendering */
 
         render() {
-            const listener = {
-                [propName]: {
-                    subscribe: this.subscribe,
-                    mount:     this.mount,
-                    unmount:   this.unmount
-                }
-            }
-            return <Component { ...listener } { ...this.props } ></Component>
+            return <Component { ...this.listenerProp } { ...this.props } ></Component>
         }
     }
