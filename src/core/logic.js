@@ -102,7 +102,7 @@ export class TreeNode extends Core {
         this.pending.push(item)
         const asyncFun = this.inputs.get().async
         if(!asyncFun)
-            return Promise.reject(new Error("No asyn prop."))
+            return Promise.reject(new Error("Missing async function."))
         else
             return asyncFun(item[this.inputs.get().category])
                 .then(res => {

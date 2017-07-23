@@ -13,7 +13,7 @@ export type TreeViewProps = {
     category:           string,
     selection:          Object[],
     onSelect:           (newSelection: Object[], item: Object, ancestors: Object[], neighbours: Object[]) => void,
-    display?:           (Object, Object[]) => any,
+    display?:           (Object, Object) => any,
     key?:               Object => string,
     strategies?:        Object,
     sort?:              (Object, Object) => number,

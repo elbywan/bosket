@@ -1,0 +1,92 @@
+@keyframes spin {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+button.ChuckNorrisButton {
+    background: transparent;
+    margin: 10px;
+    border: 1px solid #d8d8d8;
+    color: black;
+    font-family: "Courier New", monospace;
+    font-size: 0.8em;
+
+    &:hover {
+        background: #d8d8d8 !important;
+        color: #f15a24 !important;
+    }
+}
+
+.ChuckNorrisDemo {
+    border: 2px solid #d8d8d8;
+    padding: 1em;
+    font-family: "Courier New", monospace;
+    line-height: 2em;
+    background: #FFF;
+}
+.ChuckNorrisDemo .opener {
+    cursor: pointer;
+    margin-right: 10px;
+    order: 1;
+}
+.ChuckNorrisDemo .opener::after {
+    content: '+';
+    display: block;
+    transition: all 0.25s;
+}
+.ChuckNorrisDemo ul {
+    list-style: none;
+    padding: 1em;
+}
+.ChuckNorrisDemo ul > li > span.item {
+    display: inline-flex;
+}
+.ChuckNorrisDemo ul.depth-0 {
+    padding: 0;
+    margin: 0;
+    & > li {
+        &.folded { border-bottom: 1px solid #d8d8d8; }
+        & > .item > .value {
+            color: #f15a24;
+        }
+    }
+}
+.ChuckNorrisDemo ul.depth-1 {
+    & > li {
+        color: #444;
+    }
+}
+.ChuckNorrisDemo ul li.category:not(.folded) > span.item > .opener::after {
+    transform: rotate(45deg);
+}
+.ChuckNorrisDemo li.category {
+    & > span.item {
+        cursor: pointer;
+        & > .value { order: 2 }
+        & > .value > i {
+            margin-left: 10px;
+            color: #888;
+            transition: color .25s;
+            &:hover{ color: #f15a24 }
+            &.loading{ animation: spin 1s infinite; }
+        }
+    }
+
+    &.async > span.item, &.folded > span.item {
+        & > .value > i {
+            display: none;
+        }
+    }
+    &.loading > span.item {
+        & > .value > i {
+            display: none;
+        }
+        & > .opener::after {
+            animation: spin 1s infinite;
+        }
+    }
+}

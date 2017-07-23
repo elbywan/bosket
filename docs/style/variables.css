@@ -4,7 +4,7 @@
     --darkColor:        #888;
     --darkerColor:      #444;
     --accentColor:      #dc143c;
-    --accentColorLight: color(#dc143c l(+ 17.5%) w(+ 10%) s(+ 50%));
+    --accentColorLight: #ff6262;
     --emphasisColor:    rgba(255, 235, 59, 0.40);
     --serifFont:        'Cormorant Garamond', serif;
     --sansSerifFont:    'Open Sans', serif;

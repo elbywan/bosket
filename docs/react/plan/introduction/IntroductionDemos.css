@@ -1,0 +1,15 @@
+.IntroductionDemos {
+    & > .inline-row { margin-top: 10px; }
+    & .ComponentDemo.section {
+        padding: 0 !important;
+        border: none !important;
+    }
+    & .flex-container {
+        border-top: 1px solid #d8d8d8;
+        box-shadow: none !important;
+    }
+    & .demo-area {
+        background: none !important;
+        & > .ComponentDemo.padded { padding: 10px 0px !important; }
+    }
+}

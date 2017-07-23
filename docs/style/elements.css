@@ -144,6 +144,33 @@ code {
     }
 }
 
+.button-row {
+    display: inline-block;
+    box-shadow: 0px 0px 2px #aaa;
+    padding: 0px;
+    border-radius: 5px;
+
+    & > button {
+        background: #fff;
+        border-right: 1px solid #ccc;
+        margin: 0;
+
+        &.selected {
+            background: var(--accentColor);
+            color: #fff;
+        }
+
+        &:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        &:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    }
+}
+
 .center-text {
     text-align: center;
 }

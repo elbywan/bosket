@@ -4,6 +4,7 @@
 
     & .padded {
         padding: 20px;
+        @media (max-width: 600px) { padding: 0px; }
     }
 
     &.section {

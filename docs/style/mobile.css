@@ -4,7 +4,7 @@
         &.terminal { margin: 20px 0px; }
     }
     div.chapter {
-        padding: 10px 20px;
+        padding: 10px;
         & .marged { margin: 0px; }
         &.marged  { margin: 0px 20px; }
         & ol.chapter-list, & ul.chapter-list { padding: 0px; }

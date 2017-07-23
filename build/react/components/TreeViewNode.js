@@ -121,7 +121,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
                     React.createElement(
                         "span",
                         { className: _this2.node.mixCss("item") },
-                        display && display(item, _this2.props.ancestors),
+                        display && display(item, _this2.props),
                         _this2.renderOpener(item, OpenerComponent)
                     ),
                     _this2.renderSubtree(item)

@@ -66,7 +66,7 @@ export const Planner = combine(
             css: { TreeView: "PlannerTree" },
             category: "subs",
             selection: [],
-            display: (item, ancestors) => <a href={ `${ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
+            display: (item, inputs) => <a href={ `${inputs.ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
             onSelect: _ => { if(_.length > 0) { this.setState({ conf: { ...this.state.conf, selection: _ }}) } },
             strategies: {
                 selection: ["ancestors"],

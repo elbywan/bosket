@@ -73,7 +73,7 @@ export var TreeNode = function (_Core) {
         }, _this.pending = [], _this.unwrapPromise = function (item) {
             _this.pending.push(item);
             var asyncFun = _this.inputs.get().async;
-            if (!asyncFun) return Promise.reject(new Error("No asyn prop."));else return asyncFun(item[_this.inputs.get().category]).then(function (res) {
+            if (!asyncFun) return Promise.reject(new Error("Missing async function."));else return asyncFun(item[_this.inputs.get().category]).then(function (res) {
                 item[_this.inputs.get().category] = res;
                 _this.refresh();
             }).catch(function (err) {

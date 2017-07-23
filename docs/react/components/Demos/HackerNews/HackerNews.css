@@ -1,0 +1,111 @@
+button.HackerNewsButton {
+    background: transparent;
+    margin: 10px;
+    border: 1px solid #d8d8d8;
+    color: black;
+    font-family: "Courier New", monospace;
+    font-size: 0.8em;
+
+    &:hover {
+        background: #d8d8d8 !important;
+        color: #f26522 !important;
+    }
+}
+
+.HackerNewsDemo {
+    background-color: rgb(246, 246, 239);
+    border: 2px solid #d8d8d8;
+    padding: 0.5em 1em;
+    font-family: Verdana, Geneva, sans-serif;
+    line-height: 2em;
+
+    & .fetchMore {
+        cursor: pointer;
+        background: transparent;
+        width: 100%;
+        text-align: center;
+        color: #999;
+        transition: border .25s;
+        border: 1px solid #d8d8d8;
+        font-size: 0.8em;
+
+        &:hover {
+            border-color: #999;
+            color: black;
+        }
+        & > a:hover { color: inherit; }
+    }
+
+    & .commentCount {
+        margin-right: 5px;
+    }
+}
+.HackerNewsDemo ul {
+    list-style: none;
+    padding: 0 1.5em;
+    &.depth-0 {
+        padding: 0;
+        margin: 0;
+        & > li {
+            &.folded, &:not(.category) { border-bottom: 1px solid #d8d8d8; }
+        }
+
+        & > li > span.item .commentCount {
+            font-size: 0.8em;
+        }
+    }
+    &:not(.depth-0) {
+        border-left: 1px solid #f26522;
+
+        & > li {
+            color: #444;
+            padding-left: 10px;
+        }
+    }
+    & > li {
+        & > span.item {
+            display: flex;
+            margin: 1em 0px;
+            & > .comment {
+                font-size: 0.8em;
+                & > .infobar {
+                    color: #828282;
+                }
+                & > .text {
+                    color: black;
+                }
+            }
+        }
+    }
+}
+.HackerNewsDemo ul li.category > span.item {
+    & > .story, & > .comment { order: 2 }
+}
+.HackerNewsDemo .opener {
+    order: 1;
+    cursor: pointer;
+    font-size: 0.7em;
+    &:hover {
+        color: #f26522;
+    }
+}
+.HackerNewsDemo .opener::after {
+    content: '[+]';
+    display: block;
+    transition: all 0.25s;
+}
+.HackerNewsDemo ul li.category:not(.folded) > span.item > .opener::after {
+    content: '[-]'
+}
+.HackerNewsDemo li.category.async > span.item > .opener::after {}
+@keyframes spin {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+.HackerNewsDemo li.category.loading > span.item > .opener::after {
+    animation: spin 1s infinite;
+}

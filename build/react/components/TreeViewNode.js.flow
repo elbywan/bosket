@@ -21,7 +21,7 @@ type TreeViewNodeProps = {
     depth?:             number,
     sort?:              (Object, Object) => number,
     key?:               Object => string,
-    display?:           (Object, Object[]) => any,
+    display?:           (Object, Object) => any,
     filteredModel:      null | Map<Object, *>,
     folded:             boolean,
     loading?:           boolean,
@@ -122,7 +122,7 @@ class TreeViewNodeBaseClass extends React.PureComponent<*, TreeViewNodeProps, Tr
                     onClick={ this.node.onClick(item) }
                     { ...this.node.getDragEvents(item) }>
                     <span className={ this.node.mixCss("item") }>
-                        { display && display(item, this.props.ancestors) }
+                        { display && display(item, this.props) }
                         { this.renderOpener(item, OpenerComponent) }
                     </span>
                     { this.renderSubtree(item) }
