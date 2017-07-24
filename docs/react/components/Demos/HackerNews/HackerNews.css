@@ -1,4 +1,4 @@
-// PostCSS nextcss syntax
+// [cssnext](http://cssnext.io/) syntax
 
 @keyframes spin {
     from {
@@ -10,15 +10,15 @@
 }
 
 button.HackerNewsButton {
-    background: transparent;
+    background: rgb(246, 246, 239);
     margin: 10px;
     border: 1px solid #d8d8d8;
     color: black;
-    font-family: "Courier New", monospace;
+    font-family: Verdana, Geneva, sans-serif;
     font-size: 0.8em;
 
     &:hover {
-        background: #d8d8d8 !important;
+        background: rgb(246, 246, 239) !important;
         color: #f26522 !important;
     }
 }

@@ -137,12 +137,11 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
                 return React.createElement(
                     "li",
                     _extends({ key: key && key(item) || idx,
-                        className: _this3.node.liCss(item),
-                        onClick: _this3.node.onClick(item)
+                        className: _this3.node.liCss(item)
                     }, _this3.node.getDragEvents(item)),
                     React.createElement(
                         "span",
-                        { className: _this3.node.mixCss("item") },
+                        { className: _this3.node.mixCss("item"), onClick: _this3.node.onClick(item) },
                         display && display(item, _this3.props),
                         _this3.renderOpener(item, OpenerComponent)
                     ),

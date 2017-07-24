@@ -1,5 +1,4 @@
 .IntroductionDemos {
-    & > .inline-row { margin-top: 10px; }
     & .ComponentDemo.section {
         padding: 0 !important;
         border: none !important;

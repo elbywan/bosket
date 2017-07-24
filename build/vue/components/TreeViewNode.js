@@ -127,7 +127,6 @@ var TreeViewNodeBase = {
             return !_this3.$props.searched || _this3.$props.filteredModel && _this3.$props.filteredModel.has(m);
         }).map(function (item, idx) {
             var rawLiData = _extends({}, _this3.node.getDragEvents(item), {
-                onClick: _this3.node.onClick(item),
                 "class": _this3.node.liCss(item)
             });
             var liData = _extends({
@@ -140,7 +139,10 @@ var TreeViewNodeBase = {
                 liData,
                 [h(
                     "span",
-                    { "class": _this3.node.mixCss("item") },
+                    { "class": _this3.node.mixCss("item"), on: {
+                            "click": _this3.node.onClick(item)
+                        }
+                    },
                     [display && display(item, _this3.$props.ancestors), renderOpener(item, OpenerComponent)]
                 ), renderSubtree(item)]
             );

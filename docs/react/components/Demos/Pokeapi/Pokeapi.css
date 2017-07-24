@@ -1,0 +1,161 @@
+// [cssnext](http://cssnext.io/) syntax
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+button.PokeapiButton {
+    background: #263238;
+    margin: 10px;
+    border: 1px solid #d8d8d8;
+    color: #eee;
+    font-size: 0.8em;
+
+    &:hover {
+        background: #263238 !important;
+        color: #EF5350 !important;
+    }
+}
+
+div.PokeapiLoadMore {
+    background: #EF5350;
+    color: white;
+    border: 5px solid #263238;
+    padding: 5px 0px;
+    cursor: pointer;
+    transition: all 0.25s;
+    &:hover, &.loading {
+        background: #263238;
+        color: #EF5350;
+    }
+    &.loading {
+        pointer-events: none;
+
+        & > i {
+            animation: spin 1s infinite;
+        }
+    }
+}
+
+.PokeapiDemo {
+    border-top: 20px solid #EF5350;
+    background: #263238;
+    color: #EEE;
+
+    & .opener {
+        cursor: pointer;
+        margin-left: 5px;
+        &::after {
+            content: '+';
+            display: inline-block;
+        }
+    }
+
+    & .property-row {
+        display: table-row;
+        & > label {
+            display: table-cell;
+            font-weight: bold;
+            border-left: 1px solid #EF5350;
+            padding-left: 1em;
+            padding-bottom: 5px;
+        }
+        & > span {
+            display: table-cell;
+            padding-left: 1em;
+        }
+    }
+
+    & ul {
+        list-style: none;
+        margin: 0;
+        padding-left: 2em;
+
+        &.depth-0 {
+            padding: 10px;
+
+            & > li > span.item {
+                cursor: pointer;
+                color: #fff;
+                font-weight: bold;
+                font-size: 1.1em;
+                margin: 10px 0;
+                padding-bottom: 5px;
+                border-bottom: 1px solid #EF5350;
+
+                transition: all 0.25s;
+                &:hover { color: #EF5350; }
+            }
+        }
+
+        &.depth-1 li > span.item:first-child {
+            margin-top: 20px;
+        }
+        &.depth-1 li > span.item:last-child {
+            margin-bottom: 20px;
+        }
+
+        & li {
+            & > span.item {
+                display: block;
+                margin-bottom: 5px;
+
+                & .subsection + .opener {
+                    display: none;
+                }
+
+                & .subcategory {
+                    cursor: pointer;
+                    color: #fff;
+                    font-weight: 700;
+                    padding-bottom: 5px;
+                    /*border-bottom: 1px solid #ef5350;*/
+                    border-left: 3px solid #eee;
+                    padding-left: 10px;
+                    transition: all .25s;
+                    display: inline-block;
+                    width: calc(100% - 30px);
+                    &:hover { color: #EF5350; border-color: #EF5350; }
+                    & + .opener:hover { color: #EF5350; }
+                }
+            }
+
+            &.category {
+                &.disabled {
+                    pointer-events: none;
+                    color: #aaa;
+                    font-style: italic;
+                    & > span.item {
+                        & > .opener { display: none; }
+                        & > .subcategory {
+                            color: #aaa;
+                            border: none;
+                        }
+                    }
+                }
+                &:not(.folded) > span.item > .opener::after {
+                    transform: rotate(45deg);
+                }
+
+                &.async > span.item, &.folded > span.item {
+                    & > .value > i {
+                        display: none;
+                    }
+                }
+                &.loading > span.item {
+                    & > .value > i {
+                        display: none;
+                    }
+                    & > .opener::after {
+                        animation: spin 1s infinite;
+                    }
+                }
+            }
+        }
+    }
+}

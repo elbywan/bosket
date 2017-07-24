@@ -141,9 +141,8 @@ class TreeViewNodeBaseClass extends React.PureComponent<*, TreeViewNodeProps, Tr
             .map((item, idx) =>
                 <li key={ key && key(item) || idx }
                     className={ this.node.liCss(item) }
-                    onClick={ this.node.onClick(item) }
                     { ...this.node.getDragEvents(item) }>
-                    <span className={ this.node.mixCss("item") }>
+                    <span className={ this.node.mixCss("item") } onClick={ this.node.onClick(item) }>
                         { display && display(item, this.props) }
                         { this.renderOpener(item, OpenerComponent) }
                     </span>

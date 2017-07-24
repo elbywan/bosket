@@ -100,7 +100,6 @@ const TreeViewNodeBase = {
             .map((item, idx) => {
                 const rawLiData = {
                     ...this.node.getDragEvents(item),
-                    onClick: this.node.onClick(item),
                     "class": this.node.liCss(item)
                 }
                 const liData = {
@@ -108,7 +107,7 @@ const TreeViewNodeBase = {
                     ...object(rawLiData).nestPrefix("on", _ => _.toLowerCase())
                 }
                 return <li { ...liData }>
-                    <span class={ this.node.mixCss("item") }>
+                    <span class={ this.node.mixCss("item") } onClick={ this.node.onClick(item) }>
                         { display && display(item, this.$props.ancestors) }
                         { renderOpener(item, OpenerComponent) }
                     </span>

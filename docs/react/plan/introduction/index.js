@@ -16,7 +16,7 @@ export default {
                 <br/>
                 Multiple use case examples are provided alongside the documentation including the source code.
             </p>
-            <h4>API views implemented with Bosket</h4>
+            <h4 className="center-text">API views implemented with Bosket</h4>
             <IntroductionDemos/>
         </div>
 }

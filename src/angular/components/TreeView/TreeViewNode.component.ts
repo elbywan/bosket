@@ -20,7 +20,6 @@ const object = require("../../../tools/objects").object
 
             <li *ngFor="let item of getModel(); let i = index; trackBy: key"
                 [class]="node.liCss(item)"
-                (click)="node.onClick(item)($event)"
                 [draggable]="node.getDragEvents(item).draggable"
                 (dragstart)="invokeEvent('onDragStart', item, $event)"
                 (dragover)="invokeEvent('onDragOver', item, $event)"
@@ -28,7 +27,7 @@ const object = require("../../../tools/objects").object
                 (dragleave)="invokeEvent('onDragLeave', item, $event)"
                 (dragend)="invokeEvent('onDragEnd', item, $event)"
                 (drop)="invokeEvent('onDrop', item, $event)">
-                <span [class]="node.mixCss('item')">
+                <span [class]="node.mixCss('item')" (click)="node.onClick(item)($event)">
                     <ng-container *ngIf="!displayComponent">{{ display(item, this.ancestors) }}</ng-container>
                     <ng-template *ngIf="displayComponent" [itemInjector]="item" [inject]="displayComponent" [inputs]="_props.get()"></ng-template>
                     <span

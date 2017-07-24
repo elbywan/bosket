@@ -5,17 +5,19 @@ import "./IntroductionDemos.css"
 import { ComponentDemo } from "self/react/components/ComponentDemo/ComponentDemo"
 import { ChuckNorris } from "self/react/components/Demos/ChuckNorris/ChuckNorris"
 import { HackerNews } from "self/react/components/Demos/HackerNews/HackerNews"
+import { Pokeapi } from "self/react/components/Demos/Pokeapi/Pokeapi"
 
 export class IntroductionDemos extends React.PureComponent {
 
-    demos = [ "HackerNews", "ChuckNorris" ]
+    demos = [ "HackerNews", "Pokeapi", "ChuckNorris" ]
     state = { demo: this.demos[0] }
 
     renderDemo() {
         const Component =
             this.state.demo === "ChuckNorris" ? ChuckNorris :
                 this.state.demo === "HackerNews" ? HackerNews :
-                    null
+                    this.state.demo === "Pokeapi" ? Pokeapi :
+                        null
 
         const files = [
             `./components/Demos/${this.state.demo}/${this.state.demo}.js`,
@@ -39,7 +41,7 @@ export class IntroductionDemos extends React.PureComponent {
 
     render = () =>
         <div className="IntroductionDemos">
-            <div className="inline-row center-text">
+            <div className="center-text">
                 <span className="button-row">{ this.renderButtons() }</span>
             </div>
             { this.renderDemo() }
