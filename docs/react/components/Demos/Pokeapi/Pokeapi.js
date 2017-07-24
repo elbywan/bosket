@@ -20,14 +20,14 @@ export class Pokeapi extends React.PureComponent {
         disabled: _ => _.__children && _.__children instanceof Array && _.__children.length === 0
     }
 
-    loadUrl = "http://pokeapi.co/api/v2/pokemon"
+    loadUrl = "https://pokeapi.co/api/v2/pokemon"
 
     componentDidMount() {
         this.init()
     }
 
     init() {
-        this.loadUrl = "http://pokeapi.co/api/v2/pokemon"
+        this.loadUrl = "https://pokeapi.co/api/v2/pokemon"
         this.loadPokemons(_ => this.setState({ data: _ }))
     }
 
