@@ -1,6 +1,6 @@
 import React from "react"
 
-import "./IntroductionDemos.css"
+import "self/common/styles/IntroductionDemos.css"
 
 import { ComponentDemo } from "self/react/components/ComponentDemo/ComponentDemo"
 import { ChuckNorris } from "self/react/components/Demos/ChuckNorris/ChuckNorris"
@@ -21,7 +21,7 @@ export class IntroductionDemos extends React.PureComponent {
 
         const files = [
             `./components/Demos/${this.state.demo}/${this.state.demo}.js`,
-            `./components/Demos/${this.state.demo}/${this.state.demo}.css`,
+            `../common/styles/${this.state.demo}.css`,
             `./components/Demos/${this.state.demo}/models.js`
         ]
 

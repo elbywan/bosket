@@ -143,7 +143,7 @@ var TreeViewNodeBase = {
                             "click": _this3.node.onClick(item)
                         }
                     },
-                    [display && display(item, _this3.$props.ancestors), renderOpener(item, OpenerComponent)]
+                    [display && display(item, _this3.$props), renderOpener(item, OpenerComponent)]
                 ), renderSubtree(item)]
             );
         });

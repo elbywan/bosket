@@ -1,6 +1,6 @@
 import React from "react"
 
-import "./HackerNews.css"
+import "self/common/styles/HackerNews.css"
 
 import { TreeView } from "bosket/react"
 import { fetchLast, TopStory } from "./models"
@@ -44,7 +44,7 @@ export class HackerNews extends React.PureComponent {
                 </div>
                 <div><h5>The top 10 stories from HackerNews.</h5></div>
                 <div>
-                    <button onClick={ _ => this.init() } className="HackerNewsButton">Reset</button>
+                    <button onClick={ _ => this.init(_) } className="HackerNewsButton">Reset</button>
                 </div>
             </div>
             <TreeView

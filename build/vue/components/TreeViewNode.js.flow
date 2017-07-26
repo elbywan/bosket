@@ -108,7 +108,7 @@ const TreeViewNodeBase = {
                 }
                 return <li { ...liData }>
                     <span class={ this.node.mixCss("item") } onClick={ this.node.onClick(item) }>
-                        { display && display(item, this.$props.ancestors) }
+                        { display && display(item, this.$props) }
                         { renderOpener(item, OpenerComponent) }
                     </span>
                     { renderSubtree(item) }

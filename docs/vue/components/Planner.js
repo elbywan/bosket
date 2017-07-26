@@ -9,6 +9,7 @@ export default combine(
     withListener({ eventType: "scroll", prop: "scrollListener", autoMount: true, regulate: true }),
     withListener({ eventType: "scroll", prop: "offsetListener", autoMount: true, regulate: true })
 )({
+    name: "Planner",
     props: [ "plan", "maxDepth", "sticky", "clickListener", "scrollListener", "offsetListener" ],
     data() {
         return {
@@ -16,7 +17,7 @@ export default combine(
                 css: { TreeView: "PlannerTree" },
                 category: "subs",
                 selection: [],
-                display: (item, ancestors) => <a href={ `${ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
+                display: (item, inputs) => <a href={ `${inputs.ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
                 onSelect: _ => { if(_.length > 0) { this.conf = { ...this.conf, selection: _ } } },
                 strategies: {
                     selection: ["ancestors"],

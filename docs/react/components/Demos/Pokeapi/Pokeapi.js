@@ -1,6 +1,6 @@
 import React from "react"
 
-import "./Pokeapi.css"
+import "self/common/styles/Pokeapi.css"
 
 import { TreeView } from "bosket/react"
 import { css } from "bosket/tools"
@@ -28,21 +28,23 @@ export class Pokeapi extends React.PureComponent {
 
     init() {
         this.loadUrl = "https://pokeapi.co/api/v2/pokemon"
-        this.loadPokemons(_ => this.setState({ data: _ }))
+        this.loadPokemons().then(_ => this.setState({ data: _ }))
     }
 
-    loadPokemons(cb) {
+    loadPokemons() {
         if(!this.loadUrl) return
         this.setState({ loading: true })
-        cachedFetch(this.loadUrl).then(json => {
-            this.loadUrl = json.next
-            this.setState({ loading: false })
-            return cb(json.results.map(i => ({
-                ...i,
-                display: _ => _.name,
-                __children: () => cachedFetch(i.url).then(json => [new Item(json)])
-            })))
-        }).catch(err => this.setState({ loading: false }))
+        return cachedFetch(this.loadUrl)
+            .then(json => {
+                this.loadUrl = json.next
+                this.setState({ loading: false })
+                return json.results.map(i => ({
+                    ...i,
+                    display: _ => _.name,
+                    __children: () => cachedFetch(i.url).then(json => [new Item(json)])
+                }))
+            })
+            .catch(err => this.setState({ loading: false }))
     }
 
     render = () =>
@@ -56,7 +58,7 @@ export class Pokeapi extends React.PureComponent {
                 </div>
                 <div><h5>Pokémon API crawler</h5></div>
                 <div>
-                    <button onClick={ _ => this.init() } className="PokeapiButton">Reset</button>
+                    <button onClick={ _ => this.init(_) } className="PokeapiButton">Reset</button>
                 </div>
             </div>
             <TreeView
@@ -71,7 +73,7 @@ export class Pokeapi extends React.PureComponent {
             <div
                 className={ "PokeapiLoadMore center-text " + css.classes({ loading: this.state.loading })  }
                 style={{ display: this.loadUrl ? "block" : "none" }}
-                onClick={ ev => !this.state.loading && this.loadPokemons(_ => this.setState({ data: [ ...this.state.data, ..._ ]})) }>
+                onClick={ ev => !this.state.loading && this.loadPokemons().then(_ => this.setState({ data: [ ...this.state.data, ..._ ]})) }>
                 { this.state.loading ? <i className="fa fa-spinner"></i> : <span>Show more pokémons</span> }
             </div>
         </div>

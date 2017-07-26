@@ -1,6 +1,6 @@
 import React from "react"
 
-import "./ChuckNorris.css"
+import "self/common/styles/ChuckNorris.css"
 
 import { TreeView } from "bosket/react"
 import { Category } from "./models"
@@ -46,7 +46,7 @@ export class ChuckNorris extends React.PureComponent {
                 </div>
                 <div><h5>A curated list of Chuck Norris jokes.</h5></div>
                 <div>
-                    <button onClick={ _ => this.init() } className="ChuckNorrisButton">Reset</button>
+                    <button onClick={ _ => this.init(_) } className="ChuckNorrisButton">Reset</button>
                 </div>
             </div>
             <TreeView
