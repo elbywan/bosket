@@ -2,8 +2,8 @@
 <template>
 
     <div class="ComponentDemo section">
-        <h3>{{ componentName }}</h3>
-        <p> {{ description }}</p>
+        <h3 v-if="componentName">{{ componentName }}</h3>
+        <p v-if="description"> {{ description }}</p>
         <div class="ComponentDemo flex-container" :class="{ expanded: expand }">
             <div class="ComponentDemo demo-area" :class="{ expand: expand === 'demo' }">
                 <!-- Expand button -->

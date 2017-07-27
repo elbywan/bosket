@@ -66,7 +66,7 @@ export default {
                             alt="Pokéapi logo" style={{ width: "50px", filter: "drop-shadow(0 0 2px #444)" }}/>
                     </a>
                 </div>
-                <div><h5>Pokémon API crawler</h5></div>
+                <h5>Pokémon API crawler</h5>
                 <div>
                     <button onClick={ _ => this.init(_) } class="PokeapiButton">Reset</button>
                 </div>

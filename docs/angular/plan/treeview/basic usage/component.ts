@@ -24,8 +24,8 @@ export class TreeViewBasicUsage {
 
             // Optional //
 
-            [display]=          /* [custom item display](#TreeView#Optional props#display) */
-            [displayComponent]= /* [wrap display in a custom component](#TreeView#Optional props#displayComponent) */
+            [display]=          /* [customize output for each element of the tree](#TreeView#Optional props#display) */
+            [displayComponent]= /* [wrap output inside a component of your choice](#TreeView#Optional props#displayComponent) */
             [strategies]=       /* [behaviour on selection, click or fold](#TreeView#Optional props#strategies) */
             [key]=              /* [unique identifier](#TreeView#Optional props#key) */
             [sort]=             /* [sort items](#TreeView#Optional props#sort) */

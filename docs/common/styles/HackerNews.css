@@ -30,6 +30,11 @@ button.HackerNewsButton {
     font-family: Verdana, Geneva, sans-serif;
     line-height: 2em;
 
+    & ng-component {
+        display: block;
+        width: 100%;
+    }
+
     & .fetchMore {
         cursor: pointer;
         background: transparent;
@@ -77,9 +82,11 @@ button.HackerNewsButton {
                 &.folded, &:not(.category) { border-bottom: 1px solid #d8d8d8; }
             }
 
-            & > li > span.item .commentCount {
-                font-size: 0.8em;
-                margin-right: 15px;
+            & > li > span.item {
+                & .commentCount, & > ng-component > .commentCount {
+                    font-size: 0.8em;
+                    margin-right: 15px;
+                }
             }
         }
         &:not(.depth-0) {
@@ -95,7 +102,7 @@ button.HackerNewsButton {
             & > span.item {
                 display: flex;
                 margin: 1em 0px;
-                & > .comment {
+                & > .comment, & > ng-component > .comment {
                     font-size: 0.8em;
                     & > .infobar {
                         color: #828282;
@@ -107,7 +114,9 @@ button.HackerNewsButton {
             }
 
             &.category > span.item {
-                & > .story, & > .comment { order: 2 }
+                & > .story,
+                & > .comment,
+                & > ng-component { order: 2 }
             }
             &.category:not(.folded) > span.item > .opener::after {
                 content: '[-]'

@@ -105,11 +105,11 @@ div.PokeapiLoadMore {
                 display: block;
                 margin-bottom: 5px;
 
-                & .subsection + .opener {
+                & .subsection + .opener, & item-display-component + .opener {
                     display: none;
                 }
 
-                & .subcategory {
+                & > .subcategory, & subcategory-display-component > .subcategory {
                     cursor: pointer;
                     color: #fff;
                     font-weight: 700;
@@ -119,7 +119,7 @@ div.PokeapiLoadMore {
                     padding-left: 10px;
                     transition: all .25s;
                     display: inline-block;
-                    width: calc(100% - 30px);
+                    width: calc(100% - 40px);
                     &:hover { color: #EF5350; border-color: #EF5350; }
                     & + .opener:hover { color: #EF5350; }
                 }
@@ -132,7 +132,7 @@ div.PokeapiLoadMore {
                     font-style: italic;
                     & > span.item {
                         & > .opener { display: none; }
-                        & > .subcategory {
+                        & > .subcategory, & > subcategory-display-component > .subcategory {
                             color: #aaa;
                             border: none;
                         }
@@ -141,16 +141,7 @@ div.PokeapiLoadMore {
                 &:not(.folded) > span.item > .opener::after {
                     transform: rotate(45deg);
                 }
-
-                &.async > span.item, &.folded > span.item {
-                    & > .value > i {
-                        display: none;
-                    }
-                }
                 &.loading > span.item {
-                    & > .value > i {
-                        display: none;
-                    }
                     & > .opener::after {
                         animation: spin 1s infinite;
                     }

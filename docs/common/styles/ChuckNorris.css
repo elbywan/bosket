@@ -30,10 +30,12 @@ button.ChuckNorrisButton {
     line-height: 2em;
     background: #FFF;
 
+    & ng-component {
+        order: 1;
+    }
     & .opener {
         cursor: pointer;
         margin-right: 10px;
-        order: 1;
         &::after {
             content: '+';
             display: block;
@@ -50,7 +52,7 @@ button.ChuckNorrisButton {
             margin: 0;
             & > li {
                 &.folded { border-bottom: 1px solid #d8d8d8; }
-                & > .item > .value {
+                & > .item > .value, & > .item > ng-component > .value {
                     color: #f15a24;
                 }
             }
@@ -70,13 +72,15 @@ button.ChuckNorrisButton {
             &.category {
                 & > span.item {
                     cursor: pointer;
-                    & > .value { order: 2 }
-                    & > .value > i {
-                        margin-left: 10px;
-                        color: #888;
-                        transition: color .25s;
-                        &:hover{ color: #f15a24 }
-                        &.loading{ animation: spin 1s infinite; }
+                    & > .value, & > ng-component > .value {
+                        order: 2;
+                        & > i {
+                             margin-left: 10px;
+                            color: #888;
+                            transition: color .25s;
+                            &:hover{ color: #f15a24 }
+                            &.loading{ animation: spin 1s infinite; }
+                        }
                     }
                 }
 
@@ -85,12 +89,12 @@ button.ChuckNorrisButton {
                 }
 
                 &.async > span.item, &.folded > span.item {
-                    & > .value > i {
+                    & > .value > i, & > ng-component > .value > i {
                         display: none;
                     }
                 }
                 &.loading > span.item {
-                    & > .value > i {
+                    & > .value > i, & > ng-component > .value > i {
                         display: none;
                     }
                     & > .opener::after {

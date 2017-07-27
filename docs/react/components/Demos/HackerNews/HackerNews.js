@@ -42,7 +42,7 @@ export class HackerNews extends React.PureComponent {
                             alt="HackerNews logo" style={{ width: "50px", filter: "drop-shadow(0 0 2px #444)" }}/>
                     </a>
                 </div>
-                <div><h5>The top 10 stories from HackerNews.</h5></div>
+                <h5>The top 10 stories from HackerNews.</h5>
                 <div>
                     <button onClick={ _ => this.init(_) } className="HackerNewsButton">Reset</button>
                 </div>

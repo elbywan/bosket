@@ -3,20 +3,10 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BosketModule } from "bosket/angular"
 
 
-import { AppComponent, SyntaxHighlight, ComponentDemo, TreeViewDemo, ItemDisplay } from "./components"
+import { AppComponent, SyntaxHighlight, ComponentDemo, ItemDisplay } from "./components"
 import { Planner, PlannerContent, PlannerInjector } from "./plan/Planner.component"
-import * as pc from "./plan/imports"
-
-const plannerComponents = [
-    pc.Introduction,
-    pc.Usage,
-    pc.Import,
-    pc.DataModel,
-    pc.DataModelTree,
-    pc.TreeView,
-    pc.TreeViewBasicUsage,
-    pc.TreeViewDemo
-]
+import { plannerComponents } from "./plan/exports"
+import { demoDeclarations, demoEntryComponents } from "./components/Demos/exports"
 
 @NgModule({
     imports: [ BosketModule, BrowserModule ],
@@ -24,15 +14,20 @@ const plannerComponents = [
         AppComponent,
         SyntaxHighlight,
         ComponentDemo,
-        TreeViewDemo,
         ItemDisplay,
         Planner,
         PlannerContent,
         PlannerInjector,
-        ...plannerComponents
+        ...plannerComponents,
+        ...demoDeclarations
     ],
     providers: [],
     bootstrap: [ AppComponent ],
-    entryComponents: [ ItemDisplay, PlannerInjector, ...plannerComponents ]
+    entryComponents: [
+        ItemDisplay,
+        PlannerInjector,
+        ...plannerComponents,
+        ...demoEntryComponents
+    ]
 })
 export class DemoModule {}

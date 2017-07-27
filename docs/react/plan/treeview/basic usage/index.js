@@ -29,13 +29,13 @@ export default {
 
                         // Optional //
 
-                        display={       /* [custom item display](#TreeView#Optional props#display) */ }
+                        display={       /* [customize output for each element in the tree](#TreeView#Optional props#display) */ }
                         key={           /* [unique identifier](#TreeView#Optional props#key) */ }
                         strategies={    /* [behaviour on selection, click or fold](#TreeView#Optional props#strategies) */ }
                         sort={          /* [sort items](#TreeView#Optional props#sort) */ }
                         disabled={      /* [disable certain items](#TreeView#Optional props#disabled) */ }
                         search={        /* [enables the search bar](#TreeView#Optional props#search) */ }
-                        async={         /* [how to treat asynchronous items](#TreeView#Optional props#async) */ }
+                        async={         /* [how to perform asynchronous loading](#TreeView#Optional props#async) */ }
                         dragndrop={     /* [drag'n'drop configuration](#TreeView#Optional props#dragndrop) */ }
                         noOpener={      /* [hide opener 'arrow'](#TreeView#Optional props#noOpener) */ }
                         labels={        /* [override default labels](#TreeView#Optional props#labels) */ }

@@ -10,8 +10,19 @@ var ItemInjector = (function () {
             return;
         if (changes.component) {
             this.viewContainerRef.clear();
-            var componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.component);
-            this.componentRef = this.viewContainerRef.createComponent(componentFactory);
+            try {
+                var componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.component);
+                this.componentRef = this.viewContainerRef.createComponent(componentFactory);
+            }
+            catch (e) {
+                try {
+                    var componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.component(this.item, this.inputs));
+                    this.componentRef = this.viewContainerRef.createComponent(componentFactory);
+                }
+                catch (e) {
+                    throw e;
+                }
+            }
         }
         if (this.componentRef && changes.item)
             this.componentRef.instance.item = this.item;

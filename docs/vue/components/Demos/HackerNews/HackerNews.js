@@ -49,7 +49,7 @@ export default {
                                 alt="HackerNews logo" style={{ width: "50px", filter: "drop-shadow(0 0 2px #444)" }}/>
                         </a>
                     </div>
-                    <div><h5>The top 10 stories from HackerNews.</h5></div>
+                    <h5>The top 10 stories from HackerNews.</h5>
                     <div>
                         <button onClick={ this.init } class="HackerNewsButton">Reset</button>
                     </div>

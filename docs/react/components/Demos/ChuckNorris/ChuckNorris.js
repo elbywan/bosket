@@ -44,7 +44,7 @@ export class ChuckNorris extends React.PureComponent {
                             alt="Chuck Norris api logo" style={{ width: "100px", filter: "drop-shadow(0 0 2px #444)" }}/>
                     </a>
                 </div>
-                <div><h5>A curated list of Chuck Norris jokes.</h5></div>
+                <h5>A curated list of Chuck Norris jokes.</h5>
                 <div>
                     <button onClick={ _ => this.init(_) } className="ChuckNorrisButton">Reset</button>
                 </div>

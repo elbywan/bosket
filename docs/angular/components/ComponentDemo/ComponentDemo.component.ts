@@ -7,11 +7,11 @@ import { loadFile } from "self/common/tools"
 const Prism = require("self/common/libs/prismjs/prism")
 
 @Component({
-    selector: "component-demo",
+    selector: "ComponentDemo",
     template: `
         <div class="ComponentDemo section">
-            <h3>{{ componentName }}</h3>
-            <p> {{ description }}</p>
+            <h3 *ngIf="componentName">{{ componentName }}</h3>
+            <p *ngIf="description">{{ description }}</p>
             <div class="ComponentDemo flex-container" [ngClass]="{ expanded: expand }">
                 <div class="ComponentDemo demo-area" [ngClass]="{ expand: expand === 'demo' }">
                     <!-- Expand button -->

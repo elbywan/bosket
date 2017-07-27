@@ -15,7 +15,7 @@ export class ItemDisplay implements DisplayComponent<{ label }> {
 @Component({
     selector: "treeview-demo",
     template: `
-     <component-demo componentName="TreeView" description="Powerful tree of nested objects." [files]="files" style="text-align: center">
+     <ComponentDemo componentName="TreeView" description="Powerful tree of nested objects." [files]="files" style="text-align: center">
 
         <div class="inline-row">
             <div style="text-align: left">
@@ -51,7 +51,7 @@ export class ItemDisplay implements DisplayComponent<{ label }> {
             </button>
         </div>
 
-    </component-demo>`,
+    </ComponentDemo>`,
     styles: []
 })
 export class TreeViewDemo {
