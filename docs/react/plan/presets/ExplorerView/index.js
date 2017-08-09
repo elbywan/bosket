@@ -30,7 +30,7 @@ export default {
 
                                 /* Additional properties are required for this preset : */
 
-                                name={ /* [The name of the property containing the displayed label.](#Presets#ExplorerView#Additional props#name) */ },
+                                name={ /* [The name of the property containing the label to display.](#Presets#ExplorerView#Additional props#name) */ },
                                 updateModel={ /* [Called on model change.](#Presets#ExplorerView#Additional props#updateModel)  */ }
 
                                 /* The following properties are already set by the preset :
@@ -67,8 +67,9 @@ export default {
                     editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/ExplorerView/index.js",
                     content:
                         <div className="marged">
+                            <pre className="itemType">string</pre>
                             <p>
-                                The name of the property containing the displayed label.<br/>
+                                The name of the property containing the label to display.<br/>
                                 Also used for sorting, searching and as a unique key.
                             </p>
                             { jscode`
@@ -90,6 +91,7 @@ export default {
                     editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/ExplorerView/index.js",
                     content:
                         <div className="marged">
+                            <pre className="itemType">(newModel: Object[]) => void</pre>
                             { jscode`
                                 // On model update (for instance when drag'n'dropping item(s)) :
                                 const updateModel = function(model: Object[]) {

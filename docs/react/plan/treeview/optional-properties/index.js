@@ -15,6 +15,7 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">(item: Object, inputs: Object) => any</pre>
                     <p>
                         A custom rendering function.
                     </p>
@@ -23,13 +24,13 @@ export default {
                         <em><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString" target="_blank" rel="noopener noreferrer">toString</a></em>&nbsp;
                         function.
 
-                        { jscode`
-                            display: _ => _.toString()` }
+                        { jscode`display: _ => _.toString()` }
                     </div>
                     { jscode`
-                    // The display function is run for every item in the model
-                    // Here we wrap the items in an anchor, display the label property and add an extra exclamation mark.
-                    const display =  (item, ancestors) =>
+                    // The display function is run for every item in the model.
+                    // Here we wrap the items in an anchor, display the label property
+                    // and add an extra exclamation mark.
+                    const display =  (item, inputs) =>
                         <a href={ item.link }>{ item.label } !</a>
 
                     <TreeView
@@ -43,11 +44,12 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">(item: Object) => string</pre>
                     <p>
                         A function returning a unique <em><a href="https://facebook.github.io/react/docs/lists-and-keys.html#keys" target="_blank" rel="noopener noreferrer">key</a></em> used by React to perform list updates.<br/>
                     </p>
                     <div className="emphasis">
-                         Defaults to the index of the item in the list.
+                         If not provided, defaults to the index of the item in the list.
                     </div>
                     { jscode`
                     const key = item => item.id
@@ -61,6 +63,7 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">(item1, item2) => boolean</pre>
                     <p>A custom sorting function.</p>
                     { jscode`
                         const sort = (a, b) => a.label.localeCompare(b.label)
@@ -73,7 +76,8 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
-                    <p>A disable function, which prevents selection and apply the css 'disabled'' class.</p>
+                    <pre className="itemType">(item: Object) => boolean</pre>
+                    <p>Disables elements based on the result of the provided function, which prevents selection and apply the css 'disabled'' class.</p>
                     { jscode`
                         // Disable elements having children
                         const disabled = item => !!item.children
@@ -86,7 +90,8 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
-                    <p>A search function which enables the built-in search bar.</p>
+                    <pre className="itemType">(query: string) => (item: Object) => boolean</pre>
+                    <p>If provided, enables the built-in search bar and is called when the user types a search query.</p>
                     { jscode`
                         const search = input => item => item.label.match(new RegExp(\`.*\${ input }.*\`, "gi"))
 
@@ -98,10 +103,11 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">(mixed => Promise&lt;Object[]&gt;) => Promise&lt;Object[]&gt;</pre>
                     <p>A function used to unwrap <em><a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Promise" target="_blank" rel="noopener noreferrer">Promises</a></em> in case of asynchronous children.</p>
 
                     <div className="emphasis">
-                        Defaults to :
+                        Defaults to simple method call :
                         { jscode`
                             _ => _()` }
                     </div>
@@ -126,7 +132,8 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
-                    <p>Hides the opener.</p>
+                    <pre className="itemType">boolean</pre>
+                    <p>Hides the opener, which is usually the little arrow or arrow-like icon used to unfold a node.</p>
                     { jscode`
                         <TreeView /* ... */ noOpener={ true }></TreeView>` }
                 </div>
@@ -136,6 +143,7 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">Object</pre>
                     <p>Labels override.</p>
                     <div className="emphasis">
                         Defaults to :
@@ -157,6 +165,7 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">Object</pre>
                     <p>Css classnames overrides.</p>
                     <div className="emphasis">
                         Defaults to :
@@ -189,6 +198,7 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">Object</pre>
                     <p>Creation / destruction transitions using <em><a href="https://github.com/reactjs/react-transition-group" target="_blank" rel="noopener noreferrer">react-transition-group</a></em>.</p>
 
                     { jscode`

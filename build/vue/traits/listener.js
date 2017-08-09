@@ -20,7 +20,7 @@ export var withListener = function withListener(_ref) {
     return function (Component) {
         return {
             name: "withListener-" + Component.name,
-            props: [].concat(_toConsumableArray(Component.props || [])),
+            props: Component.props ? [].concat(_toConsumableArray(Component.props)) : [],
             created: function created() {
                 if (autoMount) this.mount(this);
             },

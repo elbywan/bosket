@@ -11,7 +11,7 @@ export var withTransition = function withTransition(_ref) {
     return function (Component) {
         return {
             name: "withTransition-" + Component.name,
-            props: [].concat(_toConsumableArray(Component.props || [])),
+            props: Component.props ? [].concat(_toConsumableArray(Component.props)) : [],
             render: function render() {
                 var h = arguments[0];
 

@@ -2,7 +2,7 @@
 
 export const withLabels = defaultLabels => Component => ({
     name: `withLabels-${ Component.name }`,
-    props: [...Component.props || []],
+    props: Component.props ? [...Component.props] : [],
     render() {
         const props = {
             props: {

@@ -6,9 +6,7 @@ export default {
     editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/usage/data%20model/index.js",
     content: h =>
         <span>
-            <p>
-                <em>In order to use a component you will first need to use a specific data model to populate it.</em>
-            </p>
+            <p>To populate the component you need to provide a suitable data model.</p>
             { jscode`
                 // A model is simply an array of objects.
 
@@ -35,7 +33,7 @@ export default {
                 /* ... */
                 ]`(h) }
 
-            <p>The logic is pretty simple, and below you will find a model and its representation :</p>
+            <p>The logic is pretty simple as you can see below, a model and its tree representation as a Bosket view :</p>
 
             { jscode`
             [

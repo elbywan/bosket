@@ -13,6 +13,7 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/required-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">Object[]</pre>
                     <p>
                         An array of objects which is used to populate the component.<br/>
                         The format is detailed in the <em><a href="#Usage#Data model">data model</a></em> section.
@@ -35,9 +36,10 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/required-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">string</pre>
                     <p>
                         The name of the property containing the children.<br/>
-                        In the above example, it would be list.
+                        In the example above, it would be "list".
                     </p>
                     { jscode`<TreeView /* ... */ category="list"></TreeView>` }
                 </div>
@@ -47,6 +49,7 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/required-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">Object[]</pre>
                     <p>
                         The array which contains the selected objects from the model.
                     </p>
@@ -61,6 +64,7 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/required-properties/index.js",
             content:
                 <div className="marged">
+                    <pre className="itemType">(newSelection: Object[], item: Object, ancestors: Object[], neighbours: Object[]) => void</pre>
                     <p>
                         A callback which is fired when the selection has been updated (usually when the user clicks on an item).<br/>
                         This method should update the <em><a href="#TreeView#Required props#selection">selection array</a></em>.

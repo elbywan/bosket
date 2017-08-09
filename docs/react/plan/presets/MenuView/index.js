@@ -30,7 +30,7 @@ export default {
 
                                 /* Additional properties are required for this preset : */
 
-                                name={ /* [The name of the property containing the displayed label.](#Presets#MenuView#Additional props#name) */ }
+                                name={ /* [The name of the property containing the label to display.](#Presets#MenuView#Additional props#name) */ }
 
                                 /* The following properties are already set by the preset :
                                     - display
@@ -64,6 +64,7 @@ export default {
                     title: "name",
                     content:
                         <div className="marged">
+                            <pre className="itemType">string</pre>
                             <p>
                                 The name of the property containing the displayed label.<br/>
                                 Also used for unicity.

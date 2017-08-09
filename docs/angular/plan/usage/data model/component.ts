@@ -3,9 +3,7 @@ import { Component } from "@angular/core"
 @Component({
     template: `
          <span>
-            <p>
-                <em>In order to use a component you will first need to use a specific data model to populate it.</em>
-            </p>
+            <p>To populate the component you need to provide a suitable data model.</p>
             <syntax-highlight language="javascript">
                 // A model is simply an array of objects.
 
@@ -33,9 +31,9 @@ import { Component } from "@angular/core"
                 ]
             </syntax-highlight>
 
-            <p>The logic is pretty simple, and below you will find a model and its representation :</p>
+            <p>The logic is pretty simple as you can see below, a model and its tree representation as a Bosket view :</p>
 
-             <syntax-highlight language="javascript">
+            <syntax-highlight language="javascript">
                 [
                     {{ '{' }} label: "Click me, I'm a node with two children.", children: [
                         {{ '{' }} label: "I am a childless leaf." },

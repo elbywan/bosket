@@ -8,7 +8,7 @@ export const withListener = ({
     regulate = false
 }) => Component => ({
     name: `withListener-${ Component.name }`,
-    props: [...Component.props || []],
+    props: Component.props ? [...Component.props] : [],
     created() {
         if(autoMount) this.mount(this)
     },

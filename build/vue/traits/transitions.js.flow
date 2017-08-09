@@ -2,7 +2,7 @@
 
 export const withTransition = ({ key }) => Component => ({
     name: `withTransition-${ Component.name }`,
-    props: [...Component.props || []],
+    props: Component.props ? [...Component.props] : [],
     render() {
         const props = {
             props: { ...this.$props }

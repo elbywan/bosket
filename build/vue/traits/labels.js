@@ -8,7 +8,7 @@ export var withLabels = function withLabels(defaultLabels) {
     return function (Component) {
         return {
             name: "withLabels-" + Component.name,
-            props: [].concat(_toConsumableArray(Component.props || [])),
+            props: Component.props ? [].concat(_toConsumableArray(Component.props)) : [],
             render: function render() {
                 var h = arguments[0];
 

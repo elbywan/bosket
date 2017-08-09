@@ -258,3 +258,10 @@ ul.pick-list {
         font-family: var(--serifFont);
     }
 }
+
+pre.itemType {
+    font-family: Monaco, "Courier New", monospace;
+    padding: 5px 0px;
+    border-bottom: 1px dashed var(--darkerColor);
+    white-space: pre-wrap;
+}

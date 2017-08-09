@@ -5,7 +5,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 import { object, tree } from "../../tools";
 import { RootNode, defaults } from "../../core";
 import { TreeViewNode } from "./TreeViewNode";
-import { combine, withLabels, withListener } from "bosket/vue/traits";
+import { combine, withLabels, withListener } from "../traits";
 
 var TreeViewBase = {
     name: "TreeView",

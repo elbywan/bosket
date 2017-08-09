@@ -12,6 +12,7 @@ export default {
     editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/dragndrop/index.js",
     content:
         <div className="marged">
+            <pre className="itemType">Object (details below)</pre>
             <p>The drag'n'drop configuration object.</p>
 
             <div className="emphasis">

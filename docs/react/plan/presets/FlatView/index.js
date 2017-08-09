@@ -30,7 +30,7 @@ export default {
 
                                 /* Additional properties are required for this preset : */
 
-                                name={ /* [The name of the property containing the displayed label.](#Presets#FlatView#Additional props#name) */ },
+                                name={ /* [The name of the property containing the label to display.](#Presets#FlatView#Additional props#name) */ },
                                 limit={ /* [Maximum number of selected items.](#Presets#FlatView#Additional props#limit)  */ }
 
                                 /* The following properties are already set by the preset :
@@ -67,8 +67,9 @@ export default {
                     editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/FlatView/index.js",
                     content:
                         <div className="marged">
+                            <pre className="itemType">string</pre>
                             <p>
-                                The name of the property containing the displayed label.<br/>
+                                The name of the property containing the label to display.<br/>
                                 Also used for unicity.
                             </p>
                             { jscode`
@@ -90,6 +91,7 @@ export default {
                     editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/presets/FlatView/index.js",
                     content:
                         <div className="marged">
+                            <pre className="itemType">number</pre>
                             { jscode`
                                 // At most 3 items can be selected at the same time. Others will be disabled.
                                 // 0 = no limit
