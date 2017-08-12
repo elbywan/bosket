@@ -1,97 +1,89 @@
-import { Component, Input } from "@angular/core"
-import { DisplayComponent } from "bosket/angular"
+import { Component, Input, Output, EventEmitter } from "@angular/core"
 
+// Css style
 import "./TreeViewDemo.css"
-import initialModel from "self/common/models/TreeViewModel"
-import { dragndrop } from "bosket/core/dragndrop"
 
-@Component({
-    template:`<a>{{ item.label }}</a>`
-})
-export class ItemDisplay implements DisplayComponent<{ label }> {
-    @Input() item : { label }
-}
+// Data model
+import initialModel from "self/common/models/TreeViewModel"
+
+// Bosket imports
+import { DisplayComponent } from "bosket/angular"
+import { dragndrop } from "bosket/core/dragndrop"
 
 @Component({
     selector: "treeview-demo",
     template: `
-     <ComponentDemo componentName="TreeView" description="Powerful tree of nested objects." [files]="files" style="text-align: center">
-
-        <div class="inline-row">
-            <div style="text-align: left">
-                <TreeView
-                    [model]="model"
-                    [category]="category"
-                    [(selection)]="selection"
-                    [display]="display"
-                    [sort]="sort"
-                    [key]="key"
-                    [search]="search"
-                    [strategies]="strategies"
-                    [noOpener]="noOpener"
-                    [dragndrop]="dragndrop"
-                    [displayComponent]="displayComponent"
-                    [css]="css"
-                    (onDrop)="onDrop($event)"
-                    (onDrag)="onDrag($event)">
-                </TreeView>
-            </div>
-        </div>
-
-        <p>
-            {{
-                selection.length === 0 ? "No elements are" :
-                selection.length === 1 ? "One element is" :
-                selection.length  + " elements are"
-            }} selected.
-        </p>
-        <div class="select-blocks">
-            <button *ngFor="let item of selection" (click)="deselect(item)" >
-                    {{ item.label }}
-            </button>
-        </div>
-
-    </ComponentDemo>`,
-    styles: []
+        <!-- We render the TreeView here -->
+        <TreeView
+            [model]="model"
+            [category]="category"
+            [(selection)]="selection"
+            [sort]="sort"
+            [key]="key"
+            [search]="search"
+            [strategies]="strategies"
+            [dragndrop]="dragndrop"
+            [displayComponent]="displayComponent"
+            [css]="css"
+            (onDrop)="onDrop($event)"
+            (onDrag)="onDrag($event)">
+        </TreeView>`
 })
 export class TreeViewDemo {
 
+    // Load the drag image once on component creation
+    private dragImage: HTMLImageElement
     constructor(){
         this.dragImage = new Image()
         this.dragImage.src = "../assets/drag-image.png"
     }
 
-    files=[
-        "./components/Demos/TreeView/TreeViewDemo.component.ts",
-        "./components/Demos/TreeView/TreeViewDemo.css",
-        "../common/models/TreeViewModel.js"
-    ]
-
+    // Model mapping
     model: Object[] = initialModel
-
+    // Each object of the model has a property "items" containing the children
     category = "items"
-    display = item => item.label
-    sort = (a, b) => a.label.localeCompare(b.label)
+    // We enhance the ouput by passing a custom component which will wrap items
+    displayComponent = ItemDisplay
+    // Unique identifier used by angular to "track" changes on list updates
     key = (index, item) => item.label
+    // The sorting function
+    sort = (a, b) => a.label.localeCompare(b.label)
+    // Enables the search bar + defines the search algorithm
     search = input => i => i.label.match(new RegExp(`.*${ input }.*`, "gi"))
-    selection = []
-    deselect = item => this.selection = this.selection.filter(i => i !== item)
+    // The selected items list, which is here defined in the parent component (hence the double binding)
+    @Input()
+    get selection() { return this._selection }
+    set selection(s) { this._selection = s; this.selectionChange.emit(s) }
+    private _selection = []
+    @Output() selectionChange = new EventEmitter<any>()
+    // Strategies performed on selection & fold
+    // "modifiers" means that we single/multi select depending on which keyboard modifiers are active
+    // "opener-control" allows the opener arrow to control the folding
     strategies = {
         selection: ["modifiers"],
-        click: [],
         fold: ["opener-control"]
     }
-    noOpener = false
+    // Customize css class
+    css = { TreeView: "TreeViewDemo" }
+    // Drag'n'drop configuration
     dragndrop = {
+        // Uses the "selection" preset (drag/drop the selected item(s))
         ...dragndrop.selection(() => this.model, m => this.model = m),
+        // Restrain the drop zone to nodes with children only (and root node)
         droppable: _ => !_ || _.items && _.items instanceof Array
     }
-    css = { TreeView: "TreeViewDemo" }
-    dragImage: HTMLImageElement
     onDrop = ({target, event, inputs}) => this.dragndrop.drop(target, event, inputs)
     onDrag = ({target, event, inputs}) => {
         event.dataTransfer.setDragImage(this.dragImage, 0, 0)
         event.dataTransfer.setData("application/json", JSON.stringify(this.selection))
     }
-    displayComponent = ItemDisplay
+}
+
+// This component wraps items within an anchor tag
+@Component({
+    template:`<a>{{ item.label }}</a>`
+})
+export class ItemDisplay implements DisplayComponent<{ label }> {
+    // Injected item
+    @Input() item : { label }
 }

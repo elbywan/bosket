@@ -7,7 +7,7 @@ import dragndrop from "./dragndrop"
 import strategies from "./strategies"
 
 export default {
-    title: "Optional props",
+    title: "Optional properties",
     editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
     subs: [
         {
@@ -77,10 +77,10 @@ export default {
             content:
                 <div className="marged">
                     <pre className="itemType">(item: Object) => boolean</pre>
-                    <p>Disables elements based on the result of the provided function, which prevents selection and apply the css 'disabled'' class.</p>
+                    <p>Disables elements based on the result of the provided function, which prevents selection and apply the css 'disabled' class.</p>
                     { jscode`
                         // Disable elements having children
-                        const disabled = item => !!item.children
+                        const disabled = item => !item.children
 
                         <TreeView /* ... */ disabled={ disabled }></TreeView>` }
                 </div>
@@ -121,7 +121,7 @@ export default {
                                         resolve([{ label: "timer is provided by the async property" }]), timer))
                         }]
 
-                        const async = _ => _(1000)
+                        const async = _ => _(Math.random() * 1000 + 500)
 
                         <TreeView /* ... */ async={ async } model={ model }></TreeView>` }
                 </div>

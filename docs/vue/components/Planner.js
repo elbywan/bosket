@@ -59,7 +59,7 @@ export default combine(
             }
             loop(this.plan)
             const newHash = "#" + result.map(_ => _.title).join("#")
-            if(newHash !== window.location.hash) {
+            if(newHash !== (window.location.hash || "#")) {
                 this.conf = { ...this.conf, selection: result }
                 window.history && window.history.replaceState(
                     {},
@@ -75,12 +75,10 @@ export default combine(
             if(this.$refs.content.getBoundingClientRect().top > 0) {
                 this.$refs.sidePanel.style.position = "absolute"
                 this.$refs.sidePanel.style.top = ""
-                this.sticking = false
                 end()
             } else {
                 this.$refs.sidePanel.style.position = "fixed"
                 this.$refs.sidePanel.style.top = "0px"
-                this.sticking = true
                 end()
             }
         }

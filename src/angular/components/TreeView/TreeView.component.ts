@@ -10,10 +10,9 @@ type dragOutput<T> = { target: T, event: DragEvent, inputs: Object }
     selector: 'TreeView',
     template: `
         <div [class]="rootNode.mixCss('TreeView')">
-                <input
+                <input #searchBox
                     *ngIf="search"
                     type="search"
-                    #searchBox
                     [class]="rootNode.mixCss('search')"
                     [placeholder]="labels['search.placeholder']"
                     (input)="onSearch(searchBox.value)" />
@@ -48,8 +47,8 @@ export class TreeView<Item extends Object> {
 
     _props = {
         get: () => {
-            const keys = [ "model", "category", "selection", "display", "key", "search",
-                "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async" ]
+            const keys = [ "model", "category", "selection", "display", "search", "async", "key",
+                "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener" ]
             const props = {}
             keys.forEach(key => {
                 props[key] = this[key]
@@ -63,7 +62,7 @@ export class TreeView<Item extends Object> {
         }
     }
     _outputs = {
-        onSelect: (selection, item, ancestors, neighbours) => this.selectionChange.emit(selection),
+        onSelect:   (selection, item, ancestors, neighbours) => this.selectionChange.emit(selection),
         onDrop:     (target, event, inputs) => this.onDrop.emit({target, event, inputs}),
         onDrag:     (target, event, inputs) => this.onDrag.emit({target, event, inputs}),
         onCancel:   (target, event, inputs) => this.onCancel.emit({target, event, inputs})
@@ -100,10 +99,10 @@ export class TreeView<Item extends Object> {
     @Input() selection: Array<Item>
 
     // Recommended
-    @Input() display: (item: Item, ancestors: Item[]) => string = defaults.display
+    @Input() display: (item: Item, inputs: Object) => string = defaults.display
     @Input() displayComponent
-    @Input() key: (index: number, _: Item) => string = (idx, _) => "" + idx
-    @Input() search: (input: string) => (_: Item) => boolean
+    @Input() key: (index: number, item: Item) => string = (idx, item) => "" + idx
+    @Input() search: (query: string) => (_: Item) => boolean
     @Input() strategies: {
         selection:  Array<string | ((item: Item, selection: Array<Item>, neighbours: Array<Item>, ancestors: Array<Item>) => Array<Item>)>
         click:      Array<string | ((item: Item, event: MouseEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void)>,
@@ -139,10 +138,10 @@ export class TreeView<Item extends Object> {
         return this.sort ? this.model.sort(this.sort) : this.model
     }
 
-    onSearch = (input: string) => {
+    onSearch = (query: string) => {
         this._state.set({
-            search: input,
-            filtered: this.rootNode.filterTree(input)
+            search: query,
+            filtered: this.rootNode.filterTree(query)
         })
     }
 }

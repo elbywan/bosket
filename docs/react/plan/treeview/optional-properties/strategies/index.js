@@ -1,14 +1,21 @@
 // @flow
 
 import React from "react"
-import { jscode } from "self/react/tools"
+import { indent } from "self/common/tools"
+import { jscode, tscode } from "self/react/tools"
 
 export default {
     title: "strategies",
     editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/strategies/index.js",
     content:
         <div className="marged">
-            <pre className="itemType">{"{"} selection: string | selectionStrategy, click: string | clickStrategy, fold: string | foldStrategy }</pre>
+            <pre className="itemType">{ indent`
+                {
+                    selection: (string | selectionStrategy)[],
+                    click: (string | clickStrategy)[],
+                    fold: (string | foldStrategy)[]
+                }
+            `}</pre>
             <p>
                 <em>Strategies determine the action(s) to perform on click, fold or selection.</em><br/><br/>
                 The <em>strategies prop</em> is an object containing 3 properties (click, fold, selection). Each property value is an array of strategies.<br/>
@@ -16,9 +23,11 @@ export default {
                 In case of multiple strategies, they are chained.
             </p>
 
-            <pre className="itemType">selectionStrategy: (item: Object, selection: Object[], neighbours: Object[], ancestors: Object[]) => Object[]</pre>
-            <pre className="itemType">clickStrategy: (item: Object, event: MouseEvent, ancestors: Object[], neighbours: Object[]) => void</pre>
-            <pre className="itemType">foldStrategy: (item: Object, folded: boolean) => boolean</pre>
+            { tscode`
+                type selectionStrategy<Item extends Object> = (item: Item, selection: Array<Item>, neighbours: Array<Item>, ancestors: Array<Item>) => Array<Item>
+                type clickStrategy<Item extends Object> = (item: Item, event: MouseEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void
+                type foldStrategy<Item extends Object> = (item: Item, folded: boolean) => boolean
+            ` }
 
             <div className="emphasis">
                 Defaults to : { jscode`

@@ -66,7 +66,7 @@ export default {
                 </head>` }
 
             <p>
-                Don't forget, if you would like to change the class names they can be overrided by changing the <em><a href="#TreeView#Optional props#css">css property</a></em>.
+                Don't forget, if you would like to change the class names they can be overrided by changing the <em><a href="#TreeView#Optional properties#css">css property</a></em>.
                 <br/>
                 You should also have a look at the <em><a href="#TreeView#Css#Layout">TreeView component html layout</a></em> (presets share almost the same layout).
             </p>

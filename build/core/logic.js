@@ -25,8 +25,8 @@ var Core = function Core(inputs, outputs, state, refresh) {
     this.refresh = refresh;
 };
 
-/* -------------------------------------------------------------------------- */
-/* TREE NODE */
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// Tree node
 
 export var TreeNode = function (_Core) {
     _inherits(TreeNode, _Core);
@@ -161,8 +161,8 @@ export var TreeNode = function (_Core) {
     return TreeNode;
 }(Core);
 
-/* -------------------------------------------------------------------------- */
-/* Root node of the tree */
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// Root node of the tree
 
 export var RootNode = function (_Core2) {
     _inherits(RootNode, _Core2);

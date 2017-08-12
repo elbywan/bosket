@@ -22,12 +22,12 @@ export declare class TreeNode<Item extends Object> extends Core {
     ulCss: () => string
     liCss: (Item) => string
 
-    /* Logic */
-
     /* Promises */
+
     unwrapPromise: (Item) => Promise<any>
 
     /* Events */
+
     onClick:        ((Item) => (MouseEvent) => string) | null
     onOpener:       ((Item) => (MouseEvent) => string) | null
 
@@ -37,6 +37,7 @@ export declare class TreeNode<Item extends Object> extends Core {
         onDragOver?:     (DragEvent) => string,
         onDragEnter?:    (DragEvent) => string,
         onDragLeave?:    (DragEvent) => string,
+        onDragEnd?:      (DragEvent) => string,
         onDrop?:         (DragEvent) => string,
     }
 }
@@ -57,16 +58,16 @@ export declare class RootNode<Item extends Object> extends Core {
     /* Events */
     onKey: (KeyboardEvent) => void
     onSelect: (item: Item, ancestors: Array<Item>, neighbours: Array<Item>) => Array<Item>
-    onDragStart: (target: Item, event: DragEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void
-    onDrop: (target: Item, event: DragEvent) => void
 
     wrapDragNDrop: () => {
-        draggable: boolean,
-        droppable: boolean,
-        start?
+        draggable,
+        droppable,
+        guard?,
+        drag?
         drop?,
-        dragStart?,
-        onDrop?
+        onDrag?,
+        onDrop?,
+        onCancel?
     }
 
 }

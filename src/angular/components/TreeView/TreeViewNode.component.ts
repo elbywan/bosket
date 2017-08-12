@@ -28,7 +28,7 @@ const object = require("../../../tools/objects").object
                 (dragend)="invokeEvent('onDragEnd', item, $event)"
                 (drop)="invokeEvent('onDrop', item, $event)">
                 <span [class]="node.mixCss('item')" (click)="node.onClick(item)($event)">
-                    <ng-container *ngIf="!displayComponent">{{ display(item, this.ancestors) }}</ng-container>
+                    <ng-container *ngIf="!displayComponent">{{ display(item, _props.get()) }}</ng-container>
                     <ng-template *ngIf="displayComponent" [itemInjector]="item" [inject]="displayComponent" [inputs]="_props.get()"></ng-template>
                     <span
                         *ngIf="node.hasChildren(item) || node.isAsync(item) && !noOpener"
@@ -126,8 +126,8 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit {
     @Input() selection: Array<Item>
 
     // Recommended
-    @Input() display: (Item) => string
-    @Input() key : (_: Item) => string
+    @Input() display: (Item, Object) => string
+    @Input() key : (index: number, item: Item) => string
     @Input() strategies: {
         selection:  Array<string | ((item: Item, selection: Array<Item>, neighbours: Array<Item>, ancestors: Array<Item>) => Array<Item>)>
         click:      Array<string | ((item: Item, event: MouseEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void)>,
@@ -145,9 +145,10 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit {
     @Input() dragndrop : {
         draggable: boolean | (() => boolean),
         droppable: boolean | (() => boolean),
-        drag?:  (event: DragEvent, item: Item, inputs: Object) => void,
-        guard?: (event: DragEvent, item: Item, inputs: Object) => boolean,
-        drop?:  (event: DragEvent, item: Item, inputs: Object) => void
+        onDrag?:    (event: DragEvent, item: Item, inputs: Object) => void,
+        guard?:     (event: DragEvent, item: Item, inputs: Object) => boolean,
+        onDrop?:    (event: DragEvent, item: Item, inputs: Object) => void,
+        onCancel?:  (event: DragEvent, item: Item, inputs: Object) => void
     }
 
     // Internal

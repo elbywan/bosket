@@ -265,3 +265,19 @@ pre.itemType {
     border-bottom: 1px dashed var(--darkerColor);
     white-space: pre-wrap;
 }
+
+.tree-sample {
+    border: 2px solid var(--darkerColor);
+    margin: 5px 0px;
+
+    & li > .item {
+        cursor: pointer;
+        display: block;
+        padding: 2px 5px;
+        transition: all 0.25s;
+    }
+    & li.dragover > .item, & li[draggable="true"] > .item:hover {
+        background-color: crimson;
+        color: white;
+    }
+}

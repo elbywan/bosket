@@ -5,7 +5,7 @@ import React from "react"
 import { jscode } from "self/react/tools/tools"
 
 export default {
-    title: "Required props",
+    title: "Required properties",
     editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/required-properties/index.js",
     subs: [
         {
@@ -67,7 +67,7 @@ export default {
                     <pre className="itemType">(newSelection: Object[], item: Object, ancestors: Object[], neighbours: Object[]) => void</pre>
                     <p>
                         A callback which is fired when the selection has been updated (usually when the user clicks on an item).<br/>
-                        This method should update the <em><a href="#TreeView#Required props#selection">selection array</a></em>.
+                        This method should update the <em><a href="#TreeView#Required properties#selection">selection array</a></em>.
                     </p>
                     { jscode`
                     // Partial example of a component rendering an TreeView.

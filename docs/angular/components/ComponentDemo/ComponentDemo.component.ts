@@ -12,8 +12,8 @@ const Prism = require("self/common/libs/prismjs/prism")
         <div class="ComponentDemo section">
             <h3 *ngIf="componentName">{{ componentName }}</h3>
             <p *ngIf="description">{{ description }}</p>
-            <div class="ComponentDemo flex-container" [ngClass]="{ expanded: expand }">
-                <div class="ComponentDemo demo-area" [ngClass]="{ expand: expand === 'demo' }">
+            <div class="ComponentDemo flex-container expanded" [ngClass]="{ expanded: expand }">
+                <div class="ComponentDemo demo-area expand" [ngClass]="{ expand: expand === 'demo' }">
                     <!-- Expand button -->
                     <div class="ComponentDemo expander" (click)="expand = expand === 'demo' ? '' : 'demo'">
                         <i class="fa" [ngClass]="{

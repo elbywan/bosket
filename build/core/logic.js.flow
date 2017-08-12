@@ -23,8 +23,8 @@ class Core<Input: Object> {
 
 }
 
-/* -------------------------------------------------------------------------- */
-/* TREE NODE */
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// Tree node
 
 export type TreeNodeInput = {
     model:              Object[],
@@ -164,8 +164,8 @@ export class TreeNode extends Core {
 
 }
 
-/* -------------------------------------------------------------------------- */
-/* Root node of the tree */
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// Root node of the tree
 
 export type RootNodeInput = {
     model:              Object[],

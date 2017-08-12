@@ -1,7 +1,7 @@
 import { ChuckNorrisComponent, CategoryComponent, JokeComponent } from "./ChuckNorris"
 import { HackerNewsComponent, FetchMoreComponent, CommentComponent, TopStoryComponent } from "./HackerNews"
 import { PokeApiComponent, PokemonDisplayComponent, ItemDisplayComponent, SubcategoryDisplayComponent } from "./Pokeapi"
-import { TreeViewDemo } from "./TreeView/TreeViewDemo.component"
+import { TreeViewDemo, TreeViewSection } from "./TreeView"
 
 export const demoEntryComponents = [
     CategoryComponent,
@@ -19,5 +19,6 @@ export const demoDeclarations = [
     HackerNewsComponent,
     PokeApiComponent,
     TreeViewDemo,
+    TreeViewSection,
     ...demoEntryComponents
 ]

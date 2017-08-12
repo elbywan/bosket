@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy, ComponentFactoryResolver,
+import { Component, Input, ChangeDetectionStrategy, ComponentFactoryResolver, NgZone,
     SimpleChanges, Type, ViewChild, ElementRef, ViewContainerRef, ChangeDetectorRef } from "@angular/core"
 
 import { css } from "bosket/tools"
@@ -131,7 +131,6 @@ export class PlannerInjector implements DisplayComponent<Plan> {
     }
 }
 
-// <aside #sidePanel [class]="'Planner side-panel ' + css.classes({ opened: this.state.opened })">
 @Component({
     selector: "planner",
     template: `
@@ -189,9 +188,17 @@ export class Planner {
     private stickTick = false
     private sticking = false
 
+    constructor(private _ngZone: NgZone){}
+
+    private nextFrame(_) {
+        return this._ngZone.runOutsideAngular(() => {
+            window.requestAnimationFrame(_)
+        })
+    }
+
     private onDocumentScroll(ev) {
         if(!this.ticking) {
-            window.requestAnimationFrame(() => {
+            this.nextFrame(() => {
                 const result = []
                 const loop = (arr, acc = []) => {
                     for(let i = 0; i < arr.length; i++) {
@@ -209,7 +216,7 @@ export class Planner {
                 }
                 loop(this.plan)
                 const newHash = "#" + result.map(_ => _.title).join("#")
-                if(newHash !== window.location.hash) {
+                if(newHash !== (window.location.hash || "#")) {
                     this.selection = result
                     window.history && window.history.replaceState(
                         {},
@@ -223,14 +230,14 @@ export class Planner {
         }
         if(this.sticky && !this.stickTick) {
             if(this.content.nativeElement.getBoundingClientRect().top > 0) {
-                window.requestAnimationFrame(() => {
+                this.nextFrame(() => {
                     this.sidePanel.nativeElement.style.position = "absolute"
                     this.sidePanel.nativeElement.style.top = ""
                     this.sticking = false
                     this.stickTick = false
                 })
             } else {
-                window.requestAnimationFrame(() => {
+                this.nextFrame(() => {
                     this.sidePanel.nativeElement.style.position = "fixed"
                     this.sidePanel.nativeElement.style.top = "0px"
                     this.sticking = true

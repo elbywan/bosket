@@ -24,8 +24,8 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit 
     model: Array<Item>;
     category: string;
     selection: Array<Item>;
-    display: (Item) => string;
-    key: (_: Item) => string;
+    display: (Item, Object) => string;
+    key: (index: number, item: Item) => string;
     strategies: {
         selection: Array<string | ((item: Item, selection: Array<Item>, neighbours: Array<Item>, ancestors: Array<Item>) => Array<Item>)>;
         click: Array<string | ((item: Item, event: MouseEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void)>;
@@ -42,9 +42,10 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit 
     dragndrop: {
         draggable: boolean | (() => boolean);
         droppable: boolean | (() => boolean);
-        drag?: (event: DragEvent, item: Item, inputs: Object) => void;
+        onDrag?: (event: DragEvent, item: Item, inputs: Object) => void;
         guard?: (event: DragEvent, item: Item, inputs: Object) => boolean;
-        drop?: (event: DragEvent, item: Item, inputs: Object) => void;
+        onDrop?: (event: DragEvent, item: Item, inputs: Object) => void;
+        onCancel?: (event: DragEvent, item: Item, inputs: Object) => void;
     };
     filteredModel: Map<Item, Map<Item, any>>;
     css: {

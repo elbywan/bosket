@@ -6,8 +6,8 @@ var TreeView = (function () {
         this.cdRef = cdRef;
         this._props = {
             get: function () {
-                var keys = ["model", "category", "selection", "display", "key", "search",
-                    "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async"];
+                var keys = ["model", "category", "selection", "display", "search", "async", "key",
+                    "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener"];
                 var props = {};
                 keys.forEach(function (key) {
                     props[key] = _this[key];
@@ -41,7 +41,7 @@ var TreeView = (function () {
             }
         };
         this.display = defaults.display;
-        this.key = function (idx, _) { return "" + idx; };
+        this.key = function (idx, item) { return "" + idx; };
         this.strategies = defaults.strategies;
         this.labels = defaults.labels;
         this.css = defaults.css;
@@ -55,10 +55,10 @@ var TreeView = (function () {
         this.getChildModel = function () {
             return _this.sort ? _this.model.sort(_this.sort) : _this.model;
         };
-        this.onSearch = function (input) {
+        this.onSearch = function (query) {
             _this._state.set({
-                search: input,
-                filtered: _this.rootNode.filterTree(input)
+                search: query,
+                filtered: _this.rootNode.filterTree(query)
             });
         };
         this.rootNode = new RootNode(this._props, this._outputs, this._state, this.cdRef.detectChanges);
@@ -72,7 +72,7 @@ var TreeView = (function () {
     TreeView.decorators = [
         { type: Component, args: [{
                     selector: 'TreeView',
-                    template: "\n        <div [class]=\"rootNode.mixCss('TreeView')\">\n                <input\n                    *ngIf=\"search\"\n                    type=\"search\"\n                    #searchBox\n                    [class]=\"rootNode.mixCss('search')\"\n                    [placeholder]=\"labels['search.placeholder']\"\n                    (input)=\"onSearch(searchBox.value)\" />\n                <TreeViewNode\n                    [model]=\"getChildModel()\"\n                    [filteredModel]=\"_state.filtered\"\n                    [category]=\"category\"\n                    [selection]=\"selection\"\n                    [onSelect]=\"rootNode.onSelect\"\n                    [strategies]=\"strategies\"\n                    [display]=\"display\"\n                    [css]=\"css\"\n                    [dragndrop]=\"dragndrop\"\n                    [async]=\"async\"\n                    [ancestors]=\"[]\"\n                    [sort]=\"sort\"\n                    [disabled]=\"disabled\"\n                    [searched]=\"_state.search.trim()\"\n                    [displayComponent]=\"displayComponent\">\n                </TreeViewNode>\n            </div>\n    ",
+                    template: "\n        <div [class]=\"rootNode.mixCss('TreeView')\">\n                <input #searchBox\n                    *ngIf=\"search\"\n                    type=\"search\"\n                    [class]=\"rootNode.mixCss('search')\"\n                    [placeholder]=\"labels['search.placeholder']\"\n                    (input)=\"onSearch(searchBox.value)\" />\n                <TreeViewNode\n                    [model]=\"getChildModel()\"\n                    [filteredModel]=\"_state.filtered\"\n                    [category]=\"category\"\n                    [selection]=\"selection\"\n                    [onSelect]=\"rootNode.onSelect\"\n                    [strategies]=\"strategies\"\n                    [display]=\"display\"\n                    [css]=\"css\"\n                    [dragndrop]=\"dragndrop\"\n                    [async]=\"async\"\n                    [ancestors]=\"[]\"\n                    [sort]=\"sort\"\n                    [disabled]=\"disabled\"\n                    [searched]=\"_state.search.trim()\"\n                    [displayComponent]=\"displayComponent\">\n                </TreeViewNode>\n            </div>\n    ",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     host: {
                         '(document:keyup)': 'rootNode.onKey($event)',

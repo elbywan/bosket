@@ -25,10 +25,10 @@ export declare class TreeView<Item extends Object> {
     model: Array<Item>;
     category: string;
     selection: Array<Item>;
-    display: (item: Item, ancestors: Item[]) => string;
+    display: (item: Item, inputs: Object) => string;
     displayComponent: any;
-    key: (index: number, _: Item) => string;
-    search: (input: string) => (_: Item) => boolean;
+    key: (index: number, item: Item) => string;
+    search: (query: string) => (_: Item) => boolean;
     strategies: {
         selection: Array<string | ((item: Item, selection: Array<Item>, neighbours: Array<Item>, ancestors: Array<Item>) => Array<Item>)>;
         click: Array<string | ((item: Item, event: MouseEvent, ancestors: Array<Item>, neighbours: Array<Item>) => void)>;
@@ -68,5 +68,5 @@ export declare class TreeView<Item extends Object> {
     }>;
     rootNode: RootNode<Item>;
     getChildModel: () => Item[];
-    onSearch: (input: string) => void;
+    onSearch: (query: string) => void;
 }

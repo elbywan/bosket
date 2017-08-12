@@ -10,7 +10,7 @@ export default {
             <p>
                 <em>Once the component is included and rendered in your code, you will need to style it using css, otherwise it will look like a good old fashioned html unordered list.</em><br/>
                 <br/>
-                You will find an <em><a href="#TreeView#Css#Empty stylesheet">empty stylesheet</a></em> with classes and elements already filled for each components in their own documentation section.<br/>
+                Have a look at <em><a href="#TreeView#Css#Empty stylesheet">the empty stylesheet</a></em> with classes and elements already filled.<br/>
                 Also, feel free to peek at the included <em><a href="#TreeView#Demo">demos css source code</a></em>.
             </p>
 
@@ -22,9 +22,9 @@ export default {
                 </head>` }
 
             <p>
-                Don't forget, if you would like to change the class names they can be overrided by changing the <em><a href="#TreeView#Optional props#css">css property</a></em>.
+                The css class names can be overrided by changing the <em><a href="#TreeView#Optional properties#css">css property</a></em>.
                 <br/>
-                You should also have a look at the <em><a href="#TreeView#Css#Layout">TreeView component html layout</a></em> (presets share almost the same layout).
+                You should also check the full <em><a href="#TreeView#Css#Layout">html layout</a></em> for the TreeView component (presets share almost the same layout with a different base class).
             </p>
         </div>
 }

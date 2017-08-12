@@ -1,3 +1,6 @@
 export * from "./component"
 export * from "./basic usage"
 export * from "./demo"
+export * from "./required-properties"
+export * from "./optional-properties"
+export * from "./css"
