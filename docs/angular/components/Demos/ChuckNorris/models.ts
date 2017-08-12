@@ -35,11 +35,10 @@ export class Category {
     value: String
     children: (() => Promise<Joke[]>) | Joke[]
 
-    loadJoke() {
-        return fetch(`https://api.chucknorris.io/jokes/random?category=${ this.value }`)
+    loadJoke = () =>
+        fetch(`https://api.chucknorris.io/jokes/random?category=${ this.value }`)
             .then(response => response.json())
             .then(joke => [new Joke(joke)])
-    }
 
     display() { return CategoryComponent }
 }
