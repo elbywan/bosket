@@ -12,6 +12,9 @@ export class Item {
         }
 
         const properties = []
+        if(this.__image) {
+            properties.push(<img src={ this.__image } alt="sprite" />)
+        }
         for(const prop in this) {
             if(!prop.startsWith("__") && !(typeof this[prop] === "object") && !(typeof this[prop] === "function")) {
                 properties.push(<div className="property-row" key={ prop }><label>{ prop }</label><span>{ "" + this[prop] }</span></div>)
@@ -31,6 +34,9 @@ export const cachedFetch = (url, ...args) => {
             return json
         })
 }
+
+const imageMatch = (name, val) =>
+    name === "sprites" && val.front_default
 
 const formatData = d => {
     const data = { ...d }
@@ -57,6 +63,8 @@ const formatData = d => {
                 display: () => <span className="subcategory">{ "" + prop }</span>,
                 __children: [new Item(data[prop])]
             })
+            const img = imageMatch(prop, data[prop])
+            if(img) data.__image = img
             delete data[prop]
         }
     }

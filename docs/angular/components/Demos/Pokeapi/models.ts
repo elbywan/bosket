@@ -5,6 +5,7 @@ import { DisplayComponent } from "bosket/angular"
     selector: "item-display-component",
     template: `
         <div [ngClass]="{ subsection : item.__subsection }">
+            <img *ngIf="item.__image" [src]="item.__image" alt="sprite" />
             <div class="property-row" *ngFor="let prop of filterProps(properties)">
                 <label>{{ prop }}</label><span>{{ "" + item[prop] }}</span>
             </div>
@@ -42,6 +43,7 @@ export class Item {
     name?: string
     url?: string
     __subsection?: boolean
+    __image?: string
 
     display() { return this.name && this.url ? SubcategoryDisplayComponent : ItemDisplayComponent }
 }
@@ -56,6 +58,9 @@ export const cachedFetch = (url, ...args) => {
             return json
         })
 }
+
+const imageMatch = (name, val) =>
+    name === "sprites" && val.front_default
 
 const formatData = d => {
     const data = { ...d }
@@ -83,6 +88,8 @@ const formatData = d => {
                 display: () => SubcategoryDisplayComponent,
                 __children: [new Item(data[prop])]
             })
+            const img = imageMatch(prop, data[prop])
+            if(img) data.__image = img
             delete data[prop]
         }
     }

@@ -80,7 +80,8 @@
             refresh() {
                 const file = this.tab
                 loadFile(file, code => {
-                    this.$refs.tabContents.innerHTML = Prism.highlight(code, Prism.languages[this.getPrismExtension(file)])
+                    if(this.$refs.tabContents)
+                        this.$refs.tabContents.innerHTML = Prism.highlight(code, Prism.languages[this.getPrismExtension(file)])
                 })
             }
         },
