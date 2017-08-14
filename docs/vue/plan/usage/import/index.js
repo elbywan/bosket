@@ -22,8 +22,8 @@ export default {
                     components: {
                         "tree-view": TreeView
                     },
-                    // And use it inside the template :
-                    template: '<tree-view v-bind="props"/></tree-view>'
+                    // And use it inside a template :
+                    template: '<tree-view props="..."></tree-view>'
                 }
             `(h) }
         </span>
