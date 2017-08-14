@@ -154,7 +154,7 @@ export default [
                         content: components.TreeViewLayout
                     },
                     {
-                        title: "Empty Stylesheet",
+                        title: "Empty stylesheet",
                         editLink: "https://github.com/elbywan/bosket/edit/master/docs/angular/plan/treeview/css/empty-stylesheet/component.ts",
                         content: components.TreeViewEmptyStylesheet
                     }

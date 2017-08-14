@@ -1,10 +1,10 @@
-<h1 align="center">
+<p align="center">
 	<a href="https://elbywan.github.io/bosket/">
 		<img alt="bosket-logo" src="https://elbywan.github.io/bosket/assets/bosket-logo.png" width="100px"/>
 	</a>
 	<br>
-    Bosket
-</h1>
+</p>
+<h1 align="center">Bosket</h1>
 <h4 align="center">
 	Bosket is collection of tree views for front-end frameworks.
 </h4>
