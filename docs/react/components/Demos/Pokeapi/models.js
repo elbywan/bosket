@@ -13,7 +13,7 @@ export class Item {
 
         const properties = []
         if(this.__image) {
-            properties.push(<img src={ this.__image } alt="sprite" />)
+            properties.push(<img src={ this.__image } alt="sprite" key="__pokesprite"/>)
         }
         for(const prop in this) {
             if(!prop.startsWith("__") && !(typeof this[prop] === "object") && !(typeof this[prop] === "function")) {
@@ -59,10 +59,19 @@ const formatData = d => {
             delete data[prop]
         } else if(data[prop] && typeof data[prop] === "object") {
             if(!data.__children) data.__children = []
-            data.__children.push({
-                display: () => <span className="subcategory">{ "" + prop }</span>,
-                __children: [new Item(data[prop])]
-            })
+            if(data[prop].url && data[prop].name) {
+                const name = data[prop].name
+                const url = data[prop].url
+                data.__children.push({
+                    display: () => <span className="subcategory">{ "" + name }</span>,
+                    __children: () => cachedFetch(url).then(json => [new Item(json)])
+                })
+            } else {
+                data.__children.push({
+                    display: () => <span className="subcategory">{ "" + prop }</span>,
+                    __children: [new Item(data[prop])]
+                })
+            }
             const img = imageMatch(prop, data[prop])
             if(img) data.__image = img
             delete data[prop]

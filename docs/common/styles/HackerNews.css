@@ -81,6 +81,7 @@ button.HackerNewsButton {
             & > li {
                 &.folded, &:not(.category) { border-bottom: 1px solid #d8d8d8; }
             }
+            & > li:last-of-type { border-bottom: none; }
 
             & > li > span.item {
                 & .commentCount, & > ng-component > .commentCount {

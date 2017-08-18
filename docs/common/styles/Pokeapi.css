@@ -25,8 +25,7 @@ button.PokeapiButton {
 div.PokeapiLoadMore {
     background: #EF5350;
     color: white;
-    border: 5px solid #263238;
-    padding: 5px 0px;
+    padding: 8px 0px;
     cursor: pointer;
     transition: all 0.25s;
     &:hover, &.loading {
@@ -43,9 +42,20 @@ div.PokeapiLoadMore {
 }
 
 .PokeapiDemo {
-    border-top: 20px solid #EF5350;
     background: #263238;
     color: #EEE;
+
+    & input[type="search"] {
+        width: 100%;
+        color: white;
+        background: #EF5350;
+        border-bottom: 2px solid #263238;
+        padding: 10px;
+
+        transition: border 0.3s;
+        &::placeholder { color: #DDD; }
+        &:focus { border-color: white; }
+    }
 
     & .opener {
         cursor: pointer;
@@ -58,6 +68,7 @@ div.PokeapiLoadMore {
 
     & .property-row {
         display: table-row;
+        text-align: left;
         & > label {
             display: table-cell;
             font-weight: bold;
@@ -78,26 +89,63 @@ div.PokeapiLoadMore {
 
         &.depth-0 {
             padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            text-align: center;
+            justify-content: space-around;
 
-            & > li > span.item {
-                cursor: pointer;
-                color: #fff;
-                font-weight: bold;
-                font-size: 1.1em;
-                margin: 10px 0;
-                padding-bottom: 5px;
-                border-bottom: 1px solid #EF5350;
+            & > li {
+                flex: 0 0 20%;
+                margin: 5px;
+                /*transition: all 1s;*/
+                min-width: 150px;
 
-                transition: all 0.25s;
-                &:hover { color: #EF5350; }
+                &.category:not(.folded):not(.loading) {
+                    flex-basis: 100%;
+                    box-shadow: 0px 0px 2px #000;
+                    border-top-right-radius: 5px;
+                    border-top-left-radius: 5px;
+                    & > span.item {
+                        box-shadow: none;
+                        border-bottom-left-radius: 0px;
+                        border-bottom-right-radius: 0px;
+                    }
+                }
+                & > span.item {
+                    cursor: pointer;
+                    color: #fff;
+                    font-weight: bold;
+                    padding: 8px 0;
+                    margin: 0;
+                    text-align: center;
+                    background: rgba(0, 0, 0, 0.2);
+                    border-radius: 5px;
+
+                    transition: all 0.25s;
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.4);
+                        color: #EF5350;
+                        box-shadow: 0 0 2px #000;
+                    }
+                    & > .opener {
+                        float: right;
+                        margin: 0;
+                        margin-right: 10px;
+                    }
+                }
             }
         }
 
-        &.depth-1 li > span.item:first-child {
-            margin-top: 20px;
-        }
-        &.depth-1 li > span.item:last-child {
-            margin-bottom: 20px;
+        &.depth-1 {
+            padding-right: 1em;
+            padding-top: 10px;
+            padding-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            & ul li > span.item {
+                &:first-child { margin-top: 20px; }
+                &:last-child { margin-bottom: 20px; }
+            }
         }
 
         & li {
@@ -113,6 +161,7 @@ div.PokeapiLoadMore {
                     cursor: pointer;
                     color: #fff;
                     font-weight: 700;
+                    text-align: left;
                     padding-bottom: 5px;
                     /*border-bottom: 1px solid #ef5350;*/
                     border-left: 3px solid #eee;

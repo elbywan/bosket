@@ -17,7 +17,8 @@ export class Pokeapi extends React.PureComponent {
     conf = {
         strategies: { fold: [ "opener-control", _ => !_.__subsection ], click: ["toggle-fold"]},
         css: { TreeView: "PokeapiDemo" },
-        disabled: _ => _.__children && _.__children instanceof Array && _.__children.length === 0
+        disabled: _ => _.__children && _.__children instanceof Array && _.__children.length === 0,
+        search: input => item => item.name && item.name.startsWith(input)
     }
 
     loadUrl = "https://pokeapi.co/api/v2/pokemon"
@@ -48,7 +49,7 @@ export class Pokeapi extends React.PureComponent {
     }
 
     render = () =>
-        <div>
+        <div style={{ position: "relative "}}>
             <div style={{ textAlign: "center", margin: "10px" }}>
                 <div>
                     <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">
@@ -69,7 +70,8 @@ export class Pokeapi extends React.PureComponent {
                 onSelect={ _ => this.setState({ selection: _ }) }
                 strategies={ this.conf.strategies }
                 css={ this.conf.css }
-                disabled={ this.conf.disabled }/>
+                disabled={ this.conf.disabled }
+                search={ this.conf.search }/>
             <div
                 className={ "PokeapiLoadMore center-text " + css.classes({ loading: this.state.loading })  }
                 style={{ display: this.loadUrl ? "block" : "none" }}

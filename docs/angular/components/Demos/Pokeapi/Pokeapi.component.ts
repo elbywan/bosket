@@ -7,7 +7,7 @@ import { Item, cachedFetch } from "./models"
 @Component({
     selector: "PokeApiComponent",
     template: `
-        <div>
+        <div style="position: relative;">
             <div style="text-align: center; margin: 10px;">
                 <div>
                     <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">
@@ -27,7 +27,8 @@ import { Item, cachedFetch } from "./models"
                 [displayComponent]="displayComponent"
                 [strategies]="conf.strategies"
                 [css]="conf.css"
-                [disabled]="conf.disabled"></TreeView>
+                [disabled]="conf.disabled"
+                [search]="conf.search"></TreeView>
             <div
                 class="PokeapiLoadMore center-text"
                 [ngClass]="{ loading: loading }"
@@ -45,7 +46,8 @@ export class PokeApiComponent {
     conf = {
         strategies: { fold: [ "opener-control", _ => !_.__subsection ], click: ["toggle-fold"]},
         css: { TreeView: "PokeapiDemo" },
-        disabled: _ => _.__children && _.__children instanceof Array && _.__children.length === 0
+        disabled: _ => _.__children && _.__children instanceof Array && _.__children.length === 0,
+        search: input => item => item.name && item.name.startsWith(input)
     }
     data = []
     selection = []

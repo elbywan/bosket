@@ -19,24 +19,24 @@ export default {
 
                     // Required //
 
-                    :model=         /* [the data model](#TreeView#Required props#model) */
-                    :category=      /* [name of the property containing the children](#TreeView#Required props#category) */
-                    :selection=     /* [the selection array, updated when the user (de)selects items](#TreeView#Required props#selection) */
-                    :onSelect=      /* [selection callback](#TreeView#Required props#onSelect) */
+                    :model=         /* [the data model](#TreeView#Required properties#model) */
+                    :category=      /* [name of the property containing the children](#TreeView#Required properties#category) */
+                    :selection=     /* [the selection array, updated when the user (de)selects items](#TreeView#Required properties#selection) */
+                    :onSelect=      /* [selection callback](#TreeView#Required properties#onSelect) */
 
                     // Optional //
 
-                    :display=       /* [customize output for each element in the tree](#TreeView#Optional props#display) */
-                    :strategies=    /* [behaviour on selection, click or fold](#TreeView#Optional props#strategies) */
-                    :sort=          /* [sort items](#TreeView#Optional props#sort) */
-                    :disabled=      /* [disable certain items](#TreeView#Optional props#disabled) */
-                    :search=        /* [enables the search bar](#TreeView#Optional props#search) */
-                    :async=         /* [how to perform asynchronous loading](#TreeView#Optional props#async) */
-                    :dragndrop=     /* [drag'n'drop configuration](#TreeView#Optional props#dragndrop) */
-                    :noOpener=      /* [hide opener 'arrow'](#TreeView#Optional props#noOpener) */
-                    :labels=        /* [override default labels](#TreeView#Optional props#labels) */
-                    :css=           /* [override default css classes](#TreeView#Optional props#css) */
-                    :transition=    /* [transitions on create / destroy](#TreeView#Optional props#transition) */
+                    :display=       /* [customize output for each element in the tree](#TreeView#Optional properties#display) */
+                    :strategies=    /* [behaviour on selection, click or fold](#TreeView#Optional properties#strategies) */
+                    :sort=          /* [sort items](#TreeView#Optional properties#sort) */
+                    :disabled=      /* [disable certain items](#TreeView#Optional properties#disabled) */
+                    :search=        /* [enables the search bar](#TreeView#Optional properties#search) */
+                    :async=         /* [how to perform asynchronous loading](#TreeView#Optional properties#async) */
+                    :dragndrop=     /* [drag'n'drop configuration](#TreeView#Optional properties#dragndrop) */
+                    :noOpener=      /* [hide opener 'arrow'](#TreeView#Optional properties#noOpener) */
+                    :labels=        /* [override default labels](#TreeView#Optional properties#labels) */
+                    :css=           /* [override default css classes](#TreeView#Optional properties#css) */
+                    :transition=    /* [transitions on create / destroy](#TreeView#Optional properties#transition) */
 
                     ></TreeView>
             `(h) }

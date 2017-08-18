@@ -56,10 +56,19 @@ const formatData = d => {
             delete data[prop]
         } else if(data[prop] && typeof data[prop] === "object") {
             if(!data.__children) data.__children = []
-            data.__children.push({
-                display: h => <span class="subcategory">{ "" + prop }</span>,
-                __children: [new Item(data[prop])]
-            })
+            if(data[prop].url && data[prop].name) {
+                const name = data[prop].name
+                const url = data[prop].url
+                data.__children.push({
+                    display: h => <span class="subcategory">{ "" + name }</span>,
+                    __children: () => cachedFetch(url).then(json => [new Item(json)])
+                })
+            } else {
+                data.__children.push({
+                    display: h => <span class="subcategory">{ "" + prop }</span>,
+                    __children: [new Item(data[prop])]
+                })
+            }
             const img = imageMatch(prop, data[prop])
             if(img) data.__image = img
             delete data[prop]

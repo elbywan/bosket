@@ -7,7 +7,8 @@ import { Item, cachedFetch } from "./models"
 const conf = {
     strategies: { fold: [ "opener-control", _ => !_.__subsection ], click: ["toggle-fold"]},
     css: { TreeView: "PokeapiDemo" },
-    disabled: _ => _.__children && _.__children instanceof Array && _.__children.length === 0
+    disabled: _ => _.__children && _.__children instanceof Array && _.__children.length === 0,
+    search: input => item => item.name && item.name.startsWith(input)
 }
 
 export default {
@@ -54,7 +55,8 @@ export default {
                 onSelect: this.onSelect,
                 strategies: conf.strategies,
                 css: conf.css,
-                disabled: conf.disabled
+                disabled: conf.disabled,
+                search: conf.search
             }
         }
 
