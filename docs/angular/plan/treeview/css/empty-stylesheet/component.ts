@@ -9,7 +9,7 @@ import emptyStylesheet from "./empty_stylesheet"
                     download="bosket_empty_stylesheet.css"
                     class="anchor-button basic-button">
                     <i class="fa fa-download"></i>
-                    Download
+                    Download stylesheet
                 </a>
             </h4>
 

@@ -15,7 +15,7 @@ export type TreeViewProps = {
     selection:          Object[],
     onSelect:           (newSelection: Object[], item: Object, ancestors: Object[], neighbours: Object[]) => void,
     display?:           (item: Object, inputs: Object) => any,
-    id?:                Object => Key,
+    unique?:            Object => Key,
     strategies?:        Object,
     sort?:              (Object, Object) => number,
     disabled?:          Object => boolean,

@@ -19,10 +19,6 @@ export default combine(
                 selection: [],
                 display: (item, inputs) => <a href={ `${inputs.ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
                 onSelect: _ => { if(_.length > 0) { this.conf = { ...this.conf, selection: _ } } },
-                strategies: {
-                    selection: ["ancestors"],
-                    fold: [ "max-depth", "not-selected", "no-child-selection" ]
-                },
                 noOpener: true
             },
             opened: false
@@ -84,8 +80,20 @@ export default combine(
         }
     },
     render(h) {
+        const maxDepth = this.maxDepth
         const props = {
-            props: { ...this.conf }
+            props: {
+                ...this.conf,
+                strategies: {
+                    selection: ["ancestors"],
+                    fold: [
+                        function() {
+                            return this.inputs.get().depth >= maxDepth
+                        },
+                        "not-selected",
+                        "no-child-selection" ]
+                }
+            }
         }
 
         return !this.plan ? null :
@@ -98,7 +106,7 @@ export default combine(
                 </div>
                 <aside ref="sidePanel" class={ "Planner side-panel " + css.classes({ opened: this.opened }) }>
                     <div><h1>Table of contents</h1></div>
-                    <TreeView model={ this.plan } maxDepth={ this.maxDepth } { ...props }></TreeView>
+                    <TreeView model={ this.plan } { ...props }></TreeView>
                 </aside>
                 <div ref="content" class="Planner content">
                     { processContent(h, this.plan) }
@@ -136,7 +144,7 @@ const processContent = (h, plan, parentPrefix = "", depth = 1) => {
     return plan.map(item =>
         <div class={ depth === 1 ? "chapter" : "planner-section" } key={ item.title }>
             { headerLevel(h, depth, parentPrefix, item) }
-            { item.content(h) }
+            { item.content && item.content(h) }
             { item.subs && item.subs.length > 0 ?
                 processContent(h, item.subs, parentPrefix ? `${parentPrefix}#${item.title}` : item.title, depth + 1) :
                 null

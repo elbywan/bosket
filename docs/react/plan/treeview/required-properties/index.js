@@ -51,7 +51,7 @@ export default {
                 <div className="marged">
                     <pre className="itemType">Object[]</pre>
                     <p>
-                        The array which contains the selected objects from the model.
+                        An array which references the selected objects.
                     </p>
                     { jscode`
                     const selection = []
@@ -66,11 +66,11 @@ export default {
                 <div className="marged">
                     <pre className="itemType">(newSelection: Object[], item: Object, ancestors: Object[], neighbours: Object[]) => void</pre>
                     <p>
-                        A callback which is fired when the selection has been updated (usually when the user clicks on an item).<br/>
+                        A callback which is fired when the selection is updated (for instance when the user clicks on an item).<br/>
                         This method should update the <em><a href="#TreeView#Required properties#selection">selection array</a></em>.
                     </p>
                     { jscode`
-                    // Partial example of a component rendering an TreeView.
+                    // Partial example of a component rendering a TreeView.
 
                     class Example extends React.Component {
                         state = {

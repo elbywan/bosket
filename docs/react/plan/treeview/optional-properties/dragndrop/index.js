@@ -31,7 +31,7 @@ export default {
             { jscode`
                 /* [Drag'n'drop presets](https://github.com/elbywan/bosket/blob/master/src/core/dragndrop.js) */
 
-                dragndrop = {
+                const dragndrop = {
                     // To drag or drop on specific items
                     // you can use a function : (item) => true/false
                     draggable: true,

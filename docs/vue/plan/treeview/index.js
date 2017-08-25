@@ -1,15 +1,17 @@
 import basicUsage from "./basic usage"
 import demo from "./demo"
+import required from "./required-properties"
+import optional from "./optional-properties"
+import css from "./css"
 
 export default {
     title: "TreeView",
     editLink: "https://github.com/elbywan/bosket/edit/master/docs/vue/plan/treeview/index.js",
-    content: h =>
-        <div>
-            <p>TreeView is the generic, most configurable component.</p>
-        </div>,
     subs: [
         basicUsage,
-        demo
+        demo,
+        required,
+        optional,
+        css
     ]
 }

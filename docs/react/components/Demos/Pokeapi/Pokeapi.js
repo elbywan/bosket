@@ -6,7 +6,7 @@ import { TreeView } from "bosket/react"
 import { css } from "bosket/tools"
 import { Item, cachedFetch } from "./models"
 
-export class Pokeapi extends React.PureComponent<*, *> {
+export class Pokeapi extends React.PureComponent {
 
     state = {
         data: [],

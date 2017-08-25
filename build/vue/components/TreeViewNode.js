@@ -32,7 +32,7 @@ var TreeViewNodeBase = {
         this._unmounted = true;
     },
 
-    props: ["model", "category", "selection", "onSelect", "display", "strategies", "dragndrop", "labels", "sort", "disabled", "noOpener", "async", "css", "folded", "transition", "loading", "depth", "ancestors", "searched", "onSelect", "filteredModel"],
+    props: ["model", "category", "selection", "onSelect", "display", "strategies", "dragndrop", "labels", "sort", "disabled", "noOpener", "async", "css", "folded", "transition", "unique", "loading", "depth", "ancestors", "searched", "onSelect", "filteredModel"],
     data: function data() {
         return {
             unfolded: []
@@ -134,6 +134,7 @@ var TreeViewNodeBase = {
             }, object(rawLiData).nestPrefix("on", function (_) {
                 return _.toLowerCase();
             }));
+            if (_this3.$props.unique) liData.key = _this3.$props.unique(item, idx);
             return h(
                 "li",
                 liData,

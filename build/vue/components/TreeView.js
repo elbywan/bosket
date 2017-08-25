@@ -9,7 +9,7 @@ import { combine, withLabels, withListener } from "../traits";
 
 var TreeViewBase = {
     name: "TreeView",
-    props: ["model", "category", "selection", "onSelect", "display", "search", "transition", "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async", "keyUpListener", "keyDownListener"],
+    props: ["model", "category", "selection", "onSelect", "display", "search", "transition", "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async", "keyUpListener", "keyDownListener", "unique"],
     data: function data() {
         return {
             searchInput: "",

@@ -84,9 +84,9 @@ div.chapter {
         }
     }
     & div.emphasis {
-        background: rgba(255,241,118,.3);
-        border-left: 3px solid rgba(255, 241, 118, .7);
-        border-bottom: 3px solid rgba(255, 241, 118, .7);
+        background: rgba(255, 240, 100, .4);
+        border-left: 3px solid rgba(255, 200, 100, .7);
+        border-bottom: 3px solid rgba(255, 200, 100, .7);
         padding: 10px;
         color: #222;
         & > pre { margin-bottom: 0px !important; }

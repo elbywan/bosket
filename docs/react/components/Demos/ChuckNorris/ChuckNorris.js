@@ -5,7 +5,7 @@ import "self/common/styles/ChuckNorris.css"
 import { TreeView } from "bosket/react"
 import { Category } from "./models"
 
-export class ChuckNorris extends React.PureComponent<*, *> {
+export class ChuckNorris extends React.PureComponent {
 
     state = {
         categories: [],

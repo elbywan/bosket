@@ -166,7 +166,7 @@ export default {
             content:
                 <div className="marged">
                     <pre className="itemType">Object</pre>
-                    <p>Css classnames overrides.</p>
+                    <p>Css classnames override.</p>
                     <div className="emphasis">
                         Defaults to :
                         { jscode`
@@ -202,7 +202,7 @@ export default {
                     <p>Creation / destruction transitions using <em><a href="https://github.com/reactjs/react-transition-group" target="_blank" rel="noopener noreferrer">react-transition-group</a></em>.</p>
 
                     { jscode`
-                        transition: {
+                        const transition = {
                             transitionName: "TransitionClassName",
                             transitionEnterTimeout: 300,
                             transitionLeaveTimeout: 300

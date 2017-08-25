@@ -2,7 +2,7 @@
 
 import React from "react"
 
-import { csscode, htmlcode } from "../../../tools/tools"
+import { csscode, htmlcode } from "self/react/tools"
 
 import htmlLayout from "./html_layout"
 import emptyStylesheet from "./empty_stylesheet"

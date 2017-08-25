@@ -21,7 +21,7 @@ type TreeViewNodeProps = {
     async?:             (mixed => Promise<Object[]>) => Promise<Object[]>,
     depth?:             number,
     sort?:              (Object, Object) => number,
-    id?:                Object => Key,
+    unique?:            Object => Key,
     display?:           (Object, Object) => any,
     filteredModel:      null | Map<Object, *>,
     folded:             boolean,
@@ -126,7 +126,7 @@ class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeV
             null
 
     render() {
-        const { model, folded, display, id, loading } = this.props
+        const { model, folded, display, unique, loading } = this.props
 
         if(folded)
             return null
@@ -140,7 +140,7 @@ class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeV
         const list = model
             .filter(m => !this.props.searched || this.props.filteredModel && this.props.filteredModel.has(m))
             .map((item, idx) =>
-                <li key={ id && id(item) || idx }
+                <li key={ unique && unique(item) || idx }
                     className={ this.node.liCss(item) }
                     { ...this.node.getDragEvents(item) }>
                     <span className={ this.node.mixCss("item") } onClick={ this.node.onClick(item) }>
