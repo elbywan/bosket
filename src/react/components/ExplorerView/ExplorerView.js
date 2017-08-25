@@ -13,7 +13,7 @@ type ExplorerViewProps = {
     name: string
 } & TreeViewProps
 
-export class ExplorerView extends React.PureComponent<void, ExplorerViewProps, void> {
+export class ExplorerView extends React.PureComponent<ExplorerViewProps> {
 
     conf : Object = {
         css: {
@@ -23,7 +23,7 @@ export class ExplorerView extends React.PureComponent<void, ExplorerViewProps, v
         sort: (a: Object, b: Object) =>
             !a[this.props.category] === !b[this.props.category] ? a[this.props.name].localeCompare(b[this.props.name]) :
                 a[this.props.category] ? -1 : 1,
-        key: (item: Object) : string => item[this.props.name],
+        key: (item: Object) => item[this.props.name],
         search: (input: string) => (i: Object) => string(i[this.props.name]).contains(input),
         strategies: {
             selection: ["modifiers"],

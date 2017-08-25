@@ -12,7 +12,7 @@ type FlatViewProps = {
     limit?: number
 } & TreeViewProps
 
-export class FlatView extends React.PureComponent<void, FlatViewProps, void> {
+export class FlatView extends React.PureComponent<FlatViewProps> {
 
     conf : Object = {
         css: {

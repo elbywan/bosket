@@ -21,27 +21,25 @@ import { Component, Input } from "@angular/core"
         </ul>
     </div>
     <ComponentDemo componentName="Nested items" [files]="files">
-
-        <div class="inline-row" style="text-align: center">
-            <div style="text-align: left">
+        <div style="text-align: center">
+            <div style="display: inline-block; text-align: left">
                 <treeview-demo [(selection)]="selection"></treeview-demo>
             </div>
+
+            <p>
+                {{
+                    selection.length === 0 ? "No elements are" :
+                    selection.length === 1 ? "One element is" :
+                    selection.length  + " elements are"
+                }} selected.
+            </p>
+
+            <div class="select-blocks">
+                <button *ngFor="let item of selection" (click)="deselect(item)" >
+                    {{ item.label }}
+                </button>
+            </div>
         </div>
-
-        <p>
-            {{
-                selection.length === 0 ? "No elements are" :
-                selection.length === 1 ? "One element is" :
-                selection.length  + " elements are"
-            }} selected.
-        </p>
-
-        <div class="select-blocks">
-            <button *ngFor="let item of selection" (click)="deselect(item)" >
-                {{ item.label }}
-            </button>
-        </div>
-
     </ComponentDemo>`
 })
 export class TreeViewSection {

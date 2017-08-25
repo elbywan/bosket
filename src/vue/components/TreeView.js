@@ -7,7 +7,7 @@ const TreeViewBase = {
     name: "TreeView",
     props: [ "model", "category", "selection", "onSelect", "display", "search", "transition",
         "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async",
-        "keyUpListener", "keyDownListener" ],
+        "keyUpListener", "keyDownListener", "unique" ],
     data: () => ({
         searchInput: "",
         filtered: null

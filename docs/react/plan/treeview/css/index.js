@@ -39,7 +39,7 @@ export default {
                         <a download="bosket_empty_stylesheet.css"
                             className="anchor-button basic-button"
                             ref={ ref => {
-                                ref.href = window.URL.createObjectURL(new Blob([emptyStylesheet], { type: "text/css" }))
+                                if(ref) ref.href = window.URL.createObjectURL(new Blob([emptyStylesheet], { type: "text/css" }))
                             }}>
                             <i className="fa fa-download"></i>
                             Download

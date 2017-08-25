@@ -13,7 +13,7 @@ import "./TreeViewDemo.css"
 // Model
 import model from "self/common/models/TreeViewModel"
 
-export class TreeViewDemo extends React.PureComponent {
+export class TreeViewDemo extends React.PureComponent<*, *> {
 
     // Load the drag image once on component creation.
     constructor(props: { selection: Object[], update: Object[] => void }) {
@@ -49,7 +49,7 @@ export class TreeViewDemo extends React.PureComponent {
         // Alphabetical sort
         sort: (a: Object, b: Object) => a.label.localeCompare(b.label),
         // Unique identifier using an item name
-        key: (item: Object) => item.label,
+        unique: (item: Object) => item.label,
         // Search bar algorithm
         search: (input: string) => (i: Object) => string(i.label).contains(input),
         strategies: {

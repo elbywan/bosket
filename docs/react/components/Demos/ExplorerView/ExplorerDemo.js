@@ -14,7 +14,7 @@ import model from "self/common/models/ExplorerViewModel"
 // Helpers for this demo
 import helpers from "./helpers"
 
-export class ExplorerDemo extends React.PureComponent {
+export class ExplorerDemo extends React.PureComponent<*, *> {
 
     // We render the explorer preset of the tree.
     render = () =>

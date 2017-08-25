@@ -98,7 +98,7 @@ div.PokeapiLoadMore {
             & > li {
                 flex: 0 0 20%;
                 margin: 5px;
-                /*transition: all 1s;*/
+                transition: all 0.5s;
                 min-width: 150px;
 
                 &.category:not(.folded):not(.loading) {

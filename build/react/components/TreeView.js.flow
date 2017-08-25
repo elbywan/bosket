@@ -6,6 +6,7 @@ import { tree } from "../../tools/trees"
 import { RootNode, defaults } from "../../core"
 import { TreeViewNode } from "./TreeViewNode"
 
+import type { Key } from "react"
 import type { RootNodeInput } from "../../core/logic"
 
 export type TreeViewProps = {
@@ -14,7 +15,7 @@ export type TreeViewProps = {
     selection:          Object[],
     onSelect:           (newSelection: Object[], item: Object, ancestors: Object[], neighbours: Object[]) => void,
     display?:           (item: Object, inputs: Object) => any,
-    key?:               Object => string,
+    id?:                Object => Key,
     strategies?:        Object,
     sort?:              (Object, Object) => number,
     disabled?:          Object => boolean,
@@ -33,7 +34,7 @@ type TreeViewState = {
     filtered: null | Map<Object, *>
 }
 
-class TreeViewBaseClass extends React.PureComponent<void, TreeViewProps, TreeViewState> {
+class TreeViewBaseClass extends React.PureComponent<TreeViewProps, TreeViewState> {
 
     /* Data & lifecycle */
     rootNode: RootNode

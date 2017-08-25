@@ -24,7 +24,7 @@ const conf = function() {
     }
 }
 
-export const DragTree = class extends React.PureComponent {
+export const DragTree = class extends React.PureComponent<*, *> {
     state = { selection: [], model: dragModel }
     render = () =>
         <div className="tree-sample">
@@ -35,7 +35,7 @@ export const DragTree = class extends React.PureComponent {
             </TreeView>
         </div>
 }
-export const DropTree = class extends React.PureComponent {
+export const DropTree = class extends React.PureComponent<*, *> {
     state = { selection: [], model: [{ name: "< Drop items here >", children: []}]}
     render = () =>
         <div className="tree-sample">

@@ -9,7 +9,7 @@ import { MenuView } from "bosket/react"
 // Data model
 import model from "self/common/models/MenuViewModel"
 
-export class MenuViewDemo extends React.PureComponent {
+export class MenuViewDemo extends React.PureComponent<*, *> {
 
     // Rendering
     render = () => <MenuView selection={ this.props.selection } { ...this.state }></MenuView>

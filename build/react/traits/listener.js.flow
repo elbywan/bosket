@@ -14,7 +14,7 @@ export const withListener : trait<> = ({
     autoMount = false,
     regulate = false
 } = {}) => Component =>
-    class extends React.Component<void, { listener: Object }, void> {
+    class extends React.Component<{ listener: Object }, void> {
 
         static displayName = displayName("withListener", Component)
         listening = false

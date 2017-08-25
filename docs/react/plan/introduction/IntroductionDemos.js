@@ -7,7 +7,7 @@ import { ChuckNorris } from "self/react/components/Demos/ChuckNorris/ChuckNorris
 import { HackerNews } from "self/react/components/Demos/HackerNews/HackerNews"
 import { Pokeapi } from "self/react/components/Demos/Pokeapi/Pokeapi"
 
-export class IntroductionDemos extends React.PureComponent {
+export class IntroductionDemos extends React.PureComponent<*, *> {
 
     demos = [ "HackerNews", "Pokeapi", "ChuckNorris" ]
     state = { demo: this.demos[0] }

@@ -16,12 +16,12 @@ const getPrismExtension = file => {
     return extension
 }
 
-export class ComponentDemo extends React.PureComponent {
+export class ComponentDemo extends React.PureComponent<*, *> {
 
     state : { tab: string, expand: null | string} = { tab: "", expand: "demo" }
     props: {
         componentName: string,
-        description: string | React.Element<any>,
+        description: string | React$Element<any>,
         files: string[],
         children?: React$Element<any>
     }
@@ -57,8 +57,8 @@ export class ComponentDemo extends React.PureComponent {
 
     renderFile = (file: string) =>
         <pre key={ file } className={"language-" + getPrismExtension(file)}>
-            <code ref={ ref => ref && loadFile(file, code => {
-                ref.innerHTML = Prism.highlight(code, Prism.languages[getPrismExtension(file)])
+            <code ref={ ref => loadFile(file, code => {
+                if(ref) ref.innerHTML = Prism.highlight(code, Prism.languages[getPrismExtension(file)])
             })} className={"language-" + getPrismExtension(file)}></code>
         </pre>
 

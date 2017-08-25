@@ -5,6 +5,7 @@ import { array } from "../../tools"
 import { withTransition } from "../traits"
 import { TreeNode } from "../../core"
 
+import type { Key } from "react"
 import type { TreeNodeInput } from "../../core/logic"
 
 type TreeViewNodeProps = {
@@ -20,20 +21,20 @@ type TreeViewNodeProps = {
     async?:             (mixed => Promise<Object[]>) => Promise<Object[]>,
     depth?:             number,
     sort?:              (Object, Object) => number,
-    key?:               Object => string,
+    unique?:            Object => Key,
     display?:           (Object, Object) => any,
     filteredModel:      null | Map<Object, *>,
     folded:             boolean,
     loading?:           boolean,
     noOpener?:          boolean,
-    opener?:            Class<React.Component<*, *, *>>,
+    opener?:            Class<React.Component<*, *>>,
     searched:           boolean
 }
 
 type TreeViewNodeState = { unfolded: Object[] }
 
 /* Node component */
-class TreeViewNodeBaseClass extends React.PureComponent<*, TreeViewNodeProps, TreeViewNodeState> {
+class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeViewNodeState> {
 
     /* Lifecycle & data */
     node: TreeNode
@@ -119,13 +120,13 @@ class TreeViewNodeBaseClass extends React.PureComponent<*, TreeViewNodeProps, Tr
         )
     }
 
-    renderOpener = (item: Object, OpenerComponent: Class<React.Component<*, *, *>> | string) =>
+    renderOpener = (item: Object, OpenerComponent: Class<React.Component<*, *>> | string) =>
         (this.node.hasChildren(item) || this.node.isAsync(item)) && !this.props.noOpener ?
             <OpenerComponent className={ this.node.mixCss("opener") } onClick={ this.node.onOpener(item) }></OpenerComponent> :
             null
 
     render() {
-        const { model, folded, display, key, loading } = this.props
+        const { model, folded, display, unique, loading } = this.props
 
         if(folded)
             return null
@@ -139,7 +140,7 @@ class TreeViewNodeBaseClass extends React.PureComponent<*, TreeViewNodeProps, Tr
         const list = model
             .filter(m => !this.props.searched || this.props.filteredModel && this.props.filteredModel.has(m))
             .map((item, idx) =>
-                <li key={ key && key(item) || idx }
+                <li key={ unique && unique(item) || idx }
                     className={ this.node.liCss(item) }
                     { ...this.node.getDragEvents(item) }>
                     <span className={ this.node.mixCss("item") } onClick={ this.node.onClick(item) }>

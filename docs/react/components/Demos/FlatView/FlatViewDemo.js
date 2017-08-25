@@ -11,7 +11,7 @@ import { array, string } from "bosket/tools"
 // Data model
 import model from "self/common/models/FlatViewModel"
 
-export class FlatViewDemo extends React.PureComponent {
+export class FlatViewDemo extends React.PureComponent<*, *> {
 
     // Rendering
     render = () => <FlatView

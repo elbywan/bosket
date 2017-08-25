@@ -27,6 +27,7 @@ export default {
                     // Optional //
 
                     :display=       /* [customize output for each element in the tree](#TreeView#Optional properties#display) */
+                    :unique=        /* [unique identifier](#TreeView#Optional properties#unique) */
                     :strategies=    /* [behaviour on selection, click or fold](#TreeView#Optional properties#strategies) */
                     :sort=          /* [sort items](#TreeView#Optional properties#sort) */
                     :disabled=      /* [disable certain items](#TreeView#Optional properties#disabled) */

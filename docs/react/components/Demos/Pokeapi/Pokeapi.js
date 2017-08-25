@@ -6,7 +6,7 @@ import { TreeView } from "bosket/react"
 import { css } from "bosket/tools"
 import { Item, cachedFetch } from "./models"
 
-export class Pokeapi extends React.PureComponent {
+export class Pokeapi extends React.PureComponent<*, *> {
 
     state = {
         data: [],
@@ -49,7 +49,7 @@ export class Pokeapi extends React.PureComponent {
     }
 
     render = () =>
-        <div style={{ position: "relative "}}>
+        <div style={{ position: "relative " }}>
             <div style={{ textAlign: "center", margin: "10px" }}>
                 <div>
                     <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">

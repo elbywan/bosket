@@ -43,7 +43,7 @@ const processContent = (plan, parentPrefix = "", depth = 1) => {
 
 type Plan = {
     title: string,
-    content?: React.Element<>,
+    content?: React$Element<*>,
     subs?: Plan[]
 }
 
@@ -51,7 +51,7 @@ export const Planner = combine(
     withListener({ propName: "clickListener", autoMount: true }),
     withListener({ eventType: "scroll", propName: "scrollListener", autoMount: true, regulate: true }),
     withListener({ eventType: "scroll", propName: "offsetListener", autoMount: true, regulate: true })
-)(class extends React.PureComponent {
+)(class extends React.PureComponent<*, *> {
 
     props : {
         plan: Plan[],
@@ -140,17 +140,17 @@ export const Planner = combine(
     render() {
         return !this.props.plan ? null :
             <div className="Planner">
-                <div className="Planner opener" ref={ ref => this.opener = ref }>
+                <div className="Planner opener" ref={ ref => { if(ref) this.opener = ref } }>
                     <i className={ "fa " + css.classes({
                         "fa-bars": !this.state.opened,
                         "fa-times": this.state.opened
                     })}></i>
                 </div>
-                <aside ref={ ref => this.sidePanel = ref } className={ "Planner side-panel " + css.classes({ opened: this.state.opened }) }>
+                <aside ref={ ref => { if(ref) this.sidePanel = ref } } className={ "Planner side-panel " + css.classes({ opened: this.state.opened }) }>
                     <div><h1>Table of contents</h1></div>
                     <TreeView model={ this.props.plan } maxDepth={ this.props.maxDepth } { ...this.state }></TreeView>
                 </aside>
-                <div ref={ ref => this.content = ref } className="Planner content">
+                <div ref={ ref => { if(ref) this.content = ref } } className="Planner content">
                     { processContent(this.props.plan) }
                 </div>
             </div>

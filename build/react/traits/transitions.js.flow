@@ -9,7 +9,7 @@ import type { trait } from "./helpers"
 import { displayName } from "./helpers"
 
 export const withTransition : trait<> = ({ key }) => Component =>
-    class extends React.PureComponent {
+    class extends React.PureComponent<*, *> {
         static displayName = displayName("withTransition", Component)
         render = () =>
             this.props.transition ?

@@ -10,7 +10,7 @@ import { css } from "bosket/tools"
 // Demo component
 import { FlatViewDemo } from "./FlatViewDemo"
 
-export class FlatViewWindow extends React.PureComponent {
+export class FlatViewWindow extends React.PureComponent<*, *> {
 
     state = {
         selection: [],

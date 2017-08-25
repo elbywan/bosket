@@ -12,7 +12,7 @@ import { ExplorerDemo } from "./ExplorerDemo"
 // Helpers
 import helpers from "./helpers"
 
-export class ExplorerViewWindow extends React.PureComponent {
+export class ExplorerViewWindow extends React.PureComponent<*, *> {
 
     state = {
         lastFolder: null,

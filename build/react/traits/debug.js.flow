@@ -10,7 +10,7 @@ import { displayName } from "./helpers"
 import { printer } from "../../tools/printer"
 
 export const withDebugUpdates : trait<> = ({ print = (_:string) : string => _ } = {}) => Component =>
-    class extends React.Component {
+    class extends React.Component<*, *> {
         static displayName = displayName("withDebugUpdates", Component)
         monkeyPatch = (ref: Object) => {
             if(!ref) return true

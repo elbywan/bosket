@@ -10,7 +10,7 @@ import { css } from "bosket/tools/css"
 // Bosket MenuView demo
 import { MenuViewDemo } from "./MenuViewDemo"
 
-export class MenuViewWindow extends React.PureComponent {
+export class MenuViewWindow extends React.PureComponent<*, *> {
 
     state = {
         selection: [],

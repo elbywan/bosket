@@ -1,4 +1,3 @@
-import ComponentDemo from "../../ComponentDemo.vue"
 import { TreeView } from "bosket/vue"
 import { string } from "bosket/tools"
 import { dragndrop } from "bosket/core/dragndrop"
@@ -9,6 +8,11 @@ import model from "self/common/models/TreeViewModel"
 import "./TreeViewDemo.css"
 
 export default {
+    props: ["selection"],
+    model: {
+        prop: "selection",
+        event: "selectionChange"
+    },
     created() {
         this.dragImage = new Image()
         this.dragImage.src = "../assets/drag-image.png"
@@ -24,23 +28,19 @@ export default {
             model: model,
             // Property of the model containing children
             category: "items",
-            // On selection, update the selection array
-            selection: [],
+            // On selection, update the parent selection array
             onSelect: items => {
-                this.selection = items
+                this.$emit("selectionChange", items)
             },
             // Custom display (with an anchor tag)
             display: item => <a>{ item.label }</a>,
             // Alphabetical sort
             sort: (a, b) => a.label.localeCompare(b.label),
-            // Unique identifier using an item name
-            key: item => item.label,
             // Search bu regex
             search: input => i => string(i.label).contains(input),
             strategies: {
                 // Use keyboard modifiers
                 selection: ["modifiers"],
-                click: [],
                 // Use the opener to control element folding
                 fold: ["opener-control"]
             },
@@ -64,33 +64,12 @@ export default {
             }
         }
     },
-    methods: {
-        deselect(item) { this.selection = this.selection.filter(i => i !== item) }
-    },
     render() {
         const props = {
             props: { ...this.$data }
         }
         return (
-            <ComponentDemo componentName="TreeView" description="Powerful tree of nested objects." files={ this.files }>
-                <div class="inline-row">
-                    <TreeView { ...props }/>
-                </div>
-
-                <p>
-                    {
-                        this.selection.length === 0 ? "No elements are" :
-                            this.selection.length === 1 ? "One element is" :
-                                this.selection.length  + " elements are"
-                    } selected.
-                </p>
-                <div class="select-blocks">
-                    { this.selection.map(item =>
-                        <button onClick={evt => this.deselect(item)}>{ item.label }</button>
-                    )}
-                </div>
-
-            </ComponentDemo>
+            <TreeView selection={ this.selection } { ...props }/>
         )
     }
 }

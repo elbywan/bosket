@@ -40,11 +40,11 @@ export default {
                 </div>
         },
         {
-            title: "key",
+            title: "unique",
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
-                    <pre className="itemType">(item: Object) => string</pre>
+                    <pre className="itemType">(item: Object) => string | number</pre>
                     <p>
                         A function returning a unique <em><a href="https://facebook.github.io/react/docs/lists-and-keys.html#keys" target="_blank" rel="noopener noreferrer">key</a></em> used by React to perform list updates.<br/>
                     </p>
@@ -52,9 +52,9 @@ export default {
                          If not provided, defaults to the index of the item in the list.
                     </div>
                     { jscode`
-                    const key = item => item.id
+                    const unique = item => item.id
 
-                    <TreeView /* ... */ key={ key }></TreeView>` }
+                    <TreeView /* ... */ unique={ unique }></TreeView>` }
                 </div>
         },
         strategies,

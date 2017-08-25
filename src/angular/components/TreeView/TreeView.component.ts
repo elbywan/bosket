@@ -24,14 +24,15 @@ type dragOutput<T> = { target: T, event: DragEvent, inputs: Object }
                     [onSelect]="rootNode.onSelect"
                     [strategies]="strategies"
                     [display]="display"
+                    [displayComponent]="displayComponent"
+                    [key]="key"
                     [css]="css"
                     [dragndrop]="dragndrop"
                     [async]="async"
                     [ancestors]="[]"
                     [sort]="sort"
                     [disabled]="disabled"
-                    [searched]="_state.search.trim()"
-                    [displayComponent]="displayComponent">
+                    [searched]="_state.search.trim()">
                 </TreeViewNode>
             </div>
     `,

@@ -4,7 +4,7 @@ import React from "react"
 
 import { TreeViewDemo } from "./TreeViewDemo"
 
-export class TreeViewWindow extends React.PureComponent {
+export class TreeViewWindow extends React.PureComponent<*, *> {
 
     state = {
         selection: []

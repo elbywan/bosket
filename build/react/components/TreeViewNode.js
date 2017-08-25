@@ -119,7 +119,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
                 model = _props.model,
                 folded = _props.folded,
                 display = _props.display,
-                key = _props.key,
+                id = _props.id,
                 loading = _props.loading;
 
 
@@ -136,7 +136,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
             }).map(function (item, idx) {
                 return React.createElement(
                     "li",
-                    _extends({ key: key && key(item) || idx,
+                    _extends({ key: id && id(item) || idx,
                         className: _this3.node.liCss(item)
                     }, _this3.node.getDragEvents(item)),
                     React.createElement(

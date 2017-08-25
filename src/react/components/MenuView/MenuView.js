@@ -11,7 +11,7 @@ type MenuViewProps = {
     name: string
 } & TreeViewProps
 
-export class MenuView extends React.PureComponent<void, MenuViewProps, void> {
+export class MenuView extends React.PureComponent<MenuViewProps> {
 
     conf : Object = {
         css: {

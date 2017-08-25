@@ -24,7 +24,7 @@ const TreeViewNodeBase = {
     },
     props: [ "model", "category", "selection", "onSelect", "display", "strategies", "dragndrop",
         "labels", "sort", "disabled", "noOpener", "async", "css", "folded", "transition",
-        "loading", "depth", "ancestors", "searched", "onSelect", "filteredModel" ],
+        "unique", "loading", "depth", "ancestors", "searched", "onSelect", "filteredModel" ],
     data: () => ({
         unfolded: []
     }),
@@ -106,6 +106,8 @@ const TreeViewNodeBase = {
                     attrs: { draggable: rawLiData.draggable },
                     ...object(rawLiData).nestPrefix("on", _ => _.toLowerCase())
                 }
+                if(this.$props.unique)
+                    liData.key = this.$props.unique(item, idx)
                 return <li { ...liData }>
                     <span class={ this.node.mixCss("item") } onClick={ this.node.onClick(item) }>
                         { display && display(item, this.$props) }
