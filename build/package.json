@@ -2,9 +2,20 @@
     "name": "bosket",
     "version": "0.0.4",
     "description": "A collection of tree views.",
+    "keywords": [
+        "tree",
+        "view",
+        "tree-view",
+        "treeview",
+        "data structure",
+        "angular",
+        "react",
+        "vuejs"
+    ],
     "main": "index.js",
     "author": "Julien Elbaz",
     "license": "MIT",
+    "homepage": "https://elbywan.github.io/bosket/",
     "repository": {
         "type": "git",
         "url": "https://github.com/elbywan/bosket"

@@ -1,17 +1,15 @@
-<h1 align="center">
-	<a href="https://elbywan.github.io/bosket/">
+<p align="center">
+    <a href="https://elbywan.github.io/bosket/">
 		<img alt="bosket-logo" src="https://elbywan.github.io/bosket/assets/bosket-logo.png" width="100px"/>
 	</a>
-	<br>
-    Bosket
-</h1>
-<h4 align="center">
-	Bosket is collection of tree views for front-end frameworks.
-</h4>
+</p>
 
-<div align="center">
-    <h4><a href="https://elbywan.github.io/bosket/">Work in progress...</a></h4>
-    <a href="https://elbywan.github.io/bosket/">
-        <img alt="bosket-itemtree-gif" src="https://elbywan.github.io/bosket/assets/bosket-itemtree.gif" width="300px"/>
-    </a>
-</div>
+----
+
+##### A collection of tree views for front-end frameworks.
+
+----
+
+This is the npm repository for the Bosket library.
+
+For more details, please check out the [Bosket website](https://elbywan.github.io/bosket/) or the [source code repository](https://github.com/elbywan/bosket).
