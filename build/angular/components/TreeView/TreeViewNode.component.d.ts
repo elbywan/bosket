@@ -5,19 +5,8 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit 
     private _cdRef;
     private _componentFactoryResolver;
     private keys;
-    _props: {
-        memoized: any;
-        update: () => void;
-        get: () => any;
-        set: (s: {}) => void;
-    };
-    _state: {
-        unfolded: any[];
-        get: () => {
-            unfolded: any[];
-        };
-        set: (s: {}) => void;
-    };
+    private _props;
+    private _state;
     constructor(_cdRef: ChangeDetectorRef, _componentFactoryResolver: ComponentFactoryResolver);
     ngOnChanges(): void;
     ngAfterViewInit(): void;

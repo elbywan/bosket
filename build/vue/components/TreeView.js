@@ -34,18 +34,20 @@ var TreeViewBase = {
     created: function created() {
         var _this = this;
 
-        var root = new RootNode({
+        var _props = {
             get: function get() {
                 return _extends({}, defaults, object(_this.$props).filter(function (prop) {
                     return !!prop;
                 }));
             }
-        }, {
+        };
+        var _outputs = {
             onSelect: this.$props.onSelect,
             onDrag: this.$props.dragndrop && this.$props.dragndrop.drag,
             onDrop: this.$props.dragndrop && this.$props.dragndrop.drop,
             onCancel: this.$props.dragndrop && this.$props.dragndrop.cancel
-        }, {
+        };
+        var _state = {
             get: function get() {
                 return _extends({}, _this.$data);
             },
@@ -54,9 +56,8 @@ var TreeViewBase = {
                     if (key in _this.$data) _this.$data[key] = s[key];
                 }
             }
-        }, this.$forceUpdate);
-        this.modifierCb = root.onKey;
-        this.rootNode = root;
+        };
+        this.rootNode = new RootNode(_props, _outputs, _state, this.$forceUpdate);
     },
     mounted: function mounted() {
         this.keyUpListener.subscribe(this.rootNode.onKey);

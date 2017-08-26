@@ -5,11 +5,14 @@
 	<br>
     Bosket<br>
 	<a href="https://travis-ci.org/elbywan/bosket"><img alt="travis-badge" src="https://travis-ci.org/elbywan/bosket.svg?branch=master"></a>
-	<a href="https://www.npmjs.com/package/bosket"><img alt="npm-badge" src="https://badge.fury.io/js/bosket.svg" height="18"></a>
+	<a href="https://www.npmjs.com/package/bosket"><img alt="npm-badge" src="https://badge.fury.io/js/bosket.svg" height="20"></a>
 </h1>
 <h4 align="center">
 	Bosket is collection of tree views for front-end frameworks.
 </h4>
+<h5 align="center">
+	A versatile, powerful and simple way to display nested data.
+</h5>
 
 # Purpose
 

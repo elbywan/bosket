@@ -4,6 +4,27 @@ var TreeView = (function () {
     function TreeView(cdRef) {
         var _this = this;
         this.cdRef = cdRef;
+        this.display = defaults.display;
+        this.key = function (idx, item) { return "" + idx; };
+        this.strategies = defaults.strategies;
+        this.labels = defaults.labels;
+        this.css = defaults.css;
+        this.noOpener = defaults.noOpener;
+        this.async = defaults.async;
+        this._dragndrop = defaults.dragndrop;
+        this.selectionChange = new EventEmitter();
+        this.onDrop = new EventEmitter();
+        this.onDrag = new EventEmitter();
+        this.onCancel = new EventEmitter();
+        this.getChildModel = function () {
+            return _this.sort ? _this.model.sort(_this.sort) : _this.model;
+        };
+        this.onSearch = function (query) {
+            _this._state.set({
+                search: query,
+                filtered: _this.rootNode.filterTree(query)
+            });
+        };
         this._props = {
             get: function () {
                 var keys = ["model", "category", "selection", "display", "search", "async", "key",
@@ -39,27 +60,6 @@ var TreeView = (function () {
                         _this._state[key] = s[key];
                 }
             }
-        };
-        this.display = defaults.display;
-        this.key = function (idx, item) { return "" + idx; };
-        this.strategies = defaults.strategies;
-        this.labels = defaults.labels;
-        this.css = defaults.css;
-        this.noOpener = defaults.noOpener;
-        this.async = defaults.async;
-        this._dragndrop = defaults.dragndrop;
-        this.selectionChange = new EventEmitter();
-        this.onDrop = new EventEmitter();
-        this.onDrag = new EventEmitter();
-        this.onCancel = new EventEmitter();
-        this.getChildModel = function () {
-            return _this.sort ? _this.model.sort(_this.sort) : _this.model;
-        };
-        this.onSearch = function (query) {
-            _this._state.set({
-                search: query,
-                filtered: _this.rootNode.filterTree(query)
-            });
         };
         this.rootNode = new RootNode(this._props, this._outputs, this._state, this.cdRef.detectChanges);
     }

@@ -30,31 +30,32 @@ const TreeViewBase = {
         wrapDragNDrop() { return this.rootNode.wrapDragNDrop() }
     },
     created() {
-        const root = new RootNode(
-            {
-                get: () => ({
-                    ...defaults,
-                    ...object(this.$props).filter(prop => !!prop)
-                })
-            },
-            {
-                onSelect:   this.$props.onSelect,
-                onDrag:     this.$props.dragndrop && this.$props.dragndrop.drag,
-                onDrop:     this.$props.dragndrop && this.$props.dragndrop.drop,
-                onCancel:   this.$props.dragndrop && this.$props.dragndrop.cancel
-            },
-            {
-                get: () => ({ ...this.$data }),
-                set: s => {
-                    for(const key in s) {
-                        if(key in this.$data) this.$data[key] = s[key]
-                    }
+        const _props = {
+            get: () => ({
+                ...defaults,
+                ...object(this.$props).filter(prop => !!prop)
+            })
+        }
+        const _outputs = {
+            onSelect:   this.$props.onSelect,
+            onDrag:     this.$props.dragndrop && this.$props.dragndrop.drag,
+            onDrop:     this.$props.dragndrop && this.$props.dragndrop.drop,
+            onCancel:   this.$props.dragndrop && this.$props.dragndrop.cancel
+        }
+        const _state = {
+            get: () => ({ ...this.$data }),
+            set: s => {
+                for(const key in s) {
+                    if(key in this.$data) this.$data[key] = s[key]
                 }
-            },
+            }
+        }
+        this.rootNode = new RootNode(
+            _props,
+            _outputs,
+            _state,
             this.$forceUpdate
         )
-        this.modifierCb = root.onKey
-        this.rootNode = root
     },
     mounted() {
         this.keyUpListener.subscribe(this.rootNode.onKey)

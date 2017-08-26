@@ -12,33 +12,6 @@ var TreeViewNode = (function () {
             "labels", "sort", "disabled", "noOpener", "async", "css", "folded",
             "loading", "depth", "ancestors", "searched", "onSelect"
         ];
-        this._props = {
-            memoized: null,
-            update: function () {
-                var props = {};
-                _this.keys.forEach(function (key) {
-                    props[key] = _this[key];
-                });
-                _this._props.memoized = props;
-            },
-            get: function () { return _this._props.memoized || _this._props.update() && _this._props.memoized; },
-            set: function (s) {
-                for (var key in s) {
-                    if (key in _this)
-                        _this[key] = s[key];
-                }
-            }
-        };
-        this._state = {
-            unfolded: [],
-            get: function () { return ({ unfolded: _this._state.unfolded }); },
-            set: function (s) {
-                for (var key in s) {
-                    if (key in _this._state)
-                        _this._state[key] = s[key];
-                }
-            }
-        };
         this.noOpener = false;
         this.depth = 0;
         this.getModel = function () {
@@ -71,6 +44,33 @@ var TreeViewNode = (function () {
             if (condition === void 0) { condition = true; }
             var fun = _this.node.getDragEvents(item, condition)[name];
             fun ? fun(event) : null;
+        };
+        this._props = {
+            memoized: null,
+            update: function () {
+                var props = {};
+                _this.keys.forEach(function (key) {
+                    props[key] = _this[key];
+                });
+                _this._props.memoized = props;
+            },
+            get: function () { return _this._props.memoized || _this._props.update() && _this._props.memoized; },
+            set: function (s) {
+                for (var key in s) {
+                    if (key in _this)
+                        _this[key] = s[key];
+                }
+            }
+        };
+        this._state = {
+            unfolded: [],
+            get: function () { return ({ unfolded: _this._state.unfolded }); },
+            set: function (s) {
+                for (var key in s) {
+                    if (key in _this._state)
+                        _this._state[key] = s[key];
+                }
+            }
         };
         this.node = new TreeNode(this._props, null, this._state, function () { return _this._cdRef.detectChanges(); });
     }

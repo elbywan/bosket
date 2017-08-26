@@ -46,27 +46,31 @@ class TreeViewBaseClass extends React.PureComponent<TreeViewProps, TreeViewState
         search: "",
         filtered: null
     }
-    _state = {
-        get: () => this.state,
-        set: (s: Object) => this.setState(s)
-    }
-    _props = {
-        get: () : RootNodeInput => ({ ...defaults, ...this.props })
-    }
 
     constructor(props: TreeViewProps) {
         super(props)
+
+        const _props = {
+            get: () : RootNodeInput => ({ ...defaults, ...this.props })
+        }
+        const _outputs = {
+            onSelect:   this.props.onSelect,
+            onDrag:     this.props.dragndrop && this.props.dragndrop.drag,
+            onDrop:     this.props.dragndrop && this.props.dragndrop.drop,
+            onCancel:   this.props.dragndrop && this.props.dragndrop.cancel
+        }
+        const _state = {
+            get: () => this.state,
+            set: (s: Object) => this.setState(s)
+        }
+
         this.rootNode = new RootNode(
-            this._props,
-            {
-                onSelect:   this.props.onSelect,
-                onDrag:     this.props.dragndrop && this.props.dragndrop.drag,
-                onDrop:     this.props.dragndrop && this.props.dragndrop.drop,
-                onCancel:   this.props.dragndrop && this.props.dragndrop.cancel
-            },
-            this._state,
+            _props,
+            _outputs,
+            _state,
             this.forceUpdate
         )
+
         if(props.keyDownListener) props.keyDownListener.subscribe(this.rootNode.onKey)
         if(props.keyUpListener) props.keyUpListener.subscribe(this.rootNode.onKey)
         this.wrappedDragNDrop = this.rootNode.wrapDragNDrop()

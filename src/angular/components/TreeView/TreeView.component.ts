@@ -46,44 +46,50 @@ export class TreeView<Item extends Object> {
 
     /* Adapter boilerplate */
 
-    _props = {
-        get: () => {
-            const keys = [ "model", "category", "selection", "display", "search", "async", "key",
-                "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener" ]
-            const props = {}
-            keys.forEach(key => {
-                props[key] = this[key]
-            })
-            return props
-        },
-        set: (s: {}) => {
-            for(const key in s) {
-                if(key in this) this[key] = s[key]
-            }
-        }
-    }
-    _outputs = {
-        onSelect:   (selection, item, ancestors, neighbours) => this.selectionChange.emit(selection),
-        onDrop:     (target, event, inputs) => this.onDrop.emit({target, event, inputs}),
-        onDrag:     (target, event, inputs) => this.onDrag.emit({target, event, inputs}),
-        onCancel:   (target, event, inputs) => this.onCancel.emit({target, event, inputs})
-    }
-    _state = {
-        search: "",
-        filtered: null,
-        get: () => {
-            return { search: this._state.search, filtered: this._state.filtered }
-        },
-        set: (s: {}) => {
-            for(const key in s) {
-                if(key in this._state) this._state[key] = s[key]
-            }
-        }
-    }
+    private _props
+    private _outputs
+    public  _state
 
     /* Lifecycle */
 
     constructor(private cdRef: ChangeDetectorRef) {
+        this._props = {
+            get: () => {
+                const keys = [ "model", "category", "selection", "display", "search", "async", "key",
+                    "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener" ]
+                const props = {}
+                keys.forEach(key => {
+                    props[key] = this[key]
+                })
+                return props
+            },
+            set: (s: {}) => {
+                for(const key in s) {
+                    if(key in this) this[key] = s[key]
+                }
+            }
+        }
+
+        this._outputs = {
+            onSelect:   (selection, item, ancestors, neighbours) => this.selectionChange.emit(selection),
+            onDrop:     (target, event, inputs) => this.onDrop.emit({target, event, inputs}),
+            onDrag:     (target, event, inputs) => this.onDrag.emit({target, event, inputs}),
+            onCancel:   (target, event, inputs) => this.onCancel.emit({target, event, inputs})
+        }
+
+        this._state = {
+            search: "",
+            filtered: null,
+            get: () => {
+                return { search: this._state.search, filtered: this._state.filtered }
+            },
+            set: (s: {}) => {
+                for(const key in s) {
+                    if(key in this._state) this._state[key] = s[key]
+                }
+            }
+        }
+
         this.rootNode = new RootNode<Item>(
             this._props,
             this._outputs,

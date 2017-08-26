@@ -29,19 +29,6 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
         _this.state = {
             unfolded: []
         };
-        _this._state = {
-            get: function get() {
-                return _this.state;
-            },
-            set: function set(s) {
-                return _this.setState(s);
-            }
-        };
-        _this._props = {
-            get: function get() {
-                return _this.props;
-            }
-        };
 
         _this.renderSubtree = function (item) {
             if (!_this.node.hasChildren(item) && !_this.node.isAsync(item)) return null;
@@ -73,7 +60,21 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
             return (_this.node.hasChildren(item) || _this.node.isAsync(item)) && !_this.props.noOpener ? React.createElement(OpenerComponent, { className: _this.node.mixCss("opener"), onClick: _this.node.onOpener(item) }) : null;
         };
 
-        _this.node = new TreeNode(_this._props, {}, _this._state, function () {
+        var _props = {
+            get: function get() {
+                return _this.props;
+            }
+        };
+        var _state = {
+            get: function get() {
+                return _this.state;
+            },
+            set: function set(s) {
+                return _this.setState(s);
+            }
+        };
+
+        _this.node = new TreeNode(_props, {}, _state, function () {
             if (!_this._unmounted) _this.forceUpdate();
         });
 
@@ -115,12 +116,12 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
         value: function render() {
             var _this3 = this;
 
-            var _props = this.props,
-                model = _props.model,
-                folded = _props.folded,
-                display = _props.display,
-                unique = _props.unique,
-                loading = _props.loading;
+            var _props2 = this.props,
+                model = _props2.model,
+                folded = _props2.folded,
+                display = _props2.display,
+                unique = _props2.unique,
+                loading = _props2.loading;
 
 
             if (folded) return null;

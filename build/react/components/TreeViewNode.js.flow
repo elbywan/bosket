@@ -44,20 +44,22 @@ class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeV
     state : TreeViewNodeState = {
         unfolded: []
     }
-    _state = {
-        get: () => this.state,
-        set: (s: Object) => this.setState(s)
-    }
-    _props = {
-        get: () => this.props
-    }
 
     constructor(props: TreeViewNodeProps & TreeNodeInput) {
         super(props)
+
+        const _props = {
+            get: () => this.props
+        }
+        const _state = {
+            get: () => this.state,
+            set: (s: Object) => this.setState(s)
+        }
+
         this.node = new TreeNode(
-            this._props,
+            _props,
             {},
-            this._state,
+            _state,
             () => { if(!this._unmounted) this.forceUpdate() }
         )
 

@@ -2,25 +2,9 @@ import { EventEmitter, ChangeDetectorRef } from "@angular/core";
 import { RootNode } from "../../../core";
 export declare class TreeView<Item extends Object> {
     private cdRef;
-    _props: {
-        get: () => {};
-        set: (s: {}) => void;
-    };
-    _outputs: {
-        onSelect: (selection: any, item: any, ancestors: any, neighbours: any) => void;
-        onDrop: (target: any, event: any, inputs: any) => void;
-        onDrag: (target: any, event: any, inputs: any) => void;
-        onCancel: (target: any, event: any, inputs: any) => void;
-    };
-    _state: {
-        search: string;
-        filtered: any;
-        get: () => {
-            search: string;
-            filtered: any;
-        };
-        set: (s: {}) => void;
-    };
+    private _props;
+    private _outputs;
+    _state: any;
     constructor(cdRef: ChangeDetectorRef);
     model: Array<Item>;
     category: string;

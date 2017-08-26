@@ -74,35 +74,39 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit {
         "loading", "depth", "ancestors", "searched", "onSelect"
     ]
 
-    _props = {
-        memoized: null,
-        update: () => {
-            const props = {}
-            this.keys.forEach(key => {
-                props[key] = this[key]
-            })
-            this._props.memoized = props
-        },
-        get: () => this._props.memoized || this._props.update() && this._props.memoized,
-        set: (s: {}) => {
-            for(const key in s) {
-                if(key in this) this[key] = s[key]
-            }
-        }
-    }
-    _state = {
-        unfolded: [],
-        get: () => ({ unfolded: this._state.unfolded }),
-        set: (s: {}) => {
-            for(const key in s) {
-                if(key in this._state) this._state[key] = s[key]
-            }
-        }
-    }
-
     /* Lifecycle */
 
+    private _props
+    private _state
+
     constructor(private _cdRef: ChangeDetectorRef, private _componentFactoryResolver: ComponentFactoryResolver) {
+        this._props = {
+            memoized: null,
+            update: () => {
+                const props = {}
+                this.keys.forEach(key => {
+                    props[key] = this[key]
+                })
+                this._props.memoized = props
+            },
+            get: () => this._props.memoized || this._props.update() && this._props.memoized,
+            set: (s: {}) => {
+                for(const key in s) {
+                    if(key in this) this[key] = s[key]
+                }
+            }
+        }
+
+        this._state = {
+            unfolded: [],
+            get: () => ({ unfolded: this._state.unfolded }),
+            set: (s: {}) => {
+                for(const key in s) {
+                    if(key in this._state) this._state[key] = s[key]
+                }
+            }
+        }
+
         this.node = new TreeNode<Item>(
             this._props,
             null,

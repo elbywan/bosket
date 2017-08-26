@@ -13,9 +13,10 @@ var TreeViewNodeBase = {
     created: function created() {
         var _this = this;
 
-        this.node = new TreeNode({ get: function get() {
+        var _inputs = { get: function get() {
                 return _this.$props;
-            } }, {}, {
+            } };
+        var _state = {
             get: function get() {
                 return _this.$data;
             },
@@ -24,7 +25,8 @@ var TreeViewNodeBase = {
                     if (key in _this.$data) _this.$data[key] = s[key];
                 }
             }
-        }, function () {
+        };
+        this.node = new TreeNode(_inputs, {}, _state, function () {
             if (!_this._unmounted) _this.$forceUpdate();
         });
     },

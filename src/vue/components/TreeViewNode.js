@@ -5,17 +5,19 @@ import { TreeNode } from "../../core"
 const TreeViewNodeBase = {
     name: "TreeViewNode",
     created() {
-        this.node = new TreeNode(
-            { get: () => this.$props },
-            {},
-            {
-                get: () => this.$data,
-                set: s => {
-                    for(const key in s) {
-                        if(key in this.$data) this.$data[key] = s[key]
-                    }
+        const _inputs = { get: () => this.$props }
+        const _state = {
+            get: () => this.$data,
+            set: s => {
+                for(const key in s) {
+                    if(key in this.$data) this.$data[key] = s[key]
                 }
-            },
+            }
+        }
+        this.node = new TreeNode(
+            _inputs,
+            {},
+            _state,
             () => { if(!this._unmounted) this.$forceUpdate() }
         )
     },

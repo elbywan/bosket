@@ -27,19 +27,6 @@ var TreeViewBaseClass = function (_React$PureComponent) {
             search: "",
             filtered: null
         };
-        _this._state = {
-            get: function get() {
-                return _this.state;
-            },
-            set: function set(s) {
-                return _this.setState(s);
-            }
-        };
-        _this._props = {
-            get: function get() {
-                return _extends({}, defaults, _this.props);
-            }
-        };
 
         _this.onSearch = function (evt) {
             var input = evt.currentTarget.value;
@@ -52,12 +39,28 @@ var TreeViewBaseClass = function (_React$PureComponent) {
             });
         };
 
-        _this.rootNode = new RootNode(_this._props, {
+        var _props = {
+            get: function get() {
+                return _extends({}, defaults, _this.props);
+            }
+        };
+        var _outputs = {
             onSelect: _this.props.onSelect,
             onDrag: _this.props.dragndrop && _this.props.dragndrop.drag,
             onDrop: _this.props.dragndrop && _this.props.dragndrop.drop,
             onCancel: _this.props.dragndrop && _this.props.dragndrop.cancel
-        }, _this._state, _this.forceUpdate);
+        };
+        var _state = {
+            get: function get() {
+                return _this.state;
+            },
+            set: function set(s) {
+                return _this.setState(s);
+            }
+        };
+
+        _this.rootNode = new RootNode(_props, _outputs, _state, _this.forceUpdate);
+
         if (props.keyDownListener) props.keyDownListener.subscribe(_this.rootNode.onKey);
         if (props.keyUpListener) props.keyUpListener.subscribe(_this.rootNode.onKey);
         _this.wrappedDragNDrop = _this.rootNode.wrapDragNDrop();
