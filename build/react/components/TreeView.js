@@ -45,11 +45,11 @@ var TreeViewBaseClass = function (_React$PureComponent) {
             var input = evt.currentTarget.value;
             _this.setState({
                 search: input,
-                filtered: !input.trim() ? null : tree(_this.props.model, _this.props.category
+                filtered: !input.trim() ? null : tree(_this.props.model, _this.props.category)
                 /* eslint-disable */
-                ).treeFilter(_this.props.search(input.trim())
+                .treeFilter(_this.props.search(input.trim()))
                 /* eslint-enable */
-                ) });
+            });
         };
 
         _this.rootNode = new RootNode(_this._props, {

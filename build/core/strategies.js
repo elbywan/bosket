@@ -14,9 +14,9 @@ var multiSelect = function multiSelect(item, selection, neighbours, ancestors) {
         if (!alreadySelected) alreadySelected = i === item;
         // Deselect all ancestors
         return i !== item && ancestors.indexOf(i) < 0;
-    }
+    });
     // Categories : deselect all children
-    );if (!alreadySelected && item[this.inputs.get().category] && item[this.inputs.get().category] instanceof Array) {
+    if (!alreadySelected && item[this.inputs.get().category] && item[this.inputs.get().category] instanceof Array) {
         tree(item[this.inputs.get().category], this.inputs.get().category).visit(function (children) {
             newSelection = array(newSelection).notIn(children);
         });

@@ -92,10 +92,13 @@ var TreeViewBase = {
                 attrs: {
                     type: "search",
 
-                    value: this.$data.searchInput,
                     placeholder: this.$props.labels && this.$props.labels["search.placeholder"]
                 },
-                "class": this.rootNode.mixCss("search"), on: {
+                "class": this.rootNode.mixCss("search"),
+                domProps: {
+                    "value": this.$data.searchInput
+                },
+                on: {
                     "input": this.onSearch
                 }
             },

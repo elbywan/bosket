@@ -20,10 +20,10 @@ export var dragndrop = {
                 if (event && event.dataTransfer && event.dataTransfer.types.indexOf("application/json") < 0) return false;
                 // Prevent drop on self
                 var selfDrop = function selfDrop() {
-                    return target && array(inputs.selection).contains(target
-                    // Prevent drop on child
-                    );
-                };var childDrop = function childDrop() {
+                    return target && array(inputs.selection).contains(target);
+                };
+                // Prevent drop on child
+                var childDrop = function childDrop() {
                     return inputs.ancestors && inputs.ancestors.reduce(function (prev, curr) {
                         return prev || array(inputs.selection).contains(curr);
                     }, false);
@@ -88,9 +88,9 @@ export var utils = {
             var files = [];
             for (var i = 0; i < items.length; i++) {
                 /* eslint-disable */
-                var item = items[i].webkitGetAsEntry() || items[i].getAsFile
+                var item = items[i].webkitGetAsEntry() || items[i].getAsFile();
                 /* eslint-enable */
-                ();if (item) {
+                if (item) {
                     files.push(item);
                 }
             }
@@ -132,9 +132,9 @@ export var nodeEvents = {
     onDragEnter: function onDragEnter(item) {
         return function (event) {
             event.preventDefault();
-            event.stopPropagation
+            event.stopPropagation();
             // If dragging over an opener
-            ();if (item && (this.hasChildren(item) || this.isAsync(item)) && css.hasClass(event.target, this.mixCss("opener"))) {
+            if (item && (this.hasChildren(item) || this.isAsync(item)) && css.hasClass(event.target, this.mixCss("opener"))) {
                 var newVal = this.state.get().unfolded.filter(function (i) {
                     return i !== item;
                 });

@@ -51,9 +51,9 @@ export var withDebugUpdates = function withDebugUpdates() {
                             if (nextState[_key2] !== ref.state[_key2]) stateDiff.push(_key2);
                         }
                         /* eslint-disable */
-                        printer.debug("shouldComponentUpdate [" + print(ref.toString()) + "]", "State diff : " + stateDiff.join(" ") + "\nProps diff : " + propsDiff.join(" ")
+                        printer.debug("shouldComponentUpdate [" + print(ref.toString()) + "]", "State diff : " + stateDiff.join(" ") + "\nProps diff : " + propsDiff.join(" "));
                         /* eslint-enable */
-                        );return originalFunction && originalFunction.bind(ref)(nextProps, nextState) || true;
+                        return originalFunction && originalFunction.bind(ref)(nextProps, nextState) || true;
                     };
                 }, _this.render = function () {
                     return React.createElement(Component, _extends({}, _this.props, {

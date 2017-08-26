@@ -170,10 +170,7 @@ export var RootNode = function (_Core2) {
     function RootNode() {
         var _ref2;
 
-        var _temp2, _this3
-
-        // Css mixin helper
-        , _ret2;
+        var _temp2, _this3, _ret2;
 
         _classCallCheck(this, RootNode);
 
@@ -213,6 +210,9 @@ export var RootNode = function (_Core2) {
 
 
     // Framework input wrapper
+
+
+    // Css mixin helper
 
 
     // Used to filter the tree when performing a search

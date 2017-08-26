@@ -40,11 +40,7 @@ export var withListener = function withListener() {
             function _class(props) {
                 _classCallCheck(this, _class);
 
-                var _this
-
-                /* Events */
-
-                = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
+                var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
 
                 _this.listening = false;
                 _this.ticking = false;
@@ -107,6 +103,8 @@ export var withListener = function withListener() {
                 }
 
                 /* Subscriptions */
+
+                /* Events */
 
             }, {
                 key: "render",
