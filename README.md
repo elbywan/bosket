@@ -33,11 +33,11 @@ Framework implementations rely on this very same code, which makes new implement
 
 The following frameworks have been implemented :
 
-### <img src="https://elbywan.github.io/bosket/assets/react-logo-fat.svg" alt="react-logo" width="30px"> [React](https://facebook.github.io/react/)
+### <a href="https://facebook.github.io/react/"><img src="https://elbywan.github.io/bosket/assets/react-logo-fat.svg" alt="react-logo" width="30px"></a> [React](https://elbywan.github.io/bosket/react)
 
-### <img src="https://elbywan.github.io/bosket/assets/angular.svg" alt="angular-logo" width="30px"> [Angular](https://angular.io/)
+### <a href="https://angular.io/"><img src="https://elbywan.github.io/bosket/assets/angular.svg" alt="angular-logo" width="30px"></a> [Angular](https://elbywan.github.io/bosket/angular)
 
-### <img src="https://elbywan.github.io/bosket/assets/vue.svg" alt="vue-logo" width="30px"> [Vue.js](https://vuejs.org/)
+### <a href="https://vuejs.org/"><img src="https://elbywan.github.io/bosket/assets/vue.svg" alt="vue-logo" width="30px"></a> [Vue.js](https://elbywan.github.io/bosket/vue)
 
 # Documentation
 
@@ -45,5 +45,4 @@ Please check out the **[Bosket website](https://elbywan.github.io/bosket/)** for
 
 # License
 
-*Coded by Julien Elbaz - 2017*<br>
-MIT License
+MIT
