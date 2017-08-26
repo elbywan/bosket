@@ -44,6 +44,7 @@ export class ExplorerDemo extends React.PureComponent<*, *> {
         onSelect: function(selection, item, ancestors, neighbours) {
             if(item.files) {
                 this.props.update({
+                    selection: selection,
                     lastFolder: item,
                     path: "/" + [ ...ancestors, item ]
                         .map(a => a.filename).join("/")
@@ -51,12 +52,12 @@ export class ExplorerDemo extends React.PureComponent<*, *> {
                 item.files.filter(f => f.files).forEach(helpers.getFilesSize)
             } else {
                 this.props.update({
+                    selection: selection,
                     lastFolder: ancestors[ancestors.length - 1],
                     path: "/" + ancestors
                         .map(a => a.filename).join("/")
                 })
             }
-            this.props.update({ selection: selection })
         }.bind(this),
 
         // On model update, set state

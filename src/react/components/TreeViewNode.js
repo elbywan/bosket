@@ -114,7 +114,7 @@ class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeV
                 { ...(this.props: TreeViewNodeProps) }
                 model={ childModel }
                 filteredModel={ filteredModel }
-                ancestors={ this.ancestorsMap.get(item) }
+                ancestors={ this.ancestorsMap.get(item) || [] }
                 depth={ (this.props.depth || 0) + 1 }
                 folded={ this.node.isFolded(item) }
                 loading={ this.node.isAsync(item) && !this.node.isFolded(item) }>

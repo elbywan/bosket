@@ -50,7 +50,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
             return React.createElement(TreeViewNode, _extends({}, _this.props, {
                 model: childModel,
                 filteredModel: filteredModel,
-                ancestors: _this.ancestorsMap.get(item),
+                ancestors: _this.ancestorsMap.get(item) || [],
                 depth: (_this.props.depth || 0) + 1,
                 folded: _this.node.isFolded(item),
                 loading: _this.node.isAsync(item) && !_this.node.isFolded(item) }));

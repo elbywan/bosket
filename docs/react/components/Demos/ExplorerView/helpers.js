@@ -61,7 +61,7 @@ const helpers = {
     // Scans the filesystem
     scanFiles: function(item: Object, model : Object[] = [], depth: number = 0) {
         const fileItem = {
-            files: [],
+            files: undefined,
             filename: item.name,
             size: 0,
             fsEntry: item
