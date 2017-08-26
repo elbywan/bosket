@@ -11,7 +11,7 @@
     "start": "npm run clean && npm run build && npm run build-docs",
     "prebuild": "eslint ./ && flow",
     "build": "npm run build-js && npm run build-ts",
-    "postbuild": "copy README.md ./build && flow stop",
+    "postbuild": "flow stop",
     "build-js": "babel src -d build -s && flow-copy-source -v src build",
     "build-ts": "ngc -p src/angular/tsconfig.json && cd src && copy ./**/*.d.ts ../build",
     "build-docs": "npm install build --no-save && webpack --progress --colors --config docs/webpack.config.js -p",
