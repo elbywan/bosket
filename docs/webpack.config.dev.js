@@ -2,7 +2,7 @@ const { resolve } = require("path")
 const webpack = require("webpack")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const htmlTargets = [ "angular", "react", "vue" ]
+const htmlTargets = [ "angular", "react", "vue", "riot" ]
 
 module.exports = {
     entry: {
@@ -13,6 +13,7 @@ module.exports = {
         ],
         angular: "./docs/angular/index.ts",
         vue: "./docs/vue/index.js",
+        riot: "./docs/riot/index.js",
         common: "./docs/common/index.js"
     },
     output: {
@@ -59,7 +60,7 @@ module.exports = {
                 test: /\.tsx?$/,
                 loader: "ts-loader",
                 options: {
-                    configFileName: resolve(__dirname, "angular/tsconfig.json"),
+                    configFile: resolve(__dirname, "angular/tsconfig.json"),
                     transpileOnly: true
                 }
             },
@@ -72,7 +73,16 @@ module.exports = {
             },
             {
                 test: /\.hbs/,
-                loader: 'handlebars-loader'
+                loader: "handlebars-loader"
+            },
+            {
+                test: /\.tag$/,
+                loader: "riot-tag-loader",
+                query: {
+                    hot: true,
+                    debug: true,
+                    type: "es6"
+                }
             }
         ]
     },

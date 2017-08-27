@@ -15,6 +15,7 @@
             text-align: center; margin-bottom: 20px;
             &:hover { padding-left: 0px }
             & h2 { padding-top: 0; }
+            & > a { margin-right: 0 !important; }
             & > * { display: block; }
         }
     }

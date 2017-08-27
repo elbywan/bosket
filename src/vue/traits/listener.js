@@ -21,7 +21,6 @@ export const withListener = ({
     data: () => ({
         listening: false,
         ticking: false,
-        listenerRef: null,
         callback: null
     }),
     methods: {

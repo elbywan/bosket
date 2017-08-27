@@ -109,9 +109,10 @@ div.chapter {
             border-bottom: 1px solid var(--lightColor);
             padding-bottom: 20px;
             &, & > a { transition: all .25s ease-in-out; }
+            & > a { margin-right: 20px; }
             & > * { display: inline-block; }
             & > a > img {
-                width: 100px;
+                width: 90px;
                 height: 70px;
             }
             &:hover {

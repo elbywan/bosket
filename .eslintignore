@@ -4,6 +4,7 @@
 /docs/angular/build
 /docs/react/build
 /docs/vue/build
+/docs/riot/build
 /docs/common/build
 /docs/common/libs
 /docs/webpack.*

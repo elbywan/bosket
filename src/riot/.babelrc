@@ -1,0 +1,7 @@
+{
+    "presets": ["es2015-riot"],
+    "plugins": [
+        "transform-class-properties",
+        "transform-object-rest-spread"
+    ]
+}

@@ -32,7 +32,9 @@ type dragOutput<T> = { target: T, event: DragEvent, inputs: Object }
                     [ancestors]="[]"
                     [sort]="sort"
                     [disabled]="disabled"
-                    [searched]="_state.search.trim()">
+                    [searched]="_state.search.trim()"
+                    [noOpener]="noOpener"
+                    [labels]="labels">
                 </TreeViewNode>
             </div>
     `,

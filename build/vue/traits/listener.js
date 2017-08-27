@@ -35,7 +35,6 @@ export var withListener = function withListener(_ref) {
                 return {
                     listening: false,
                     ticking: false,
-                    listenerRef: null,
                     callback: null
                 };
             },

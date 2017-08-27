@@ -4,13 +4,14 @@ const ngtools = require("@ngtools/webpack")
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const htmlTargets = [ "angular", "react", "vue" ]
+const htmlTargets = [ "angular", "react", "vue", "riot" ]
 
 module.exports = {
     entry: {
         react: "./docs/react/index.js",
         angular: "./docs/angular/index.aot.ts",
         vue: "./docs/vue/index.js",
+        riot: "./docs/riot/index.js",
         common: "./docs/common/index.js"
     },
     output: {
@@ -52,7 +53,12 @@ module.exports = {
             },
             {
                 test: /\.hbs/,
-                loader: 'handlebars-loader'
+                loader: "handlebars-loader"
+            },
+            {
+                test: /\.tag$/,
+                loader: "riot-tag-loader",
+                query: { type: "es6" }
             }
         ]
     },

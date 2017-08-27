@@ -26,5 +26,10 @@
                 <img src="{{#if path}}{{path}}{{else}}..{{/if}}/assets/vue.svg" alt="vue-logo" class="vue"/>
             </a>
         </div>
+        <div {{#if riot}}class="selected"{{/if}}>
+            <a href="{{#if path}}{{path}}{{else}}..{{/if}}/riot/index.html">
+                <img src="{{#if path}}{{path}}{{else}}..{{/if}}/assets/riot-logo.svg" alt="vue-logo" class="riot"/>
+            </a>
+        </div>
     </span>
 </header>
