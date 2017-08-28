@@ -78,7 +78,7 @@ export default {
                 class={ "PokeapiLoadMore center-text " + css.classes({ loading: this.loading })  }
                 style={{ display: this.loadUrl ? "block" : "none" }}
                 onClick={ ev => !this.loading && this.loadPokemons().then(_ => this.data = [ ...this.data, ..._ ]) }>
-                { this.loading ? <i class="fa fa-spinner"></i> : <span>Show more pokémons</span> }
+                { this.loading ? <i class="fa fa-spinner fa-2x"></i> : <span>Show more pokémons</span> }
             </div>
         </div>
     }

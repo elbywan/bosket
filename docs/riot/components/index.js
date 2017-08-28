@@ -1,2 +1,4 @@
 import "./App.tag"
-import "./Demos/TreeView/TreeViewDemo.tag"
+import "./Syntax.tag"
+import "./ComponentDemo.tag"
+import "./Demos"

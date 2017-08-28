@@ -28,6 +28,7 @@ export default combine(
         this.clickListener.subscribe(this.onDocumentClick)
         this.scrollListener.subscribe(this.onDocumentScroll)
         this.offsetListener.subscribe(this.onStickyScroll)
+        this.selection = this.findPosition()
     },
     methods: {
         onDocumentClick(ev) {
@@ -37,8 +38,8 @@ export default combine(
             } else if(this.opened && this.$refs.sidePanel && !this.$refs.sidePanel.contains(ev.target))
                 this.opened = false
         },
-        onDocumentScroll(ev, end) {
-            const result = []
+        findPosition() {
+            const position = []
             const loop = (arr, acc = []) => {
                 for(let i = 0; i < arr.length; i++) {
                     const elt = arr[i]
@@ -46,7 +47,7 @@ export default combine(
                     if(domElt && domElt.parentElement &&
                             domElt.parentElement.getBoundingClientRect().top <= 50 &&
                             domElt.parentElement.getBoundingClientRect().bottom > 10) {
-                        result.push(elt)
+                        position.push(elt)
                         if(elt.subs)
                             loop(elt.subs, [ ...acc, elt.title ])
                         break
@@ -54,13 +55,17 @@ export default combine(
                 }
             }
             loop(this.plan)
-            const newHash = "#" + result.map(_ => _.title).join("#")
+            return position
+        },
+        onDocumentScroll(ev, end) {
+            const position = this.findPosition()
+            const newHash = "#" + position.map(_ => _.title).join("#")
             if(newHash !== (window.location.hash || "#")) {
-                this.conf = { ...this.conf, selection: result }
+                this.conf = { ...this.conf, selection: position }
                 window.history && window.history.replaceState(
                     {},
                     document.title,
-                    "#" + result.map(_ => _.title).join("#"))
+                    "#" + position.map(_ => _.title).join("#"))
             }
 
             // Prevents safari security exception (SecurityError (DOM Exception 18): Attempt to use history.replaceState() more than 100 times per 30.000000 seconds)

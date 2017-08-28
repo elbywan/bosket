@@ -1,5 +1,7 @@
 import "./polyfills"
 
+import "self/common/libs/prismjs/prism"
+
 import { enableProdMode }       from '@angular/core'
 import { platformBrowser }      from '@angular/platform-browser'
 import { DemoModuleNgFactory }  from "./aot/demo.module.ngfactory"

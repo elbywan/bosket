@@ -6,7 +6,7 @@ import { Component } from "@angular/core"
             <p>
                 To use the TreeView you must first <em><a href="#Usage#Import">import</a></em> it in your own Angular module, then place the component in your templates to render it.<br/>
                 <br/>
-                Appearance can be tweaked with <em><a href="#TreeView#Css">css</a></em> styles.
+                Appearance can be tweaked using <em><a href="#TreeView#Css">css</a></em>.
             </p>
             <syntax-highlight language="typescript">{{code}}</syntax-highlight>
         </div>

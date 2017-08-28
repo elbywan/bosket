@@ -55,8 +55,9 @@ export default {
                     <div>
                         <button onClick={ _ => this.init() } class="ChuckNorrisButton">Reset</button>
                     </div>
+                    { this.categories.length === 0 ? <i class="HackerNewsSpinner fa fa-spinner fa-3x"></i> : null }
                 </div>
-                <TreeView { ...props } />
+                { this.categories.length > 0 ? <TreeView { ...props } /> : null }
             </div>
         )
     }

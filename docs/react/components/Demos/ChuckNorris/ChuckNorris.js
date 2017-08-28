@@ -48,15 +48,17 @@ export class ChuckNorris extends React.PureComponent {
                 <div>
                     <button onClick={ _ => this.init(_) } className="ChuckNorrisButton">Reset</button>
                 </div>
+                { this.state.categories.length === 0 ? <i className="HackerNewsSpinner fa fa-spinner fa-3x"></i> : null }
             </div>
-            <TreeView
-                model={ this.state.categories }
-                category="children"
-                display={ this.doDisplay }
-                selection={ this.state.selection }
-                onSelect={ _ => this.setState({ selection: _ }) }
-                strategies={ this.conf.strategies }
-                css={ this.conf.css }/>
+            { this.state.categories.length > 0 ?
+                <TreeView
+                    model={ this.state.categories }
+                    category="children"
+                    display={ this.doDisplay }
+                    selection={ this.state.selection }
+                    onSelect={ _ => this.setState({ selection: _ }) }
+                    strategies={ this.conf.strategies }
+                    css={ this.conf.css }/> : null }
         </div>
 
 }

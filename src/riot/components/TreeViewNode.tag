@@ -21,7 +21,7 @@
                 <virtual if={ !parent.opts.displaytag }>
                     { parent.opts.display(item, parent.opts) }
                 </virtual>
-                <virtual if={ parent.opts.displaytag } data-is={ parent.opts.displaytag(item, parent.opts) } item={ item }></virtual>
+                <virtual if={ parent.opts.displaytag } data-is={ parent.opts.displaytag(item, parent.opts) } item={ item } inputs={ inputs.get() }></virtual>
                 <span if={ node.hasChildren(item) || node.isAsync(item) && !parent.opts.noopener }
                     class={ node.mixCss("opener") }
                     onclick={ node.onOpener(item) }></span>
@@ -29,6 +29,7 @@
             <TreeViewNode
                 if={ node.hasChildren(item) || node.isAsync(item) }
                 opts={ parent.opts }
+                selection={ parent.opts.selection }
                 model={ getChildModel(item) }
                 filteredmodel={ getChildFiltered(item) }
                 ancestors={ getAncestors(item) }
@@ -79,11 +80,12 @@
 
         // Boilerplate //
 
-        const restoreCamelCase = () => {
+        const mock = () => {
             this.opts.onSelect = this.opts.onselect
+            this.opts.disabled = this.opts.disable
         }
-        this.on("update", restoreCamelCase)
-        restoreCamelCase()
+        this.on("update", mock)
+        mock()
 
         this.inputs = { get: () => this.opts }
         this.state = {

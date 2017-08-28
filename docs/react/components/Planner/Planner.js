@@ -81,6 +81,26 @@ export const Planner = combine(
     ticking = false
     sticking = false
 
+    findPosition = () => {
+        const position = []
+        const loop = (arr, acc = []) => {
+            for(let i = 0; i < arr.length; i++) {
+                const elt = arr[i]
+                const domElt = document.getElementById(acc.length > 0 ? acc.join("#") + "#" + elt.title : elt.title)
+                if(domElt && domElt.parentElement &&
+                        domElt.parentElement.getBoundingClientRect().top <= 50 &&
+                        domElt.parentElement.getBoundingClientRect().bottom > 10) {
+                    position.push(elt)
+                    if(elt.subs)
+                        loop(elt.subs, [ ...acc, elt.title ])
+                    break
+                }
+            }
+        }
+        loop(this.props.plan)
+        return position
+    }
+
     componentDidMount = () => {
         this.props.clickListener && this.props.clickListener.subscribe((ev: Event) => {
             if(!(ev.target instanceof HTMLElement)) return
@@ -91,34 +111,20 @@ export const Planner = combine(
         })
 
         this.props.scrollListener && this.props.scrollListener.subscribe((ev: Event, end: void => void) => {
-            const result = []
-            const loop = (arr, acc = []) => {
-                for(let i = 0; i < arr.length; i++) {
-                    const elt = arr[i]
-                    const domElt = document.getElementById(acc.length > 0 ? acc.join("#") + "#" + elt.title : elt.title)
-                    if(domElt && domElt.parentElement &&
-                            domElt.parentElement.getBoundingClientRect().top <= 50 &&
-                            domElt.parentElement.getBoundingClientRect().bottom > 10) {
-                        result.push(elt)
-                        if(elt.subs)
-                            loop(elt.subs, [ ...acc, elt.title ])
-                        break
-                    }
-                }
-            }
-            loop(this.props.plan)
-            const newHash = "#" + result.map(_ => _.title).join("#")
+            const position = this.findPosition()
+            const newHash = "#" + position.map(_ => _.title).join("#")
             if(newHash !== (window.location.hash || "#")) {
-                this.setState({ selection: result })
+                this.setState({ selection: position })
                 window.history && window.history.replaceState(
                     {},
                     document.title,
-                    "#" + result.map(_ => _.title).join("#"))
+                    "#" + position.map(_ => _.title).join("#"))
             }
 
             // Prevents safari security exception (SecurityError (DOM Exception 18): Attempt to use history.replaceState() more than 100 times per 30.000000 seconds)
             setTimeout(() => end(), 100)
         })
+        this.setState({ selection: this.findPosition() })
 
         if(this.props.sticky) {
             this.props.offsetListener && this.props.offsetListener.subscribe((ev: Event, end: void => void) => {

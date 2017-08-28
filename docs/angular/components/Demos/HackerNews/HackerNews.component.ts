@@ -18,13 +18,14 @@ import { fetchLast, TopStory } from "./models"
                 <div>
                     <button (click)="init()" class="HackerNewsButton">Reset</button>
                 </div>
+                <i *ngIf="stories.length === 0" class="HackerNewsSpinner fa fa-spinner fa-3x"></i>
             </div>
-            <TreeView
+            <TreeView *ngIf="stories.length > 0"
                 [model]="stories"
                 category="children"
                 [(selection)]="selection"
                 [displayComponent]="displayComponent"
-                [strategies]="this.conf.strategies"
+                [strategies]="conf.strategies"
                 [css]="conf.css"></TreeView>
         </div>
     `,

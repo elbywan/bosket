@@ -4,8 +4,6 @@ import "self/common/styles/ComponentDemo.css"
 
 import React from "react"
 
-import Prism from "self/common/libs/prismjs/prism"
-
 import { loadFile } from "self/common/tools"
 
 const getFileName = file => file.split("/").splice(-1)
@@ -58,7 +56,7 @@ export class ComponentDemo extends React.PureComponent<*, *> {
     renderFile = (file: string) =>
         <pre key={ file } className={"language-" + getPrismExtension(file)}>
             <code ref={ ref => loadFile(file, code => {
-                if(ref) ref.innerHTML = Prism.highlight(code, Prism.languages[getPrismExtension(file)])
+                if(ref) ref.innerHTML = window["Prism"].highlight(code, window["Prism"].languages[getPrismExtension(file)])
             })} className={"language-" + getPrismExtension(file)}></code>
         </pre>
 

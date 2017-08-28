@@ -4,8 +4,6 @@ import "self/common/styles/ComponentDemo.css"
 
 import { loadFile } from "self/common/tools"
 
-const Prism = require("self/common/libs/prismjs/prism")
-
 @Component({
     selector: "ComponentDemo",
     template: `
@@ -60,7 +58,7 @@ export class ComponentDemo {
     set tab(file) {
         this._tab = file
         loadFile(file, code => {
-            this.tabContents.nativeElement.innerHTML = Prism.highlight(code, Prism.languages[this.getPrismExtension(file)])
+            this.tabContents.nativeElement.innerHTML = window["Prism"].highlight(code, window["Prism"].languages[this.getPrismExtension(file)])
         })
     }
     expand = "demo"

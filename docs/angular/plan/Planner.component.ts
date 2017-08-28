@@ -189,6 +189,7 @@ export class Planner {
     private sticking = false
 
     constructor(private _ngZone: NgZone){}
+    ngAfterViewInit() { this.selection = this.findPosition() }
 
     private nextFrame(_) {
         return this._ngZone.runOutsideAngular(() => {
@@ -196,25 +197,30 @@ export class Planner {
         })
     }
 
+    private findPosition() {
+        const position = []
+        const loop = (arr, acc = []) => {
+            for(let i = 0; i < arr.length; i++) {
+                const elt = arr[i]
+                const domElt = document.getElementById(acc.length > 0 ? acc.join("#") + "#" + elt.title : elt.title)
+                if(domElt && domElt.parentElement &&
+                        domElt.parentElement.getBoundingClientRect().top <= 50 &&
+                        domElt.parentElement.getBoundingClientRect().bottom > 10) {
+                    position.push(elt)
+                    if(elt.subs)
+                        loop(elt.subs, [ ...acc, elt.title ])
+                    break
+                }
+            }
+        }
+        loop(this.plan)
+        return position
+    }
+
     private onDocumentScroll(ev) {
         if(!this.ticking) {
             this.nextFrame(() => {
-                const result = []
-                const loop = (arr, acc = []) => {
-                    for(let i = 0; i < arr.length; i++) {
-                        const elt = arr[i]
-                        const domElt = document.getElementById(acc.length > 0 ? acc.join("#") + "#" + elt.title : elt.title)
-                        if(domElt && domElt.parentElement &&
-                                domElt.parentElement.getBoundingClientRect().top <= 50 &&
-                                domElt.parentElement.getBoundingClientRect().bottom > 10) {
-                            result.push(elt)
-                            if(elt.subs)
-                                loop(elt.subs, [ ...acc, elt.title ])
-                            break
-                        }
-                    }
-                }
-                loop(this.plan)
+                const result = this.findPosition()
                 const newHash = "#" + result.map(_ => _.title).join("#")
                 if(newHash !== (window.location.hash || "#")) {
                     this.selection = result

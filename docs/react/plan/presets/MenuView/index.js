@@ -19,7 +19,7 @@ export default {
                     <p>
                         To use the MenuView, you have to <em><a href="#Usage#Import">import</a></em> it in your code, then render it.<br/>
                         <br/>
-                        Appearance can be tweaked with <em><a href="#TreeView#Css">css</a></em> styles.
+                        Appearance can be tweaked using <em><a href="#TreeView#Css">css</a></em>.
                     </p>
                     { jscode`
                         import { MenuView } from "bosket/react"

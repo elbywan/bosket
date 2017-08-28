@@ -23,6 +23,12 @@ button.ChuckNorrisButton {
     }
 }
 
+i.ChuckNorrisSpinner {
+    color: #f15a24;
+    animation: spin 1s infinite;
+    margin-top: 20px;
+}
+
 .ChuckNorrisDemo {
     border: 2px solid #d8d8d8;
     padding: 1em;
@@ -41,6 +47,7 @@ button.ChuckNorrisButton {
             display: block;
             transition: all 0.25s;
         }
+        &:hover::after { color: #f15a24; }
     }
 
     & ul {
@@ -75,7 +82,7 @@ button.ChuckNorrisButton {
                     & > .value, & > ng-component > .value {
                         order: 2;
                         & > i {
-                             margin-left: 10px;
+                            margin-left: 10px;
                             color: #888;
                             transition: color .25s;
                             &:hover{ color: #f15a24 }

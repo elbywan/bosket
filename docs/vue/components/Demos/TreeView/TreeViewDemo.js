@@ -36,7 +36,7 @@ export default {
             display: item => <a>{ item.label }</a>,
             // Alphabetical sort
             sort: (a, b) => a.label.localeCompare(b.label),
-            // Search bu regex
+            // Search by regex
             search: input => i => string(i.label).contains(input),
             strategies: {
                 // Use keyboard modifiers

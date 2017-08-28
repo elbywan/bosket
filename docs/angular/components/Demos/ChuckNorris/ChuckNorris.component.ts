@@ -18,8 +18,9 @@ import { Category } from "./models"
                 <div>
                     <button (click)="init()" class="ChuckNorrisButton">Reset</button>
                 </div>
+                <i *ngIf="categories.length === 0" class="ChuckNorrisSpinner fa fa-spinner fa-3x"></i>
             </div>
-            <TreeView
+            <TreeView *ngIf="categories.length > 0"
                 [model]="categories"
                 category="children"
                 [(selection)]="selection"

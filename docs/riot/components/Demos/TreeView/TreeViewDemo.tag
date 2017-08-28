@@ -1,19 +1,6 @@
 <TreeViewDemo>
 
-    <TreeView opts={ options } />
-
-    <p>
-        <span if={ options.selection.length === 0 }>No elements are</span>
-        <span if={ options.selection.length === 1 }>One element is</span>
-        <span if={ options.selection.length > 1 }>{ options.selection.length } elements are</span>
-        selected.
-    </p>
-
-    <div class="select-blocks">
-        <button each={ item in options.selection } onclick={ updateSelection(item) }>
-            { item.label }
-        </button>
-    </div>
+    <TreeView opts={ options } selection={ opts.selection } onselect={ opts.onselect } />
 
     <script>
         import { string } from "bosket/tools"
@@ -23,34 +10,25 @@
         // Model
         import model from "self/common/models/TreeViewModel"
 
+        // Style
         import "./TreeViewDemo.css"
 
         this.dragImage = new Image()
         this.dragImage.src = "../assets/drag-image.png"
 
-        riot.tag("wrapped-label", "<a>{ opts.item.label }</a>")
+        // A custom defined tag used to wrap items on display
+        riot.tag("wrappedlabel", "<a>{ opts.item.label }</a>")
 
         this.options = {
-            files: [
-                "./components/Demos/TreeView/TreeViewDemo.js",
-                "./components/Demos/TreeView/TreeViewDemo.css",
-                "../common/models/TreeViewModel.js"
-            ],
             // Data model
             model: model,
             // Property of the model containing children
             category: "items",
-            selection: [],
-            // On selection, update the selection array
-            onselect: items => {
-                this.options.selection = items
-                this.update()
-            },
-            // Custom display
-            displaytag: item => "wrapped-label",
+            // Wrapper tag
+            displaytag: item => "wrappedlabel",
             // Alphabetical sort
             sort: (a, b) => a.label.localeCompare(b.label),
-            // Search bu regex
+            // Search by regex
             search: input => i => string(i.label).contains(input),
             strategies: {
                 // Use keyboard modifiers
@@ -71,12 +49,10 @@
                 // Drop only on categories or root (excluding asynchronous promises)
                 droppable: _ => !_ || _.items && _.items instanceof Array
             },
+            // Allow css transitions on mount/unmount
             transition: {
                 name: "TreeViewDemoTransition"
             }
-        }
-        this.updateSelection = item => event => {
-            this.options.selection = this.options.selection.filter(_ => _ !== item)
         }
     </script>
 </TreeViewDemo>

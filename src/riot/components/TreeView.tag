@@ -7,13 +7,14 @@
             onkeyup={ onSearch } />
         <TreeViewNode
             opts={ inputs.get() }
+            selection={ opts.selection }
             model={ inputs.get().sort ? inputs.get().model.sort(inputs.get().sort) : inputs.get().model }
             filteredmodel={ filtered }
             onselect={ rootNode.onSelect }
             dragndrop={ rootNode.wrapDragNDrop() }
             ancestors={ [] }
             searched={ search.trim() }
-            depth={ +"0" }>
+            depth={ 0 }>
         </TreeViewNode>
     </div>
 
@@ -23,8 +24,8 @@
         import { optsMixin, listenerMixin } from "../mixins"
 
         this.mixin(optsMixin())
-        this.mixin(listenerMixin({ eventType: "keyup", callback: e => this.rootNode.onKey(e), autoMount: true }))
-        this.mixin(listenerMixin({ eventType: "keydown", callback: e => this.rootNode.onKey(e), autoMount: true }))
+        this.mixin(listenerMixin({ eventType: "keyup", callback: e => this.rootNode.onKey(e) }))
+        this.mixin(listenerMixin({ eventType: "keydown", callback: e => this.rootNode.onKey(e) }))
 
         // Logic //
 

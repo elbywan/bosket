@@ -1,8 +1,6 @@
 import { Component, Input, ElementRef, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core"
 import { indent } from "self/common/tools"
 
-const Prism = require("self/common/libs/prismjs/prism")
-
 @Component({
     selector: "syntax-highlight",
     template: `
@@ -11,14 +9,14 @@ const Prism = require("self/common/libs/prismjs/prism")
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SyntaxHighlight {
-    @Input() language : string
+    @Input() language : string = "javascript"
     @ViewChild("ref") public ref: ElementRef
 
     ngDoCheck() {
         setTimeout(() => {
             if(this.ref.nativeElement.childElementCount > 0) return
             this.ref.nativeElement.textContent = indent(this.ref.nativeElement.textContent)
-            Prism.highlightElement(this.ref.nativeElement)
+            window["Prism"].highlightElement(this.ref.nativeElement)
         }, 0)
     }
 }

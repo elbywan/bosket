@@ -1,6 +1,6 @@
 export const transitionMixin = nodeTarget => ({
     init: function() {
-        if(!("transition" in this.opts))
+        if(!this.opts.transition)
             return
         const transitionName = this.opts.transition.name
         const origUnmount = this.unmount

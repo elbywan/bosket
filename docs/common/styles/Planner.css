@@ -158,5 +158,8 @@
             color: var(--accentColor);
             border-color: var(--accentColor);
         }
+        &.selected > .item {
+            font-weight: bold;
+        }
     }
 }

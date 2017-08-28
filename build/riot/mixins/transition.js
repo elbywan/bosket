@@ -8,7 +8,7 @@ var transitionMixin = exports.transitionMixin = function transitionMixin(nodeTar
         init: function init() {
             var _this = this;
 
-            if (!("transition" in this.opts)) return;
+            if (!this.opts.transition) return;
             var transitionName = this.opts.transition.name;
             var origUnmount = this.unmount;
 

@@ -76,7 +76,7 @@ export class Pokeapi extends React.PureComponent {
                 className={ "PokeapiLoadMore center-text " + css.classes({ loading: this.state.loading })  }
                 style={{ display: this.loadUrl ? "block" : "none" }}
                 onClick={ ev => !this.state.loading && this.loadPokemons().then(_ => this.setState({ data: [ ...this.state.data, ..._ ]})) }>
-                { this.state.loading ? <i className="fa fa-spinner"></i> : <span>Show more pokémons</span> }
+                { this.state.loading ? <i className="fa fa-spinner fa-2x"></i> : <span>Show more pokémons</span> }
             </div>
         </div>
 

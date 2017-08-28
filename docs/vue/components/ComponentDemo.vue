@@ -44,7 +44,6 @@
     import "self/common/styles/ComponentDemo.css"
 
     import { loadFile } from "self/common/tools"
-    import Prism from "self/common/libs/prismjs/prism"
 
     export default {
         props: [ "componentName", "description", "files" ],
@@ -81,7 +80,7 @@
                 const file = this.tab
                 loadFile(file, code => {
                     if(this.$refs.tabContents)
-                        this.$refs.tabContents.innerHTML = Prism.highlight(code, Prism.languages[this.getPrismExtension(file)])
+                        this.$refs.tabContents.innerHTML = window["Prism"].highlight(code, window["Prism"].languages[this.getPrismExtension(file)])
                 })
             }
         },

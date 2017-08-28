@@ -65,7 +65,6 @@ class Item {
                 return result
             })
     }
-
 }
 
 @Component({

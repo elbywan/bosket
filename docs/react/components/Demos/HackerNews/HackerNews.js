@@ -46,14 +46,16 @@ export class HackerNews extends React.PureComponent {
                 <div>
                     <button onClick={ _ => this.init(_) } className="HackerNewsButton">Reset</button>
                 </div>
+                { this.state.stories.length === 0 ? <i className="HackerNewsSpinner fa fa-spinner fa-3x"></i> : null }
             </div>
-            <TreeView
-                model={ this.state.stories }
-                category="children"
-                display={ this.doDisplay }
-                selection={ this.state.selection }
-                onSelect={ _ => this.setState({ selection: _ }) }
-                strategies={ this.conf.strategies }
-                css={ this.conf.css }/>
+            { this.state.stories.length > 0 ?
+                <TreeView
+                    model={ this.state.stories }
+                    category="children"
+                    display={ this.doDisplay }
+                    selection={ this.state.selection }
+                    onSelect={ _ => this.setState({ selection: _ }) }
+                    strategies={ this.conf.strategies }
+                    css={ this.conf.css }/> : null }
         </div>
 }

@@ -81,6 +81,7 @@ module.exports = {
                 query: {
                     hot: true,
                     debug: true,
+                    whitespace: true,
                     type: "es6"
                 }
             }

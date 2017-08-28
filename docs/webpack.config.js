@@ -58,7 +58,7 @@ module.exports = {
             {
                 test: /\.tag$/,
                 loader: "riot-tag-loader",
-                query: { type: "es6" }
+                query: { type: "es6", whitespace: true }
             }
         ]
     },

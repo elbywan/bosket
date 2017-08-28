@@ -23,6 +23,12 @@ button.HackerNewsButton {
     }
 }
 
+i.HackerNewsSpinner {
+    color: #f26522;
+    animation: spin 1s infinite;
+    margin-top: 20px;
+}
+
 .HackerNewsDemo {
     background-color: rgb(246, 246, 239);
     border: 2px solid #d8d8d8;

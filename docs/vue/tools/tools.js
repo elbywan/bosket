@@ -1,10 +1,9 @@
 import { indent } from "self/common/tools"
-import Prism from "self/common/libs/prismjs/prism"
 
 const indentLanguage = (language, str, ...vals) => ({
     mounted() {
         this.$refs.ref.textContent = indent(str, ...vals)
-        Prism.highlightElement(this.$refs.ref)
+        window["Prism"].highlightElement(this.$refs.ref)
     },
     render: h =>
         <pre class={ `language-${language}` }>

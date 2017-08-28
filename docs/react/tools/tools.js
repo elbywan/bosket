@@ -3,14 +3,13 @@
 import React from "react"
 
 import { indent } from "self/common/tools"
-import Prism from "self/common/libs/prismjs/prism"
 
 const indentLanguage = (language, str, ...vals) =>
     <pre className={ `language-${language}` }><code className={ `language-${language}` } ref={
         ref => {
             if(!ref) return
             ref.textContent = indent(str, ...vals)
-            Prism.highlightElement(ref)
+            window["Prism"].highlightElement(ref)
         }
     }></code></pre>
 

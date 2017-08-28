@@ -35,7 +35,7 @@ import { Item, cachedFetch } from "./models"
                 [ngClass]="{ loading: loading }"
                 [style]="'display:' + loadUrl ? 'block' : 'none'"
                 (click)="loadMorePokemons()">
-                <i class="fa fa-spinner" *ngIf="loading"></i>
+                <i class="fa fa-spinner fa-2x" *ngIf="loading"></i>
                 <span *ngIf="!loading">Show more pokémons</span>
             </div>
         </div>
