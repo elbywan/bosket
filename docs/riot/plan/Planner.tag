@@ -43,7 +43,7 @@
         }
         this.display = item => "display-planner-content"
         this.foldDepth = () => {
-            const max = this.opts.maxDepth
+            const max = this.opts.maxdepth
             return function() {
                 return this.inputs.get().depth >= max
             }

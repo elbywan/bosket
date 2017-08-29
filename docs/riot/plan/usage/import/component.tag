@@ -19,8 +19,7 @@
         /* eslint-disable */
         this.htmlCode = `
             <script src=".../path/to/riot.js"><\/script>
-            <script src=".../path/to/bosket/riot/index.js"><\/script>
-        `
+            <script src=".../path/to/bosket/riot/index.js"><\/script>`
         /* eslint-enable */
     </script>
 </import>

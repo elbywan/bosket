@@ -1,6 +1,6 @@
 <App>
     <div class="App">
-            <planner plan={ plan } maxDepth={ 1 } sticky={ true }></planner>
+            <planner plan={ plan } maxdepth={ 1 } sticky={ true }></planner>
         </div>
     </div>
 
