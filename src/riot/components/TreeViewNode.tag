@@ -81,7 +81,7 @@
         // Boilerplate //
 
         const mock = () => {
-            this.opts.onSelect = this.opts.onselect
+            this.opts.onSelect = this.opts.onselection
             this.opts.disabled = this.opts.disable
         }
         this.on("update", mock)

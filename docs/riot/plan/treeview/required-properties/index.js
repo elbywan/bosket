@@ -20,9 +20,9 @@ export default {
             content: "selection-prop"
         },
         {
-            title: "onselect",
+            title: "onselection",
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/riot/plan/treeview/required-properties/index.js",
-            content: "onselect-prop"
+            content: "onselection-prop"
         }
     ]
 }

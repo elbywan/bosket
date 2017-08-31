@@ -56,7 +56,7 @@
     </script>
 </selection-prop>
 
-<onselect-prop>
+<onselection-prop>
     <div class="marged">
         <pre class="itemType">(newSelection: Object[], item: Object, ancestors: Object[], neighbours: Object[]) => void</pre>
         <p>
@@ -67,11 +67,11 @@
     </div>
     <script>
         this.code = `
-            <TreeView /* ... */ selection={ selection } onselect={ onselect } />
+            <TreeView /* ... */ selection={ selection } onselection={ onselection } />
             <script>
                 this.selection = []
-                this.onselect = _ => this.update({ selection : _ })
+                this.onselection = _ => this.update({ selection : _ })
             <\/script>
         `
     </script>
-</onselect-prop>
+</onselection-prop>

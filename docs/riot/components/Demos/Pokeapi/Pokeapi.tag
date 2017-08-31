@@ -40,7 +40,7 @@
             model={ data }
             category="__children"
             selection={ selection }
-            onselect={ onselect }
+            onselection={ onselection }
             displaytag={ display }
             strategies={ conf.strategies }
             css={ conf.css }
@@ -68,7 +68,7 @@
         }
         this.data = []
         this.selection = []
-        this.onselect = _ => this.update({ selection: _ })
+        this.onselection = _ => this.update({ selection: _ })
         this.loading = false
         this.loadUrl = "https://pokeapi.co/api/v2/pokemon"
         this.display = item => item.display()

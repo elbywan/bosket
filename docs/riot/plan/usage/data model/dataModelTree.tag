@@ -3,7 +3,7 @@
         model={ sampleModel }
         category="children"
         selection={ selection }
-        onselect={ updateSelection }
+        onselection={ updateSelection }
         display={ display }>
     </TreeView>
 

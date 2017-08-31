@@ -19,7 +19,7 @@
     <ComponentDemo componentname="Nested items" files={ files }>
         <div style="text-align: center">
             <div style="display: inline-block; text-align: left">
-                <TreeViewDemo selection={ parent.selection } onselect={ parent.onselect }></TreeViewDemo>
+                <TreeViewDemo selection={ parent.selection } onselection={ parent.onselection }></TreeViewDemo>
             </div>
 
             <p>
@@ -45,7 +45,7 @@
         ]
 
         this.selection = []
-        this.onselect = _ => this.update({ selection: _ })
+        this.onselection = _ => this.update({ selection: _ })
         this.deselect = item => _ => this.selection = this.selection.filter(i => i !== item)
     </script>
 </TreeViewSection>

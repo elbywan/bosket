@@ -14,7 +14,7 @@
                 css={{ TreeView: "PlannerTree" }}
                 category="subs"
                 selection={ selection }
-                onselect={ updateSelection }
+                onselection={ updateSelection }
                 strategies={{ selection: ["ancestors"], fold: [ foldDepth(), "not-selected", "no-child-selection" ]}}
                 noopener="true"
                 displaytag={ display }>

@@ -17,7 +17,7 @@
             model=         /* [the data model](#TreeView#Required properties#model) */
             category=      /* [name of the property containing the children](#TreeView#Required properties#category) */
             selection=     /* [the selection array, updated when the user (de)selects items](#TreeView#Required properties#selection) */
-            onselect=      /* [selection callback](#TreeView#Required properties#onselect) */
+            onselection=   /* [selection callback](#TreeView#Required properties#onselection) */
 
             // Optional //
 

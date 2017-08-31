@@ -10,7 +10,7 @@
             selection={ opts.selection }
             model={ inputs.get().sort ? inputs.get().model.sort(inputs.get().sort) : inputs.get().model }
             filteredmodel={ filtered }
-            onselect={ rootNode.onSelect }
+            onselection={ rootNode.onSelect }
             dragndrop={ rootNode.wrapDragNDrop() }
             ancestors={ [] }
             searched={ search.trim() }
@@ -46,11 +46,11 @@
             get: () => ({
                 ...defaults,
                 ...this.opts,
-                onSelect: this.opts.onselect
+                onSelect: this.opts.onselection
             })
         }
         this.outputs = {
-            onSelect:   this.inputs.get().onselect,
+            onSelect:   this.inputs.get().onselection,
             onDrag:     this.inputs.get().dragndrop && this.inputs.get().dragndrop.drag,
             onDrop:     this.inputs.get().dragndrop && this.inputs.get().dragndrop.drop,
             onCancel:   this.inputs.get().dragndrop && this.inputs.get().dragndrop.cancel

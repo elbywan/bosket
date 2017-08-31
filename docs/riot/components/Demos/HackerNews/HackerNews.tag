@@ -60,7 +60,7 @@
             model={ stories }
             category="children"
             selection={ selection }
-            onselect={ onselect }
+            onselection={ onselection }
             displaytag={ display }
             strategies={ conf.strategies }
             css={ conf.css }></TreeView>
@@ -71,7 +71,7 @@
 
         this.stories = []
         this.selection = []
-        this.onselect = _ => this.update({ selection: _ })
+        this.onselection = _ => this.update({ selection: _ })
         this.conf = {
             strategies: { fold: ["opener-control"]},
             css: { TreeView: "HackerNewsDemo" }

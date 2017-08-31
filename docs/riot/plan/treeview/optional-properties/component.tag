@@ -286,7 +286,7 @@
                         model: this.dragModel,
                         category: "children",
                         selection: [],
-                        onselect: _ => this.update({ selection: _ }),
+                        onselection: _ => this.update({ selection: _ }),
                         display: i => i.name,
                         strategies: { fold: [() => false]},
                         // Pluck preset
@@ -305,7 +305,7 @@
                         model: [{ name: "< Drop items here >", children: []}],
                         category: "children",
                         selection: [],
-                        onselect: _ => this.update({ selection: _ }),
+                        onselection: _ => this.update({ selection: _ }),
                         display: i => i.name,
                         strategies: { fold: [() => false]},
                         // Paste preset + only drop on items with children
@@ -337,7 +337,7 @@
             model: this.dragModel,
             category: "children",
             selection: [],
-            onselect: _ => this.update({ selection: _ }),
+            onselection: _ => this.update({ selection: _ }),
             display: i => i.name,
             strategies: { fold: [() => false]},
             // Pluck preset
@@ -356,7 +356,7 @@
             model: [{ name: "< Drop items here >", children: []}],
             category: "children",
             selection: [],
-            onselect: _ => this.update({ selection: _ }),
+            onselection: _ => this.update({ selection: _ }),
             display: i => i.name,
             strategies: { fold: [() => false]},
             // Paste preset + only drop on items with children

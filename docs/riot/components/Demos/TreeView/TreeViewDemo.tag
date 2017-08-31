@@ -1,6 +1,6 @@
 <TreeViewDemo>
 
-    <TreeView opts={ options } selection={ opts.selection } onselect={ opts.onselect } />
+    <TreeView opts={ options } selection={ opts.selection } onselection={ opts.onselection } />
 
     <script>
         import { string } from "bosket/tools"

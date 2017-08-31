@@ -46,7 +46,7 @@
             model={ categories }
             category="children"
             selection={ selection }
-            onselect={ onselect }
+            onselection={ onselection }
             displaytag={ display }
             strategies={ conf.strategies }
             css={ conf.css }/>
@@ -58,7 +58,7 @@
 
         this.categories = []
         this.selection = []
-        this.onselect = _ => this.update({ selection: _ })
+        this.onselection = _ => this.update({ selection: _ })
         this.conf = {
             strategies: { fold: ["opener-control"], click: ["unfold-on-selection"]},
             css: { TreeView: "ChuckNorrisDemo" }
