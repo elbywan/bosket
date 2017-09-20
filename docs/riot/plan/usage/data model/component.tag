@@ -4,7 +4,7 @@
         <syntax-highlight offset={ 12 }>
             // A model is simply an array of objects.
 
-            const model = [\\{
+            const model = [\{
                 a: 1,
                 b: 2,
                 /* ... */
