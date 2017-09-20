@@ -29,14 +29,16 @@ var TreeViewBaseClass = function (_React$PureComponent) {
         };
 
         _this.onSearch = function (evt) {
-            var input = evt.currentTarget.value;
-            _this.setState({
-                search: input,
-                filtered: !input.trim() ? null : tree(_this.props.model, _this.props.category)
-                /* eslint-disable */
-                .treeFilter(_this.props.search(input.trim()))
-                /* eslint-enable */
-            });
+            if (evt.currentTarget instanceof HTMLInputElement) {
+                var input = evt.currentTarget.value;
+                _this.setState({
+                    search: input,
+                    filtered: !input.trim() ? null : tree(_this.props.model, _this.props.category)
+                    /* eslint-disable */
+                    .treeFilter(_this.props.search(input.trim()))
+                    /* eslint-enable */
+                });
+            }
         };
 
         var _props = {

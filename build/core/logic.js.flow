@@ -40,7 +40,7 @@ export type TreeNodeInput = {
     depth?:             number
 }
 
-export class TreeNode extends Core {
+export class TreeNode extends Core<*> {
 
     /* Various checks */
 
@@ -98,7 +98,7 @@ export class TreeNode extends Core {
     pending = []
 
     // Unwrap a promise and mutate the model to add the results
-    unwrapPromise = (item: Object) => {
+    unwrapPromise = (item: Object) : Promise<mixed> => {
         this.pending.push(item)
         const asyncFun = this.inputs.get().async
         if(!asyncFun)
@@ -177,7 +177,7 @@ export type RootNodeInput = {
     search?:            string => Object => boolean
 }
 
-export class RootNode extends Core {
+export class RootNode extends Core<*> {
 
     /* Events */
 

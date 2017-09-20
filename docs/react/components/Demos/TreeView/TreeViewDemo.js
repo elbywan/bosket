@@ -41,7 +41,7 @@ export class TreeViewDemo extends React.PureComponent<*, *> {
         // Property of the model containing children
         category: "items",
         // On selection, update the selection array in the parent component
-        onSelect: function(items) {
+        onSelect: function(items: Object[]) {
             this.props.update(items)
         }.bind(this),
         // Custom display (with an anchor tag)

@@ -12,6 +12,11 @@ export const withLabels : trait<> = (defaultLabels: Object) => Component =>
         static displayName = displayName("withLabels", Component)
         labels = { ...defaultLabels }
 
+        constructor(props) {
+            super(props)
+            this.labels = { ...defaultLabels, ...props.labels }
+        }
+
         componentWillUpdate(nextProps) {
             if(nextProps.labels !== this.props.labels)
                 this.labels = { ...defaultLabels, ...nextProps.labels }

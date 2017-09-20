@@ -16,23 +16,20 @@ import { displayName } from "./helpers";
 
 export var withLabels = function withLabels(defaultLabels) {
     return function (Component) {
-        var _class, _temp2;
+        var _class, _temp;
 
-        return _temp2 = _class = function (_React$Component) {
+        return _temp = _class = function (_React$Component) {
             _inherits(_class, _React$Component);
 
-            function _class() {
-                var _ref;
-
-                var _temp, _this, _ret;
-
+            function _class(props) {
                 _classCallCheck(this, _class);
 
-                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-                    args[_key] = arguments[_key];
-                }
+                var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
 
-                return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _class.__proto__ || Object.getPrototypeOf(_class)).call.apply(_ref, [this].concat(args))), _this), _this.labels = _extends({}, defaultLabels), _temp), _possibleConstructorReturn(_this, _ret);
+                _this.labels = _extends({}, defaultLabels);
+
+                _this.labels = _extends({}, defaultLabels, props.labels);
+                return _this;
             }
 
             _createClass(_class, [{
@@ -48,7 +45,7 @@ export var withLabels = function withLabels(defaultLabels) {
             }]);
 
             return _class;
-        }(React.Component), _class.displayName = displayName("withLabels", Component), _temp2;
+        }(React.Component), _class.displayName = displayName("withLabels", Component), _temp;
     };
 };
 //# sourceMappingURL=labels.js.map

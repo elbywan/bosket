@@ -41,7 +41,7 @@ export class ExplorerDemo extends React.PureComponent<*, *> {
         //
         // For the sake of the demo, the selection array is
         // declared in the parent component.
-        onSelect: function(selection, item, ancestors, neighbours) {
+        onSelect: function(selection: Object[], item: Object, ancestors: Object[], neighbours: Object[]) {
             if(item.files) {
                 this.props.update({
                     selection: selection,

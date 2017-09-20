@@ -79,16 +79,18 @@ class TreeViewBaseClass extends React.PureComponent<TreeViewProps, TreeViewState
     /* Events */
 
     onSearch = (evt: Event & { currentTarget: HTMLButtonElement }) => {
-        const input = evt.currentTarget.value
-        this.setState({
-            search: input,
-            filtered: !input.trim() ?
-                null :
-                tree(this.props.model, this.props.category)
-                    /* eslint-disable */
-                    .treeFilter((this.props.search: any)(input.trim()))
-                    /* eslint-enable */
-        })
+        if(evt.currentTarget instanceof HTMLInputElement) {
+            const input = evt.currentTarget.value
+            this.setState({
+                search: input,
+                filtered: !input.trim() ?
+                    null :
+                    tree(this.props.model, this.props.category)
+                        /* eslint-disable */
+                        .treeFilter((this.props.search: any)(input.trim()))
+                        /* eslint-enable */
+            })
+        }
     }
 
     /* Rendering */

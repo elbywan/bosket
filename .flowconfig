@@ -10,6 +10,7 @@
 
 <PROJECT_ROOT>/node_modules/config-chain.*
 <PROJECT_ROOT>/node_modules/npm.*
+<PROJECT_ROOT>/node_modules/flow-coverage-report/src.*
 <PROJECT_ROOT>/node_modules/vue/src.*
 
 [include]
