@@ -149,7 +149,9 @@ export const nodeEvents = {
             event.stopPropagation()
             css.removeClass(event.currentTarget, this.mixCss("dragover"))
             css.removeClass(event.currentTarget, this.mixCss("nodrop"))
-            this.inputs.get().dragndrop.onDrop(item, event, this.inputs.get())
+            if(!this.inputs.get().dragndrop.guard || !this.inputs.get().dragndrop.guard(item, event, this.inputs.get())) {
+                this.inputs.get().dragndrop.onDrop(item, event, this.inputs.get())
+            }
         }
     },
     onDragEnd: function(item: ?Object) {
