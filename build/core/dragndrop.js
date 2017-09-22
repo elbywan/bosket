@@ -123,6 +123,7 @@ export var nodeEvents = {
                 if (event.dataTransfer) event.dataTransfer.dropEffect = "none";
                 css.addClass(event.currentTarget, this.mixCss("nodrop"));
             } else {
+                if (event.dataTransfer) event.dataTransfer.dropEffect = "copy";
                 css.addClass(event.currentTarget, this.mixCss("dragover"));
             }
 
