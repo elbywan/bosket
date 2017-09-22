@@ -63,7 +63,7 @@
             transform: translateX(0px);
 
             box-shadow: none;
-            @media (max-width: 1224px) { box-shadow: 1px 0px 6px #AAA; }
+            @media (max-width: 1224px) { box-shadow: 1px 0px 3px #666; }
         }
     }
     &.side-panel, &.content {
@@ -103,6 +103,9 @@
 
     &.content {
         padding-left: 350px;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
         @media (max-width: 1224px) { padding-left: 0px; }
     }
 }
