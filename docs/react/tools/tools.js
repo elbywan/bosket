@@ -17,3 +17,4 @@ export const jscode     = (str: string | string[], ...vals: any[])    => indentL
 export const tscode     = (str: string | string[], ...vals: any[])    => indentLanguage("typescript", str, ...vals)
 export const htmlcode   = (str: string | string[], ...vals: any[])    => indentLanguage("html", str, ...vals)
 export const csscode    = (str: string | string[], ...vals: any[])    => indentLanguage("css", str, ...vals)
+export const bashcode   = (str: string | string[], ...vals: any[])    => indentLanguage("bash", str, ...vals)

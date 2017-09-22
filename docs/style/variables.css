@@ -7,5 +7,5 @@
     --accentColorLight: #ff6262;
     --emphasisColor:    rgba(255, 235, 59, 0.40);
     --serifFont:        'Cormorant Garamond', serif;
-    --sansSerifFont:    'Open Sans', serif;
+    --sansSerifFont:    'Open Sans', sans-serif;
 }

@@ -48,6 +48,7 @@ div.chapter {
     & p {
         padding: 20px 0;
         margin: 0;
+        line-height: 1.6em;
     }
     & p em,
     & .emphasis em {
