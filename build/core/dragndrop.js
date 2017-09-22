@@ -101,7 +101,10 @@ export var utils = {
 
     // Internal use //
 
-};var tickDragover = false;
+};var hoverReferences = {
+    itemRef: undefined,
+    guardCheck: false
+};
 export var nodeEvents = {
     onDragStart: function onDragStart(item) {
         return function (event) {
@@ -114,19 +117,17 @@ export var nodeEvents = {
             event.preventDefault();
             event.stopPropagation();
 
-            if (tickDragover) return;
-            tickDragover = true;
+            var guardCheck = hoverReferences.itemRef === item ? hoverReferences.guardCheck : this.inputs.get().dragndrop.guard && this.inputs.get().dragndrop.guard(item, event, this.inputs.get());
 
-            if (this.inputs.get().dragndrop.guard && this.inputs.get().dragndrop.guard(item, event, this.inputs.get())) {
-                event.dataTransfer && (event.dataTransfer.dropEffect = "none");
+            if (guardCheck) {
+                if (event.dataTransfer) event.dataTransfer.dropEffect = "none";
                 css.addClass(event.currentTarget, this.mixCss("nodrop"));
             } else {
                 css.addClass(event.currentTarget, this.mixCss("dragover"));
             }
 
-            requestAnimationFrame(function () {
-                tickDragover = false;
-            });
+            hoverReferences.itemRef = item;
+            hoverReferences.guardCheck = guardCheck;
         };
     },
     onDragEnter: function onDragEnter(item) {

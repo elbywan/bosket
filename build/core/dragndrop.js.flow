@@ -101,7 +101,10 @@ export const utils = {
 
 // Internal use //
 
-let tickDragover = false
+const hoverReferences = {
+    itemRef: undefined,
+    guardCheck: false
+}
 export const nodeEvents = {
     onDragStart: function(item: ?Object) {
         return function(event: DragEvent) {
@@ -114,17 +117,20 @@ export const nodeEvents = {
             event.preventDefault()
             event.stopPropagation()
 
-            if(tickDragover) return
-            tickDragover = true
+            const guardCheck =
+                hoverReferences.itemRef === item ? hoverReferences.guardCheck :
+                    this.inputs.get().dragndrop.guard &&
+                    this.inputs.get().dragndrop.guard(item, event, this.inputs.get())
 
-            if(this.inputs.get().dragndrop.guard && this.inputs.get().dragndrop.guard(item, event, this.inputs.get())) {
-                event.dataTransfer && (event.dataTransfer.dropEffect = "none")
+            if(guardCheck) {
+                if(event.dataTransfer) event.dataTransfer.dropEffect = "none"
                 css.addClass(event.currentTarget, this.mixCss("nodrop"))
             } else {
                 css.addClass(event.currentTarget, this.mixCss("dragover"))
             }
 
-            requestAnimationFrame(() => { tickDragover = false })
+            hoverReferences.itemRef = item
+            hoverReferences.guardCheck = guardCheck
         }
     },
     onDragEnter: function(item: ?Object) {
