@@ -10,7 +10,7 @@
     &.section {
         padding: 0px 20px 20px;
         @media (max-width: 600px) { padding: 0px 10px 10px; }
-        background: var(--lightColor);
+        background: var(--lighterColor);
         border-left: 2px solid var(--accentColor);
         @media (max-width: 600px) { border-left: none; }
         color: black;
@@ -28,7 +28,7 @@
         display: flex;
         flex-wrap: wrap;
         margin-top: 30px;
-        box-shadow: 0px 0px 1px var(--darkerColor);
+        box-shadow: 3px 3px 1px #DDD;
 
         & > * {
             flex: 1;
@@ -51,15 +51,14 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: var(--lighterColor);
+            color: var(--darkerColor);
             top: -32px;
             right: 0px;
             width: 30px;
             height: 30px;
             font-size: 20px;
-            background-color: var(--darkerColor);
             border: 1px solid var(--darkerColor);
-            box-shadow: 0px 0px 2px var(--darkerColor);
+            box-shadow: 0px 0px 1px #000;
             box-sizing: border-box;
             opacity: 0.5;
             transition: all 0.25s ease-in-out;
@@ -67,8 +66,6 @@
             &:hover {
                 opacity: 1;
                 color: var(--accentColor);
-                background: var(--lighterColor);
-                border: 1px solid rgba(0, 0, 0, 0.3);
                 box-shadow: none;
             }
         }
@@ -93,6 +90,7 @@
                 @media (max-width: 1100px) { height: auto; }
                 min-height: 250px;
                 margin: 0;
+                box-shadow: none;
             }
             & > pre > code {
                 position: absolute;

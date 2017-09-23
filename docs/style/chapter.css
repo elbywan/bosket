@@ -58,7 +58,7 @@ div.chapter {
     & pre[class*=language-] {
         margin: 20px 0px;
         font-size: 14px;
-        box-shadow: 0px 0px 10px var(--darkColor);
+        box-shadow: 0px 0px 5px var(--darkerColor);
     }
 
     & .marged {
@@ -106,8 +106,8 @@ div.chapter {
         }
         & > div {
             background: var(--darkerColor);
-            color: var(--lightColor);
-            border-bottom: 1px solid var(--lightColor);
+            color: var(--lighterColor);
+            border-bottom: 1px solid var(--lighterColor);
             padding-bottom: 20px;
             &, & > a { transition: all .25s ease-in-out; }
             & > a { margin-right: 20px; }

@@ -30,7 +30,7 @@
         width: 350px;
         max-width: 90%;
         height: 100%;
-        background: var(--lightColor);
+        background: var(--lighterColor);
         color: var(--darkerColor);
         /*font-family: var(--serifFont);*/
         /*font-weight: bold;*/
@@ -63,7 +63,7 @@
             transform: translateX(0px);
 
             box-shadow: none;
-            @media (max-width: 1224px) { box-shadow: 1px 0px 3px #666; }
+            @media (max-width: 1224px) { box-shadow: 2px 0px 20px var(--darkerColor); }
         }
     }
     &.side-panel, &.content {

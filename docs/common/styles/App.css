@@ -1,11 +1,11 @@
 @import "variables.css";
 
 #framework-root {
-    background-color: var(--lightColor);
+    background-color: var(--lighterColor);
 }
 
 .App .chapter {
-    background-color: var(--lightColor);
+    background-color: var(--lighterColor);
     color: var(--darkerColor);
     font-size: 0.9em;
     @media(max-width: 600px) { margin-bottom: 2px; }
