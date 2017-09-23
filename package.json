@@ -18,7 +18,8 @@
     "build-docs": "npm install build --no-save && webpack --progress --colors --config docs/webpack.config.js -p",
     "dev-server": "webpack-dev-server --config docs/webpack.config.dev.js",
     "clean": "rimraf build/{angular,core,react,vue,riot,tools} && rimraf **/.DS_Store",
-    "flow-coverage-report": "flow-coverage-report -i 'src/**/*.js' --threshold 70"
+    "flow-coverage-report": "flow-coverage-report -i 'src/**/*.js' --threshold 70",
+    "changelog": "changelog -m bosket all > CHANGELOG.md"
   },
   "files": [
     "build",
@@ -48,6 +49,7 @@
     "babel-preset-es2015-riot": "^1.1.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "changelog": "^1.4.0",
     "copy": "^0.3.1",
     "core-js": "^2.5.1",
     "css-loader": "^0.28.7",
