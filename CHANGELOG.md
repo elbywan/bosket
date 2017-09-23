@@ -1,130 +1,140 @@
-0.2.2 / 2017-09-23
-==================
+<a name="0.2.2"></a>
+## 0.2.2 (2017-09-23)
 
-  * 0.2.2 tag
-  * add changelog
-  * update packages
-  * front page css tweaks
-  * small documentation css fixes
-  * set explicit dropeffect for firefox/safari
-  * fixed cursor flickering on dragover
-  * Closes [#1](https://github.com/elbywan/bosket/issues/1) - fix drop event triggered before dragover
-  * cleaner docs layout
-  * Closes [#3](https://github.com/elbywan/bosket/issues/3)
-  * [riot] fix typo in doc.
-  * update packages versions
-  * [react] fix default labels
+* [react] fix default labels ([97800bb](https://github.com/elbywan/bosket/commit/97800bb))
+* [riot] fix typo in doc. ([64b7f8f](https://github.com/elbywan/bosket/commit/64b7f8f))
+* 0.2.2 tag ([9d1c8ec](https://github.com/elbywan/bosket/commit/9d1c8ec))
+* add changelog ([a37444a](https://github.com/elbywan/bosket/commit/a37444a))
+* cleaner docs layout ([50b0e1d](https://github.com/elbywan/bosket/commit/50b0e1d))
+* Closes #1 - fix drop event triggered before dragover ([c65a6d5](https://github.com/elbywan/bosket/commit/c65a6d5)), closes [#1](https://github.com/elbywan/bosket/issues/1)
+* Closes #3 ([e35a15f](https://github.com/elbywan/bosket/commit/e35a15f)), closes [#3](https://github.com/elbywan/bosket/issues/3)
+* fixed cursor flickering on dragover ([fc2945f](https://github.com/elbywan/bosket/commit/fc2945f))
+* front page css tweaks ([95bc510](https://github.com/elbywan/bosket/commit/95bc510))
+* set explicit dropeffect for firefox/safari ([f0131ff](https://github.com/elbywan/bosket/commit/f0131ff))
+* small documentation css fixes ([358c061](https://github.com/elbywan/bosket/commit/358c061))
+* update packages ([ba0acb4](https://github.com/elbywan/bosket/commit/ba0acb4))
+* update packages versions ([958d2cc](https://github.com/elbywan/bosket/commit/958d2cc))
 
-0.2.1 / 2017-08-31
-==================
 
-  * 0.2.1 tag
-  * [riot] renamed onselect to avoid native event bubbling clash
 
-0.2.0 / 2017-08-29
-==================
+<a name="0.2.1"></a>
+## 0.2.1 (2017-08-31)
 
-  * 0.2.0 tag
-  * [riot] completed documentation
-  * [riot] documentation almost complete
-  * [riot] implementation done + minimal doc.
-  * squash rare concurrency issue
-  * refactor framework boilerplate
-  * Update README.md
-  * stop readme copy after build
+* [riot] renamed onselect to avoid native event bubbling clash ([afaaad8](https://github.com/elbywan/bosket/commit/afaaad8))
+* 0.2.1 tag ([d80999d](https://github.com/elbywan/bosket/commit/d80999d))
 
-0.1.0 / 2017-08-26
-==================
 
-  * 0.1.0 tag
-  * update readme
-  * [travis] use npm instead of yarn
-  * add travis ci build
-  * update build
-  * package updates
-  * [vue] completed documentation
-  * flow 0.53
-  * pokeapi demo layout change
-  * refresh build
-  * add sprites to pokeapi demo
-  * update version
 
-0.0.4 / 2017-08-12
-==================
+<a name="0.2.0"></a>
+# 0.2.0 (2017-08-29)
 
-  * [angular] fix chuck norris context issue
-  * [angular] completed documentation
-  * [react] Add props type to the documentation
-  * [angular] ported api demos
-  * small layout adjustments
-  * [vue] ported api demos
-  * fix Pokéapi url https typo
-  * [react] Add pokéapi demo
-  * [react] optimized rendering
-  * [react] refactored api demos wip
-  * [react] api demos wip
-  * [vue] replaced mixins with traits
-  * fix case insensitive file issue (2)
-  * fix case insensitive file issue (1)
-  * bootstrap vuejs doc
-  * rewrote angular componentdemo
-  * Angular doc WIP
-  * tweak documentation
-  * minor css fixes
-  * dragndrop compatibility fixes
-  * fix menuview demo alignment gap
-  * css layout improved
-  * root index paths fix
-  * replaced ejs with handlebars
+* [riot] completed documentation ([ba3dae6](https://github.com/elbywan/bosket/commit/ba3dae6))
+* [riot] documentation almost complete ([de15e79](https://github.com/elbywan/bosket/commit/de15e79))
+* [riot] implementation done + minimal doc. ([5418b65](https://github.com/elbywan/bosket/commit/5418b65))
+* 0.2.0 tag ([9e2cdd5](https://github.com/elbywan/bosket/commit/9e2cdd5))
+* refactor framework boilerplate ([18be81f](https://github.com/elbywan/bosket/commit/18be81f))
+* squash rare concurrency issue ([7b7abd7](https://github.com/elbywan/bosket/commit/7b7abd7))
+* stop readme copy after build ([85c44dc](https://github.com/elbywan/bosket/commit/85c44dc))
+* Update README.md ([df4828f](https://github.com/elbywan/bosket/commit/df4828f))
 
-0.0.3 / 2017-07-07
-==================
 
-  * upgrade version
-  * Adding Vue.js support
-  * treeview demo ignore drop on promises
-  * update version
 
-0.0.2 / 2017-07-02
-==================
+<a name="0.1.0"></a>
+# 0.1.0 (2017-08-26)
 
-  * fixed css drop example
-  * update packages
-  * rebuild
-  * React documentation : first draft completed
-  * add all interfaces to webpack dev server for mobile testing
-  * style tweak
-  * fix hot reload
-  * put back missing drag image code
-  * improved webpack builds
-  * extract css for prod build + eslint fixes
-  * Improved code samples.
-  * update dragndrop doc.
-  * dragndrop rework
-  * typos
-  * Misc. css
-  * refactored traits
-  * Improved Planner responsive style
-  * React - presets doc wip
-  * Mixin deepmix fix.
-  * Table of contents sections merged + small improvements
-  * [angular] improved dragndrop performance
-  * front page typos
-  * build aliases
-  * add css variables
-  * fix arrays condition
-  * add cssnext
-  * treeview demo code refactor
-  * Add flowtype.
-  * [react] TreeView documentation done
-  * wip documentation
+* [angular] completed documentation ([bc81330](https://github.com/elbywan/bosket/commit/bc81330))
+* [angular] fix chuck norris context issue ([a2654e8](https://github.com/elbywan/bosket/commit/a2654e8))
+* [angular] improved dragndrop performance ([787e3a0](https://github.com/elbywan/bosket/commit/787e3a0))
+* [angular] ported api demos ([2b6ee04](https://github.com/elbywan/bosket/commit/2b6ee04))
+* [docs] add drag image ([bdbdcae](https://github.com/elbywan/bosket/commit/bdbdcae))
+* [docs] add postcss & touch drag’n’drop polyfill ([1f47957](https://github.com/elbywan/bosket/commit/1f47957))
+* [react] Add pokéapi demo ([5ba767b](https://github.com/elbywan/bosket/commit/5ba767b))
+* [react] Add props type to the documentation ([7779f9d](https://github.com/elbywan/bosket/commit/7779f9d))
+* [react] api demos wip ([7577421](https://github.com/elbywan/bosket/commit/7577421))
+* [react] optimized rendering ([f6ad2f5](https://github.com/elbywan/bosket/commit/f6ad2f5))
+* [react] refactored api demos wip ([a94cc44](https://github.com/elbywan/bosket/commit/a94cc44))
+* [react] TreeView documentation done ([7fe023a](https://github.com/elbywan/bosket/commit/7fe023a))
+* [travis] use npm instead of yarn ([8b441dd](https://github.com/elbywan/bosket/commit/8b441dd))
+* [vue] completed documentation ([6107d3e](https://github.com/elbywan/bosket/commit/6107d3e))
+* [vue] ported api demos ([e1ef23e](https://github.com/elbywan/bosket/commit/e1ef23e))
+* [vue] replaced mixins with traits ([0b3b7a0](https://github.com/elbywan/bosket/commit/0b3b7a0))
+* 0.1.0 tag ([ae10c86](https://github.com/elbywan/bosket/commit/ae10c86))
+* add all interfaces to webpack dev server for mobile testing ([f8febb2](https://github.com/elbywan/bosket/commit/f8febb2))
+* add css variables ([0734683](https://github.com/elbywan/bosket/commit/0734683))
+* add cssnext ([9ac54da](https://github.com/elbywan/bosket/commit/9ac54da))
+* Add FlatTree react component. ([cf89226](https://github.com/elbywan/bosket/commit/cf89226))
+* Add flowtype. ([44d1ecf](https://github.com/elbywan/bosket/commit/44d1ecf))
+* Add MenuTree react component. ([3d0f39a](https://github.com/elbywan/bosket/commit/3d0f39a))
+* add models to examples ([03908e0](https://github.com/elbywan/bosket/commit/03908e0))
+* add sprites to pokeapi demo ([6b11337](https://github.com/elbywan/bosket/commit/6b11337))
+* add travis ci build ([fa8669d](https://github.com/elbywan/bosket/commit/fa8669d))
+* Adding Vue.js support ([52d8146](https://github.com/elbywan/bosket/commit/52d8146))
+* angular aot support & build process update ([9eaa34c](https://github.com/elbywan/bosket/commit/9eaa34c))
+* Angular doc WIP ([35e5175](https://github.com/elbywan/bosket/commit/35e5175))
+* Big update, added react Explorer tree + demo ([0ccd06b](https://github.com/elbywan/bosket/commit/0ccd06b))
+* bootstrap vuejs doc ([f7b242f](https://github.com/elbywan/bosket/commit/f7b242f))
+* build aliases ([d22c426](https://github.com/elbywan/bosket/commit/d22c426))
+* code splitting ([fbeb8eb](https://github.com/elbywan/bosket/commit/fbeb8eb))
+* css fixes ([2d47580](https://github.com/elbywan/bosket/commit/2d47580))
+* css layout improved ([037bb19](https://github.com/elbywan/bosket/commit/037bb19))
+* customizable css classes ([1c1e5b4](https://github.com/elbywan/bosket/commit/1c1e5b4))
+* Demo cosmetic update. ([4bcd929](https://github.com/elbywan/bosket/commit/4bcd929))
+* dragndrop compatibility fixes ([a9d057e](https://github.com/elbywan/bosket/commit/a9d057e))
+* dragndrop rework ([249c1be](https://github.com/elbywan/bosket/commit/249c1be))
+* extract css for prod build + eslint fixes ([6b7ed95](https://github.com/elbywan/bosket/commit/6b7ed95))
+* fix arrays condition ([03f277c](https://github.com/elbywan/bosket/commit/03f277c))
+* fix case insensitive file issue (1) ([2b2d581](https://github.com/elbywan/bosket/commit/2b2d581))
+* fix case insensitive file issue (2) ([b4edf0e](https://github.com/elbywan/bosket/commit/b4edf0e))
+* fix explorer demo drop issue ([bcd605c](https://github.com/elbywan/bosket/commit/bcd605c))
+* fix explorer demo window title ([51ae5c3](https://github.com/elbywan/bosket/commit/51ae5c3))
+* fix hot reload ([84d4833](https://github.com/elbywan/bosket/commit/84d4833))
+* fix menuview demo alignment gap ([d7ee6cd](https://github.com/elbywan/bosket/commit/d7ee6cd))
+* fix Pokéapi url https typo ([1ed2b4c](https://github.com/elbywan/bosket/commit/1ed2b4c))
+* fixed css drop example ([511dbd9](https://github.com/elbywan/bosket/commit/511dbd9))
+* flow 0.53 ([09c219c](https://github.com/elbywan/bosket/commit/09c219c))
+* Front page rehaul ([e8a1157](https://github.com/elbywan/bosket/commit/e8a1157))
+* front page typos ([2992e93](https://github.com/elbywan/bosket/commit/2992e93))
+* Improved code samples. ([7c9ab1c](https://github.com/elbywan/bosket/commit/7c9ab1c))
+* Improved filesystem drop for explorer tree demo. ([b673ba1](https://github.com/elbywan/bosket/commit/b673ba1))
+* Improved Planner responsive style ([d8eeeb7](https://github.com/elbywan/bosket/commit/d8eeeb7))
+* improved webpack builds ([095ae4b](https://github.com/elbywan/bosket/commit/095ae4b))
+* Initial commit ([0ad0162](https://github.com/elbywan/bosket/commit/0ad0162))
+* linter ignore webpack config ([fdfa721](https://github.com/elbywan/bosket/commit/fdfa721))
+* minor css fixes ([7f76b90](https://github.com/elbywan/bosket/commit/7f76b90))
+* Misc. css ([346e82f](https://github.com/elbywan/bosket/commit/346e82f))
+* Mixin deepmix fix. ([ed48e3e](https://github.com/elbywan/bosket/commit/ed48e3e))
+* package updates ([3538247](https://github.com/elbywan/bosket/commit/3538247))
+* package updates ([2869973](https://github.com/elbywan/bosket/commit/2869973))
+* pokeapi demo layout change ([5f69fff](https://github.com/elbywan/bosket/commit/5f69fff))
+* put back missing drag image code ([ee2e337](https://github.com/elbywan/bosket/commit/ee2e337))
+* React - presets doc wip ([925f03e](https://github.com/elbywan/bosket/commit/925f03e))
+* React documentation : first draft completed ([ea5b155](https://github.com/elbywan/bosket/commit/ea5b155))
+* Readme update ([f9d89f7](https://github.com/elbywan/bosket/commit/f9d89f7))
+* rebuild ([d0fafe5](https://github.com/elbywan/bosket/commit/d0fafe5))
+* refactor drag’n’drop inputs ([49b40c0](https://github.com/elbywan/bosket/commit/49b40c0))
+* refactored traits ([5bfd4a8](https://github.com/elbywan/bosket/commit/5bfd4a8))
+* refresh build ([1324455](https://github.com/elbywan/bosket/commit/1324455))
+* remove react dependency in logic code ([4f15f3b](https://github.com/elbywan/bosket/commit/4f15f3b))
+* rename ([dad9579](https://github.com/elbywan/bosket/commit/dad9579))
+* replaced ejs with handlebars ([0a7f681](https://github.com/elbywan/bosket/commit/0a7f681))
+* rewrote angular componentdemo ([c0c08cd](https://github.com/elbywan/bosket/commit/c0c08cd))
+* root index paths fix ([58aa71a](https://github.com/elbywan/bosket/commit/58aa71a))
+* small layout adjustments ([1f7deec](https://github.com/elbywan/bosket/commit/1f7deec))
+* style tweak ([9af56f1](https://github.com/elbywan/bosket/commit/9af56f1))
+* Table of contents sections merged + small improvements ([8f09b29](https://github.com/elbywan/bosket/commit/8f09b29))
+* treeview demo code refactor ([38e4dca](https://github.com/elbywan/bosket/commit/38e4dca))
+* treeview demo ignore drop on promises ([0d81e9d](https://github.com/elbywan/bosket/commit/0d81e9d))
+* tweak documentation ([fb8051e](https://github.com/elbywan/bosket/commit/fb8051e))
+* typos ([d384126](https://github.com/elbywan/bosket/commit/d384126))
+* update ([580774f](https://github.com/elbywan/bosket/commit/580774f))
+* update build ([cb983e8](https://github.com/elbywan/bosket/commit/cb983e8))
+* update dragndrop doc. ([80117f3](https://github.com/elbywan/bosket/commit/80117f3))
+* update packages ([01632ed](https://github.com/elbywan/bosket/commit/01632ed))
+* update readme ([c85bc8e](https://github.com/elbywan/bosket/commit/c85bc8e))
+* update version ([c7512f0](https://github.com/elbywan/bosket/commit/c7512f0))
+* update version ([862184d](https://github.com/elbywan/bosket/commit/862184d))
+* upgrade version ([64d7adb](https://github.com/elbywan/bosket/commit/64d7adb))
+* wip documentation ([69af3b7](https://github.com/elbywan/bosket/commit/69af3b7))
 
-0.0.1 / 2017-06-04
-==================
 
-  * Front page rehaul
-  * Add FlatTree react component.
-  * Improved filesystem drop for explorer tree demo.
-  * Add MenuTree react component.
-  * fix explorer demo window title
-  * css fixes
+
