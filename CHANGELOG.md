@@ -1,3 +1,20 @@
+0.2.2 / 2017-09-23
+==================
+
+  * 0.2.2 tag
+  * add changelog
+  * update packages
+  * front page css tweaks
+  * small documentation css fixes
+  * set explicit dropeffect for firefox/safari
+  * fixed cursor flickering on dragover
+  * Closes [#1](https://github.com/elbywan/bosket/issues/1) - fix drop event triggered before dragover
+  * cleaner docs layout
+  * Closes [#3](https://github.com/elbywan/bosket/issues/3)
+  * [riot] fix typo in doc.
+  * update packages versions
+  * [react] fix default labels
+
 0.2.1 / 2017-08-31
 ==================
 
@@ -111,5 +128,3 @@
   * Add MenuTree react component.
   * fix explorer demo window title
   * css fixes
-  * linter ignore webpack config
-  * add models to examples
