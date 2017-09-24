@@ -2,16 +2,15 @@
 
 .ExplorerView input[type="search"].search{
     position: absolute;
-    width: 100%;
-    top: 35px;
+    width: 200px;
+    top: 36px;
+    height: 28px;
     left: 0;
-    background: #eee;
+    background: #e3e3e3;
     color: #444;
     border: none;
-    border-bottom: 1px solid #ddd;
-    border-top: 2px solid #ddd;
-    font-size: 12px;
-    font-family: Monaco, monospace;
+    border-bottom: 1px solid #dadada;
+    font-family: Monaco,monospace;
 }
 
 /* Lists */
@@ -29,6 +28,10 @@
     font-family: Monaco, monospace;
     font-size: 14px;
     min-height: 495px;
+}
+
+.ExplorerView li {
+    transition: box-shadow 0.25s;
 }
 
 
@@ -50,7 +53,7 @@
 }
 
 .ExplorerView li:hover > .item {
-    /*background: #DEDEDE;*/
+    background: #f0faff;
 }
 .ExplorerView li:hover > .item > a {
     color: #000;
@@ -58,7 +61,6 @@
 
 .ExplorerView li.selected > .item {
     background: rgb(187,222,251);
-    box-shadow: -1px 1px 1px #CCC;
 }
 
 .ExplorerView li.category > .item > a {
@@ -88,7 +90,7 @@
 /* Drag'n'drop */
 
 .ExplorerView li.dragover, .ExplorerView ul.dragover {
-    box-shadow: -1px 1px 1px #CCC;
+    box-shadow: -5px 5px 2px #CCC;
 }
 .ExplorerView ul.dragover {
     background-color: aliceblue;
@@ -97,7 +99,7 @@
     background-color: aliceblue;
 }
 .ExplorerView li.nodrop > span.item {
-    box-shadow: -1px 1px 1px crimson;
+    /*box-shadow: -5px 5px 2px crimson;*/
     background-color: rgba(255, 20, 60, 0.1);
 }
 
