@@ -77,7 +77,7 @@
     "react-hot-loader": "next",
     "react-transition-group": "1.x",
     "rimraf": "^2.6.2",
-    "riot": "^3.7.0",
+    "riot": "^3.7.2",
     "riot-hot-reload": "^1.0.0",
     "riot-tag-loader": "^1.0.0",
     "rxjs": "^5.4.3",
