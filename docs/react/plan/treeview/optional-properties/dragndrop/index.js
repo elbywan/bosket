@@ -37,30 +37,19 @@ export default {
                     draggable: true,
                     droppable: true,
 
-                    // target       -> item dragged
-                    // event        -> original drag event
-                    // inputs       -> props of the component where the drag event is triggered
+                    // target       -> the model item targeted by the event
+                    // event        -> the dragndrop event
+                    // inputs       -> props of the component where the event is triggered
+
                     drag: (target, event, inputs) => {
                         /* ... */
                     },
-
-                    // target       -> item on which the drop occured
-                    // item         -> the item which is dropped
-                    // inputs       -> props of the component where the drop event is triggered
-                    drop: (target, item, event) => {
+                    drop: (target, event, inputs) => {
                         /* ... */
                     },
-
-                    // target       -> the dragged item
-                    // item         -> the item which is dropped
-                    // inputs       -> props of the component where the drag event was triggered
-                    cancel: (target, item, event) => {
+                    cancel: (target, event, inputs) => {
                         /* ... */
                     },
-
-                    // target       -> the dragged item
-                    // event        -> the dragover event
-                    // inputs       -> props of the component where the dragover event is triggered
                     guard: (target, event, inputs) => {
                         /* ... */
                     }
