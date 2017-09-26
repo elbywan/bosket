@@ -13,8 +13,11 @@ var TreeView = (function () {
         this.async = defaults.async;
         this._dragndrop = defaults.dragndrop;
         this.selectionChange = new EventEmitter();
-        this.onDrop = new EventEmitter();
         this.onDrag = new EventEmitter();
+        this.onOver = new EventEmitter();
+        this.onEnter = new EventEmitter();
+        this.onLeave = new EventEmitter();
+        this.onDrop = new EventEmitter();
         this.onCancel = new EventEmitter();
         this.getChildModel = function () {
             return _this.sort ? _this.model.sort(_this.sort) : _this.model;
@@ -44,8 +47,11 @@ var TreeView = (function () {
         };
         this._outputs = {
             onSelect: function (selection, item, ancestors, neighbours) { return _this.selectionChange.emit(selection); },
-            onDrop: function (target, event, inputs) { return _this.onDrop.emit({ target: target, event: event, inputs: inputs }); },
             onDrag: function (target, event, inputs) { return _this.onDrag.emit({ target: target, event: event, inputs: inputs }); },
+            onEnter: function (target, event, inputs) { return _this.onEnter.emit({ target: target, event: event, inputs: inputs }); },
+            onOver: function (target, event, inputs) { return _this.onOver.emit({ target: target, event: event, inputs: inputs }); },
+            onLeave: function (target, event, inputs) { return _this.onLeave.emit({ target: target, event: event, inputs: inputs }); },
+            onDrop: function (target, event, inputs) { return _this.onDrop.emit({ target: target, event: event, inputs: inputs }); },
             onCancel: function (target, event, inputs) { return _this.onCancel.emit({ target: target, event: event, inputs: inputs }); }
         };
         this._state = {
@@ -100,8 +106,11 @@ var TreeView = (function () {
         'async': [{ type: Input },],
         'dragndrop': [{ type: Input },],
         'selectionChange': [{ type: Output },],
-        'onDrop': [{ type: Output },],
         'onDrag': [{ type: Output },],
+        'onOver': [{ type: Output },],
+        'onEnter': [{ type: Output },],
+        'onLeave': [{ type: Output },],
+        'onDrop': [{ type: Output },],
         'onCancel': [{ type: Output },],
     };
     return TreeView;

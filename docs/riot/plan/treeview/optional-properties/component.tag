@@ -219,6 +219,9 @@
                 draggable: false, // make items draggable
                 droppable: false, // make the tree droppable
                 drag:      null,  // action to perform on drag
+                over:      null,  // hook on dragover
+                enter:     null,  // hook on dragenter
+                leave:     null,  // hook on dragleave
                 drop:      null,  // action to perform on drop
                 cancel:    null,  // action to perform on cancellation
                 guard:     null   // prevents dragover and drop
@@ -242,6 +245,15 @@
                     // inputs       -> props of the component where the event is triggered
 
                     drag: (target, event, inputs) => {
+                        /* ... */
+                    },
+                    over: (target, event, inputs) => {
+                        /* ... */
+                    },
+                    enter: (target, event, inputs) => {
+                        /* ... */
+                    },
+                    leave: (target, event, inputs) => {
                         /* ... */
                     },
                     drop: (target, event, inputs) => {

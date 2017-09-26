@@ -35,12 +35,27 @@ export declare class TreeView<Item extends Object> {
         droppable: boolean;
     };
     selectionChange: EventEmitter<Item[]>;
-    onDrop: EventEmitter<{
+    onDrag: EventEmitter<{
         target: Item;
         event: DragEvent;
         inputs: Object;
     }>;
-    onDrag: EventEmitter<{
+    onOver: EventEmitter<{
+        target: Item;
+        event: DragEvent;
+        inputs: Object;
+    }>;
+    onEnter: EventEmitter<{
+        target: Item;
+        event: DragEvent;
+        inputs: Object;
+    }>;
+    onLeave: EventEmitter<{
+        target: Item;
+        event: DragEvent;
+        inputs: Object;
+    }>;
+    onDrop: EventEmitter<{
         target: Item;
         event: DragEvent;
         inputs: Object;

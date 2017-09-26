@@ -52,6 +52,9 @@
         this.outputs = {
             onSelect:   this.inputs.get().onselection,
             onDrag:     this.inputs.get().dragndrop && this.inputs.get().dragndrop.drag,
+            onOver:     this.inputs.get().dragndrop && this.inputs.get().dragndrop.over,
+            onEnter:    this.inputs.get().dragndrop && this.inputs.get().dragndrop.enter,
+            onLeave:    this.inputs.get().dragndrop && this.inputs.get().dragndrop.leave,
             onDrop:     this.inputs.get().dragndrop && this.inputs.get().dragndrop.drop,
             onCancel:   this.inputs.get().dragndrop && this.inputs.get().dragndrop.cancel
         }

@@ -132,6 +132,8 @@ export const nodeEvents = {
 
             hoverReferences.itemRef = item
             hoverReferences.guardCheck = guardCheck
+
+            this.inputs.get().dragndrop.onOver(item, event, this.inputs.get())
         }
     },
     onDragEnter: function(item: ?Object) {
@@ -144,12 +146,18 @@ export const nodeEvents = {
                 newVal.push(item)
                 this.state.set({ unfolded: newVal })
             }
+
+            this.inputs.get().dragndrop.onEnter(item, event, this.inputs.get())
         }
     },
-    onDragLeave: function(event: DragEvent) {
-        event.stopPropagation()
-        css.removeClass(event.currentTarget, this.mixCss("dragover"))
-        css.removeClass(event.currentTarget, this.mixCss("nodrop"))
+    onDragLeave:  function(item: ?Object) {
+        return function(event: DragEvent) {
+            event.stopPropagation()
+            css.removeClass(event.currentTarget, this.mixCss("dragover"))
+            css.removeClass(event.currentTarget, this.mixCss("nodrop"))
+
+            this.inputs.get().dragndrop.onLeave(item, event, this.inputs.get())
+        }
     },
     onDrop: function(item: ?Object) {
         return function(event: DragEvent) {
@@ -179,6 +187,15 @@ export const wrapEvents = function() {
             }
 
             this.outputs.onDrag && this.outputs.onDrag(target, event, inputs)
+        },
+        onOver: (target: Object, event: DragEvent, inputs: Object) => {
+            this.outputs.onOver && this.outputs.onOver(target, event, inputs)
+        },
+        onEnter: (target: Object, event: DragEvent, inputs: Object) => {
+            this.outputs.onEnter && this.outputs.onEnter(target, event, inputs)
+        },
+        onLeave: (target: Object, event: DragEvent, inputs: Object) => {
+            this.outputs.onLeave && this.outputs.onLeave(target, event, inputs)
         },
         onDrop: (target: Object, event: DragEvent, inputs: Object) => {
             event.preventDefault()

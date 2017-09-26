@@ -117,6 +117,21 @@ export default [
                         content: components.OnDragProp
                     },
                     {
+                        title: "onOver",
+                        editLink: "https://github.com/elbywan/bosket/edit/master/docs/angular/plan/treeview/optional-properties/onOver/component.ts",
+                        content: components.OnOverProp
+                    },
+                    {
+                        title: "onEnter",
+                        editLink: "https://github.com/elbywan/bosket/edit/master/docs/angular/plan/treeview/optional-properties/onEnter/component.ts",
+                        content: components.OnEnterProp
+                    },
+                    {
+                        title: "onLeave",
+                        editLink: "https://github.com/elbywan/bosket/edit/master/docs/angular/plan/treeview/optional-properties/onLeave/component.ts",
+                        content: components.OnLeaveProp
+                    },
+                    {
                         title: "onDrop",
                         editLink: "https://github.com/elbywan/bosket/edit/master/docs/angular/plan/treeview/optional-properties/onDrop/component.ts",
                         content: components.OnDropProp

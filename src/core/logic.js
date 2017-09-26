@@ -152,7 +152,7 @@ export class TreeNode extends Core<*> {
             onDragStart:    this.isDraggable(item) && nodeEvents.onDragStart(item).bind(this),
             onDragOver:     this.isDroppable(item) && nodeEvents.onDragOver(item).bind(this),
             onDragEnter:    this.isDroppable(item) && nodeEvents.onDragEnter(item).bind(this),
-            onDragLeave:    this.isDroppable(item) && nodeEvents.onDragLeave.bind(this),
+            onDragLeave:    this.isDroppable(item) && nodeEvents.onDragLeave(item).bind(this),
             onDrop:         this.isDroppable(item) && nodeEvents.onDrop(item).bind(this),
             onDragEnd:      this.isDraggable(item) && nodeEvents.onDragEnd(item).bind(this)
         }

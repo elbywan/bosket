@@ -63,9 +63,10 @@ export declare class RootNode<Item extends Object> extends Core {
         draggable,
         droppable,
         guard?,
-        drag?
-        drop?,
         onDrag?,
+        onOver?,
+        onEnter?,
+        onLeave?,
         onDrop?,
         onCancel?
     }

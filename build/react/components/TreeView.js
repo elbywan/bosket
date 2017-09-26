@@ -49,6 +49,9 @@ var TreeViewBaseClass = function (_React$PureComponent) {
         var _outputs = {
             onSelect: _this.props.onSelect,
             onDrag: _this.props.dragndrop && _this.props.dragndrop.drag,
+            onOver: _this.props.dragndrop && _this.props.dragndrop.over,
+            onEnter: _this.props.dragndrop && _this.props.dragndrop.enter,
+            onLeave: _this.props.dragndrop && _this.props.dragndrop.leave,
             onDrop: _this.props.dragndrop && _this.props.dragndrop.drop,
             onCancel: _this.props.dragndrop && _this.props.dragndrop.cancel
         };

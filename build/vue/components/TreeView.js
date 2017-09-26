@@ -44,6 +44,9 @@ var TreeViewBase = {
         var _outputs = {
             onSelect: this.$props.onSelect,
             onDrag: this.$props.dragndrop && this.$props.dragndrop.drag,
+            onOver: this.$props.dragndrop && this.$props.dragndrop.over,
+            onEnter: this.$props.dragndrop && this.$props.dragndrop.enter,
+            onLeave: this.$props.dragndrop && this.$props.dragndrop.leave,
             onDrop: this.$props.dragndrop && this.$props.dragndrop.drop,
             onCancel: this.$props.dragndrop && this.$props.dragndrop.cancel
         };

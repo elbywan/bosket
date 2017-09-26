@@ -74,8 +74,11 @@ export class TreeView<Item extends Object> {
 
         this._outputs = {
             onSelect:   (selection, item, ancestors, neighbours) => this.selectionChange.emit(selection),
-            onDrop:     (target, event, inputs) => this.onDrop.emit({target, event, inputs}),
             onDrag:     (target, event, inputs) => this.onDrag.emit({target, event, inputs}),
+            onEnter:    (target, event, inputs) => this.onEnter.emit({target, event, inputs}),
+            onOver:     (target, event, inputs) => this.onOver.emit({target, event, inputs}),
+            onLeave:    (target, event, inputs) => this.onLeave.emit({target, event, inputs}),
+            onDrop:     (target, event, inputs) => this.onDrop.emit({target, event, inputs}),
             onCancel:   (target, event, inputs) => this.onCancel.emit({target, event, inputs})
         }
 
@@ -136,8 +139,11 @@ export class TreeView<Item extends Object> {
 
     // Outputs
     @Output() selectionChange = new EventEmitter<Array<Item>>()
-    @Output() onDrop = new EventEmitter<dragOutput<Item>>()
     @Output() onDrag = new EventEmitter<dragOutput<Item>>()
+    @Output() onOver = new EventEmitter<dragOutput<Item>>()
+    @Output() onEnter = new EventEmitter<dragOutput<Item>>()
+    @Output() onLeave = new EventEmitter<dragOutput<Item>>()
+    @Output() onDrop = new EventEmitter<dragOutput<Item>>()
     @Output() onCancel = new EventEmitter<dragOutput<Item>>()
 
     /* Internal logic */

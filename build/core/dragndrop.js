@@ -129,6 +129,8 @@ export var nodeEvents = {
 
             hoverReferences.itemRef = item;
             hoverReferences.guardCheck = guardCheck;
+
+            this.inputs.get().dragndrop.onOver(item, event, this.inputs.get());
         };
     },
     onDragEnter: function onDragEnter(item) {
@@ -143,12 +145,18 @@ export var nodeEvents = {
                 newVal.push(item);
                 this.state.set({ unfolded: newVal });
             }
+
+            this.inputs.get().dragndrop.onEnter(item, event, this.inputs.get());
         };
     },
-    onDragLeave: function onDragLeave(event) {
-        event.stopPropagation();
-        css.removeClass(event.currentTarget, this.mixCss("dragover"));
-        css.removeClass(event.currentTarget, this.mixCss("nodrop"));
+    onDragLeave: function onDragLeave(item) {
+        return function (event) {
+            event.stopPropagation();
+            css.removeClass(event.currentTarget, this.mixCss("dragover"));
+            css.removeClass(event.currentTarget, this.mixCss("nodrop"));
+
+            this.inputs.get().dragndrop.onLeave(item, event, this.inputs.get());
+        };
     },
     onDrop: function onDrop(item) {
         return function (event) {
@@ -178,6 +186,15 @@ export var wrapEvents = function wrapEvents() {
             }
 
             _this.outputs.onDrag && _this.outputs.onDrag(target, event, inputs);
+        },
+        onOver: function onOver(target, event, inputs) {
+            _this.outputs.onOver && _this.outputs.onOver(target, event, inputs);
+        },
+        onEnter: function onEnter(target, event, inputs) {
+            _this.outputs.onEnter && _this.outputs.onEnter(target, event, inputs);
+        },
+        onLeave: function onLeave(target, event, inputs) {
+            _this.outputs.onLeave && _this.outputs.onLeave(target, event, inputs);
         },
         onDrop: function onDrop(target, event, inputs) {
             event.preventDefault();

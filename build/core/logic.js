@@ -106,7 +106,7 @@ export var TreeNode = function (_Core) {
                 onDragStart: _this.isDraggable(item) && nodeEvents.onDragStart(item).bind(_this),
                 onDragOver: _this.isDroppable(item) && nodeEvents.onDragOver(item).bind(_this),
                 onDragEnter: _this.isDroppable(item) && nodeEvents.onDragEnter(item).bind(_this),
-                onDragLeave: _this.isDroppable(item) && nodeEvents.onDragLeave.bind(_this),
+                onDragLeave: _this.isDroppable(item) && nodeEvents.onDragLeave(item).bind(_this),
                 onDrop: _this.isDroppable(item) && nodeEvents.onDrop(item).bind(_this),
                 onDragEnd: _this.isDraggable(item) && nodeEvents.onDragEnd(item).bind(_this)
             };
