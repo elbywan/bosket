@@ -4,7 +4,7 @@
             class={ rootNode.mixCss("search") }
             if={ inputs.get().search }
             placeholder={ inputs.get().labels["search.placeholder"] }
-            onkeyup={ onSearch } />
+            oninput={ onSearch } />
         <TreeViewNode
             opts={ inputs.get() }
             selection={ opts.selection }
