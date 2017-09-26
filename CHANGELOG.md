@@ -1,3 +1,18 @@
+<a name="0.2.3"></a>
+## 0.2.3 (2017-09-26)
+
+* [docs] better contrast ([b7a028e](https://github.com/elbywan/bosket/commit/b7a028e))
+* [docs] fixed incorrect dragndrop method signatures ([29968b5](https://github.com/elbywan/bosket/commit/29968b5))
+* [riot] search event changed to oninput - closes #5 ([310531d](https://github.com/elbywan/bosket/commit/310531d)), closes [#5](https://github.com/elbywan/bosket/issues/5)
+* add dragover/enter/leave hooks - closes #7 ([a9614f7](https://github.com/elbywan/bosket/commit/a9614f7)), closes [#7](https://github.com/elbywan/bosket/issues/7)
+* better changelog ([6492218](https://github.com/elbywan/bosket/commit/6492218))
+* little better explorer demo css ([ee103ed](https://github.com/elbywan/bosket/commit/ee103ed))
+* regen changelog ([f958891](https://github.com/elbywan/bosket/commit/f958891))
+* remove devdep flag ([8bcc90a](https://github.com/elbywan/bosket/commit/8bcc90a))
+* riot version bump ([68b5886](https://github.com/elbywan/bosket/commit/68b5886))
+
+
+
 <a name="0.2.2"></a>
 ## 0.2.2 (2017-09-23)
 
