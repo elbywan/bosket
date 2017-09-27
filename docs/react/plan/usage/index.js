@@ -16,7 +16,7 @@ export default {
             <p>It is assumed that you followed the installation <em><a href="../#Setup" >guidelines</a></em>.</p>
             <p>Bosket/react relies on css-transition-group version 1 to animate transitions.</p>
             { bashcode`
-                 npm i -D react-transition-group@^1` }
+                 npm i react-transition-group@^1` }
         </div>,
     subs: [
         _import,

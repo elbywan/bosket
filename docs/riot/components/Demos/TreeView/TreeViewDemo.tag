@@ -4,7 +4,7 @@
 
     <script>
         import { string } from "bosket/tools"
-        import { dragndrop } from "bosket/core/dragndrop"
+        import { dragndrop } from "bosket/core"
         import riot from "riot"
 
         // Model
