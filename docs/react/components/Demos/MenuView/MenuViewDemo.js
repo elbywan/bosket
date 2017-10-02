@@ -5,7 +5,7 @@ import "./MenuViewDemo.css"
 // React
 import React from "react"
 // Bosket
-import { MenuView } from "bosket/react"
+import { MenuView } from "@bosket/react"
 // Data model
 import model from "self/common/models/MenuViewModel"
 

@@ -16,7 +16,7 @@ import { Component } from "@angular/core"
 })
 export class DisplayComponentProp {
     code = `
-        import { DisplayComponent } from "bosket/angular"
+        import { DisplayComponent } from "@bosket/angular"
 
         // This component wraps items within an anchor tag
         @Component({

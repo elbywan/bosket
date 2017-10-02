@@ -1,6 +1,6 @@
-import { array, object } from "../../tools"
+import { array, object } from "@bosket/tools"
+import { TreeNode } from "@bosket/core"
 import { withTransition } from "../traits"
-import { TreeNode } from "../../core"
 
 const TreeViewNodeBase = {
     name: "TreeViewNode",

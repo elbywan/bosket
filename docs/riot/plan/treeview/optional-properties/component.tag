@@ -275,7 +275,7 @@
                     <TreeView opts={ conf } />
                 </div>
                 <script>
-                    import { dragndrop } from "bosket/core"
+                    import { dragndrop } from "@bosket/core"
                     this.dragModel = [
                         { name: "< Drag these items >" },
                         { name: 1, children: [{ name: 11 }, { name: 12 }, { name: 13 }]},
@@ -301,7 +301,7 @@
                     <TreeView opts={ conf } />
                 </div>
                 <script>
-                    import { dragndrop } from "bosket/core"
+                    import { dragndrop } from "@bosket/core"
                     this.conf = {
                         model: [{ name: "< Drop items here >", children: []}],
                         category: "children",
@@ -326,7 +326,7 @@
         <TreeView opts={ conf } />
     </div>
     <script>
-        import { dragndrop } from "bosket/core"
+        import { dragndrop } from "@bosket/core"
         this.dragModel = [
             { name: "< Drag these items >" },
             { name: 1, children: [{ name: 11 }, { name: 12 }, { name: 13 }]},
@@ -352,7 +352,7 @@
         <TreeView opts={ conf } />
     </div>
     <script>
-        import { dragndrop } from "bosket/core"
+        import { dragndrop } from "@bosket/core"
         this.conf = {
             model: [{ name: "< Drop items here >", children: []}],
             category: "children",

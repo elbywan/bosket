@@ -3,9 +3,9 @@
 import React from "react"
 
 // Bosket imports
-import { TreeView } from "bosket/react"
-import { string } from "bosket/tools"
-import { dragndrop } from "bosket/core/dragndrop"
+import { TreeView } from "@bosket/react"
+import { string } from "@bosket/tools"
+import { dragndrop } from "@bosket/core"
 
 // Css
 import "./TreeViewDemo.css"

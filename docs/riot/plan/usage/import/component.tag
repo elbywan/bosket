@@ -4,11 +4,11 @@
     <syntax-highlight offset={ 8 }>
         /* How to register Bosket tags : */
 
-        // ES6 imports
-        import "bosket/riot"
+        // ESM imports
+        import "@bosket/riot"
 
         // Commonjs
-        require("bosket/riot")
+        require("@bosket/riot")
     </syntax-highlight>
 
     <p>Or just include a link to the <em><code>bosket/riot/index.js</code></em> file inside a script tag.</p>

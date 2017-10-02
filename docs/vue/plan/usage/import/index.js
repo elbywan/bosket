@@ -4,7 +4,7 @@ export default {
     title: "Import",
     editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/usage/import/index.js",
     content: h => jscode`
-        import { TreeView } from "bosket/vue"
+        import { TreeView } from "@bosket/vue"
 
         {
             // Your vue.js component excerpt //

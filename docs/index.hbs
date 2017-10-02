@@ -27,6 +27,43 @@
         h2 {
             padding-top: 30px !important;
         }
+        .select {
+            display: inline-block;
+            position: relative;
+            color: crimson;
+        }
+        .select select {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            cursor: pointer;
+            outline: none;
+            font-size: inherit;
+            font-family: inherit;
+            color: inherit;
+            text-decoration: underline;
+            background-color: transparent;
+            border: none;
+            margin-left: -0.5em;
+            display: block;
+            padding-right: 30px;
+        }
+        .select::after {
+            font: normal normal normal 14px/1 FontAwesome;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            content: "\f0d7";
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            margin-top: -0.5em;
+            right: 1em;
+        }
     </style>
 </head>
 
@@ -86,8 +123,25 @@
 
                 <p>Installing as a package dependency is the easiest and recommended way.</p>
 
+                {{!-- <div class="select">
+                    <select onchange="document.getElementById('framework-npm-choice').textContent = this.value">
+                        <option selected value="react">React</option>
+                        <option value="angular">Angular</option>
+                        <option value="vue">Vue.js</option>
+                        <option value="riot">Riot.js</option>
+                    </select>
+                </div> --}}
+
                 <code class="terminal">
-                    <span class="keyword">npm</span> i bosket
+                    <span class="keyword">npm</span> i @bosket/core @bosket/tools @bosket/
+                    <div class="select">
+                        <select>
+                            <option selected>react</option>
+                            <option>angular</option>
+                            <option>vue</option>
+                            <option>riot</option>
+                        </select>
+                    </div>
                 </code>
 
                 <h2 class="highlight">By cloning the repository</h2>

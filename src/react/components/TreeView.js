@@ -1,9 +1,9 @@
 // @flow
 
 import React from "react"
+import { tree } from "@bosket/tools"
+import { RootNode, defaults } from "@bosket/core"
 import { withLabels, combine, withListener } from "../traits"
-import { tree } from "../../tools/trees"
-import { RootNode, defaults } from "../../core"
 import { TreeViewNode } from "./TreeViewNode"
 
 import type { Key } from "react"

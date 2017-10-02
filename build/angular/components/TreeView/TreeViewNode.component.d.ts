@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ComponentFactoryResolver, AfterViewInit } from "@angular/core";
 import { ItemInjector } from "./ItemInjector.directive";
-import { TreeNode } from "../../../core";
+import { TreeNode } from "@bosket/core";
 export declare class TreeViewNode<Item extends Object> implements AfterViewInit {
     private _cdRef;
     private _componentFactoryResolver;

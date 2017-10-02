@@ -3,8 +3,8 @@
     <TreeView opts={ options } selection={ opts.selection } onselection={ opts.onselection } />
 
     <script>
-        import { string } from "bosket/tools"
-        import { dragndrop } from "bosket/core"
+        import { string } from "@bosket/tools"
+        import { dragndrop } from "@bosket/core"
         import riot from "riot"
 
         // Model

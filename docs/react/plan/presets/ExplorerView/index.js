@@ -22,7 +22,7 @@ export default {
                         Appearance can be tweaked using <em><a href="#TreeView#Css">css</a></em>.
                     </p>
                     { jscode`
-                        import { ExplorerView } from "bosket/react"
+                        import { ExplorerView } from "@bosket/react"
 
                         const usage = _ =>
                             <ExplorerView

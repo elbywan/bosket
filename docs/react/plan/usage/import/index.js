@@ -10,7 +10,7 @@ export default {
     content:
         <span>
             { jscode`
-                import { /* Required component(s) */ } from "bosket/react"` }
+                import { /* Required component(s) */ } from "@bosket/react"` }
 
         </span>
 }

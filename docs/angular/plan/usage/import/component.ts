@@ -4,7 +4,7 @@ import { Component } from "@angular/core"
     template: `
         <p>To use the components, you must first import the Bosket module.</p>
         <syntax-highlight language="typescript">
-            import {{ '{' }} BosketModule } from "bosket/angular"
+            import {{ '{' }} BosketModule } from "@bosket/angular"
 
             // [Use the angular imports](https://angular.io/guide/ngmodule#import-supporting-modules)
 

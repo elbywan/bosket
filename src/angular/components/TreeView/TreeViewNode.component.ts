@@ -1,8 +1,8 @@
 import { Component, Input, ViewChildren, ChangeDetectionStrategy, ChangeDetectorRef,
     ComponentFactoryResolver, AfterViewInit, AfterViewChecked } from "@angular/core"
 import { ItemInjector } from "./ItemInjector.directive"
-import { TreeNode } from "../../../core"
-import * as strategies from "../../../core/strategies"
+import { TreeNode } from "@bosket/core"
+import * as strategies from "@bosket/core"
 
 const object = require("../../../tools/objects").object
 

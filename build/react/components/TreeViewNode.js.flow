@@ -1,12 +1,12 @@
 // @flow
 
 import React from "react"
-import { array } from "../../tools"
+import { array } from "@bosket/tools"
+import { TreeNode } from "@bosket/core"
 import { withTransition } from "../traits"
-import { TreeNode } from "../../core"
 
 import type { Key } from "react"
-import type { TreeNodeInput } from "../../core/logic"
+import type { TreeNodeInput } from "@bosket/core"
 
 type TreeViewNodeProps = {
     model:              Object[],

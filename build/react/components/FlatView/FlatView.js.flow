@@ -1,10 +1,9 @@
 // @flow
 
 import React from "react"
+import { array, deepMix } from "@bosket/tools"
 
 import { TreeView } from "../TreeView"
-import { array, deepMix } from "../../../tools"
-
 import type { TreeViewProps } from "../TreeView"
 
 type FlatViewProps = {

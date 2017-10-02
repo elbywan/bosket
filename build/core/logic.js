@@ -8,7 +8,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-import { css, array, tree } from "../tools";
+import { css, array, tree } from "@bosket/tools";
 import { wrapEvents, nodeEvents } from "./dragndrop";
 import { selectionStrategies, foldStrategies, clickStrategies } from "./strategies";
 import { defaults } from "./defaults";

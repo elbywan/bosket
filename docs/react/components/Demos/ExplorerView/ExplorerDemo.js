@@ -5,9 +5,9 @@ import "./ExplorerDemo.css"
 import React from "react"
 
 // ExplorerView preset
-import { ExplorerView } from "bosket/react"
+import { ExplorerView } from "@bosket/react"
 // Drag'n'drop utilities
-import { dragndrop, utils as dragtools } from "bosket/core/dragndrop"
+import { dragndrop, utils as dragtools } from "@bosket/core"
 // Data model
 import model from "self/common/models/ExplorerViewModel"
 

@@ -1,6 +1,6 @@
 {
-    "name": "bosket",
-    "version": "0.2.3",
+    "name": "@bosket/{{module}}",
+    "version": "{{version}}",
     "description": "A collection of tree views.",
     "keywords": [
         "tree",
@@ -8,11 +8,13 @@
         "tree-view",
         "treeview",
         "data structure",
-        "angular",
-        "react",
-        "vuejs"
+        "{{module}}"
     ],
-    "main": "index.js",
+    "main": "bundle/{{module}}.umd.min.js",
+    {{#if esm}}
+    "module": "index.js",
+    "jsnext:main": "index.js",
+    {{/if}}
     "author": "Julien Elbaz",
     "license": "MIT",
     "homepage": "https://elbywan.github.io/bosket/",
@@ -22,5 +24,10 @@
     },
     "bugs": {
         "url": "https://github.com/elbywan/bosket/issues"
+    },
+    "peerDependencies": {
+        {{#each peers}}
+        {{#if @first}}{{else}},{{/if}}"{{@key}}": "{{this}}"
+        {{/each}}
     }
 }

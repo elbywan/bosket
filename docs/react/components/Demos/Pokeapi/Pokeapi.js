@@ -2,8 +2,8 @@ import React from "react"
 
 import "self/common/styles/Pokeapi.css"
 
-import { TreeView } from "bosket/react"
-import { css } from "bosket/tools"
+import { TreeView } from "@bosket/react"
+import { css } from "@bosket/tools"
 import { Item, cachedFetch } from "./models"
 
 export class Pokeapi extends React.PureComponent {

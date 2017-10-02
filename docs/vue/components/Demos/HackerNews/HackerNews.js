@@ -1,6 +1,6 @@
 import "self/common/styles/HackerNews.css"
 
-import { TreeView } from "bosket/vue"
+import { TreeView } from "@bosket/vue"
 import { fetchLast, TopStory } from "./models"
 
 const conf = {

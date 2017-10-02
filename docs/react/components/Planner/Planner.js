@@ -4,9 +4,9 @@
 import React from "react"
 import "self/common/styles/Planner.css"
 
-import { TreeView } from "bosket/react"
-import { css } from "bosket/tools"
-import { withListener, combine } from "bosket/react/traits"
+import { TreeView } from "@bosket/react"
+import { css } from "@bosket/tools"
+import { withListener, combine } from "@bosket/react/traits"
 
 const headerLevel = (depth, prefix, item) => {
     const id = prefix ? `${prefix}#${item.title}` : item.title

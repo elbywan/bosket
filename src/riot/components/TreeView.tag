@@ -19,8 +19,8 @@
     </div>
 
     <script type="es6">
-        import { tree } from "../../tools"
-        import { RootNode, defaults } from "../../core"
+        import { tree } from "@bosket/tools"
+        import { RootNode, defaults } from "@bosket/core"
         import { optsMixin, listenerMixin } from "../mixins"
 
         this.mixin(optsMixin())

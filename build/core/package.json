@@ -1,0 +1,29 @@
+{
+    "name": "@bosket/core",
+    "version": "0.3.0",
+    "description": "A collection of tree views.",
+    "keywords": [
+        "tree",
+        "view",
+        "tree-view",
+        "treeview",
+        "data structure",
+        "core"
+    ],
+    "main": "bundle/core.umd.min.js",
+    "module": "index.js",
+    "jsnext:main": "index.js",
+    "author": "Julien Elbaz",
+    "license": "MIT",
+    "homepage": "https://elbywan.github.io/bosket/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/elbywan/bosket"
+    },
+    "bugs": {
+        "url": "https://github.com/elbywan/bosket/issues"
+    },
+    "peerDependencies": {
+        "@bosket/tools": "^0.3.0"
+    }
+}

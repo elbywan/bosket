@@ -1,5 +1,5 @@
-import { object, tree } from "../../tools"
-import { RootNode, defaults } from "../../core"
+import { object, tree } from "@bosket/tools"
+import { RootNode, defaults } from "@bosket/core"
 import { TreeViewNode } from "./TreeViewNode"
 import { combine, withLabels, withListener } from "../traits"
 

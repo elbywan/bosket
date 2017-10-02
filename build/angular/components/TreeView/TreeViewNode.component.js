@@ -1,6 +1,6 @@
 import { Component, Input, ViewChildren, ChangeDetectionStrategy, ChangeDetectorRef, ComponentFactoryResolver } from "@angular/core";
 import { ItemInjector } from "./ItemInjector.directive";
-import { TreeNode } from "../../../core";
+import { TreeNode } from "@bosket/core";
 var object = require("../../../tools/objects").object;
 var TreeViewNode = (function () {
     function TreeViewNode(_cdRef, _componentFactoryResolver) {

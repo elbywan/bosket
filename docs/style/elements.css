@@ -82,25 +82,6 @@ input[type="number"], input[type="text"], input[type="email"], input[type="searc
     }
 }
 
-select {
-    height: 25px;
-    cursor: pointer;
-    border: none;
-    background: white;
-    border-radius: 0px;
-    outline: none;
-    color: black;
-    min-width: 150px;
-    appearance: none;
-    border-bottom: 1px solid var(--darkerColor);
-    transition: all 0.25s ease-in-out;
-
-    &:hover {
-        background: #e26f6f;
-        color: white;
-    }
-}
-
 code {
     & a {
         text-decoration: underline;

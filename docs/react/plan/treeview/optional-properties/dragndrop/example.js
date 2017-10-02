@@ -2,8 +2,8 @@
 
 import React from "react"
 
-import { TreeView } from "bosket/react"
-import { dragndrop } from "bosket/core"
+import { TreeView } from "@bosket/react"
+import { dragndrop } from "@bosket/core"
 
 const dragModel = [
     { name: "< Drag these items >" },

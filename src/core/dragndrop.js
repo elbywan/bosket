@@ -1,6 +1,6 @@
 // @flow
 
-import { css, array, tree } from "../tools"
+import { css, array, tree } from "@bosket/tools"
 
 // Drag and drop presets //
 

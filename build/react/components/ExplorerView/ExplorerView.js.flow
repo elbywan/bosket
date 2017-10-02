@@ -1,11 +1,10 @@
 // @flow
 
 import React from "react"
+import { dragndrop } from "@bosket/core"
+import { string, deepMix } from "@bosket/tools"
 
 import { TreeView } from "../TreeView"
-import { string, deepMix } from "../../../tools"
-import { dragndrop } from "../../../core"
-
 import type { TreeViewProps } from "../TreeView"
 
 type ExplorerViewProps = {

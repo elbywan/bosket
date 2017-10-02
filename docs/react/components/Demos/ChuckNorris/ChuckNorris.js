@@ -2,7 +2,7 @@ import React from "react"
 
 import "self/common/styles/ChuckNorris.css"
 
-import { TreeView } from "bosket/react"
+import { TreeView } from "@bosket/react"
 import { Category } from "./models"
 
 export class ChuckNorris extends React.PureComponent {

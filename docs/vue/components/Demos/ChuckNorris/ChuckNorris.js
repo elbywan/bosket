@@ -1,6 +1,6 @@
 import "self/common/styles/ChuckNorris.css"
 
-import { TreeView } from "bosket/vue"
+import { TreeView } from "@bosket/vue"
 import { Category } from "./models"
 
 const conf = {

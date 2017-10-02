@@ -67,7 +67,7 @@ export default {
                     </p>
                     { jscode`
                     // Partial example of a component rendering a TreeView.
-                    import { TreeView } from "bosket/vue"
+                    import { TreeView } from "@bosket/vue"
 
                     export default {
                         name: "MyVueComponent",

@@ -1,6 +1,6 @@
 import React from "react"
 
-import { TreeView } from  "bosket/react"
+import { TreeView } from "@bosket/react"
 
 const sampleModel = [
     { label: "Click me, I'm a node with two children.", children: [

@@ -60,7 +60,7 @@ export class DragndropProp {
         import { Component, Input, Output } from "@angular/core"
 
         // Drag'n'drop presets
-        import { dragndrop } from "bosket/core"
+        import { dragndrop } from "@bosket/core"
 
         const dragModel = [
             { name: "< Drag these items >" },

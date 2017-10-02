@@ -10,6 +10,6 @@
 
 ----
 
-This is the npm repository for the Bosket library.
+This is the npm repository for the **@bosket/core** module of the Bosket library.
 
 For more details, please check out the [Bosket website](https://elbywan.github.io/bosket/) or the [source code repository](https://github.com/elbywan/bosket).

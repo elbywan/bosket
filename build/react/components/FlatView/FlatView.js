@@ -5,9 +5,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 import React from "react";
+import { array, deepMix } from "@bosket/tools";
 
 import { TreeView } from "../TreeView";
-import { array, deepMix } from "../../../tools";
+
 
 export var FlatView = function (_React$PureComponent) {
     _inherits(FlatView, _React$PureComponent);

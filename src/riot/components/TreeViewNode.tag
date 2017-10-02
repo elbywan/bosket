@@ -42,7 +42,7 @@
     <span if={ opts.loading }></span>
 
     <script type="es6">
-        import { TreeNode } from "../../core"
+        import { TreeNode } from "@bosket/core"
         import { optsMixin } from "../mixins"
 
         this.mixin(optsMixin())

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    import { TreeView } from  "bosket/vue"
+    import { TreeView } from "@bosket/vue"
 
     const sampleModel = [
         { label: "Click me, I'm a node with two children.", children: [

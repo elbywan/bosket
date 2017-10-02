@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from "@angular/core";
-import { RootNode, defaults } from "../../../core";
+import { RootNode, defaults } from "@bosket/core";
 var TreeView = (function () {
     function TreeView(cdRef) {
         var _this = this;

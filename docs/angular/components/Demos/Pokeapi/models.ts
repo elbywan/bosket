@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectorRef } from "@angular/core"
-import { DisplayComponent } from "bosket/angular"
+import { DisplayComponent } from "@bosket/angular"
 
 @Component({
     selector: "item-display-component",

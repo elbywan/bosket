@@ -76,8 +76,8 @@ export default {
             { jscode`
                     import React from "react"
 
-                    import { TreeView } from "bosket/react"
-                    import { dragndrop } from "bosket/core"
+                    import { TreeView } from "@bosket/react"
+                    import { dragndrop } from "@bosket/core"
 
                     /* Model */
                     const dragModel = [

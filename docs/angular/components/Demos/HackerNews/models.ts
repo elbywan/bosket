@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectorRef } from "@angular/core"
-import { DisplayComponent } from "bosket/angular"
+import { DisplayComponent } from "@bosket/angular"
 import sanitize from "sanitize-html"
 
 export const fetchLast = (arr, getUrl, limit = 10, offset = 0) =>

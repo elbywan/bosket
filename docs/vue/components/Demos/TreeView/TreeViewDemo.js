@@ -1,6 +1,6 @@
-import { TreeView } from "bosket/vue"
-import { string } from "bosket/tools"
-import { dragndrop } from "bosket/core/dragndrop"
+import { TreeView } from "@bosket/vue"
+import { string } from "@bosket/tools"
+import { dragndrop } from "@bosket/core"
 
 // Model
 import model from "self/common/models/TreeViewModel"

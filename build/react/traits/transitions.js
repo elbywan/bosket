@@ -9,7 +9,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /* Adds transitions on component mount / unmount. */
 
 import React from "react";
-import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
+import { CSSTransitionGroup } from "react-transition-group";
 
 import { displayName } from "./helpers";
 

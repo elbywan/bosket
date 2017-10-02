@@ -1,6 +1,6 @@
 // @flow
 
-import { array, tree } from "../tools"
+import { array, tree } from "@bosket/tools"
 
 type selectionStrategy = (item: Object, selection: Object[], neighbours: Object[], ancestors: Object[]) => Object[]
 type clickStrategy = (item: Object, event: MouseEvent, ancestors: Array<Object>, neighbours: Array<Object>) => void

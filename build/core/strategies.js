@@ -2,7 +2,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-import { array, tree } from "../tools";
+import { array, tree } from "@bosket/tools";
 
 var singleSelect = function singleSelect(item, selection, neighbours, ancestors) {
     return array(selection).contains(item) ? [] : [item];

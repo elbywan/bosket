@@ -1,8 +1,8 @@
 import { Component, Input, ChangeDetectionStrategy, ComponentFactoryResolver, NgZone,
     SimpleChanges, Type, ViewChild, ElementRef, ViewContainerRef, ChangeDetectorRef } from "@angular/core"
 
-import { css } from "bosket/tools"
-import { DisplayComponent } from "bosket/angular"
+import { css } from "@bosket/tools"
+import { DisplayComponent } from "@bosket/angular"
 
 import "self/common/styles/Planner.css"
 

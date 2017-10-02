@@ -1,7 +1,7 @@
 import "self/common/styles/Pokeapi.css"
 
-import { TreeView } from "bosket/vue"
-import { css } from "bosket/tools"
+import { TreeView } from "@bosket/vue"
+import { css } from "@bosket/tools"
 import { Item, cachedFetch } from "./models"
 
 const conf = {

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef } from "@angular/core"
-import { RootNode, defaults } from "../../../core"
-import * as strategies from "../../../core/strategies"
+import { RootNode, defaults } from "@bosket/core"
+import * as strategies from "@bosket/core"
 
 type dragOutput<T> = { target: T, event: DragEvent, inputs: Object }
 

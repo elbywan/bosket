@@ -41,7 +41,7 @@ export default {
 
             { jscode`
                 import React from "react"
-                import { /* Component */ } from "bosket/react"
+                import { /* Component */ } from "@bosket/react"
 
                 // Then render it.
                 const anywhere = _ => <Component /* component properties */></Component>

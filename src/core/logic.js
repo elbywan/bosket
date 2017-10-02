@@ -1,6 +1,6 @@
 // @flow
 
-import { css, array, tree } from "../tools"
+import { css, array, tree } from "@bosket/tools"
 import { wrapEvents, nodeEvents } from "./dragndrop"
 import { selectionStrategies, foldStrategies, clickStrategies } from "./strategies"
 import { defaults } from "./defaults"

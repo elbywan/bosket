@@ -7,8 +7,8 @@ import "./TreeViewDemo.css"
 import initialModel from "self/common/models/TreeViewModel"
 
 // Bosket imports
-import { DisplayComponent } from "bosket/angular"
-import { dragndrop } from "bosket/core/dragndrop"
+import { DisplayComponent } from "@bosket/angular"
+import { dragndrop } from "@bosket/core"
 
 @Component({
     selector: "treeview-demo",

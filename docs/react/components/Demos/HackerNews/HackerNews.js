@@ -2,7 +2,7 @@ import React from "react"
 
 import "self/common/styles/HackerNews.css"
 
-import { TreeView } from "bosket/react"
+import { TreeView } from "@bosket/react"
 import { fetchLast, TopStory } from "./models"
 
 export class HackerNews extends React.PureComponent {

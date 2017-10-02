@@ -1,6 +1,6 @@
-import { combine, withListener } from "bosket/vue/traits"
-import { css } from "bosket/tools"
-import { TreeView } from "bosket/vue"
+import { combine, withListener } from "@bosket/vue/traits"
+import { css } from "@bosket/tools"
+import { TreeView } from "@bosket/vue"
 
 import "self/common/styles/Planner.css"
 

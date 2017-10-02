@@ -7,10 +7,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 import React from "react";
+import { dragndrop } from "@bosket/core";
+import { string, deepMix } from "@bosket/tools";
 
 import { TreeView } from "../TreeView";
-import { string, deepMix } from "../../../tools";
-import { dragndrop } from "../../../core";
+
 
 export var ExplorerView = function (_React$PureComponent) {
     _inherits(ExplorerView, _React$PureComponent);

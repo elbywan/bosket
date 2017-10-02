@@ -1,5 +1,5 @@
 import { EventEmitter, ChangeDetectorRef } from "@angular/core";
-import { RootNode } from "../../../core";
+import { RootNode } from "@bosket/core";
 export declare class TreeView<Item extends Object> {
     private cdRef;
     private _props;

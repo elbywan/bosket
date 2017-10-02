@@ -73,8 +73,8 @@ export default {
             <DropTree key="DropTree"/>
 
             { jscode`
-                import { TreeView } from "bosket/vue"
-                import { dragndrop } from "bosket/core"
+                import { TreeView } from "@bosket/vue"
+                import { dragndrop } from "@bosket/core"
 
                 /* Model */
                 const dragModel = [

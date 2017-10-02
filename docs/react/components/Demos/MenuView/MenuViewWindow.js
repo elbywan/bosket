@@ -6,7 +6,7 @@ import React from "react"
 // Style
 import "./MenuViewWindow.css"
 // Css tools
-import { css } from "bosket/tools/css"
+import { css } from "@bosket/tools/css"
 // Bosket MenuView demo
 import { MenuViewDemo } from "./MenuViewDemo"
 

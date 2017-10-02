@@ -2,8 +2,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-import { object, tree } from "../../tools";
-import { RootNode, defaults } from "../../core";
+import { object, tree } from "@bosket/tools";
+import { RootNode, defaults } from "@bosket/core";
 import { TreeViewNode } from "./TreeViewNode";
 import { combine, withLabels, withListener } from "../traits";
 

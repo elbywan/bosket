@@ -6,7 +6,7 @@ import React from "react"
 // Style
 import "./FlatViewWindow.css"
 // Css tools
-import { css } from "bosket/tools"
+import { css } from "@bosket/tools"
 // Demo component
 import { FlatViewDemo } from "./FlatViewDemo"
 

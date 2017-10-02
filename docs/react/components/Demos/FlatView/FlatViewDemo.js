@@ -5,9 +5,9 @@ import "./FlatViewDemo.css"
 // React
 import React from "react"
 // Bosket
-import { FlatView } from "bosket/react"
+import { FlatView } from "@bosket/react"
 // (Useful tools)
-import { array, string } from "bosket/tools"
+import { array, string } from "@bosket/tools"
 // Data model
 import model from "self/common/models/FlatViewModel"
 

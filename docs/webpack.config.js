@@ -21,7 +21,7 @@ module.exports = {
     resolve: {
         extensions: [ ".js", ".ts" ],
         alias: {
-            bosket: resolve(__dirname, "../build"),
+            "@bosket": resolve(__dirname, "../build"),
             self: resolve(__dirname, ".")
         }
     },

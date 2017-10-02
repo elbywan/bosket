@@ -11,7 +11,7 @@ export default {
                 Appearance can be tweaked using <em><a href="#TreeView#Css">css</a></em>.
             </p>
             { jscode`
-                import { TreeView } from "bosket/vue"
+                import { TreeView } from "@bosket/vue"
 
                 // Do not forget to [register it](#Usage#Import) if needed.
 

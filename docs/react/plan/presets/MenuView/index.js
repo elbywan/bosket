@@ -22,7 +22,7 @@ export default {
                         Appearance can be tweaked using <em><a href="#TreeView#Css">css</a></em>.
                     </p>
                     { jscode`
-                        import { MenuView } from "bosket/react"
+                        import { MenuView } from "@bosket/react"
 
                         const usage = _ =>
                             <MenuView

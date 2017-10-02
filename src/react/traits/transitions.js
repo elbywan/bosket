@@ -3,7 +3,7 @@
 /* Adds transitions on component mount / unmount. */
 
 import React from "react"
-import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup"
+import { CSSTransitionGroup } from "react-transition-group"
 
 import type { trait } from "./helpers"
 import { displayName } from "./helpers"

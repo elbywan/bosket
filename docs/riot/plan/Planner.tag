@@ -28,7 +28,7 @@
     </div>
 
     <script>
-        import { listenerMixin } from "bosket/riot"
+        import { listenerMixin } from "@bosket/riot"
         import "self/common/styles/Planner.css"
 
         this.mixin(listenerMixin({ callback: e => this.onDocumentClick(e) }))

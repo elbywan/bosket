@@ -22,7 +22,7 @@ export default {
                         Appearance can be tweaked using <em><a href="#TreeView#Css">css</a></em>.
                     </p>
                     { jscode`
-                        import { FlatView } from "bosket/react"
+                        import { FlatView } from "@bosket/react"
 
                         const usage = _ =>
                             <FlatView
