@@ -1,9 +1,23 @@
+<a name="0.3.0"></a>
+# 0.3.0 (2017-10-02)
+
+* feat: scoped packages ([648d66a](https://github.com/elbywan/bosket/commit/648d66a))
+* [riot] add tools/core exports to the umd bundle - closes #8 ([886ce20](https://github.com/elbywan/bosket/commit/886ce20)), closes [#8](https://github.com/elbywan/bosket/issues/8)
+* update dependencies ([76d66dd](https://github.com/elbywan/bosket/commit/76d66dd))
+
+
+### BREAKING CHANGE
+
+* split packages into scoped packages - fixes #11
+
+
 <a name="0.2.3"></a>
 ## 0.2.3 (2017-09-26)
 
 * [docs] better contrast ([b7a028e](https://github.com/elbywan/bosket/commit/b7a028e))
 * [docs] fixed incorrect dragndrop method signatures ([29968b5](https://github.com/elbywan/bosket/commit/29968b5))
 * [riot] search event changed to oninput - closes #5 ([310531d](https://github.com/elbywan/bosket/commit/310531d)), closes [#5](https://github.com/elbywan/bosket/issues/5)
+* 0.2.3 tag ([16c14db](https://github.com/elbywan/bosket/commit/16c14db))
 * add dragover/enter/leave hooks - closes #7 ([a9614f7](https://github.com/elbywan/bosket/commit/a9614f7)), closes [#7](https://github.com/elbywan/bosket/issues/7)
 * better changelog ([6492218](https://github.com/elbywan/bosket/commit/6492218))
 * little better explorer demo css ([ee103ed](https://github.com/elbywan/bosket/commit/ee103ed))
