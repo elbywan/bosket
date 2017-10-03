@@ -1,5 +1,5 @@
 // @flow
 
 import {array} from "./arrays";
-declare export function tree<Item: Object>(t: Array<Item>, prop: string): {add: <Item>(_: T, _: T) => Array<T>, filter: (_: (_: T) => boolean) => Array<T>, flatten: () => Array<T>, treeFilter: (_: (_: T) => boolean) => Map<T, mixed /* UNEXPECTED TYPE: ExistsT */>, visit: (_: (_: Array<T>) => void) => void};
+declare export function tree<Item: Object>(t: Array<Item>, prop: string): {add: <Item>(_: T, _: T) => Array<T>, filter: (_: (_: T) => boolean) => Array<T>, flatten: () => Array<T>, path: (_: T) => Array<T> | boolean, treeFilter: (_: (_: T) => boolean) => Map<T, mixed /* UNEXPECTED TYPE: ExistsT */>, visit: (_: (_: Array<T>) => void) => void};
 

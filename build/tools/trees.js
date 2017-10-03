@@ -58,32 +58,42 @@ export var tree = function tree(t, prop) {
             return finalMap;
         },
         add: function add(parent, elt) {
-            var fifo = [t];
-            while (fifo.length > 0) {
-                var _tree2 = fifo.pop();
-                var idx = _tree2.indexOf(parent);
-                if (idx >= 0 && _tree2[idx][prop]) {
-                    _tree2[idx][prop] = _tree2[idx][prop].slice();
-                    _tree2[idx][prop].push(elt);
-                    return t;
-                }
-                fifo = [].concat(_toConsumableArray(fifo), _toConsumableArray(_tree2.filter(function (item) {
-                    return item[prop];
-                }).map(function (item) {
-                    return item[prop];
-                })));
+            var path = tree(t, prop).path(parent);
+            if (path instanceof Array) {
+                parent[prop] = [].concat(_toConsumableArray(parent[prop]), [elt]);
+                path.forEach(function (p) {
+                    return p[prop] = [].concat(_toConsumableArray(p[prop]));
+                });
+                return [].concat(_toConsumableArray(t));
+            } else {
+                return t;
             }
-            return t;
         },
         visit: function visit(visitor) {
             var fifo = [t];
             while (fifo.length > 0) {
-                var _tree3 = fifo.pop();
-                visitor(_tree3);
-                _tree3.forEach(function (child) {
+                var _tree2 = fifo.pop();
+                visitor(_tree2);
+                _tree2.forEach(function (child) {
                     return child[prop] && child[prop] instanceof Array ? fifo.push(child[prop]) : null;
                 });
             }
+        },
+        path: function path(elt) {
+            var recurse = function recurse(item) {
+                if (item === elt) return [];
+                if (!item[prop]) return false;
+                for (var i = 0; i < item[prop].length; i++) {
+                    var check = recurse(item[prop][i]);
+                    if (check) return [item].concat(_toConsumableArray(check));
+                }
+                return false;
+            };
+            for (var i = 0; i < t.length; i++) {
+                var check = recurse(t[i]);
+                if (check) return check;
+            }
+            return false;
         }
     };
 };

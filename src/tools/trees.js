@@ -9,7 +9,8 @@ type treeType<T> = {
     filter: (T => boolean) => T[],
     treeFilter: (T => boolean) => treeMap<T>,
     add: (T, T) => T[],
-    visit: (T[] => void) => void
+    visit: (T[] => void) => void,
+    path: (T) => T[] | boolean
 }
 
 export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => ({
@@ -61,18 +62,14 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
         return finalMap
     },
     add: (parent, elt) => {
-        let fifo = [t]
-        while(fifo.length > 0) {
-            const tree = fifo.pop()
-            const idx = tree.indexOf(parent)
-            if(idx >= 0 && tree[idx][prop]) {
-                tree[idx][prop] = tree[idx][prop].slice()
-                tree[idx][prop].push(elt)
-                return t
-            }
-            fifo = [ ...fifo, ...tree.filter(item => item[prop]).map(item => item[prop]) ]
+        const path = tree(t, prop).path(parent)
+        if(path instanceof Array) {
+            parent[prop] = [ ...parent[prop], elt ]
+            path.forEach(p => p[prop] = [...p[prop]])
+            return [...t]
+        } else {
+            return t
         }
-        return t
     },
     visit: visitor => {
         const fifo: Item[][] = [t]
@@ -83,5 +80,21 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
                 fifo.push(child[prop]) :
                 null)
         }
+    },
+    path: elt => {
+        const recurse = item => {
+            if(item === elt) return []
+            if(!item[prop]) return false
+            for(let i = 0; i < item[prop].length; i++) {
+                const check = recurse(item[prop][i])
+                if(check) return [ item, ...check ]
+            }
+            return false
+        }
+        for(let i = 0; i < t.length; i++) {
+            const check = recurse(t[i])
+            if(check) return check
+        }
+        return false
     }
 })
