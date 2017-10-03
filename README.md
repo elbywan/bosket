@@ -5,7 +5,8 @@
 	<br>
     Bosket<br>
 	<a href="https://travis-ci.org/elbywan/bosket"><img alt="travis-badge" src="https://travis-ci.org/elbywan/bosket.svg?branch=master"></a>
-	<a href="https://www.npmjs.com/package/bosket"><img alt="npm-badge" src="https://badge.fury.io/js/bosket.svg" height="20"></a>
+	<a href="https://www.npmjs.com/package/bosket"><img alt="npm-badge" src="https://img.shields.io/npm/v/@bosket/core.svg" height="20"></a>
+	<a href="https://github.com/elbywan/bosket/blob/master/LICENSE"><img alt="license-badge" src="https://img.shields.io/github/license/elbywan/bosket.svg" height="20"></a>
 </h1>
 <h4 align="center">
 	Bosket is collection of tree views for front-end frameworks.
@@ -32,6 +33,10 @@ Framework implementations rely on this very same code, which makes new implement
     </a>
 </div>
 
+# Documentation
+
+#### Please check out the **[Bosket website](https://elbywan.github.io/bosket/)** for more details including the full documentation.
+
 # Supported frameworks
 
 ### <a href="https://facebook.github.io/react/"><img src="https://elbywan.github.io/bosket/assets/react-logo-fat.svg" alt="react-logo" width="30px"></a> [React](https://elbywan.github.io/bosket/react)
@@ -41,10 +46,6 @@ Framework implementations rely on this very same code, which makes new implement
 ### <a href="https://vuejs.org/"><img src="https://elbywan.github.io/bosket/assets/vue.svg" alt="vue-logo" width="30px"></a> [Vue.js](https://elbywan.github.io/bosket/vue)
 
 ### <a href="http://riotjs.com/"><img src="https://elbywan.github.io/bosket/assets/riot-logo.svg" alt="riot-logo" width="30px"></a> [Riot.js](https://elbywan.github.io/bosket/riot)
-
-# Documentation
-
-Please check out the **[Bosket website](https://elbywan.github.io/bosket/)** for more details including the full documentation.
 
 # License
 
