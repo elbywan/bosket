@@ -60,9 +60,8 @@ export var tree = function tree(t, prop) {
         add: function add(parent, elt) {
             var path = tree(t, prop).path(parent);
             if (path instanceof Array) {
-                parent[prop] = [].concat(_toConsumableArray(parent[prop]), [elt]);
-                path.forEach(function (p) {
-                    return p[prop] = [].concat(_toConsumableArray(p[prop]));
+                path.reverse().forEach(function (p, idx) {
+                    if (idx === 0) p[prop] = [].concat(_toConsumableArray(p[prop]), [elt]);else p[prop] = [].concat(_toConsumableArray(p[prop]));
                 });
                 return [].concat(_toConsumableArray(t));
             } else {
@@ -81,7 +80,7 @@ export var tree = function tree(t, prop) {
         },
         path: function path(elt) {
             var recurse = function recurse(item) {
-                if (item === elt) return [];
+                if (item === elt || typeof elt === "function" && elt(item)) return [item];
                 if (!item[prop]) return false;
                 for (var i = 0; i < item[prop].length; i++) {
                     var check = recurse(item[prop][i]);

@@ -64,8 +64,12 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
     add: (parent, elt) => {
         const path = tree(t, prop).path(parent)
         if(path instanceof Array) {
-            parent[prop] = [ ...parent[prop], elt ]
-            path.forEach(p => p[prop] = [...p[prop]])
+            path.reverse().forEach((p, idx) => {
+                if(idx === 0)
+                    p[prop] = [ ...p[prop], elt ]
+                else
+                    p[prop] = [...p[prop]]
+            })
             return [...t]
         } else {
             return t
@@ -83,7 +87,7 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
     },
     path: elt => {
         const recurse = item => {
-            if(item === elt) return []
+            if(item === elt || typeof elt === "function" && elt(item)) return [item]
             if(!item[prop]) return false
             for(let i = 0; i < item[prop].length; i++) {
                 const check = recurse(item[prop][i])
