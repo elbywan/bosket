@@ -1,10 +1,14 @@
 import * as pc from "./imports"
 
+// Cannot loop
+// Explicit declarations are needed for AOT static analysis ...
+
 export const plannerComponents = [
     pc.Introduction,
     pc.IntroductionDemosComponent,
     pc.Usage,
     pc.Import,
+    pc.OnlineSnippets,
     pc.DataModel,
     pc.DataModelTree,
     pc.Style,

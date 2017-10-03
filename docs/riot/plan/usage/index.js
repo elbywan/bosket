@@ -2,6 +2,7 @@ import "./component.tag"
 import _import from "./import"
 import datamodel from "./data model"
 import style from "./style"
+import snippets from "./online-snippets"
 
 export default {
     title: "Usage",
@@ -9,6 +10,7 @@ export default {
     content: "usage",
     subs: [
         _import,
+        snippets,
         datamodel,
         style
     ]

@@ -5,7 +5,7 @@
 	<br>
     Bosket<br>
 	<a href="https://travis-ci.org/elbywan/bosket"><img alt="travis-badge" src="https://travis-ci.org/elbywan/bosket.svg?branch=master"></a>
-	<a href="https://www.npmjs.com/package/bosket"><img alt="npm-badge" src="https://img.shields.io/npm/v/@bosket/core.svg" height="20"></a>
+	<a href="https://www.npmjs.com/package/@bosket/core"><img alt="npm-badge" src="https://img.shields.io/npm/v/@bosket/core.svg" height="20"></a>
 	<a href="https://github.com/elbywan/bosket/blob/master/LICENSE"><img alt="license-badge" src="https://img.shields.io/github/license/elbywan/bosket.svg" height="20"></a>
 </h1>
 <h4 align="center">

@@ -1,6 +1,7 @@
 import _import from "./import"
 import dataModel from "./data model"
 import style from "./style"
+import snippets from "./online-snippets"
 
 export default {
     title: "Usage",
@@ -11,6 +12,7 @@ export default {
         </div>,
     subs: [
         _import,
+        snippets,
         dataModel,
         style
     ]

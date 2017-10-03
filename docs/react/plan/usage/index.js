@@ -5,6 +5,7 @@ import React from "react"
 import _import from "./import"
 import dataModel from "./data model"
 import style from "./style"
+import snippets from "./online-snippets"
 
 import { bashcode } from "self/react/tools/tools"
 
@@ -20,6 +21,7 @@ export default {
         </div>,
     subs: [
         _import,
+        snippets,
         dataModel,
         style
     ]

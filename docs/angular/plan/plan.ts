@@ -17,6 +17,11 @@ export default [
                 content: components.Import
             },
             {
+                title: "Online Snippets",
+                editLink: "https://github.com/elbywan/bosket/edit/master/docs/angular/plan/usage/online-snippets/component.ts",
+                content: components.OnlineSnippets
+            },
+            {
                 title: "Data model",
                 editLink: "https://github.com/elbywan/bosket/edit/master/docs/angular/plan/usage/data%20model/component.ts",
                 content: components.DataModel
