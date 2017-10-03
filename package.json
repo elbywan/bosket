@@ -1,6 +1,6 @@
 {
   "name": "bosket-root",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "A collection of tree views.",
   "main": "index.js",
@@ -28,7 +28,7 @@
     "dev-server": "webpack-dev-server --config docs/webpack.config.dev.js",
     "clean": "rimraf build/{angular,core,react,vue,riot,tools} && rimraf **/.DS_Store",
     "flow-coverage-report": "flow-coverage-report -i 'src/**/*.js' --threshold 70",
-    "changelog": "conventional-changelog -p wretch -i CHANGELOG.md -s -r 0",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "publishall": "subpkg publish"
   },
   "files": [

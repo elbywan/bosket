@@ -17,7 +17,7 @@ export default [
                 content: components.Import
             },
             {
-                title: "Online Snippets",
+                title: "Online snippets",
                 editLink: "https://github.com/elbywan/bosket/edit/master/docs/angular/plan/usage/online-snippets/component.ts",
                 content: components.OnlineSnippets
             },
