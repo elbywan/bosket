@@ -11,7 +11,7 @@
         require("@bosket/riot")
     </syntax-highlight>
 
-    <p>Or just include a link to the <em><code>@bosket/riot/bundle/riot.umd.min.js</code></em> file inside a script tag.</p>
+    <p>Or just include a link to the <em>@bosket/riot/bundle/riot.umd.min.js</em> file inside a script tag.</p>
 
     <syntax-highlight language="html" content={ htmlCode }></syntax-highlight>
 

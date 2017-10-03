@@ -262,3 +262,37 @@ pre.itemType {
         color: white;
     }
 }
+
+.iframe-hide {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    cursor: pointer;
+    color: #BBB;
+    opacity: 0.6;
+    background-image: repeating-linear-gradient(145deg, #222, #222 50px, #444 0px, #444 100px);
+    transition: all 0.3s;
+
+    & > span::after {
+        content: "";
+        background-color: #fff;
+        height: 2px;
+        width: 0px;
+        margin-top: 2px;
+        transition: all 0.3s;
+        display: block;
+    }
+
+    &:hover {
+        opacity: 1;
+        color: #FFF;
+
+        & > span::after {
+            width: 100%;
+        }
+    }
+
+
+}
