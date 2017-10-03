@@ -11,7 +11,7 @@
         require("@bosket/riot")
     </syntax-highlight>
 
-    <p>Or just include a link to the <em><code>bosket/riot/index.js</code></em> file inside a script tag.</p>
+    <p>Or just include a link to the <em><code>@bosket/riot/bundle/riot.umd.min.js</code></em> file inside a script tag.</p>
 
     <syntax-highlight language="html" content={ htmlCode }></syntax-highlight>
 
@@ -19,7 +19,7 @@
         /* eslint-disable */
         this.htmlCode = `
             <script src=".../path/to/riot.js"><\/script>
-            <script src=".../path/to/bosket/riot/index.js"><\/script>`
+            <script src=".../path/to/riot.umd.min.js"><\/script>`
         /* eslint-enable */
     </script>
 </import>
