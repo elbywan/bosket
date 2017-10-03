@@ -1,0 +1,3 @@
+// @flow
+
+declare export function object(self: Object): {filter: (fun: (_: mixed) => boolean) => Object, fullMap: (fun: (_: string, _: mixed) => [string, mixed]) => Object, map: (fun: (_: mixed) => mixed) => Object, nestPrefix: (prefix: string, transform?: (_: string) => string) => Object, shallowCompare: (obj: Object, excludes: Array<string>) => boolean | void};

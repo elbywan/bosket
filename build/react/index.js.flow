@@ -1,9 +1,23 @@
 // @flow
 
-export * from "./arrays"
-export * from "./trees"
-export * from "./strings"
-export * from "./mixin"
-export * from "./css"
-export * from "./printer"
-export * from "./objects"
+declare export class ExplorerView extends React$PureComponent<{name: string, updateModel: (_: Array<Object>) => void} & {async?: (_: (_: mixed) => Promise<Array<Object>>) => Promise<Array<Object>>, category: string, css?: {[key: string]: string}, disabled?: (_: Object) => boolean, display?: (item: Object, inputs: Object) => any, dragndrop?: Object, keyDownListener?: Object, keyUpListener?: Object, labels?: Object, model: Array<Object>, noOpener?: boolean, onSelect: (newSelection: Array<Object>, item: Object, ancestors: Array<Object>, neighbours: Array<Object>) => void, search?: (_: string) => (_: Object) => boolean, selection: Array<Object>, sort?: (_: Object, _: Object) => number, strategies?: Object, transition?: Object, unique?: (_: Object) => string | number}> {
+
+  conf: Object;
+  render: () => $Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>;
+}
+declare export class FlatView<Class<React$Component<{async?: (_: (_: mixed) => Promise<Array<Object>>) => Promise<Array<Object>>, category: string, css?: {[key: string]: string}, disabled?: (_: Object) => boolean, display?: (item: Object, inputs: Object) => any, dragndrop?: Object, keyDownListener?: Object, keyUpListener?: Object, labels?: Object, model: Array<Object>, noOpener?: boolean, onSelect: (newSelection: Array<Object>, item: Object, ancestors: Array<Object>, neighbours: Array<Object>) => void, search?: (_: string) => (_: Object) => boolean, selection: Array<Object>, sort?: (_: Object, _: Object) => number, strategies?: Object, transition?: Object, unique?: (_: Object) => string | number}, any>>> extends React$PureComponent<{limit?: number, name: string} & {async?: (_: (_: mixed) => Promise<Array<Object>>) => Promise<Array<Object>>, category: string, css?: {[key: string]: string}, disabled?: (_: Object) => boolean, display?: (item: Object, inputs: Object) => any, dragndrop?: Object, keyDownListener?: Object, keyUpListener?: Object, labels?: Object, model: Array<Object>, noOpener?: boolean, onSelect: (newSelection: Array<Object>, item: Object, ancestors: Array<Object>, neighbours: Array<Object>) => void, search?: (_: string) => (_: Object) => boolean, selection: Array<Object>, sort?: (_: Object, _: Object) => number, strategies?: Object, transition?: Object, unique?: (_: Object) => string | number}> {
+
+  conf: Object;
+  render: () => $Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>;
+}
+declare export class MenuView<Class<React$Component<{async?: (_: (_: mixed) => Promise<Array<Object>>) => Promise<Array<Object>>, category: string, css?: {[key: string]: string}, disabled?: (_: Object) => boolean, display?: (item: Object, inputs: Object) => any, dragndrop?: Object, keyDownListener?: Object, keyUpListener?: Object, labels?: Object, model: Array<Object>, noOpener?: boolean, onSelect: (newSelection: Array<Object>, item: Object, ancestors: Array<Object>, neighbours: Array<Object>) => void, search?: (_: string) => (_: Object) => boolean, selection: Array<Object>, sort?: (_: Object, _: Object) => number, strategies?: Object, transition?: Object, unique?: (_: Object) => string | number}, any>>> extends React$PureComponent<{name: string} & {async?: (_: (_: mixed) => Promise<Array<Object>>) => Promise<Array<Object>>, category: string, css?: {[key: string]: string}, disabled?: (_: Object) => boolean, display?: (item: Object, inputs: Object) => any, dragndrop?: Object, keyDownListener?: Object, keyUpListener?: Object, labels?: Object, model: Array<Object>, noOpener?: boolean, onSelect: (newSelection: Array<Object>, item: Object, ancestors: Array<Object>, neighbours: Array<Object>) => void, search?: (_: string) => (_: Object) => boolean, selection: Array<Object>, sort?: (_: Object, _: Object) => number, strategies?: Object, transition?: Object, unique?: (_: Object) => string | number}> {
+
+  conf: Object;
+  render: () => $Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>;
+}
+declare export var TreeView: Class<React$Component<P, S>>;
+declare export function combine(...factories: Array<<any>(_: Class<React$Component<P, S>> | <P>(props: P) => ?$Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>) => Class<React$Component<P, S>>>): <P: any>(Component: Class<React$Component<P, S>>) => Class<React$Component<P, S>>;
+declare export var withDebugUpdates: <_ = any>(_: Object) => <mixed /* UNEXPECTED TYPE: ExistsT */>(_: Class<React$Component<P, S>> | <P>(props: P) => ?$Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>) => Class<React$Component<P, S>>;
+declare export var withLabels: <_ = any>(_: Object) => <mixed /* UNEXPECTED TYPE: ExistsT */>(_: Class<React$Component<P, S>> | <P>(props: P) => ?$Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>) => Class<React$Component<P, S>>;
+declare export var withListener: <_ = any>(_: Object) => <mixed /* UNEXPECTED TYPE: ExistsT */>(_: Class<React$Component<P, S>> | <P>(props: P) => ?$Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>) => Class<React$Component<P, S>>;
+declare export var withTransition: <_ = any>(_: Object) => <mixed /* UNEXPECTED TYPE: ExistsT */>(_: Class<React$Component<P, S>> | <P>(props: P) => ?$Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>) => Class<React$Component<P, S>>;

@@ -1,6 +1,96 @@
 // @flow
 
-export * from "./logic"
-export * from "./strategies"
-export * from "./defaults"
-export * from "./dragndrop"
+declare class Class0 {
+
+  inputs: {get: () => Input};
+  outputs: Object;
+  refresh: () => void;
+  state: {get: () => Object, set: (_: Object) => void};
+  constructor(inputs: {get: () => Input}, outputs: Object, state: {get: () => Object, set: (_: Object) => void}, refresh: () => void): void | void;
+}
+declare class Class1 extends UIEvent {
+
+  altKey: boolean;
+  charCode: number;
+  code: string;
+  ctrlKey: boolean;
+  isComposing: boolean;
+  key: string;
+  keyCode: number;
+  location: number;
+  metaKey: boolean;
+  repeat: boolean;
+  shiftKey: boolean;
+  which: number;
+  getModifierState(keyArg?: string): boolean;
+}
+declare class Class2 extends UIEvent {
+
+  altKey: boolean;
+  button: number;
+  buttons: number;
+  clientX: number;
+  clientY: number;
+  ctrlKey: boolean;
+  metaKey: boolean;
+  movementX: number;
+  movementY: number;
+  offsetX: number;
+  offsetY: number;
+  pageX: number;
+  pageY: number;
+  region: ?string;
+  relatedTarget: ?EventTarget;
+  screenX: number;
+  screenY: number;
+  shiftKey: boolean;
+  constructor(typeArg: string, mouseEventInit?: {altKey?: boolean, button?: number, buttons?: number, clientX?: number, clientY?: number, ctrlKey?: boolean, metaKey?: boolean, region?: string | null, relatedTarget?: string | null, screenX?: number, screenY?: number, shiftKey?: boolean}): void;
+  getModifierState(keyArg: string): boolean;
+}
+declare class Class3 extends Class2 {
+
+  dataTransfer: ?DataTransfer;
+}
+declare class Class4 extends Blob {
+
+  lastModifiedDate: any;
+  name: string;
+  constructor(fileBits: $ReadOnlyArray<string | ArrayBuffer | $TypedArray | DataView | Blob>, filename: string, options?: {lastModified?: number, type?: string}): void;
+}
+declare export class RootNode extends Class0<mixed /* UNEXPECTED TYPE: ExistsT */> {
+
+  filterTree: (input: string) => null | null | Map<T, mixed /* UNEXPECTED TYPE: ExistsT */>;
+  mixCss: (prop: string) => any;
+  modifiers: {control: boolean, meta: boolean, shift: boolean} | {};
+  onKey: (event: Class1) => void;
+  onSelect: (item: Object, ancestors: Array<Object>, neighbours: Array<Object>) => any;
+  wrapDragNDrop: () => any;
+}
+export type RootNodeInput = {category: string, css: {[key: string]: string}, dragndrop?: Object, model: Array<Object>, search?: (_: string) => (_: Object) => boolean, selection: Array<Object>, strategies: Object};
+declare export class TreeNode extends Class0<mixed /* UNEXPECTED TYPE: ExistsT */> {
+
+  getDragEvents: (item: ?Object, condition?: boolean) => {draggable: null | void, onDragEnd: null | void, onDragEnter: any, onDragLeave: any, onDragOver: any, onDragStart: null | void, onDrop: any} | {};
+  hasChildren: (item: Object) => any;
+  isAsync: (item: ?Object) => boolean;
+  isDisabled: (item: Object) => boolean;
+  isDraggable: (item: ?Object) => null | void;
+  isDroppable: (item: ?Object) => any;
+  isFolded: (item: Object) => boolean;
+  isSelected: (item: Object) => boolean;
+  liCss: (item: Object) => string;
+  mixCss: (prop: string) => any;
+  onClick: (item: Object) => (event: Class2) => void | void;
+  pending: [] | Array<Object>;
+  ulCss: () => string;
+  unwrapPromise: (item: Object) => Promise<mixed>;
+  onOpener(item: Object): (event: Class2) => void;
+}
+export type TreeNodeInput = {ancestors: Array<Object>, async?: (_: (_: mixed) => Promise<Array<Object>>) => Promise<Array<Object>>, category: string, css: {[key: string]: string}, depth?: number, disabled?: (_: Object) => boolean, dragndrop: Object, model: Array<Object>, onSelect: (item: Object, ancestors: Array<Object>, neighbours: Array<Object>) => void, selection: Array<Object>, strategies?: Object};
+declare export var clickStrategies: {[key: string]: (item: Object, event: Class2, ancestors: Array<Object>, neighbours: Array<Object>) => void};
+declare export var defaults: {async: (_: Function) => any, css: {TreeView: string, async: string, category: string, depth: string, disabled: string, dragover: string, folded: string, item: string, loading: string, nodrop: string, opener: string, search: string, selected: string}, display: (_: Object) => any, dragndrop: {draggable: boolean, droppable: boolean}, labels: {search.placeholder: string}, noOpener: boolean, strategies: {click: [], fold: [string, string], selection: [string]}};
+declare export var dragndrop: {paste: (model: (_: void) => Array<Object>, cb: (_: Array<Object>) => void) => {drop: (target: Object, event: Class3, inputs: Object) => void, droppable: boolean}, pluck: (model: (_: void) => Array<Object>, cb: (_: Array<Object>) => void) => {backup: [], cancel: () => void, drag: (item: Object, event: Class3, inputs: Object) => void, draggable: boolean}, selection: (model: (_: void) => Array<Object>, cb: (_: Array<Object>) => void) => {drag: (item: Object, event: Class3, inputs: Object) => void, draggable: boolean, drop: (target: ?Object, event: Class3, inputs: Object) => void, droppable: boolean, guard: (target: ?Object, event: Class3, inputs: Object) => any | any | boolean | boolean}};
+declare export var foldStrategies: {[key: string]: (item: Object, folded: boolean) => boolean};
+declare export var nodeEvents: {onDragEnd: (item: ?Object) => (event: Class3) => void, onDragEnter: (item: ?Object) => (event: Class3) => void, onDragLeave: (item: ?Object) => (event: Class3) => void, onDragOver: (item: ?Object) => (event: Class3) => void, onDragStart: (item: ?Object) => (event: Class3) => void, onDrop: (item: ?Object) => (event: Class3) => void};
+declare export var selectionStrategies: {[key: string]: (item: Object, selection: Array<Object>, neighbours: Array<Object>, ancestors: Array<Object>) => Array<Object>};
+declare export var utils: {filesystem: (event: Class3) => [] | null};
+declare export function wrapEvents(): any;

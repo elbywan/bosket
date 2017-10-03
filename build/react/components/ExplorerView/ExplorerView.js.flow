@@ -1,40 +1,12 @@
 // @flow
 
-import React from "react"
-import { dragndrop } from "@bosket/core"
-import { string, deepMix } from "@bosket/tools"
+import type {TreeViewProps} from "../TreeView";
+import {TreeView} from "../TreeView";
+import {string, deepMix} from "@bosket/tools";
+import {dragndrop} from "@bosket/core";
+import React from "react";
+declare export class ExplorerView extends React$PureComponent<{name: string, updateModel: (_: Array<Object>) => void} & {async?: (_: (_: mixed) => Promise<Array<Object>>) => Promise<Array<Object>>, category: string, css?: {[key: string]: string}, disabled?: (_: Object) => boolean, display?: (item: Object, inputs: Object) => any, dragndrop?: Object, keyDownListener?: Object, keyUpListener?: Object, labels?: Object, model: Array<Object>, noOpener?: boolean, onSelect: (newSelection: Array<Object>, item: Object, ancestors: Array<Object>, neighbours: Array<Object>) => void, search?: (_: string) => (_: Object) => boolean, selection: Array<Object>, sort?: (_: Object, _: Object) => number, strategies?: Object, transition?: Object, unique?: (_: Object) => string | number}> {
 
-import { TreeView } from "../TreeView"
-import type { TreeViewProps } from "../TreeView"
-
-type ExplorerViewProps = {
-    updateModel: Object[] => void,
-    name: string
-} & TreeViewProps
-
-export class ExplorerView extends React.PureComponent<ExplorerViewProps> {
-
-    conf : Object = {
-        css: {
-            TreeView: "ExplorerView"
-        },
-        display: (item: Object) => <a>{ item[this.props.name] }</a>,
-        sort: (a: Object, b: Object) =>
-            !a[this.props.category] === !b[this.props.category] ? a[this.props.name].localeCompare(b[this.props.name]) :
-                a[this.props.category] ? -1 : 1,
-        key: (item: Object) => item[this.props.name],
-        search: (input: string) => (i: Object) => string(i[this.props.name]).contains(input),
-        strategies: {
-            selection: ["modifiers"],
-            click: ["unfold-on-selection"],
-            fold: ["opener-control"]
-        },
-        dragndrop: {
-            ...dragndrop.selection(() => this.props.model, this.props.updateModel),
-            droppable: _ => !_ || _[this.props.category]
-        }
-    }
-
-    render = () =>
-        <TreeView { ...(deepMix(this.conf, this.props, true)) }></TreeView>
+  conf: Object;
+  render: () => $Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>;
 }

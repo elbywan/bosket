@@ -1,28 +1,6 @@
 // @flow
 
-/* Adds i18n support through customisable labels. */
-
-import React from "react"
-
-import type { trait } from "./helpers"
-import { displayName } from "./helpers"
-
-export const withLabels : trait<> = (defaultLabels: Object) => Component =>
-    class extends React.Component<*, *> {
-        static displayName = displayName("withLabels", Component)
-        labels = { ...defaultLabels }
-
-        constructor(props) {
-            super(props)
-            this.labels = { ...defaultLabels, ...props.labels }
-        }
-
-        componentWillUpdate(nextProps) {
-            if(nextProps.labels !== this.props.labels)
-                this.labels = { ...defaultLabels, ...nextProps.labels }
-        }
-
-        render() {
-            return <Component { ...this.props } labels={ this.labels }></Component>
-        }
-    }
+import {displayName} from "./helpers";
+import type {trait} from "./helpers";
+import React from "react";
+declare export var withLabels: <_ = any>(_: Object) => <mixed /* UNEXPECTED TYPE: ExistsT */>(_: Class<React$Component<P, S>> | <P>(props: P) => ?$Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>) => Class<React$Component<P, S>>;

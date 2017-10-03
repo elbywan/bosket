@@ -2,7 +2,8 @@
 
 import { array } from "./arrays"
 
-type treeMap<T> = Map<T, treeMap<T>>
+// crashes gen-flow-files : type treeMap<T> = Map<T, treeMap<T>>
+type treeMap<T> = Map<T, *>
 type treeType<T> = {
     flatten: () => T[],
     filter: (T => boolean) => T[],

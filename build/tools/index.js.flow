@@ -1,0 +1,110 @@
+// @flow
+
+declare class Class0 extends Element {
+
+  accessKey: string;
+  accessKeyLabel: string;
+  className: string;
+  contentEditable: string;
+  contextMenu: ?HTMLMenuElement;
+  dataset: {[key: string]: string};
+  dir: "ltr" | "rtl" | "auto";
+  draggable: boolean;
+  dropzone: any;
+  hidden: boolean;
+  id: string;
+  innerHTML: string;
+  isContentEditable: boolean;
+  itemProp: any;
+  itemScope: boolean;
+  itemType: any;
+  itemValue: Object;
+  lang: string;
+  offsetHeight: number;
+  offsetLeft: number;
+  offsetParent: Element;
+  offsetTop: number;
+  offsetWidth: number;
+  onabort: ?Function;
+  onblur: ?Function;
+  oncancel: ?Function;
+  oncanplay: ?Function;
+  oncanplaythrough: ?Function;
+  onchange: ?Function;
+  onclick: ?Function;
+  oncuechange: ?Function;
+  ondblclick: ?Function;
+  ondurationchange: ?Function;
+  onemptied: ?Function;
+  onended: ?Function;
+  onerror: ?Function;
+  onfocus: ?Function;
+  oninput: ?Function;
+  oninvalid: ?Function;
+  onkeydown: ?Function;
+  onkeypress: ?Function;
+  onkeyup: ?Function;
+  onload: ?Function;
+  onloadeddata: ?Function;
+  onloadedmetadata: ?Function;
+  onloadstart: ?Function;
+  onmousedown: ?Function;
+  onmouseenter: ?Function;
+  onmouseleave: ?Function;
+  onmousemove: ?Function;
+  onmouseout: ?Function;
+  onmouseover: ?Function;
+  onmouseup: ?Function;
+  onmousewheel: ?Function;
+  onpause: ?Function;
+  onplay: ?Function;
+  onplaying: ?Function;
+  onprogress: ?Function;
+  onratechange: ?Function;
+  onreadystatechange: ?Function;
+  onreset: ?Function;
+  onresize: ?Function;
+  onscroll: ?Function;
+  onseeked: ?Function;
+  onseeking: ?Function;
+  onselect: ?Function;
+  onshow: ?Function;
+  onstalled: ?Function;
+  onsubmit: ?Function;
+  onsuspend: ?Function;
+  ontimeupdate: ?Function;
+  ontoggle: ?Function;
+  onvolumechange: ?Function;
+  onwaiting: ?Function;
+  properties: any;
+  spellcheck: boolean;
+  style: CSSStyleDeclaration;
+  tabIndex: number;
+  title: string;
+  translate: boolean;
+  blur(): void;
+  click(): void;
+  focus(): void;
+  forceSpellcheck(): void;
+  getBoundingClientRect(): ClientRect;
+}
+declare class Class1 {
+
+  attachEvent?: (type: string, listener: {handleEvent: (event: Event) => mixed} | (event: Event) => mixed) => void;
+  cancelBubble: boolean;
+  detachEvent?: (type: string, listener: {handleEvent: (event: Event) => mixed} | (event: Event) => mixed) => void;
+  mixed /* UNEXPECTED TYPE: IntersectionT */;
+  dispatchEvent(evt: Event): boolean;
+  initEvent(eventTypeArg: string, canBubbleArg: boolean, cancelableArg: boolean): void;
+  mixed /* UNEXPECTED TYPE: IntersectionT */;
+}
+declare export function array<T>(self: Array<T>): {allIn: <T>(_: Array<T>) => boolean, contains: (_: T) => boolean, in: (_: Array<T>, _: ?(_: T) => boolean) => Array<T>, is: (_: {isIn: Array<Array<T>>, notIn: Array<Array<T>>}, _: ?(_: T) => boolean) => Array<T>, last: () => T | null, notIn: (_: Array<T>, _: ?(_: T) => boolean) => Array<T>};
+
+declare export var css: {addClass: (elt: Class0 | Class1, cname: string) => void, classes: (classes: {[key: string]: boolean | () => boolean}) => string, hasClass: (elt: Class0 | Class1, cname: string) => boolean | boolean, removeClass: (elt: Class0 | Class1, cname: string) => void};
+declare export function deepMix<O: Object, O2: Object>(one: O, two: O2, mergeArrays?: boolean): O | O & O2;
+
+declare export function object(self: Object): {filter: (fun: (_: mixed) => boolean) => Object, fullMap: (fun: (_: string, _: mixed) => [string, mixed]) => Object, map: (fun: (_: mixed) => mixed) => Object, nestPrefix: (prefix: string, transform?: (_: string) => string) => Object, shallowCompare: (obj: Object, excludes: Array<string>) => void | boolean};
+declare export var printer: {debug: (title: string, msg: string, logger?: (_: string, ...params: Array<string>) => void) => void};
+declare export function string(str: string): {contains: (input: string) => boolean | boolean | boolean};
+declare export function tree<Item: Object>(t: Array<Item>, prop: string): {add: <Item>(_: T, _: T) => Array<T>, filter: (_: (_: T) => boolean) => Array<T>, flatten: () => Array<T>, treeFilter: (_: (_: T) => boolean) => Map<T, mixed /* UNEXPECTED TYPE: ExistsT */>, visit: (_: (_: Array<T>) => void) => void};
+

@@ -1,20 +1,7 @@
 // @flow
 
-/* Adds transitions on component mount / unmount. */
-
-import React from "react"
-import { CSSTransitionGroup } from "react-transition-group"
-
-import type { trait } from "./helpers"
-import { displayName } from "./helpers"
-
-export const withTransition : trait<> = ({ key }) => Component =>
-    class extends React.PureComponent<*, *> {
-        static displayName = displayName("withTransition", Component)
-        render = () =>
-            this.props.transition ?
-                <CSSTransitionGroup { ...this.props.transition }>
-                    <Component { ...this.props } key={ key(this.props) }></Component>
-                </CSSTransitionGroup> :
-                <Component { ...this.props }></Component>
-    }
+import {displayName} from "./helpers";
+import type {trait} from "./helpers";
+import {CSSTransitionGroup} from "react-transition-group";
+import React from "react";
+declare export var withTransition: <_ = any>(_: Object) => <mixed /* UNEXPECTED TYPE: ExistsT */>(_: Class<React$Component<P, S>> | <P>(props: P) => ?$Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>) => Class<React$Component<P, S>>;

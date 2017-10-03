@@ -1,0 +1,4 @@
+// @flow
+
+declare export function deepMix<O: Object, O2: Object>(one: O, two: O2, mergeArrays?: boolean): O | O & O2;
+

@@ -2,6 +2,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 import { array } from "./arrays";
 
+// crashes gen-flow-files : type treeMap<T> = Map<T, treeMap<T>>
+
+
 export var tree = function tree(t, prop) {
     return {
         flatten: function flatten() {

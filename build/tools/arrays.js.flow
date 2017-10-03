@@ -1,0 +1,4 @@
+// @flow
+
+declare export function array<T>(self: Array<T>): {allIn: <T>(_: Array<T>) => boolean, contains: (_: T) => boolean, in: (_: Array<T>, _: ?(_: T) => boolean) => Array<T>, is: (_: {isIn: Array<Array<T>>, notIn: Array<Array<T>>}, _: ?(_: T) => boolean) => Array<T>, last: () => T | null, notIn: (_: Array<T>, _: ?(_: T) => boolean) => Array<T>};
+

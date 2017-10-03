@@ -1,15 +1,12 @@
 // @flow
 
-import React from "react"
+import React from "react";
+export type ClassComponent<P, S> = Class<React$Component<P, S>>;
 
-export type FunctionComponent<P> = (props: P) => ?React$Element<any>
-export type ClassComponent<P, S> = Class<React.Component<P, S>>
+export type FunctionComponent<P> = (props: P) => ?$Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>;
 
-export type factory<P: Object> = (ClassComponent<P, *> | FunctionComponent<P>) => ClassComponent<P, *>
-// _ is a workaround to keep bypass generic type destruction
-/* eslint-disable */
-export type trait<_ = any> = Object => factory<*>
-/* eslint-enable */
+declare export function displayName<any>(name: string, WrappedComponent: any): string;
+export type factory<P: Object> = (_: Class<React$Component<P, S>> | <P>(props: P) => ?$Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>) => Class<React$Component<P, S>>;
 
-export const displayName = (name: string, WrappedComponent: *) =>
-    `${name}(${ WrappedComponent.displayName || WrappedComponent.name || "Component" })`
+export type trait<_ = any> = (_: Object) => <mixed /* UNEXPECTED TYPE: ExistsT */>(_: Class<React$Component<P, S>> | <P>(props: P) => ?$Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>) => Class<React$Component<P, S>>;
+

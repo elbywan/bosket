@@ -1,35 +1,11 @@
 // @flow
 
-import React from "react"
-import { array, deepMix } from "@bosket/tools"
+import type {TreeViewProps} from "../TreeView";
+import {TreeView} from "../TreeView";
+import {array, deepMix} from "@bosket/tools";
+import React from "react";
+declare export class FlatView extends React$PureComponent<{limit?: number, name: string} & {async?: (_: (_: mixed) => Promise<Array<Object>>) => Promise<Array<Object>>, category: string, css?: {[key: string]: string}, disabled?: (_: Object) => boolean, display?: (item: Object, inputs: Object) => any, dragndrop?: Object, keyDownListener?: Object, keyUpListener?: Object, labels?: Object, model: Array<Object>, noOpener?: boolean, onSelect: (newSelection: Array<Object>, item: Object, ancestors: Array<Object>, neighbours: Array<Object>) => void, search?: (_: string) => (_: Object) => boolean, selection: Array<Object>, sort?: (_: Object, _: Object) => number, strategies?: Object, transition?: Object, unique?: (_: Object) => string | number}> {
 
-import { TreeView } from "../TreeView"
-import type { TreeViewProps } from "../TreeView"
-
-type FlatViewProps = {
-    name: string,
-    limit?: number
-} & TreeViewProps
-
-export class FlatView extends React.PureComponent<FlatViewProps> {
-
-    conf : Object = {
-        css: {
-            TreeView: "FlatView"
-        },
-        strategies: {
-            selection: ["multiple"],
-            click: [],
-            fold: [(item: Object) => false]
-        },
-        disabled: (item: Object) =>
-            !array(this.props.selection).contains(item) &&
-            this.props.limit && this.props.selection.length >= this.props.limit ||
-            item[this.props.category],
-        display: (item: Object) => item[this.props.name],
-        key: (item: Object) => item[this.props.name],
-        noOpener: true
-    }
-
-    render = () => <TreeView { ...deepMix(this.conf, this.props, true) }></TreeView>
+  conf: Object;
+  render: () => $Exact<{+key: string | number | null, +props: mixed /* UNEXPECTED TYPE: EvalT */, +ref: any, +type: ElementType}>;
 }

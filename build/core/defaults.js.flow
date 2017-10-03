@@ -1,34 +1,3 @@
 // @flow
 
-export const defaults = {
-    labels: {
-        "search.placeholder": "Search ..."
-    },
-    css: {
-        TreeView:           "TreeView",
-        opener:             "opener",
-        depth:              "depth",
-        selected:           "selected",
-        category:           "category",
-        folded:             "folded",
-        disabled:           "disabled",
-        async:              "async",
-        loading:            "loading",
-        nodrop:             "nodrop",
-        dragover:           "dragover",
-        search:             "search",
-        item:               "item"
-    },
-    strategies: {
-        selection: ["single"],
-        click: [],
-        fold: [ "not-selected", "no-child-selection" ]
-    },
-    display: (_: Object) => _.toString(),
-    async: (_: Function) => _(),
-    noOpener: false,
-    dragndrop: {
-        draggable: false,
-        droppable: false
-    }
-}
+declare export var defaults: {async: (_: Function) => any, css: {TreeView: string, async: string, category: string, depth: string, disabled: string, dragover: string, folded: string, item: string, loading: string, nodrop: string, opener: string, search: string, selected: string}, display: (_: Object) => any, dragndrop: {draggable: boolean, droppable: boolean}, labels: {search.placeholder: string}, noOpener: boolean, strategies: {click: [], fold: [string, string], selection: [string]}};
