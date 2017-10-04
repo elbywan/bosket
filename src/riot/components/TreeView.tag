@@ -19,7 +19,6 @@
     </div>
 
     <script type="es6">
-        import { tree } from "@bosket/tools"
         import { RootNode, defaults } from "@bosket/core"
         import { optsMixin, listenerMixin } from "../mixins"
 
@@ -35,9 +34,7 @@
         this.onSearch = evt => {
             const input = evt.currentTarget.value
             this.search = input
-            this.filtered = !input.trim() ? null :
-                tree(this.inputs.get().model, this.inputs.get().category)
-                    .treeFilter(this.inputs.get().search(input.trim()))
+            this.filtered = this.rootNode.filterTree(input)
         }
 
         // Boilerplate //

@@ -197,7 +197,7 @@ export var RootNode = function (_Core2) {
             return _this3.inputs.get().css[prop] || defaults.css[prop];
         }, _this3.filterTree = function (input) {
             var search = _this3.inputs.get().search;
-            return !search ? null : !input.trim() ? null : tree(_this3.inputs.get().model, _this3.inputs.get().category).treeFilter(search(input.trim()));
+            return !search ? null : !input.trim() ? null : tree(_this3.inputs.get().model, _this3.inputs.get().category).filterMap(search(input.trim()));
         }, _temp2), _possibleConstructorReturn(_this3, _ret2);
     }
 

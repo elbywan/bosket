@@ -212,7 +212,7 @@ export class RootNode extends Core<*> {
         const search = this.inputs.get().search
         return !search ? null : !input.trim() ? null :
             tree(this.inputs.get().model, this.inputs.get().category)
-                .treeFilter(search(input.trim()))
+                .filterMap(search(input.trim()))
     }
 
 }

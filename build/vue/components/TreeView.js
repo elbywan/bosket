@@ -20,7 +20,7 @@ var TreeViewBase = {
         onSearch: function onSearch(evt) {
             var input = evt.currentTarget.value;
             this.$data.searchInput = input;
-            this.$data.filtered = !input.trim() ? null : tree(this.$props.model, this.$props.category).treeFilter(this.$props.search(input.trim()));
+            this.$data.filtered = this.rootNode.filterTree(input);
         }
     },
     computed: {

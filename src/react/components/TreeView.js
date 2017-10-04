@@ -1,7 +1,6 @@
 // @flow
 
 import React from "react"
-import { tree } from "@bosket/tools"
 import { RootNode, defaults } from "@bosket/core"
 import { withLabels, combine, withListener } from "../traits"
 import { TreeViewNode } from "./TreeViewNode"
@@ -86,12 +85,7 @@ class TreeViewBaseClass extends React.PureComponent<TreeViewProps, TreeViewState
             const input = evt.currentTarget.value
             this.setState({
                 search: input,
-                filtered: !input.trim() ?
-                    null :
-                    tree(this.props.model, this.props.category)
-                        /* eslint-disable */
-                        .treeFilter((this.props.search: any)(input.trim()))
-                        /* eslint-enable */
+                filtered: this.rootNode.filterTree(input)
             })
         }
     }
