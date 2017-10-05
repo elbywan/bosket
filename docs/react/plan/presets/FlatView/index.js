@@ -38,7 +38,7 @@ export default {
                                     - key
                                     - strategies
                                     - disabled
-                                    - noOpener
+                                    - openerOpts
                                 */
                             ></FlatView>
                     ` }

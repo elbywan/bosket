@@ -2,14 +2,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-import { object, tree } from "@bosket/tools";
+import { object } from "@bosket/tools";
 import { RootNode, defaults } from "@bosket/core";
 import { TreeViewNode } from "./TreeViewNode";
 import { combine, withLabels, withListener } from "../traits";
 
 var TreeViewBase = {
     name: "TreeView",
-    props: ["model", "category", "selection", "onSelect", "display", "search", "transition", "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async", "keyUpListener", "keyDownListener", "unique"],
+    props: ["model", "category", "selection", "onSelect", "display", "search", "transition", "strategies", "labels", "css", "dragndrop", "sort", "disabled", "openerOpts", "async", "keyUpListener", "keyDownListener", "unique"],
     data: function data() {
         return {
             searchInput: "",

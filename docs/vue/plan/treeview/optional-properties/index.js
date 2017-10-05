@@ -183,14 +183,15 @@ export default {
         },
         dragndrop,
         {
-            title: "noOpener",
+            title: "openerOpts",
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/vue/plan/treeview/optional-properties/index.js",
             content: h =>
                 <div class="marged">
-                    <pre class="itemType">boolean</pre>
-                    <p>Hides the opener, which is usually the little arrow or arrow-like icon used to unfold a node.</p>
+                    <pre class="itemType">{"{"} position: "none" | "left" | "right" {"}"}</pre>
+                    <p>Positions the opener, which is usually the little arrow or arrow-like icon used to unfold a node.</p>
+                    <div class="emphasis">Defaults to "right"</div>
                     { jscode`
-                        <TreeView /* ... */ :noOpener="true"></TreeView>`(h) }
+                        <TreeView /* ... */ :openerOpts="{ position: 'left' }"></TreeView>`(h) }
                 </div>
         },
         {

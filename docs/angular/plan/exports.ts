@@ -35,7 +35,7 @@ export const plannerComponents = [
     pc.OnLeaveProp,
     pc.OnDropProp,
     pc.OnCancelProp,
-    pc.NoOpenerProp,
+    pc.OpenerOptsProp,
     pc.LabelsProp,
     pc.CssProp,
     pc.TreeViewCss,

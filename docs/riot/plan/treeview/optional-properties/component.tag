@@ -369,16 +369,17 @@
     </script>
 </DropTree>
 
-<noopener-prop>
+<openeropts-prop>
     <div class="marged">
-        <pre class="itemType">boolean</pre>
-        <p>Hides the opener, which is usually the little arrow or arrow-like icon used to unfold a node.</p>
+        <pre class="itemType">{{ '{ position: "none" | "left" | "right" }' }}</pre>
+        <p>Positions the opener, which is usually the little arrow or arrow-like icon used to unfold a node.</p>
+        <div class="emphasis">Defaults to "right"</div>
         <syntax-highlight>{ parent.code }</syntax-highlight>
     </div>
     <script>
-        this.code = `<TreeView /* ... */ noopener={ true } />`
+        this.code = `<TreeView /* ... */ openeropts={{ position: "left" }} />`
     </script>
-</noopener-prop>
+</openeropts-prop>
 
 <labels-prop>
     <div class="marged">

@@ -33,7 +33,7 @@ type dragOutput<T> = { target: T, event: DragEvent, inputs: Object }
                     [sort]="sort"
                     [disabled]="disabled"
                     [searched]="_state.search.trim()"
-                    [noOpener]="noOpener"
+                    [openerOpts]="openerOpts"
                     [labels]="labels">
                 </TreeViewNode>
             </div>
@@ -58,7 +58,7 @@ export class TreeView<Item extends Object> {
         this._props = {
             get: () => {
                 const keys = [ "model", "category", "selection", "display", "search", "async", "key",
-                    "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener" ]
+                    "strategies", "labels", "css", "dragndrop", "sort", "disabled", "openerOpts" ]
                 const props = {}
                 keys.forEach(key => {
                     props[key] = this[key]
@@ -126,7 +126,7 @@ export class TreeView<Item extends Object> {
     @Input() css = defaults.css
     @Input() sort: (a: Item, b: Item) => number
     @Input() disabled: (_: Item) => boolean
-    @Input() noOpener: boolean = defaults.noOpener
+    @Input() openerOpts: { position?: "none" | "left" | "right" } = defaults.openerOpts
     // Opener template ?!
     @Input() async: (_: Function) => Promise<any> = defaults.async
     @Input()
@@ -149,11 +149,11 @@ export class TreeView<Item extends Object> {
     /* Internal logic */
 
     rootNode : RootNode<Item>
-    getChildModel = () => {
+    getChildModel() {
         return this.sort ? this.model.sort(this.sort) : this.model
     }
 
-    onSearch = (query: string) => {
+    onSearch(query: string) {
         this._state.set({
             search: query,
             filtered: this.rootNode.filterTree(query)

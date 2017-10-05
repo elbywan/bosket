@@ -21,7 +21,7 @@ export class MenuView extends React.PureComponent<MenuViewProps> {
             click: ["unfold-on-selection"],
             fold: [ "not-selected", "no-child-selection" ]
         },
-        noOpener: true,
+        openerOpts: { position: "none" },
         display: (item: Object) => item[this.props.name],
         key: (item: Object) => item[this.props.name]
     }

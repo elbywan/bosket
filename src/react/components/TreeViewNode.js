@@ -26,7 +26,7 @@ type TreeViewNodeProps = {
     filteredModel:      null | Map<Object, *>,
     folded:             boolean,
     loading?:           boolean,
-    noOpener?:          boolean,
+    openerOpts:         { position?: "none" | "left" | "right" },
     opener?:            Class<React.Component<*, *>>,
     searched:           boolean
 }
@@ -122,8 +122,8 @@ class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeV
         )
     }
 
-    renderOpener = (item: Object, OpenerComponent: Class<React.Component<*, *>> | string) =>
-        (this.node.hasChildren(item) || this.node.isAsync(item)) && !this.props.noOpener ?
+    renderOpener = (item: Object, OpenerComponent: Class<React.Component<*, *>> | string) => position =>
+        (this.node.hasChildren(item) || this.node.isAsync(item)) && this.props.openerOpts.position === position ?
             <OpenerComponent className={ this.node.mixCss("opener") } onClick={ this.node.onOpener(item) }></OpenerComponent> :
             null
 
@@ -146,8 +146,9 @@ class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeV
                     className={ this.node.liCss(item) }
                     { ...this.node.getDragEvents(item) }>
                     <span className={ this.node.mixCss("item") } onClick={ this.node.onClick(item) }>
+                        { this.renderOpener(item, OpenerComponent)("left") }
                         { display && display(item, this.props) }
-                        { this.renderOpener(item, OpenerComponent) }
+                        { this.renderOpener(item, OpenerComponent)("right") }
                     </span>
                     { this.renderSubtree(item) }
                 </li>

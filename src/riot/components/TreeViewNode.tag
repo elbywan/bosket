@@ -18,11 +18,14 @@
             ondragend={     node.getDragEvents(item).onDragEnd }
             ondrop={        node.getDragEvents(item).onDrop }>
             <span class={ parent.node.mixCss("item") } onclick={ parent.node.onClick(item) }>
+                <span if={ renderOpener(item, "left") }
+                    class={ node.mixCss("opener") }
+                    onclick={ node.onOpener(item) }></span>
                 <virtual if={ !parent.opts.displaytag }>
                     { parent.opts.display(item, parent.opts) }
                 </virtual>
                 <virtual if={ parent.opts.displaytag } data-is={ parent.opts.displaytag(item, parent.opts) } item={ item } inputs={ inputs.get() }></virtual>
-                <span if={ node.hasChildren(item) || node.isAsync(item) && !parent.opts.noopener }
+                <span if={ renderOpener(item, "right") }
                     class={ node.mixCss("opener") }
                     onclick={ node.onOpener(item) }></span>
             </span>
@@ -77,6 +80,10 @@
 
         this.getAncestors = item =>
             [ ...this.opts.ancestors, item ]
+
+        this.renderOpener = (item, position) =>
+            (this.node.hasChildren(item) || this.node.isAsync(item)) &&
+                this.opts.openerOpts.position === position
 
         // Boilerplate //
 

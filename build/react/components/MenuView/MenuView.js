@@ -33,7 +33,7 @@ export var MenuView = function (_React$PureComponent) {
                 click: ["unfold-on-selection"],
                 fold: ["not-selected", "no-child-selection"]
             },
-            noOpener: true,
+            openerOpts: { position: "none" },
             display: function display(item) {
                 return item[_this.props.name];
             },

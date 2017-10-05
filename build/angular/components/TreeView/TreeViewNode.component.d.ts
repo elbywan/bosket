@@ -25,7 +25,9 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit 
     };
     sort: (a: Item, b: Item) => boolean;
     disabled: (_: Item) => boolean;
-    noOpener: boolean;
+    openerOpts: {
+        position?: "none" | "left" | "right";
+    };
     async: (_: Function) => Promise<any>;
     displayComponent: any;
     dragndrop: {
@@ -48,10 +50,11 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit 
     onSelect: (item: Item, ancestors: Array<Item>, neighbours: Array<Item>) => Array<Item>;
     itemInjectors: ItemInjector[];
     node: TreeNode<Item>;
-    getModel: () => Item[];
-    getChildModel: (item: Item) => any;
-    getChildFiltered: (item: Item) => Map<Item, any>;
+    getModel(): Item[];
+    getChildModel(item: Item): any;
+    getChildFiltered(item: Item): Map<Item, any>;
     ancestorsMap: Map<Item, Item[]>;
-    getAncestors: (item: Item) => Item[];
-    invokeEvent: (name: any, item: any, event: any, condition?: boolean) => void;
+    getAncestors(item: Item): Item[];
+    invokeEvent(name: any, item: any, event: any, condition?: boolean): void;
+    renderOpener(item: any, position: any): boolean;
 }

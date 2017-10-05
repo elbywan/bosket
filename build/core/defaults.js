@@ -28,7 +28,7 @@ export var defaults = {
     async: function async(_) {
         return _();
     },
-    noOpener: false,
+    openerOpts: { position: "right" },
     dragndrop: {
         draggable: false,
         droppable: false

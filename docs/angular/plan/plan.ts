@@ -147,9 +147,9 @@ export default [
                         content: components.OnCancelProp
                     },
                     {
-                        title: "noOpener",
-                        editLink: "https://github.com/elbywan/bosket/edit/master/docs/angular/plan/treeview/optional-properties/noOpener/component.ts",
-                        content: components.NoOpenerProp
+                        title: "openerOpts",
+                        editLink: "https://github.com/elbywan/bosket/edit/master/docs/angular/plan/treeview/optional-properties/openerOpts/component.ts",
+                        content: components.OpenerOptsProp
                     },
                     {
                         title: "labels",

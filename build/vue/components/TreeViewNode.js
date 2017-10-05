@@ -34,7 +34,7 @@ var TreeViewNodeBase = {
         this._unmounted = true;
     },
 
-    props: ["model", "category", "selection", "onSelect", "display", "strategies", "dragndrop", "labels", "sort", "disabled", "noOpener", "async", "css", "folded", "transition", "unique", "loading", "depth", "ancestors", "searched", "onSelect", "filteredModel"],
+    props: ["model", "category", "selection", "onSelect", "display", "strategies", "dragndrop", "labels", "sort", "disabled", "openerOpts", "async", "css", "folded", "transition", "unique", "loading", "depth", "ancestors", "searched", "onSelect", "filteredModel"],
     data: function data() {
         return {
             unfolded: []
@@ -96,14 +96,16 @@ var TreeViewNodeBase = {
         };
 
         var renderOpener = function renderOpener(item, OpenerComponent) {
-            return (_this3.node.hasChildren(item) || _this3.node.isAsync(item)) && !_this3.$props.noOpener ? h(
-                OpenerComponent,
-                { "class": _this3.node.mixCss("opener"), on: {
-                        "click": _this3.node.onOpener(item)
-                    }
-                },
-                []
-            ) : null;
+            return function (position) {
+                return (_this3.node.hasChildren(item) || _this3.node.isAsync(item)) && _this3.$props.openerOpts.position === position ? h(
+                    OpenerComponent,
+                    { "class": _this3.node.mixCss("opener"), on: {
+                            "click": _this3.node.onOpener(item)
+                        }
+                    },
+                    []
+                ) : null;
+            };
         };
 
         var _$props = this.$props,
@@ -146,7 +148,7 @@ var TreeViewNodeBase = {
                             "click": _this3.node.onClick(item)
                         }
                     },
-                    [display && display(item, _this3.$props), renderOpener(item, OpenerComponent)]
+                    [renderOpener(item, OpenerComponent)("left"), display && display(item, _this3.$props), renderOpener(item, OpenerComponent)("right")]
                 ), renderSubtree(item)]
             );
         });

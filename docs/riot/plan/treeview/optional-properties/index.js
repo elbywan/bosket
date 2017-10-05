@@ -45,9 +45,9 @@ export default {
             content: "dragndrop-prop"
         },
         {
-            title: "noopener",
+            title: "openeropts",
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/riot/plan/treeview/optional-properties/index.js",
-            content: "noopener-prop"
+            content: "openeropts-prop"
         },
         {
             title: "labels",

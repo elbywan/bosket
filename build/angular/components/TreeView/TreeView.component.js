@@ -9,7 +9,7 @@ var TreeView = (function () {
         this.strategies = defaults.strategies;
         this.labels = defaults.labels;
         this.css = defaults.css;
-        this.noOpener = defaults.noOpener;
+        this.openerOpts = defaults.openerOpts;
         this.async = defaults.async;
         this._dragndrop = defaults.dragndrop;
         this.selectionChange = new EventEmitter();
@@ -19,19 +19,10 @@ var TreeView = (function () {
         this.onLeave = new EventEmitter();
         this.onDrop = new EventEmitter();
         this.onCancel = new EventEmitter();
-        this.getChildModel = function () {
-            return _this.sort ? _this.model.sort(_this.sort) : _this.model;
-        };
-        this.onSearch = function (query) {
-            _this._state.set({
-                search: query,
-                filtered: _this.rootNode.filterTree(query)
-            });
-        };
         this._props = {
             get: function () {
                 var keys = ["model", "category", "selection", "display", "search", "async", "key",
-                    "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener"];
+                    "strategies", "labels", "css", "dragndrop", "sort", "disabled", "openerOpts"];
                 var props = {};
                 keys.forEach(function (key) {
                     props[key] = _this[key];
@@ -75,10 +66,19 @@ var TreeView = (function () {
         enumerable: true,
         configurable: true
     });
+    TreeView.prototype.getChildModel = function () {
+        return this.sort ? this.model.sort(this.sort) : this.model;
+    };
+    TreeView.prototype.onSearch = function (query) {
+        this._state.set({
+            search: query,
+            filtered: this.rootNode.filterTree(query)
+        });
+    };
     TreeView.decorators = [
         { type: Component, args: [{
                     selector: 'TreeView',
-                    template: "\n        <div [class]=\"rootNode.mixCss('TreeView')\">\n                <input #searchBox\n                    *ngIf=\"search\"\n                    type=\"search\"\n                    [class]=\"rootNode.mixCss('search')\"\n                    [placeholder]=\"labels['search.placeholder']\"\n                    (input)=\"onSearch(searchBox.value)\" />\n                <TreeViewNode\n                    [model]=\"getChildModel()\"\n                    [filteredModel]=\"_state.filtered\"\n                    [category]=\"category\"\n                    [selection]=\"selection\"\n                    [onSelect]=\"rootNode.onSelect\"\n                    [strategies]=\"strategies\"\n                    [display]=\"display\"\n                    [displayComponent]=\"displayComponent\"\n                    [key]=\"key\"\n                    [css]=\"css\"\n                    [dragndrop]=\"dragndrop\"\n                    [async]=\"async\"\n                    [ancestors]=\"[]\"\n                    [sort]=\"sort\"\n                    [disabled]=\"disabled\"\n                    [searched]=\"_state.search.trim()\"\n                    [noOpener]=\"noOpener\"\n                    [labels]=\"labels\">\n                </TreeViewNode>\n            </div>\n    ",
+                    template: "\n        <div [class]=\"rootNode.mixCss('TreeView')\">\n                <input #searchBox\n                    *ngIf=\"search\"\n                    type=\"search\"\n                    [class]=\"rootNode.mixCss('search')\"\n                    [placeholder]=\"labels['search.placeholder']\"\n                    (input)=\"onSearch(searchBox.value)\" />\n                <TreeViewNode\n                    [model]=\"getChildModel()\"\n                    [filteredModel]=\"_state.filtered\"\n                    [category]=\"category\"\n                    [selection]=\"selection\"\n                    [onSelect]=\"rootNode.onSelect\"\n                    [strategies]=\"strategies\"\n                    [display]=\"display\"\n                    [displayComponent]=\"displayComponent\"\n                    [key]=\"key\"\n                    [css]=\"css\"\n                    [dragndrop]=\"dragndrop\"\n                    [async]=\"async\"\n                    [ancestors]=\"[]\"\n                    [sort]=\"sort\"\n                    [disabled]=\"disabled\"\n                    [searched]=\"_state.search.trim()\"\n                    [openerOpts]=\"openerOpts\"\n                    [labels]=\"labels\">\n                </TreeViewNode>\n            </div>\n    ",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     host: {
                         '(document:keyup)': 'rootNode.onKey($event)',
@@ -102,7 +102,7 @@ var TreeView = (function () {
         'css': [{ type: Input },],
         'sort': [{ type: Input },],
         'disabled': [{ type: Input },],
-        'noOpener': [{ type: Input },],
+        'openerOpts': [{ type: Input },],
         'async': [{ type: Input },],
         'dragndrop': [{ type: Input },],
         'selectionChange': [{ type: Output },],

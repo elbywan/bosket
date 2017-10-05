@@ -149,7 +149,7 @@ export class PlannerInjector implements DisplayComponent<Plan> {
                     category="subs"
                     [(selection)]="selection"
                     [strategies]="{ selection: ['ancestors'], fold: [ foldDepth(), 'not-selected', 'no-child-selection' ]}"
-                    noOpener="true"
+                    [openerOpts]="{ position: 'none' }"
                     [displayComponent]="component">
                 </TreeView>
             </aside>

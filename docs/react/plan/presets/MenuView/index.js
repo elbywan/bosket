@@ -36,7 +36,7 @@ export default {
                                     - display
                                     - key
                                     - strategies
-                                    - noOpener
+                                    - openerOpts
                                 */
                             ></MenuView>
                     ` }

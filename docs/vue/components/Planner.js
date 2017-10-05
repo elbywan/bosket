@@ -19,7 +19,7 @@ export default combine(
                 selection: [],
                 display: (item, inputs) => <a href={ `${inputs.ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
                 onSelect: _ => { if(_.length > 0) { this.conf = { ...this.conf, selection: _ } } },
-                noOpener: true
+                openerOpts: { position: "none" }
             },
             opened: false
         }

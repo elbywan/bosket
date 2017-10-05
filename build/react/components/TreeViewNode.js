@@ -57,7 +57,9 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
         };
 
         _this.renderOpener = function (item, OpenerComponent) {
-            return (_this.node.hasChildren(item) || _this.node.isAsync(item)) && !_this.props.noOpener ? React.createElement(OpenerComponent, { className: _this.node.mixCss("opener"), onClick: _this.node.onOpener(item) }) : null;
+            return function (position) {
+                return (_this.node.hasChildren(item) || _this.node.isAsync(item)) && _this.props.openerOpts.position === position ? React.createElement(OpenerComponent, { className: _this.node.mixCss("opener"), onClick: _this.node.onOpener(item) }) : null;
+            };
         };
 
         var _props = {
@@ -143,8 +145,9 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
                     React.createElement(
                         "span",
                         { className: _this3.node.mixCss("item"), onClick: _this3.node.onClick(item) },
+                        _this3.renderOpener(item, OpenerComponent)("left"),
                         display && display(item, _this3.props),
-                        _this3.renderOpener(item, OpenerComponent)
+                        _this3.renderOpener(item, OpenerComponent)("right")
                     ),
                     _this3.renderSubtree(item)
                 );

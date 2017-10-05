@@ -72,7 +72,7 @@ export const Planner = combine(
             selection: ["ancestors"],
             fold: [ "max-depth", "not-selected", "no-child-selection" ]
         },
-        noOpener: true,
+        openerOpts: { position: "none" },
         opened: false
     }
     opener: HTMLElement

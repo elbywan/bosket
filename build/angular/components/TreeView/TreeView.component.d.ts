@@ -24,7 +24,9 @@ export declare class TreeView<Item extends Object> {
     };
     sort: (a: Item, b: Item) => number;
     disabled: (_: Item) => boolean;
-    noOpener: boolean;
+    openerOpts: {
+        position?: "none" | "left" | "right";
+    };
     async: (_: Function) => Promise<any>;
     dragndrop: {
         draggable: boolean;
@@ -66,6 +68,6 @@ export declare class TreeView<Item extends Object> {
         inputs: Object;
     }>;
     rootNode: RootNode<Item>;
-    getChildModel: () => Item[];
-    onSearch: (query: string) => void;
+    getChildModel(): Item[];
+    onSearch(query: string): void;
 }

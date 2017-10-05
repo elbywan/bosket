@@ -153,7 +153,7 @@ code {
 }
 
 .center-text {
-    text-align: center;
+    text-align: center !important;
 }
 
 .big-text {
@@ -272,6 +272,7 @@ pre.itemType {
     cursor: pointer;
     color: #BBB;
     opacity: 0.6;
+    border-radius: 5px;
     background-image: repeating-linear-gradient(145deg, #222, #222 50px, #444 0px, #444 100px);
     transition: all 0.3s;
 

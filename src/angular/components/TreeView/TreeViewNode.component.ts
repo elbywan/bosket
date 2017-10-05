@@ -28,10 +28,12 @@ const object = require("../../../tools/objects").object
                 (dragend)="invokeEvent('onDragEnd', item, $event)"
                 (drop)="invokeEvent('onDrop', item, $event)">
                 <span [class]="node.mixCss('item')" (click)="node.onClick(item)($event)">
+                    <span *ngIf="renderOpener(item, 'left')"
+                        [class]="node.mixCss('opener')"
+                        (click)="node.onOpener(item)($event)"></span>
                     <ng-container *ngIf="!displayComponent">{{ display(item, _props.get()) }}</ng-container>
                     <ng-template *ngIf="displayComponent" [itemInjector]="item" [inject]="displayComponent" [inputs]="_props.get()"></ng-template>
-                    <span
-                        *ngIf="node.hasChildren(item) || node.isAsync(item) && !noOpener"
+                    <span *ngIf="renderOpener(item, 'right')"
                         [class]="node.mixCss('opener')"
                         (click)="node.onOpener(item)($event)"></span>
                 </span>
@@ -56,7 +58,7 @@ const object = require("../../../tools/objects").object
                     [sort]="sort"
                     [disabled]="disabled"
                     [searched]="searched"
-                    [noOpener]="noOpener">
+                    [openerOpts]="openerOpts">
                 </TreeViewNode>
             </li>
         </ul>
@@ -70,7 +72,7 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit {
 
     private keys = [
         "model", "category", "selection", "display", "key", "strategies", "dragndrop",
-        "labels", "sort", "disabled", "noOpener", "async", "css", "folded",
+        "labels", "sort", "disabled", "openerOpts", "async", "css", "folded",
         "loading", "depth", "ancestors", "searched", "onSelect"
     ]
 
@@ -142,7 +144,9 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit {
     // Optional
     @Input() sort: (a: Item, b: Item) => boolean
     @Input() disabled: (_: Item) => boolean
-    @Input() noOpener: boolean = false
+    @Input() openerOpts: { position?: "none" | "left" | "right" } = {
+        position: "none"
+    }
     // Opener template ?!
     @Input() async: (_: Function) => Promise<any>
     @Input() displayComponent
@@ -171,12 +175,13 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit {
 
     node: TreeNode<Item>
 
-    getModel = () =>
-        this.searched ?
+    getModel() {
+        return this.searched ?
             this.model.filter(m => this.filteredModel.has(m)) :
             this.model
+    }
 
-    getChildModel = (item: Item) => {
+    getChildModel(item: Item) {
         let childModel = item[this.category]
 
         /* If data has to be retrieved asynchronously */
@@ -189,20 +194,26 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit {
 
         return childModel
     }
-    getChildFiltered = (item: Item) =>
-        this.searched ?
+    getChildFiltered(item: Item) {
+        return this.searched ?
             this.filteredModel.get(item) :
             null
+    }
 
     ancestorsMap = new Map<Item, Array<Item>>()
-    getAncestors = (item: Item) => {
+    getAncestors(item: Item) {
         if(!this.ancestorsMap.has(item))
             this.ancestorsMap.set(item, [ ...this.ancestors, item ])
         return this.ancestorsMap.get(item)
     }
 
-    invokeEvent = (name, item, event, condition = true) => {
+    invokeEvent(name, item, event, condition = true) {
         const fun = this.node.getDragEvents(item, condition)[name]
         fun ? fun(event) : null
+    }
+
+    renderOpener(item, position) {
+        return (this.node.hasChildren(item) || this.node.isAsync(item)) &&
+            this.openerOpts.position === position
     }
 }

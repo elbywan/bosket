@@ -25,7 +25,7 @@ const TreeViewNodeBase = {
         this._unmounted = true
     },
     props: [ "model", "category", "selection", "onSelect", "display", "strategies", "dragndrop",
-        "labels", "sort", "disabled", "noOpener", "async", "css", "folded", "transition",
+        "labels", "sort", "disabled", "openerOpts", "async", "css", "folded", "transition",
         "unique", "loading", "depth", "ancestors", "searched", "onSelect", "filteredModel" ],
     data: () => ({
         unfolded: []
@@ -81,8 +81,8 @@ const TreeViewNodeBase = {
             )
         }
 
-        const renderOpener = (item, OpenerComponent) =>
-            (this.node.hasChildren(item) || this.node.isAsync(item)) && !this.$props.noOpener ?
+        const renderOpener = (item, OpenerComponent) => position =>
+            (this.node.hasChildren(item) || this.node.isAsync(item)) && this.$props.openerOpts.position === position ?
                 <OpenerComponent class={ this.node.mixCss("opener") } onClick={ this.node.onOpener(item) }></OpenerComponent> :
                 null
 
@@ -112,8 +112,9 @@ const TreeViewNodeBase = {
                     liData.key = this.$props.unique(item, idx)
                 return <li { ...liData }>
                     <span class={ this.node.mixCss("item") } onClick={ this.node.onClick(item) }>
+                        { renderOpener(item, OpenerComponent)("left") }
                         { display && display(item, this.$props) }
-                        { renderOpener(item, OpenerComponent) }
+                        { renderOpener(item, OpenerComponent)("right") }
                     </span>
                     { renderSubtree(item) }
                 </li>

@@ -36,7 +36,7 @@ export class TreeViewBasicUsage {
             (onDrag)=           /* [drag'n'drop drag callback](#TreeView#Optional properties#onDrag) */
             (onDrop)=           /* [drag'n'drop drop callback](#TreeView#Optional properties#onDrop) */
             (onCancel)=         /* [drag'n'drop cancel callback](#TreeView#Optional properties#onCancel) */
-            [noOpener]=         /* [hide opener 'arrow'](#TreeView#Optional properties#noOpener) */
+            [openerOpts]=       /* [opener 'arrow' options](#TreeView#Optional properties#openerOpts) */
             [labels]=           /* [override default labels](#TreeView#Optional properties#labels) */
             [css]=              /* [override default css classes](#TreeView#Optional properties#css) */
 

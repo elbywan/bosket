@@ -10,7 +10,7 @@ export declare const defaults : {
     },
     display: (Object) => string,
     async: (Function) => Promise<any>,
-    noOpener: boolean,
+    openerOpts: { position?: "none" | "left" | "right" },
     draggable: boolean,
     dragndrop: {
         draggable: boolean,

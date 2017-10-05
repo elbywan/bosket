@@ -21,7 +21,7 @@ export type TreeViewProps = {
     search?:            string => Object => boolean,
     async?:             (mixed => Promise<Object[]>) => Promise<Object[]>,
     dragndrop?:         Object,
-    noOpener?:          boolean,
+    openerOpts?:        { position: "none" | "left" | "right" },
     labels?:            Object,
     css?:               { [key: string]: string },
     transition?:        Object,

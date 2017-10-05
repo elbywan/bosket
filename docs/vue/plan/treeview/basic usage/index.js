@@ -34,7 +34,7 @@ export default {
                     :search=        /* [enables the search bar](#TreeView#Optional properties#search) */
                     :async=         /* [how to perform asynchronous loading](#TreeView#Optional properties#async) */
                     :dragndrop=     /* [drag'n'drop configuration](#TreeView#Optional properties#dragndrop) */
-                    :noOpener=      /* [hide opener 'arrow'](#TreeView#Optional properties#noOpener) */
+                    :openerOpts=    /* [opener 'arrow' options](#TreeView#Optional properties#openerOpts) */
                     :labels=        /* [override default labels](#TreeView#Optional properties#labels) */
                     :css=           /* [override default css classes](#TreeView#Optional properties#css) */
                     :transition=    /* [transitions on create / destroy](#TreeView#Optional properties#transition) */

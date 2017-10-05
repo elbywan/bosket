@@ -16,7 +16,7 @@
                 selection={ selection }
                 onselection={ updateSelection }
                 strategies={{ selection: ["ancestors"], fold: [ foldDepth(), "not-selected", "no-child-selection" ]}}
-                noopener="true"
+                openeropts={{ position: "none" }}
                 displaytag={ display }>
             </TreeView>
         </aside>

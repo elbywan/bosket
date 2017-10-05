@@ -128,14 +128,15 @@ export default {
         },
         dragndrop,
         {
-            title: "noOpener",
+            title: "openerOpts",
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
-                    <pre className="itemType">boolean</pre>
-                    <p>Hides the opener, which is usually the little arrow or arrow-like icon used to unfold a node.</p>
+                    <pre className="itemType">{"{"} position: "none" | "left" | "right" {"}"}</pre>
+                    <p>Positions the opener, which is usually the little arrow or arrow-like icon used to unfold a node.</p>
+                    <div className="emphasis">Defaults to "right"</div>
                     { jscode`
-                        <TreeView /* ... */ noOpener={ true }></TreeView>` }
+                        <TreeView /* ... */ openerOpts={{ position: "left" }}></TreeView>` }
                 </div>
         },
         {

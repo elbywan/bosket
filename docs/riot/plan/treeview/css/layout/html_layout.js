@@ -22,7 +22,7 @@ export default `
         <!-- A category is a node having children. This node is folded, its children are hidden. -->
         <li class="folded category">
             <span class="item">
-                <!-- If [noopener](#TreeView#Optional properties#noopener) is false, hidden otherwise. -->
+                <!-- If [openeropts](#TreeView#Optional properties#openeropts) position is set, hidden otherwise. -->
                 <span class="opener"></span>
             </span>
         </li>

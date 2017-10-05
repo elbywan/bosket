@@ -1,4 +1,4 @@
-import { object, tree } from "@bosket/tools"
+import { object } from "@bosket/tools"
 import { RootNode, defaults } from "@bosket/core"
 import { TreeViewNode } from "./TreeViewNode"
 import { combine, withLabels, withListener } from "../traits"
@@ -6,7 +6,7 @@ import { combine, withLabels, withListener } from "../traits"
 const TreeViewBase = {
     name: "TreeView",
     props: [ "model", "category", "selection", "onSelect", "display", "search", "transition",
-        "strategies", "labels", "css", "dragndrop", "sort", "disabled", "noOpener", "async",
+        "strategies", "labels", "css", "dragndrop", "sort", "disabled", "openerOpts", "async",
         "keyUpListener", "keyDownListener", "unique" ],
     data: () => ({
         searchInput: "",

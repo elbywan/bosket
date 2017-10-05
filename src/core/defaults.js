@@ -26,7 +26,7 @@ export const defaults = {
     },
     display: (_: Object) => _.toString(),
     async: (_: Function) => _(),
-    noOpener: false,
+    openerOpts: { position: "right" },
     dragndrop: {
         draggable: false,
         droppable: false

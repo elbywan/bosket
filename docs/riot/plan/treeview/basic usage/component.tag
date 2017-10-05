@@ -29,7 +29,7 @@
             search=        /* [enables the search bar](#TreeView#Optional properties#search) */
             async=         /* [how to perform asynchronous loading](#TreeView#Optional properties#async) */
             dragndrop=     /* [drag'n'drop configuration](#TreeView#Optional properties#dragndrop) */
-            noopener=      /* [hide opener 'arrow'](#TreeView#Optional properties#noopener) */
+            openeropts=    /* [opener 'arrow' options](#TreeView#Optional properties#openeropts) */
             labels=        /* [override default labels](#TreeView#Optional properties#labels) */
             css=           /* [override default css classes](#TreeView#Optional properties#css) */
             transition=    /* [transitions on mount / unmount](#TreeView#Optional properties#transition) */
