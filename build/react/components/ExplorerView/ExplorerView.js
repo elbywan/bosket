@@ -51,7 +51,7 @@ export var ExplorerView = function (_React$PureComponent) {
             },
             strategies: {
                 selection: ["modifiers"],
-                click: ["unfold-on-selection"],
+                click: ["select", "unfold-on-selection"],
                 fold: ["opener-control"]
             },
             dragndrop: _extends({}, dragndrop.selection(function () {

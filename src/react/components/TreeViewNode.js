@@ -91,7 +91,7 @@ class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeV
 
     /* Rendering */
 
-    renderSubtree = (item: Object) => {
+    renderSubtree(item: Object) {
         if(!this.node.hasChildren(item) && !this.node.isAsync(item))
             return null
 
@@ -122,10 +122,12 @@ class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeV
         )
     }
 
-    renderOpener = (item: Object, OpenerComponent: Class<React.Component<*, *>> | string) => position =>
-        (this.node.hasChildren(item) || this.node.isAsync(item)) && this.props.openerOpts.position === position ?
-            <OpenerComponent className={ this.node.mixCss("opener") } onClick={ this.node.onOpener(item) }></OpenerComponent> :
-            null
+    renderOpener(item: Object, OpenerComponent: Class<React.Component<*, *>> | string) {
+        return position =>
+            (this.node.hasChildren(item) || this.node.isAsync(item)) && this.props.openerOpts.position === position ?
+                <OpenerComponent className={ this.node.mixCss("opener") } onClick={ this.node.onOpener(item) }></OpenerComponent> :
+                null
+    }
 
     render() {
         const { model, folded, display, unique, loading } = this.props

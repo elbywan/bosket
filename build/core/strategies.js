@@ -107,6 +107,10 @@ export var selectionStrategies = {
 
     // Click strategies are triggered on item click
 };export var clickStrategies = {
+    // Selects on click
+    select: function select(item) {
+        this.inputs.get().onSelect(item, this.inputs.get().ancestors, this.inputs.get().model);
+    },
     // Unfold an item when selecting it. Pair it with the "opener-control" fold strategy.
     "unfold-on-selection": function unfoldOnSelection(item) {
         if (!this.isSelected(item)) {

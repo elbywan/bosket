@@ -53,9 +53,10 @@ export class TreeViewDemo extends React.PureComponent<*, *> {
         // Search bar algorithm
         search: (input: string) => (i: Object) => string(i.label).contains(input),
         strategies: {
+            // Select on click
+            click: ["select"],
             // Use keyboard modifiers
             selection: ["modifiers"],
-            click: [],
             // Use the opener to control element folding
             fold: ["opener-control"]
         },

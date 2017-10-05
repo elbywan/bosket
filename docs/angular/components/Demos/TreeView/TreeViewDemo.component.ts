@@ -56,11 +56,13 @@ export class TreeViewDemo {
     set selection(s) { this._selection = s; this.selectionChange.emit(s) }
     private _selection = []
     @Output() selectionChange = new EventEmitter<any>()
-    // Strategies performed on selection & fold
-    // "modifiers" means that we single/multi select depending on which keyboard modifiers are active
-    // "opener-control" allows the opener arrow to control the folding
     strategies = {
+        // Strategies performed on click, selection & fold
+        // select on click
+        click: ["select"],
+        // "modifiers" means that we single/multi select depending on which keyboard modifiers are active
         selection: ["modifiers"],
+        // "opener-control" allows the opener arrow to control the folding
         fold: ["opener-control"]
     }
     // Customize css class

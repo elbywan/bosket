@@ -69,6 +69,7 @@ export const Planner = combine(
         display: (item, inputs) => <a href={ `${inputs.ancestors.map(a => "#" + a.title).join("")}#${item.title}` }>{ item.title }</a>,
         onSelect: _ => { if(_.length > 0) { this.setState({ selection: _ }) } },
         strategies: {
+            click: ["select"],
             selection: ["ancestors"],
             fold: [ "max-depth", "not-selected", "no-child-selection" ]
         },

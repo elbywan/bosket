@@ -19,7 +19,7 @@ export class FlatView extends React.PureComponent<FlatViewProps> {
         },
         strategies: {
             selection: ["multiple"],
-            click: [],
+            click: ["select"],
             fold: [(item: Object) => false]
         },
         disabled: (item: Object) =>

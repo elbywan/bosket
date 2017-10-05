@@ -24,6 +24,6 @@ declare class Class0 extends UIEvent {
   constructor(typeArg: string, mouseEventInit?: {altKey?: boolean, button?: number, buttons?: number, clientX?: number, clientY?: number, ctrlKey?: boolean, metaKey?: boolean, region?: string | null, relatedTarget?: string | null, screenX?: number, screenY?: number, shiftKey?: boolean}): void;
   getModifierState(keyArg: string): boolean;
 }
-declare export var clickStrategies: {[key: string]: (item: Object, event: Class0, ancestors: Array<Object>, neighbours: Array<Object>) => void};
+declare export var clickStrategies: {[key: string]: (item: Object, event: Class0, inputs: Object) => void};
 declare export var foldStrategies: {[key: string]: (item: Object, folded: boolean) => boolean};
 declare export var selectionStrategies: {[key: string]: (item: Object, selection: Array<Object>, neighbours: Array<Object>, ancestors: Array<Object>) => Array<Object>};

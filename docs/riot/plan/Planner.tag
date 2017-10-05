@@ -15,7 +15,7 @@
                 category="subs"
                 selection={ selection }
                 onselection={ updateSelection }
-                strategies={{ selection: ["ancestors"], fold: [ foldDepth(), "not-selected", "no-child-selection" ]}}
+                strategies={{ selection: ["ancestors"], click: ["select"], fold: [ foldDepth(), "not-selected", "no-child-selection" ]}}
                 openeropts={{ position: "none" }}
                 displaytag={ display }>
             </TreeView>

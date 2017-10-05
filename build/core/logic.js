@@ -94,7 +94,7 @@ export var TreeNode = function (_Core) {
                 }).forEach(function (strat) {
                     return strat(item, event, _this.inputs.get().ancestors, _this.inputs.get().model);
                 });
-                _this.inputs.get().onSelect(item, _this.inputs.get().ancestors, _this.inputs.get().model);
+                // this.inputs.get().onSelect(item, this.inputs.get().ancestors, this.inputs.get().model)
                 event.stopPropagation();
             };
         }, _this.getDragEvents = function (item) {

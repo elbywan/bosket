@@ -31,6 +31,8 @@
             // Search by regex
             search: input => i => string(i.label).contains(input),
             strategies: {
+                // Select on click
+                click: ["select"],
                 // Use keyboard modifiers
                 selection: ["modifiers"],
                 // Use the opener to control element folding

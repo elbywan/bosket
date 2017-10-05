@@ -26,7 +26,7 @@ export class ExplorerView extends React.PureComponent<ExplorerViewProps> {
         search: (input: string) => (i: Object) => string(i[this.props.name]).contains(input),
         strategies: {
             selection: ["modifiers"],
-            click: ["unfold-on-selection"],
+            click: [ "select", "unfold-on-selection" ],
             fold: ["opener-control"]
         },
         dragndrop: {

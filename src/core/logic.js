@@ -128,7 +128,7 @@ export class TreeNode extends Core<*> {
             (strats && strats.click || [])
                 .map(strat => (clickStrategies[strat] || strat).bind(this))
                 .forEach(strat => strat(item, event, this.inputs.get().ancestors, this.inputs.get().model))
-            this.inputs.get().onSelect(item, this.inputs.get().ancestors, this.inputs.get().model)
+            // this.inputs.get().onSelect(item, this.inputs.get().ancestors, this.inputs.get().model)
             event.stopPropagation()
         }
 

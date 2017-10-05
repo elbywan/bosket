@@ -90,6 +90,7 @@ export default combine(
             props: {
                 ...this.conf,
                 strategies: {
+                    click: ["select"],
                     selection: ["ancestors"],
                     fold: [
                         function() {

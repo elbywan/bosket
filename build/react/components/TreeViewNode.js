@@ -30,37 +30,6 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
             unfolded: []
         };
 
-        _this.renderSubtree = function (item) {
-            if (!_this.node.hasChildren(item) && !_this.node.isAsync(item)) return null;
-
-            var childModel = item[_this.props.category];
-            var filteredModel = null;
-
-            /* If data has to be retrieved asynchronously */
-            if (_this.node.isAsync(item) && !_this.node.isFolded(item) && !array(_this.node.pending).contains(item)) {
-                _this.node.unwrapPromise(item);
-            }
-            if (!_this.node.isAsync(item)) {
-                childModel = _this.props.sort ? childModel.sort(_this.props.sort) : childModel;
-            }
-            if (_this.props.filteredModel) {
-                filteredModel = _this.props.filteredModel.get(item);
-            }
-
-            return React.createElement(TreeViewNode, _extends({}, _this.props, {
-                model: childModel,
-                filteredModel: filteredModel,
-                ancestors: _this.ancestorsMap.get(item) || [],
-                depth: (_this.props.depth || 0) + 1,
-                folded: _this.node.isFolded(item),
-                loading: _this.node.isAsync(item) && !_this.node.isFolded(item) }));
-        };
-
-        _this.renderOpener = function (item, OpenerComponent) {
-            return function (position) {
-                return (_this.node.hasChildren(item) || _this.node.isAsync(item)) && _this.props.openerOpts.position === position ? React.createElement(OpenerComponent, { className: _this.node.mixCss("opener"), onClick: _this.node.onOpener(item) }) : null;
-            };
-        };
 
         var _props = {
             get: function get() {
@@ -114,9 +83,45 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
         /* Rendering */
 
     }, {
+        key: "renderSubtree",
+        value: function renderSubtree(item) {
+            if (!this.node.hasChildren(item) && !this.node.isAsync(item)) return null;
+
+            var childModel = item[this.props.category];
+            var filteredModel = null;
+
+            /* If data has to be retrieved asynchronously */
+            if (this.node.isAsync(item) && !this.node.isFolded(item) && !array(this.node.pending).contains(item)) {
+                this.node.unwrapPromise(item);
+            }
+            if (!this.node.isAsync(item)) {
+                childModel = this.props.sort ? childModel.sort(this.props.sort) : childModel;
+            }
+            if (this.props.filteredModel) {
+                filteredModel = this.props.filteredModel.get(item);
+            }
+
+            return React.createElement(TreeViewNode, _extends({}, this.props, {
+                model: childModel,
+                filteredModel: filteredModel,
+                ancestors: this.ancestorsMap.get(item) || [],
+                depth: (this.props.depth || 0) + 1,
+                folded: this.node.isFolded(item),
+                loading: this.node.isAsync(item) && !this.node.isFolded(item) }));
+        }
+    }, {
+        key: "renderOpener",
+        value: function renderOpener(item, OpenerComponent) {
+            var _this3 = this;
+
+            return function (position) {
+                return (_this3.node.hasChildren(item) || _this3.node.isAsync(item)) && _this3.props.openerOpts.position === position ? React.createElement(OpenerComponent, { className: _this3.node.mixCss("opener"), onClick: _this3.node.onOpener(item) }) : null;
+            };
+        }
+    }, {
         key: "render",
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
 
             var _props2 = this.props,
                 model = _props2.model,
@@ -135,21 +140,21 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
 
             var OpenerComponent = this.props.opener || "span";
             var list = model.filter(function (m) {
-                return !_this3.props.searched || _this3.props.filteredModel && _this3.props.filteredModel.has(m);
+                return !_this4.props.searched || _this4.props.filteredModel && _this4.props.filteredModel.has(m);
             }).map(function (item, idx) {
                 return React.createElement(
                     "li",
                     _extends({ key: unique && unique(item) || idx,
-                        className: _this3.node.liCss(item)
-                    }, _this3.node.getDragEvents(item)),
+                        className: _this4.node.liCss(item)
+                    }, _this4.node.getDragEvents(item)),
                     React.createElement(
                         "span",
-                        { className: _this3.node.mixCss("item"), onClick: _this3.node.onClick(item) },
-                        _this3.renderOpener(item, OpenerComponent)("left"),
-                        display && display(item, _this3.props),
-                        _this3.renderOpener(item, OpenerComponent)("right")
+                        { className: _this4.node.mixCss("item"), onClick: _this4.node.onClick(item) },
+                        _this4.renderOpener(item, OpenerComponent)("left"),
+                        display && display(item, _this4.props),
+                        _this4.renderOpener(item, OpenerComponent)("right")
                     ),
-                    _this3.renderSubtree(item)
+                    _this4.renderSubtree(item)
                 );
             });
 

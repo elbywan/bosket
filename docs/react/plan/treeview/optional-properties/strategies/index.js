@@ -34,20 +34,19 @@ export default {
                 {
                     // One item selected at a time
                     selection: ["single"],
-                    // No click callbacks
-                    click: [],
+                    // Select item on click
+                    click: ["select"],
                     // Folds an item when itself or its children are not selected
                     fold: [ "not-selected", "no-child-selection" ]
                 }`}
             </div>
 
             { jscode`
-            // The object is mixed in with the default properties, so you can override only the keys you want.
             const strategies = {
                 // Select only the items beginning with the letter a
-                selection: ["multiple", (item, selection) => selection.filter(elt => elt.label.charAt(0) === 'a' )]
-                click: ["unfold-on-selection"],
-                fold: ["opener-control", "no-child-selection"]
+                selection: [ "multiple", (item, selection) => selection.filter(elt => elt.label.charAt(0) === 'a' ) ]
+                click: [ "select", unfold-on-selection" ],
+                fold: [ "opener-control", "no-child-selection" ]
             }
 
             <TreeView /* ... */ strategies={ strategies }></TreeView>` }

@@ -30,7 +30,7 @@ export var FlatView = function (_React$PureComponent) {
             },
             strategies: {
                 selection: ["multiple"],
-                click: [],
+                click: ["select"],
                 fold: [function (item) {
                     return false;
                 }]

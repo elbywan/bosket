@@ -3,7 +3,7 @@
 import { array, tree } from "@bosket/tools"
 
 type selectionStrategy = (item: Object, selection: Object[], neighbours: Object[], ancestors: Object[]) => Object[]
-type clickStrategy = (item: Object, event: MouseEvent, ancestors: Array<Object>, neighbours: Array<Object>) => void
+type clickStrategy = (item: Object, event: MouseEvent, inputs: Object) => void
 type foldStrategy = (item: Object, folded: boolean) => boolean
 
 const singleSelect : selectionStrategy = function(item, selection, neighbours, ancestors) {
@@ -97,6 +97,10 @@ export const selectionStrategies : { [key: string] : selectionStrategy } = {
 
 // Click strategies are triggered on item click
 export const clickStrategies : { [key: string] : clickStrategy } = {
+    // Selects on click
+    select: function(item) {
+        this.inputs.get().onSelect(item, this.inputs.get().ancestors, this.inputs.get().model)
+    },
     // Unfold an item when selecting it. Pair it with the "opener-control" fold strategy.
     "unfold-on-selection": function(item) {
         if(!this.isSelected(item)) {

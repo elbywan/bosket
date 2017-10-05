@@ -19,7 +19,7 @@ export var defaults = {
     },
     strategies: {
         selection: ["single"],
-        click: [],
+        click: ["select"],
         fold: ["not-selected", "no-child-selection"]
     },
     display: function display(_) {

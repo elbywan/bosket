@@ -21,7 +21,7 @@ export const defaults = {
     },
     strategies: {
         selection: ["single"],
-        click: [],
+        click: ["select"],
         fold: [ "not-selected", "no-child-selection" ]
     },
     display: (_: Object) => _.toString(),

@@ -30,7 +30,7 @@ export var MenuView = function (_React$PureComponent) {
             },
             strategies: {
                 selection: ["ancestors"],
-                click: ["unfold-on-selection"],
+                click: ["select", "unfold-on-selection"],
                 fold: ["not-selected", "no-child-selection"]
             },
             openerOpts: { position: "none" },

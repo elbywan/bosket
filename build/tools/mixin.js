@@ -13,7 +13,7 @@ export var deepMix = function deepMix(one, two) {
     for (var prop in two) {
         if (two.hasOwnProperty(prop)) {
             if (two[prop] instanceof Array && one[prop] instanceof Array) {
-                clone[prop] = mergeArrays ? [].concat(_toConsumableArray(one[prop]), _toConsumableArray(two[prop])) : clone[prop] = two[prop];
+                clone[prop] = mergeArrays ? [].concat(_toConsumableArray(one[prop]), _toConsumableArray(two[prop])) : two[prop];
             } else if (_typeof(two[prop]) === "object" && _typeof(one[prop]) === "object") {
                 clone[prop] = deepMix(one[prop], two[prop], mergeArrays);
             }

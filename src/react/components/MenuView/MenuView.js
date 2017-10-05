@@ -18,7 +18,7 @@ export class MenuView extends React.PureComponent<MenuViewProps> {
         },
         strategies: {
             selection: ["ancestors"],
-            click: ["unfold-on-selection"],
+            click: [ "select", "unfold-on-selection" ],
             fold: [ "not-selected", "no-child-selection" ]
         },
         openerOpts: { position: "none" },
