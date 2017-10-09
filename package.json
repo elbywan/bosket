@@ -1,6 +1,6 @@
 {
   "name": "bosket-root",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "private": true,
   "description": "A collection of tree views.",
   "main": "index.js",

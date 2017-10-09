@@ -1,3 +1,25 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/elbywan/bosket/compare/0.3.2...0.4.0) (2017-10-09)
+
+
+### Bug Fixes
+
+* **tools:** string.contains should escape special characters ([efc23af](https://github.com/elbywan/bosket/commit/efc23af)), closes [#17](https://github.com/elbywan/bosket/issues/17)
+
+
+### Features
+
+* **core:** Click strategy now controls selection ([6ae798b](https://github.com/elbywan/bosket/commit/6ae798b))
+
+
+### BREAKING CHANGES
+
+* **core:** If you are redefining the "strategies" prop,
+you now have to use click: ["select"] to enable element selection on click.
+Otherwise, clicking on an item won't trigger selection.
+
+
+
 <a name="0.3.2"></a>
 ## [0.3.2](https://github.com/elbywan/bosket/compare/0.3.1...0.3.2) (2017-10-05)
 
