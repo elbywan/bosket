@@ -26,6 +26,6 @@
     "peerDependencies": {
         "@bosket/core": "^0.4.0"
         ,"@bosket/tools": "^0.4.0"
-        ,"vue": "^2.4.4"
+        ,"vue": "^2.5.2"
     }
 }
