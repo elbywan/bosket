@@ -4,6 +4,8 @@ import React from "react"
 
 import { TreeViewDemo } from "./TreeViewDemo"
 
+import "self/common/styles/TreeViewWindow.css"
+
 export class TreeViewWindow extends React.PureComponent<*, *> {
 
     state = {
@@ -11,7 +13,7 @@ export class TreeViewWindow extends React.PureComponent<*, *> {
     }
 
     render = () =>
-        <div style={{ textAlign: "center" }}>
+        <div className="TreeViewWindow">
             { /* The TreeView is rendered here */
                 <div style={{ display: "inline-block", textAlign: "left" }}>
                     <TreeViewDemo selection={ this.state.selection } update={ _ => this.setState({ selection: _ }) }/>
@@ -28,7 +30,8 @@ export class TreeViewWindow extends React.PureComponent<*, *> {
 
             <div className="select-blocks">
                 { this.state.selection.map((item, idx) =>
-                    <button key={ idx } onClick={ event => this.setState({ selection: this.state.selection.filter(i => i !== item) }) }>
+                    <button key={ idx }
+                        onClick={ event => this.setState({ selection: this.state.selection.filter(i => i !== item) }) }>
                         { item.label }
                     </button>
                 ) }

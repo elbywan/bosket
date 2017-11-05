@@ -1,5 +1,7 @@
 import { Component, Input } from "@angular/core"
 
+import "self/common/styles/TreeViewWindow.css"
+
 @Component({
     selector: "treeview-section",
     template: `
@@ -21,7 +23,7 @@ import { Component, Input } from "@angular/core"
         </ul>
     </div>
     <ComponentDemo componentName="Nested items" [files]="files">
-        <div style="text-align: center">
+        <div class="TreeViewWindow">
             <div style="display: inline-block; text-align: left">
                 <treeview-demo [(selection)]="selection"></treeview-demo>
             </div>
@@ -40,7 +42,10 @@ import { Component, Input } from "@angular/core"
                 </button>
             </div>
         </div>
-    </ComponentDemo>`
+    </ComponentDemo>`,
+    styles: [
+
+    ]
 })
 export class TreeViewSection {
 

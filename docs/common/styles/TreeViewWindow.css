@@ -1,0 +1,16 @@
+.TreeViewWindow {
+    text-align: center;
+
+    & div.select-blocks {
+        & > button {
+            border: 1px solid #444;
+            font-size: 0.9em;
+            border-radius: 0px;
+            margin-right: 5px;
+
+            &:hover {
+                border-color: transparent;
+            }
+        }
+    }
+}

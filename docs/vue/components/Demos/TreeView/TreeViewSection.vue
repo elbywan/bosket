@@ -18,7 +18,7 @@
             </ul>
         </div>
         <component-demo componentName="Nested items" :files="files">
-            <div :style="{ textAlign: 'center' }">
+            <div class="TreeViewWindow">
                 <div :style="{ display: 'inline-block', textAlign: 'left' }">
                     <treeview-demo v-model="selection"></treeview-demo>
                 </div>
@@ -40,6 +40,8 @@
 <script>
     import ComponentDemo from "../../ComponentDemo.vue"
     import TreeViewDemo from "./TreeViewDemo"
+
+    import "self/common/styles/TreeViewWindow.css"
 
     export default {
         data() {
