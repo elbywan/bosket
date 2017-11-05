@@ -16,10 +16,6 @@
             "self/*":   ["./docs/*"]
         }
     },
-    "angularCompilerOptions": {
-        "genDir": "./aot",
-        "skipMetadataEmit" : true
-    },
     "include": [
         "./**/*.ts"
     ],

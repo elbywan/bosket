@@ -40,7 +40,7 @@ module.exports = {
                 ])
             },
             {
-                test: /\.tsx?$/,
+                test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.tsx?)$/,
                 loader: "@ngtools/webpack"
             },
             {
@@ -63,7 +63,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new ngtools.AotPlugin({
+        new ngtools.AngularCompilerPlugin({
             tsConfigPath:   __dirname + "/angular/tsconfig.aot.json",
             entryModule:    __dirname + "/angular/demo.module#DemoModule"
         }),

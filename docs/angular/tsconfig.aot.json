@@ -8,7 +8,7 @@
         "experimentalDecorators": true,
         "removeComments": true,
         "noImplicitAny": false,
-        "allowJs": true,
+        "allowJs": false,
         "lib": [ "es2015", "dom" ],
         "baseUrl": "../..",
         "paths": {
@@ -17,9 +17,5 @@
     },
     "include": [
         "./**/*.ts"
-    ],
-    "angularCompilerOptions": {
-        "genDir": "aot",
-        "skipMetadataEmit" : true
-    }
+    ]
 }

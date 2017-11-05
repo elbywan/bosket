@@ -20,13 +20,14 @@
         "paths": {
             "@bosket/core":  ["../core"],
             "@bosket/tools": ["../tools"]
-        },
+        }
     },
     "include": [
         "**/*.ts"
     ],
     "compileOnSave": false,
     "angularCompilerOptions": {
-        "skipTemplateCodegen": true
+        "skipTemplateCodegen": true,
+        "strictMetadataEmit" : true
     }
 }

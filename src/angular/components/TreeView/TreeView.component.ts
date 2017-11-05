@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, ViewContainerRef } from "@angular/core"
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from "@angular/core"
 import { RootNode, defaults } from "@bosket/core"
 import * as strategies from "@bosket/core"
 

@@ -37,9 +37,9 @@ var ItemInjector = (function () {
         { type: ComponentFactoryResolver, },
     ]; };
     ItemInjector.propDecorators = {
-        'item': [{ type: Input, args: ["itemInjector",] },],
-        'component': [{ type: Input, args: ["inject",] },],
-        'inputs': [{ type: Input, args: ["inputs",] },],
+        "item": [{ type: Input, args: ["itemInjector",] },],
+        "component": [{ type: Input, args: ["inject",] },],
+        "inputs": [{ type: Input, args: ["inputs",] },],
     };
     return ItemInjector;
 }());
