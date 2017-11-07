@@ -39,7 +39,7 @@ const modules = [
         peers: {
             "@bosket/core":  "^" + rootPackage.version,
             "@bosket/tools": "^" + rootPackage.version,
-            ...extractDeps("react", "react-dom")
+            ...extractDeps("react", "react-dom", "react-transition-group")
         }
     },
     {
