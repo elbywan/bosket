@@ -1,6 +1,6 @@
 {
     "name": "@bosket/react",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "A collection of tree views.",
     "keywords": [
         "tree",
@@ -24,8 +24,8 @@
         "url": "https://github.com/elbywan/bosket/issues"
     },
     "peerDependencies": {
-        "@bosket/core": "^0.4.0"
-        ,"@bosket/tools": "^0.4.0"
+        "@bosket/core": "^0.4.1"
+        ,"@bosket/tools": "^0.4.1"
         ,"react": "^16.0.0"
         ,"react-dom": "^16.0.0"
         ,"react-transition-group": "1.x"

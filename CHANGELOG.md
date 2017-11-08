@@ -1,3 +1,15 @@
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/elbywan/bosket/compare/0.4.0...0.4.1) (2017-11-08)
+
+
+### Bug Fixes
+
+* **docs:** better code tabs transition ([ab95150](https://github.com/elbywan/bosket/commit/ab95150))
+* **docs:** proper box shadow ([5933bca](https://github.com/elbywan/bosket/commit/5933bca))
+* **react:** add react-transition-group peer dep ([08376a2](https://github.com/elbywan/bosket/commit/08376a2))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/elbywan/bosket/compare/0.3.2...0.4.0) (2017-10-09)
 
