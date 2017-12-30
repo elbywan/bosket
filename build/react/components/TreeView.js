@@ -87,6 +87,11 @@ var TreeViewBaseClass = function (_React$PureComponent) {
                     break;
                 }
             }
+            if (nextProps.model !== this.props.model) {
+                this.setState({
+                    filtered: this.rootNode.filterTree(this.state.search)
+                });
+            }
             if (update) this.defaultsMix = _extends({}, defaults, nextProps);
         }
     }, {

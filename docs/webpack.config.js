@@ -8,7 +8,7 @@ const htmlTargets = [ "angular", "react", "vue", "riot" ]
 
 module.exports = {
     entry: {
-        react: "./docs/react/index.js",
+        react: "./docs/react/index.prod.js",
         angular: "./docs/angular/index.aot.ts",
         vue: "./docs/vue/index.js",
         riot: "./docs/riot/index.js",

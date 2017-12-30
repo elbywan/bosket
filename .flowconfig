@@ -20,4 +20,4 @@
 [options]
 module.name_mapper='^@bosket\(.*\)' -> '<PROJECT_ROOT>/src\1'
 module.name_mapper='^self\(.*\)' -> '<PROJECT_ROOT>/docs\1'
-unsafe.enable_getters_and_setters=true
+# unsafe.enable_getters_and_setters=true

@@ -63,11 +63,11 @@ declare export class RootNode extends Class0<mixed /* UNEXPECTED TYPE: ExistsT *
 export type RootNodeInput = {category: string, css: {[key: string]: string}, dragndrop?: Object, model: Array<Object>, search?: (_: string) => (_: Object) => boolean, selection: Array<Object>, strategies: Object};
 declare export class TreeNode extends Class0<mixed /* UNEXPECTED TYPE: ExistsT */> {
 
-  getDragEvents: (item: ?Object, condition?: boolean) => {} | {draggable: void | null, onDragEnd: void | null, onDragEnter: any, onDragLeave: any, onDragOver: any, onDragStart: void | null, onDrop: any};
+  getDragEvents: (item: ?Object, condition?: boolean) => {} | {draggable: null | void, onDragEnd: null | void, onDragEnter: any, onDragLeave: any, onDragOver: any, onDragStart: null | void, onDrop: any};
   hasChildren: (item: Object) => any;
   isAsync: (item: ?Object) => boolean;
   isDisabled: (item: Object) => any | boolean;
-  isDraggable: (item: ?Object) => void | null;
+  isDraggable: (item: ?Object) => null | void;
   isDroppable: (item: ?Object) => any;
   isFolded: (item: Object) => boolean;
   isSelected: (item: Object) => boolean;
