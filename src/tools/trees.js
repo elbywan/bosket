@@ -12,13 +12,14 @@ type treeType<T> = {
     add: (T, T, ?T[]) => T[],
     remove: (T, T, ?T[]) => T[],
     path: (T) => T[] | boolean,
-    visit: (T[] => void) => void
+    visit: (T[] => void) => void,
+    unwrapTree: (T => boolean) => Promise<*>
 }
 
 export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => ({
     /**
      * Flattens the tree into a single array.
-     * @return {[type]} A flattened array containing all the tree elements
+     * @return {Array} A flattened array containing all the tree elements
      */
     flatten: () => {
         let flattened : Item[] = []
@@ -35,8 +36,8 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
     },
     /**
      * Filters the tree.
-     * @param  {[type]} filterFun Filtering function
-     * @return {[type]}           Clone of the original tree without the filtered elements
+     * @param  {Function} filterFun Filtering function
+     * @return {Tree}               Clone of the original tree without the filtered elements
      */
     filter: filterFun => {
         const copy = t.filter(filterFun)
@@ -53,8 +54,8 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
     },
     /**
      * Filters the tree and returns a Map representing the filtered tree.
-     * @param  {[type]} filterFun Filtering function
-     * @return {[type]}           A Map representation of the filtered tree
+     * @param  {Function} filterFun Filtering function
+     * @return {Map}                A Map representation of the filtered tree
      */
     filterMap: filterFun => {
         const finalMap = new Map()
@@ -79,10 +80,10 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
     },
     /**
      * Perform an action on a tree element, then update its ancestors references.
-     * @param  {[type]}   elt         Element on which to perform the action (or matching function)
-     * @param  {Function} cb          An action callback
-     * @param  {[type]}   [path=null] Ancestors path
-     * @return {[type]}               An updated tree clone
+     * @param  {T}          elt           Element on which to perform the action (or matching function)
+     * @param  {Function}   cb            An action callback
+     * @param  {Array}      [path=null]   Ancestors path
+     * @return {Tree}                     An updated tree clone
      */
     perform: (elt, cb, path = null) => {
         if(!path) path = tree(t, prop).path(elt)
@@ -100,19 +101,19 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
     },
     /**
      * Adds an element and update its ancestors references.
-     * @param {[type]} parent      Where to add
-     * @param {[type]} elt         What to add (or matching function)
-     * @param {[type]} [path=null] Ancestors path
-     * @return {[type]}            An updated tree clone
+     * @param {T}       parent        Where to add
+     * @param {T}       elt           What to add (or matching function)
+     * @param {Array}   [path=null]   Ancestors path
+     * @return {Tree}                 An updated tree clone
      */
     add: (parent, elt, path = null) =>
         tree(t, prop).perform(parent, p => p[prop] = [ ...p[prop], elt ], path),
     /**
      * Removes an element and update its ancestors references.
-     * @param  {[type]} parent      Where to remove
-     * @param  {[type]} elt         What to remove (or matching function)
-     * @param  {[type]} [path=null] Ancestors path
-     * @return {[type]}             An updated tree clone
+     * @param  {T}      parent      Where to remove
+     * @param  {T}      elt         What to remove (or matching function)
+     * @param  {Array}  [path=null] Ancestors path
+     * @return {Tree}               An updated tree clone
      */
     remove: (parent, elt, path = null) =>
         tree(t, prop).perform(parent, p => {
@@ -124,8 +125,8 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
         }, path),
     /**
      * Retrieves all ancestors of an element (or returns false).
-     * @param  {[type]} elt Element to search for (or matching function)
-     * @return {[type]}     Ancestors path
+     * @param  {T}      elt Element to search for (or matching function)
+     * @return {Array}      Ancestors path
      */
     path: elt => {
         const recurse = item => {
@@ -145,7 +146,7 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
     },
     /**
      * Visits each node of the tree and performs an action.
-     * @param  {[type]} visitor Action to perform.
+     * @param  {Function} visitor Action to perform.
      */
     visit: visitor => {
         const fifo: Item[][] = [t]
@@ -156,5 +157,21 @@ export const tree = <Item: Object>(t: Item[], prop: string) : treeType<Item> => 
                 fifo.push(child[prop]) :
                 null)
         }
-    }
+    },
+    /**
+     * Resolves asynchronous nodes of the tree (Promises).
+     * @param {Function} unwrapCheck Allows to skip Promises you don't want to unwrap
+     * @return {Promise}
+    */
+    unwrapTree: (unwrapCheck = (_ => true)) => Promise.all(t.map(item => {
+        if(!item.children || !unwrapCheck(item)) return Promise.resolve(item)
+        return (
+            typeof item.children === "function" ?
+                item.children().then(children => tree(children, prop).unwrapTree(unwrapCheck)) :
+                tree(item.children, prop).unwrapTree(unwrapCheck)
+        ).then(children => ({
+            ...item,
+            children
+        }))
+    }))
 })
