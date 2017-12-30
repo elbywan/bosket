@@ -1,3 +1,5 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 import { array } from "./arrays";
@@ -9,7 +11,7 @@ export var tree = function tree(t, prop) {
     return {
         /**
          * Flattens the tree into a single array.
-         * @return {[type]} A flattened array containing all the tree elements
+         * @return {Array} A flattened array containing all the tree elements
          */
         flatten: function flatten() {
             var flattened = [];
@@ -29,8 +31,8 @@ export var tree = function tree(t, prop) {
         },
         /**
          * Filters the tree.
-         * @param  {[type]} filterFun Filtering function
-         * @return {[type]}           Clone of the original tree without the filtered elements
+         * @param  {Function} filterFun Filtering function
+         * @return {Tree}               Clone of the original tree without the filtered elements
          */
         filter: function filter(filterFun) {
             var copy = t.filter(filterFun);
@@ -47,8 +49,8 @@ export var tree = function tree(t, prop) {
         },
         /**
          * Filters the tree and returns a Map representing the filtered tree.
-         * @param  {[type]} filterFun Filtering function
-         * @return {[type]}           A Map representation of the filtered tree
+         * @param  {Function} filterFun Filtering function
+         * @return {Map}                A Map representation of the filtered tree
          */
         filterMap: function filterMap(filterFun) {
             var finalMap = new Map();
@@ -73,10 +75,10 @@ export var tree = function tree(t, prop) {
         },
         /**
          * Perform an action on a tree element, then update its ancestors references.
-         * @param  {[type]}   elt         Element on which to perform the action (or matching function)
-         * @param  {Function} cb          An action callback
-         * @param  {[type]}   [path=null] Ancestors path
-         * @return {[type]}               An updated tree clone
+         * @param  {T}          elt           Element on which to perform the action (or matching function)
+         * @param  {Function}   cb            An action callback
+         * @param  {Array}      [path=null]   Ancestors path
+         * @return {Tree}                     An updated tree clone
          */
         perform: function perform(elt, cb) {
             var path = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
@@ -93,10 +95,10 @@ export var tree = function tree(t, prop) {
         },
         /**
          * Adds an element and update its ancestors references.
-         * @param {[type]} parent      Where to add
-         * @param {[type]} elt         What to add (or matching function)
-         * @param {[type]} [path=null] Ancestors path
-         * @return {[type]}            An updated tree clone
+         * @param {T}       parent        Where to add
+         * @param {T}       elt           What to add (or matching function)
+         * @param {Array}   [path=null]   Ancestors path
+         * @return {Tree}                 An updated tree clone
          */
         add: function add(parent, elt) {
             var path = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
@@ -106,10 +108,10 @@ export var tree = function tree(t, prop) {
         },
         /**
          * Removes an element and update its ancestors references.
-         * @param  {[type]} parent      Where to remove
-         * @param  {[type]} elt         What to remove (or matching function)
-         * @param  {[type]} [path=null] Ancestors path
-         * @return {[type]}             An updated tree clone
+         * @param  {T}      parent      Where to remove
+         * @param  {T}      elt         What to remove (or matching function)
+         * @param  {Array}  [path=null] Ancestors path
+         * @return {Tree}               An updated tree clone
          */
         remove: function remove(parent, elt) {
             var path = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
@@ -122,8 +124,8 @@ export var tree = function tree(t, prop) {
         },
         /**
          * Retrieves all ancestors of an element (or returns false).
-         * @param  {[type]} elt Element to search for (or matching function)
-         * @return {[type]}     Ancestors path
+         * @param  {T}      elt Element to search for (or matching function)
+         * @return {Array}      Ancestors path
          */
         path: function path(elt) {
             var recurse = function recurse(item) {
@@ -143,7 +145,7 @@ export var tree = function tree(t, prop) {
         },
         /**
          * Visits each node of the tree and performs an action.
-         * @param  {[type]} visitor Action to perform.
+         * @param  {Function} visitor Action to perform.
          */
         visit: function visit(visitor) {
             var fifo = [t];
@@ -154,6 +156,26 @@ export var tree = function tree(t, prop) {
                     return child[prop] && child[prop] instanceof Array ? fifo.push(child[prop]) : null;
                 });
             }
+        },
+        /**
+         * Resolves asynchronous nodes of the tree (Promises).
+         * @param {Function} unwrapCheck Allows to skip Promises you don't want to unwrap
+         * @return {Promise}
+        */
+        unwrapTree: function unwrapTree() {
+            var unwrapCheck = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function (_) {
+                return true;
+            };
+            return Promise.all(t.map(function (item) {
+                if (!item.children || !unwrapCheck(item)) return Promise.resolve(item);
+                return (typeof item.children === "function" ? item.children().then(function (children) {
+                    return tree(children, prop).unwrapTree(unwrapCheck);
+                }) : tree(item.children, prop).unwrapTree(unwrapCheck)).then(function (children) {
+                    return _extends({}, item, {
+                        children: children
+                    });
+                });
+            }));
         }
     };
 };

@@ -1,5 +1,5 @@
 // @flow
 
 import {array} from "./arrays";
-declare export function tree<Item: Object>(t: Array<Item>, prop: string): {add: <Item>(_: T, _: T, _: ?Array<T>) => Array<T>, filter: (_: (_: T) => boolean) => Array<T>, filterMap: (_: (_: T) => boolean) => Map<T, mixed /* UNEXPECTED TYPE: ExistsT */>, flatten: () => Array<T>, path: (_: T) => Array<T> | boolean, perform: (_: T, _: (_: T) => any, _: ?Array<T>) => Array<T>, remove: (_: T, _: T, _: ?Array<T>) => Array<T>, visit: (_: (_: Array<T>) => void) => void};
+declare export function tree<Item: Object>(t: Array<Item>, prop: string): {add: <Item>(_: T, _: T, _: ?Array<T>) => Array<T>, filter: (_: (_: T) => boolean) => Array<T>, filterMap: (_: (_: T) => boolean) => Map<T, mixed /* UNEXPECTED TYPE: ExistsT */>, flatten: () => Array<T>, path: (_: T) => Array<T> | boolean, perform: (_: T, _: (_: T) => any, _: ?Array<T>) => Array<T>, remove: (_: T, _: T, _: ?Array<T>) => Array<T>, unwrapTree: (_: (_: T) => boolean) => Promise<mixed /* UNEXPECTED TYPE: ExistsT */>, visit: (_: (_: Array<T>) => void) => void};
 
