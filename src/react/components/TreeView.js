@@ -104,6 +104,14 @@ class TreeViewBaseClass extends React.PureComponent<TreeViewProps, TreeViewState
             this.defaultsMix = { ...defaults, ...nextProps }
     }
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.model !== this.props.model) {
+            this.setState({
+                filtered: this.rootNode.filterTree(this.state.search)
+            })
+        }
+    }
+
     render() {
         const sort = this.props.sort
         const props : any = this.defaultsMix || { ...defaults, ...this.props }
