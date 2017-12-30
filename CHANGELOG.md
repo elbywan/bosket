@@ -1,3 +1,18 @@
+<a name="0.4.2"></a>
+## [0.4.2](https://github.com/elbywan/bosket/compare/0.4.1...0.4.2) (2017-12-30)
+
+
+### Bug Fixes
+
+* **react:** compute filtered model on model prop change ([77f733b](https://github.com/elbywan/bosket/commit/77f733b))
+
+
+### Features
+
+* **tools:** add unwraptree method ([1b49b7b](https://github.com/elbywan/bosket/commit/1b49b7b))
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://github.com/elbywan/bosket/compare/0.4.0...0.4.1) (2017-11-08)
 
