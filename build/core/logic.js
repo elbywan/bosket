@@ -141,15 +141,22 @@ export var TreeNode = function (_Core) {
 
 
         // On opener click
-        value: function onOpener(item) {
+        value: function onOpener(item, callback) {
             var _this2 = this;
 
             return function (event) {
                 var newVal = _this2.state.get().unfolded.filter(function (i) {
                     return i !== item;
                 });
-                if (newVal.length === _this2.state.get().unfolded.length) newVal.push(item);
+                var folded = true;
+                if (newVal.length === _this2.state.get().unfolded.length) {
+                    newVal.push(item);
+                    folded = false;
+                }
                 _this2.state.set({ unfolded: newVal });
+                if (callback) {
+                    callback(item, folded);
+                }
                 event.stopPropagation();
             };
         }

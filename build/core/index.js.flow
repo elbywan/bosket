@@ -83,7 +83,7 @@ declare export class TreeNode extends Class0<mixed /* UNEXPECTED TYPE: ExistsT *
   pending: [] | Array<Object>;
   ulCss: () => string;
   unwrapPromise: (item: Object) => Promise<mixed>;
-  onOpener(item: Object): (event: Class2) => void;
+  onOpener(item: Object, callback?: (item: Object, folded: boolean) => void): (event: Class2) => void;
 }
 export type TreeNodeInput = {ancestors: Array<Object>, async?: (_: (_: mixed) => Promise<Array<Object>>) => Promise<Array<Object>>, category: string, css: {[key: string]: string}, depth?: number, disabled?: (_: Object) => boolean, dragndrop: Object, model: Array<Object>, onSelect: (item: Object, ancestors: Array<Object>, neighbours: Array<Object>) => void, selection: Array<Object>, strategies?: Object};
 declare export var clickStrategies: {[key: string]: (item: Object, event: Class2, inputs: Object) => void};

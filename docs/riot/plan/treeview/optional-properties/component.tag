@@ -370,13 +370,29 @@
 
 <openeropts-prop>
     <div class="marged">
-        <pre class="itemType">{ '{ position: "none" | "left" | "right" }' }</pre>
-        <p>Positions the opener, which is usually the little arrow or arrow-like icon used to unfold a node.</p>
+        <pre class="itemType">{ '{ position: "none" | "left" | "right" }, callback: (item, folded) => void }' }</pre>
+        <p>
+            A collection of options used to configure the opener, which is usually the little arrow or arrow-like icon used to unfold a node..<br/>
+            <br/>
+            <strong>position</strong> : Positions the opener.<br/>
+            <strong>callback</strong> : Perform a callback when an opener is activated.
+        </p>
         <div class="emphasis">Defaults to "right"</div>
         <syntax-highlight>{ parent.code }</syntax-highlight>
     </div>
     <script>
-        this.code = `<TreeView /* ... */ openeropts={{ position: "left" }} />`
+        this.code = `
+            <TreeView /* ... */ openeropts={ openeropts } />
+
+            <script>
+                this.openeropts = {
+                    position: "left",
+                    callback: (item, folded) => {
+                        console.log(\`\${item} is now \${folded ? 'folded' : 'unfolded'}\`)
+                    }
+                }
+            <\/script>
+        `
     </script>
 </openeropts-prop>
 

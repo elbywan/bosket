@@ -26,6 +26,7 @@ export declare class TreeView<Item extends Object> {
     disabled: (_: Item) => boolean;
     openerOpts: {
         position?: "none" | "left" | "right";
+        callback?: (item: Item, callback: boolean) => void;
     };
     async: (_: Function) => Promise<any>;
     dragndrop: {

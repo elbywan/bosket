@@ -100,7 +100,7 @@ var TreeViewNodeBase = {
                 return (_this3.node.hasChildren(item) || _this3.node.isAsync(item)) && _this3.$props.openerOpts.position === position ? h(
                     OpenerComponent,
                     { "class": _this3.node.mixCss("opener"), on: {
-                            "click": _this3.node.onOpener(item)
+                            "click": _this3.node.onOpener(item, _this3.$props.openerOpts.callback)
                         }
                     },
                     []

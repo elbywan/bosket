@@ -26,7 +26,7 @@ type TreeViewNodeProps = {
     filteredModel:      null | Map<Object, *>,
     folded:             boolean,
     loading?:           boolean,
-    openerOpts:         { position?: "none" | "left" | "right" },
+    openerOpts:         { position?: "none" | "left" | "right", callback?: (item: Object, folded: boolean) => void },
     opener?:            Class<React.Component<*, *>>,
     searched:           boolean
 }
@@ -123,9 +123,14 @@ class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeV
     }
 
     renderOpener(item: Object, OpenerComponent: Class<React.Component<*, *>> | string) {
+        const { openerOpts } = this.props
+
         return position =>
-            (this.node.hasChildren(item) || this.node.isAsync(item)) && this.props.openerOpts.position === position ?
-                <OpenerComponent className={ this.node.mixCss("opener") } onClick={ this.node.onOpener(item) }></OpenerComponent> :
+            (this.node.hasChildren(item) || this.node.isAsync(item)) && openerOpts.position === position ?
+                <OpenerComponent
+                    className={ this.node.mixCss("opener") }
+                    onClick={ this.node.onOpener(item, openerOpts.callback) }
+                /> :
                 null
     }
 

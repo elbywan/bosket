@@ -30,12 +30,12 @@ const object = require("../../../tools/objects").object
                 <span [class]="node.mixCss('item')" (click)="node.onClick(item)($event)">
                     <span *ngIf="renderOpener(item, 'left')"
                         [class]="node.mixCss('opener')"
-                        (click)="node.onOpener(item)($event)"></span>
+                        (click)="node.onOpener(item, openerOpts.callback)($event)"></span>
                     <ng-container *ngIf="!displayComponent">{{ display(item, _props.get()) }}</ng-container>
                     <ng-template *ngIf="displayComponent" [itemInjector]="item" [inject]="displayComponent" [inputs]="_props.get()"></ng-template>
                     <span *ngIf="renderOpener(item, 'right')"
                         [class]="node.mixCss('opener')"
-                        (click)="node.onOpener(item)($event)"></span>
+                        (click)="node.onOpener(item, openerOpts.callback)($event)"></span>
                 </span>
                 <TreeViewNode
                     *ngIf="node.hasChildren(item) || node.isAsync(item)"
@@ -144,7 +144,10 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit {
     // Optional
     @Input() sort: (a: Item, b: Item) => boolean
     @Input() disabled: (_: Item) => boolean
-    @Input() openerOpts: { position?: "none" | "left" | "right" } = {
+    @Input() openerOpts: {
+        position?: "none" | "left" | "right",
+        callback?: (item: Item, callback: boolean) => void
+    } = {
         position: "none"
     }
     // Opener template ?!

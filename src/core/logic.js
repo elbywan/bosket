@@ -133,12 +133,18 @@ export class TreeNode extends Core<*> {
         }
 
     // On opener click
-    onOpener(item: Object) {
+    onOpener(item: Object, callback?: (item: Object, folded: boolean) => void) {
         return (event: MouseEvent) => {
             const newVal = this.state.get().unfolded.filter(i => i !== item)
-            if(newVal.length === this.state.get().unfolded.length)
+            let folded = true
+            if(newVal.length === this.state.get().unfolded.length) {
                 newVal.push(item)
+                folded = false
+            }
             this.state.set({ unfolded: newVal })
+            if(callback) {
+                callback(item, folded)
+            }
             event.stopPropagation()
         }
     }

@@ -132,11 +132,25 @@ export default {
             editLink: "https://github.com/elbywan/bosket/edit/master/docs/react/plan/treeview/optional-properties/index.js",
             content:
                 <div className="marged">
-                    <pre className="itemType">{"{"} position: "none" | "left" | "right" {"}"}</pre>
-                    <p>Positions the opener, which is usually the little arrow or arrow-like icon used to unfold a node.</p>
+                    <pre className="itemType">{"{"} position: "none" | "left" | "right", callback: (item, folded) => void {"}"}</pre>
+
+                    <p>
+                        A collection of options used to configure the opener, which is usually the little arrow or arrow-like icon used to unfold a node..<br/>
+                        <br/>
+                        <strong>position</strong> : Positions the opener.<br/>
+                        <strong>callback</strong> : Perform a callback when an opener is activated.
+                    </p>
                     <div className="emphasis">Defaults to "right"</div>
                     { jscode`
-                        <TreeView /* ... */ openerOpts={{ position: "left" }}></TreeView>` }
+                        <TreeView
+                            /* ... */
+                            openerOpts={{
+                                position: "left",
+                                callback: (item, folded) => {
+                                    console.log(\`\${item} is now \${folded ? 'folded' : 'unfolded'}\`)
+                                }
+                            }}
+                        />` }
                 </div>
         },
         {

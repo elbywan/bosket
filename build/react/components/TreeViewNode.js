@@ -114,8 +114,14 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
         value: function renderOpener(item, OpenerComponent) {
             var _this3 = this;
 
+            var openerOpts = this.props.openerOpts;
+
+
             return function (position) {
-                return (_this3.node.hasChildren(item) || _this3.node.isAsync(item)) && _this3.props.openerOpts.position === position ? React.createElement(OpenerComponent, { className: _this3.node.mixCss("opener"), onClick: _this3.node.onOpener(item) }) : null;
+                return (_this3.node.hasChildren(item) || _this3.node.isAsync(item)) && openerOpts.position === position ? React.createElement(OpenerComponent, {
+                    className: _this3.node.mixCss("opener"),
+                    onClick: _this3.node.onOpener(item, openerOpts.callback)
+                }) : null;
             };
         }
     }, {

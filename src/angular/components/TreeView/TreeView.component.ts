@@ -126,7 +126,10 @@ export class TreeView<Item extends Object> {
     @Input() css = defaults.css
     @Input() sort: (a: Item, b: Item) => number
     @Input() disabled: (_: Item) => boolean
-    @Input() openerOpts: { position?: "none" | "left" | "right" } = defaults.openerOpts
+    @Input() openerOpts: {
+        position?: "none" | "left" | "right",
+        callback?: (item: Item, callback: boolean) => void
+    } = defaults.openerOpts
     // Opener template ?!
     @Input() async: (_: Function) => Promise<any> = defaults.async
     @Input()

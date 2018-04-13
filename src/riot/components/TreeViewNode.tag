@@ -20,14 +20,14 @@
             <span class={ parent.node.mixCss("item") } onclick={ parent.node.onClick(item) }>
                 <span if={ renderOpener(item, "left") }
                     class={ node.mixCss("opener") }
-                    onclick={ node.onOpener(item) }></span>
+                    onclick={ node.onOpener(item, parent.opts.openerOpts.callback) }></span>
                 <virtual if={ !parent.opts.displaytag }>
                     { parent.opts.display(item, parent.opts) }
                 </virtual>
                 <virtual if={ parent.opts.displaytag } data-is={ parent.opts.displaytag(item, parent.opts) } item={ item } inputs={ inputs.get() }></virtual>
                 <span if={ renderOpener(item, "right") }
                     class={ node.mixCss("opener") }
-                    onclick={ node.onOpener(item) }></span>
+                    onclick={ node.onOpener(item, parent.opts.openerOpts.callback) }></span>
             </span>
             <TreeViewNode
                 if={ node.hasChildren(item) || node.isAsync(item) }

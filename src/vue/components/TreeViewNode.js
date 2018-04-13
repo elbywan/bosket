@@ -83,7 +83,7 @@ const TreeViewNodeBase = {
 
         const renderOpener = (item, OpenerComponent) => position =>
             (this.node.hasChildren(item) || this.node.isAsync(item)) && this.$props.openerOpts.position === position ?
-                <OpenerComponent class={ this.node.mixCss("opener") } onClick={ this.node.onOpener(item) }></OpenerComponent> :
+                <OpenerComponent class={ this.node.mixCss("opener") } onClick={ this.node.onOpener(item, this.$props.openerOpts.callback) }></OpenerComponent> :
                 null
 
         const { model, folded, display, loading } = this.$props

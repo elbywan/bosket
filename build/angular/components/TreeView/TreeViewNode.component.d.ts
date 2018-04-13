@@ -27,6 +27,7 @@ export declare class TreeViewNode<Item extends Object> implements AfterViewInit 
     disabled: (_: Item) => boolean;
     openerOpts: {
         position?: "none" | "left" | "right";
+        callback?: (item: Item, callback: boolean) => void;
     };
     async: (_: Function) => Promise<any>;
     displayComponent: any;
