@@ -61,7 +61,7 @@
     border-collapse: collapse;
 }
 .explorer-window .folder-view table thead th {
-    background: #e3e3e3;
+    background: #f6f6f6;
     padding: 4px 10px;
     text-align: left;
     font-weight: 100;
