@@ -12,7 +12,6 @@ var BosketModule = (function () {
                     exports: [TreeView]
                 },] },
     ];
-    BosketModule.ctorParameters = function () { return []; };
     return BosketModule;
 }());
 export { BosketModule };

@@ -19,8 +19,10 @@ const render = Component => element =>
 window.onload = () => render(App)(document.getElementById("framework-root"))
 
 // Hot Module Replacement API
-if(module.hot && typeof module.hot.accept === "function") {
-    module.hot.accept("./components/App/App", () => {
+// eslint-disable-next-line
+const hot = (module: any).hot
+if(hot && typeof hot.accept === "function") {
+    hot.accept("./components/App/App", () => {
         render(App)(document.getElementById("framework-root"))
     })
 }

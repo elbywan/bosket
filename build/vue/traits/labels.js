@@ -17,11 +17,7 @@ export var withLabels = function withLabels(defaultLabels) {
                         labels: _extends({}, defaultLabels, this.$props.labels)
                     })
                 };
-                return h(
-                    Component,
-                    props,
-                    []
-                );
+                return h(Component, props);
             }
         };
     };

@@ -9,7 +9,8 @@ import "self/common/styles/Planner.css"
 type Plan = {
     title: string,
     content?: Type<any>,
-    subs?: Plan[]
+    subs?: Plan[],
+    editLink?: string
 }
 
 @Component({

@@ -24,6 +24,6 @@
     "peerDependencies": {
         "@bosket/core": "^0.4.2"
         ,"@bosket/tools": "^0.4.2"
-        ,"riot": "^3.8.1"
+        ,"riot": "^3.9.1"
     }
 }

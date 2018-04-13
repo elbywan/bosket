@@ -90,33 +90,25 @@ var TreeViewBase = {
             })
         };
 
-        var searchBar = !this.$props.search ? null : h(
-            "input",
-            {
-                attrs: {
-                    type: "search",
+        var searchBar = !this.$props.search ? null : h("input", {
+            attrs: {
+                type: "search",
 
-                    placeholder: this.$props.labels && this.$props.labels["search.placeholder"]
-                },
-                "class": this.rootNode.mixCss("search"),
-                domProps: {
-                    "value": this.$data.searchInput
-                },
-                on: {
-                    "input": this.onSearch
-                }
+                placeholder: this.$props.labels && this.$props.labels["search.placeholder"]
             },
-            []
-        );
+            "class": this.rootNode.mixCss("search"),
+            domProps: {
+                "value": this.$data.searchInput
+            },
+            on: {
+                "input": this.onSearch
+            }
+        });
 
         return h(
             "div",
             { "class": this.rootNode.mixCss("TreeView") },
-            [searchBar, h(
-                TreeViewNode,
-                data,
-                []
-            )]
+            [searchBar, h(TreeViewNode, data)]
         );
     }
 };

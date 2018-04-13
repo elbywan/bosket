@@ -20,19 +20,11 @@ export var withTransition = function withTransition(_ref) {
                 };
                 var transition = _extends({}, this.transition);
 
-                if (!this.transition) return h(
-                    Component,
-                    props,
-                    []
-                );
+                if (!this.transition) return h(Component, props);
                 return h(
                     "transition",
                     transition,
-                    [h(
-                        Component,
-                        _mergeJSXProps([props, { key: key(this.$props) }]),
-                        []
-                    )]
+                    [h(Component, _mergeJSXProps([props, { key: key(this.$props) }]))]
                 );
             }
         };

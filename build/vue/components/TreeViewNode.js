@@ -88,23 +88,15 @@ var TreeViewNodeBase = {
                 })
             };
 
-            return h(
-                TreeViewNode,
-                data,
-                []
-            );
+            return h(TreeViewNode, data);
         };
 
         var renderOpener = function renderOpener(item, OpenerComponent) {
             return function (position) {
-                return (_this3.node.hasChildren(item) || _this3.node.isAsync(item)) && _this3.$props.openerOpts.position === position ? h(
-                    OpenerComponent,
-                    { "class": _this3.node.mixCss("opener"), on: {
-                            "click": _this3.node.onOpener(item, _this3.$props.openerOpts.callback)
-                        }
-                    },
-                    []
-                ) : null;
+                return (_this3.node.hasChildren(item) || _this3.node.isAsync(item)) && _this3.$props.openerOpts.position === position ? h(OpenerComponent, { "class": _this3.node.mixCss("opener"), on: {
+                        "click": _this3.node.onOpener(item, _this3.$props.openerOpts.callback)
+                    }
+                }) : null;
             };
         };
 
@@ -119,11 +111,7 @@ var TreeViewNodeBase = {
 
         /* If data has to be retrieved asynchronously */
         if (loading) {
-            return h(
-                "span",
-                null,
-                []
-            );
+            return h("span");
         }
 
         var OpenerComponent = this.$props.opener || "span";

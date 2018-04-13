@@ -26,8 +26,8 @@
     "peerDependencies": {
         "@bosket/core": "^0.4.2"
         ,"@bosket/tools": "^0.4.2"
-        ,"react": "^16.2.0"
-        ,"react-dom": "^16.2.0"
+        ,"react": "^16.3.1"
+        ,"react-dom": "^16.3.1"
         ,"react-transition-group": "1.x"
     }
 }

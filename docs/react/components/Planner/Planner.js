@@ -44,7 +44,8 @@ const processContent = (plan, parentPrefix = "", depth = 1) => {
 type Plan = {
     title: string,
     content?: React$Element<*>,
-    subs?: Plan[]
+    subs?: Plan[],
+    editLink?: string
 }
 
 export const Planner = combine(

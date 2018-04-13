@@ -89,11 +89,7 @@ export var withListener = function withListener(_ref) {
                 var props = {
                     props: _extends({}, this.$props, listener)
                 };
-                return h(
-                    Component,
-                    props,
-                    []
-                );
+                return h(Component, props);
             }
         };
     };
