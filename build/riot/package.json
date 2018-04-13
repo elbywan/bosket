@@ -1,6 +1,6 @@
 {
     "name": "@bosket/riot",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "description": "A collection of tree views.",
     "keywords": [
         "tree",
@@ -22,8 +22,8 @@
         "url": "https://github.com/elbywan/bosket/issues"
     },
     "peerDependencies": {
-        "@bosket/core": "^0.4.2"
-        ,"@bosket/tools": "^0.4.2"
+        "@bosket/core": "^0.4.3"
+        ,"@bosket/tools": "^0.4.3"
         ,"riot": "^3.9.1"
     }
 }

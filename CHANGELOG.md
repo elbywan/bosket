@@ -1,3 +1,13 @@
+<a name="0.4.3"></a>
+## [0.4.3](https://github.com/elbywan/bosket/compare/0.4.2...0.4.3) (2018-04-13)
+
+
+### Features
+
+* **core:** add opener callback ([ec183b4](https://github.com/elbywan/bosket/commit/ec183b4))
+
+
+
 <a name="0.4.2"></a>
 ## [0.4.2](https://github.com/elbywan/bosket/compare/0.4.1...0.4.2) (2017-12-30)
 

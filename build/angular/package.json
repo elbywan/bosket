@@ -1,6 +1,6 @@
 {
     "name": "@bosket/angular",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "description": "A collection of tree views.",
     "keywords": [
         "tree",
@@ -24,8 +24,8 @@
         "url": "https://github.com/elbywan/bosket/issues"
     },
     "peerDependencies": {
-        "@bosket/core": "^0.4.2"
-        ,"@bosket/tools": "^0.4.2"
+        "@bosket/core": "^0.4.3"
+        ,"@bosket/tools": "^0.4.3"
         ,"@angular/core": "^5.2.9"
         ,"@angular/common": "^5.2.9"
     }
