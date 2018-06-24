@@ -82,7 +82,7 @@ const TreeViewNodeBase = {
         }
 
         const renderOpener = (item, OpenerComponent) => position =>
-            (this.node.hasChildren(item) || this.node.isAsync(item)) && this.$props.openerOpts.position === position ?
+            (this.node.hasChildren(item) && item[this.$props.category].length > 0 || this.node.isAsync(item)) && this.$props.openerOpts.position === position ?
                 <OpenerComponent class={ this.node.mixCss("opener") } onClick={ this.node.onOpener(item, this.$props.openerOpts.callback) }></OpenerComponent> :
                 null
 

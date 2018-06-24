@@ -126,7 +126,7 @@ class TreeViewNodeBaseClass extends React.PureComponent<TreeViewNodeProps, TreeV
         const { openerOpts } = this.props
 
         return position =>
-            (this.node.hasChildren(item) || this.node.isAsync(item)) && openerOpts.position === position ?
+            (this.node.hasChildren(item) && item[this.props.category].length > 0 || this.node.isAsync(item)) && openerOpts.position === position ?
                 <OpenerComponent
                     className={ this.node.mixCss("opener") }
                     onClick={ this.node.onOpener(item, openerOpts.callback) }

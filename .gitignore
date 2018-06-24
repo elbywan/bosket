@@ -8,7 +8,12 @@
 /coverage
 
 # production
-# /build
+/build/angular
+/build/core
+/build/react
+/build/riot
+/build/tools
+/build/vue
 
 # misc
 .DS_Store
@@ -16,4 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-

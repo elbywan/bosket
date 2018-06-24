@@ -216,7 +216,7 @@ export class TreeViewNode<Item extends Object> implements AfterViewInit {
     }
 
     renderOpener(item, position) {
-        return (this.node.hasChildren(item) || this.node.isAsync(item)) &&
+        return (this.node.hasChildren(item) && item[this.category].length > 0 || this.node.isAsync(item)) &&
             this.openerOpts.position === position
     }
 }
