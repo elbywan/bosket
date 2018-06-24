@@ -84,7 +84,7 @@ var TreeViewNode = (function () {
         fun ? fun(event) : null;
     };
     TreeViewNode.prototype.renderOpener = function (item, position) {
-        return (this.node.hasChildren(item) || this.node.isAsync(item)) &&
+        return (this.node.hasChildren(item) && item[this.category].length > 0 || this.node.isAsync(item)) &&
             this.openerOpts.position === position;
     };
     TreeViewNode.decorators = [

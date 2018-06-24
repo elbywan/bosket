@@ -118,7 +118,7 @@ var TreeViewNodeBaseClass = function (_React$PureComponent) {
 
 
             return function (position) {
-                return (_this3.node.hasChildren(item) || _this3.node.isAsync(item)) && openerOpts.position === position ? React.createElement(OpenerComponent, {
+                return (_this3.node.hasChildren(item) && item[_this3.props.category].length > 0 || _this3.node.isAsync(item)) && openerOpts.position === position ? React.createElement(OpenerComponent, {
                     className: _this3.node.mixCss("opener"),
                     onClick: _this3.node.onOpener(item, openerOpts.callback)
                 }) : null;

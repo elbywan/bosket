@@ -1,6 +1,6 @@
 {
     "name": "@bosket/tools",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "description": "A collection of tree views.",
     "keywords": [
         "tree",

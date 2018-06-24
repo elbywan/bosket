@@ -93,7 +93,7 @@ var TreeViewNodeBase = {
 
         var renderOpener = function renderOpener(item, OpenerComponent) {
             return function (position) {
-                return (_this3.node.hasChildren(item) || _this3.node.isAsync(item)) && _this3.$props.openerOpts.position === position ? h(OpenerComponent, { "class": _this3.node.mixCss("opener"), on: {
+                return (_this3.node.hasChildren(item) && item[_this3.$props.category].length > 0 || _this3.node.isAsync(item)) && _this3.$props.openerOpts.position === position ? h(OpenerComponent, { "class": _this3.node.mixCss("opener"), on: {
                         "click": _this3.node.onOpener(item, _this3.$props.openerOpts.callback)
                     }
                 }) : null;

@@ -1,3 +1,13 @@
+<a name="0.4.4"></a>
+## [0.4.4](https://github.com/elbywan/bosket/compare/0.4.3...0.4.4) (2018-06-24)
+
+
+### Bug Fixes
+
+* **all:** don't render opener for empty categories ([c291b58](https://github.com/elbywan/bosket/commit/c291b58)), closes [#35](https://github.com/elbywan/bosket/issues/35)
+
+
+
 <a name="0.4.3"></a>
 ## [0.4.3](https://github.com/elbywan/bosket/compare/0.4.2...0.4.3) (2018-04-13)
 
