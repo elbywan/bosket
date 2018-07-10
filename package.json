@@ -23,7 +23,7 @@
     "build-js": "babel src -d build -s && flow gen-flow-files --out-dir build src",
     "build-ts": "ngc -p src/angular/tsconfig.json && cd src && copyfiles \"./**/*.d.ts\" ../build",
     "bundle": "webpack --progress --colors --config config/webpack.config.js -p && npm run bundle-templates",
-    "bundle-templates": "scripts/bundle-hbs.js",
+    "bundle-templates": "node scripts/bundle-hbs.js",
     "build-docs": "npm install build/core build/tools build/angular --no-save && webpack -p --progress --colors --config docs/webpack.config.js",
     "dev-server": "webpack-dev-server --config docs/webpack.config.dev.js",
     "clean": "rimraf build/{angular,core,react,vue,riot,tools} && rimraf **/.DS_Store",
