@@ -100,7 +100,7 @@
     "vue-template-compiler": "^2.5.16",
     "webpack": "^3.10.0",
     "webpack-angular-externals": "^1.0.2",
-    "webpack-dev-server": "^2.9.7",
+    "webpack-dev-server": "^3.1.11",
     "whatwg-fetch": "^2.0.4",
     "zone.js": "^0.8.26"
   }
